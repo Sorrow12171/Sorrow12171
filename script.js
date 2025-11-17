@@ -63,6 +63,58 @@ class AplicacionVocabulario {
             ]
         };
 
+        // Sistema de logros
+        this.logros = [
+            {
+                id: 1,
+                emoji: "🎯",
+                titulo: "Primer 100%",
+                descripcion: "Completa tu primer mazo al 100%",
+                requerimiento: 1,
+                tipo: "mazos_100"
+            },
+            {
+                id: 2,
+                emoji: "🏆",
+                titulo: "Maestro de 3 Mazos",
+                descripcion: "Completa 3 mazos diferentes al 100%",
+                requerimiento: 3,
+                tipo: "mazos_100"
+            },
+            {
+                id: 3,
+                emoji: "🌟",
+                titulo: "Experto en Japonés",
+                descripcion: "Completa 5 mazos diferentes al 100%",
+                requerimiento: 5,
+                tipo: "mazos_100"
+            },
+            {
+                id: 4,
+                emoji: "⚡",
+                titulo: "Racha Inicial",
+                descripcion: "Consigue una racha de 5 aciertos seguidos",
+                requerimiento: 5,
+                tipo: "racha"
+            },
+            {
+                id: 5,
+                emoji: "💫",
+                titulo: "Racha Épica",
+                descripcion: "Consigue una racha de 10 aciertos seguidos",
+                requerimiento: 10,
+                tipo: "racha"
+            },
+            {
+                id: 6,
+                emoji: "❤️",
+                titulo: "Amor por el Aprendizaje",
+                descripcion: "Completa 10 mazos al 100% en total",
+                requerimiento: 10,
+                tipo: "total_100"
+            }
+        ];
+
         this.estado = {
             mazoActual: [],
             nombreMazoActual: "",
@@ -82,11 +134,21 @@ class AplicacionVocabulario {
     cargarStats() {
         const statsGuardadas = localStorage.getItem('vocabularioStats');
         if (statsGuardadas) {
-            return JSON.parse(statsGuardadas);
+            const stats = JSON.parse(statsGuardadas);
+            // Asegurar que exista la sección de logros
+            if (!stats.logrosDesbloqueados) {
+                stats.logrosDesbloqueados = [];
+            }
+            return stats;
         }
         
         // Estructura inicial
-        const stats = { mazosCompletados: 0, mazos: {} };
+        const stats = { 
+            mazosCompletados: 0, 
+            mazos: {},
+            logrosDesbloqueados: []
+        };
+        
         for (const nombreMazo in this.mazos) {
             stats.mazos[nombreMazo] = {
                 vecesJugado: 0,
@@ -110,12 +172,14 @@ class AplicacionVocabulario {
         this.pantallas = {
             seleccion: document.getElementById('pantalla-seleccion'),
             quiz: document.getElementById('pantalla-quiz'),
-            resultados: document.getElementById('pantalla-resultados')
+            resultados: document.getElementById('pantalla-resultados'),
+            logros: document.getElementById('pantalla-logros')
         };
 
         this.inicializarPantallaSeleccion();
         this.inicializarPantallaQuiz();
         this.inicializarPantallaResultados();
+        this.inicializarPantallaLogros();
         
         this.mostrarPantalla('seleccion');
     }
@@ -132,13 +196,98 @@ class AplicacionVocabulario {
     }
 
     inicializarSeccionNovia() {
-        const noviaCard = document.querySelector('.novia-card');
+        const noviaCard = document.getElementById('novia-card');
         if (noviaCard) {
             noviaCard.addEventListener('click', () => {
-                // Aquí puedes cambiar la URL por la que quieras
-                window.open('https://www.example.com', '_blank');
+                this.mostrarPantallaLogros();
             });
         }
+    }
+
+    inicializarPantallaLogros() {
+        this.contenedorLogros = document.getElementById('contenedor-logros');
+        this.botonVolverMenuLogros = document.getElementById('boton-volver-menu-logros');
+        
+        this.botonVolverMenuLogros.onclick = () => this.mostrarPantalla('seleccion');
+    }
+
+    mostrarPantallaLogros() {
+        this.actualizarPantallaLogros();
+        this.mostrarPantalla('logros');
+    }
+
+    actualizarPantallaLogros() {
+        this.contenedorLogros.innerHTML = '';
+        
+        this.logros.forEach(logro => {
+            const estaDesbloqueado = this.stats.logrosDesbloqueados.includes(logro.id);
+            const progreso = this.calcularProgresoLogro(logro);
+            const porcentaje = Math.min(100, (progreso.actual / progreso.requerido) * 100);
+            
+            const logroElement = document.createElement('div');
+            logroElement.className = `logro ${estaDesbloqueado ? 'desbloqueado' : 'logro-bloqueado'}`;
+            
+            logroElement.innerHTML = `
+                <div class="logro-emoji">${logro.emoji}</div>
+                <div class="logro-contenido">
+                    <div class="logro-titulo">${logro.titulo}</div>
+                    <div class="logro-descripcion">${logro.descripcion}</div>
+                    <div class="logro-progreso">
+                        <div class="logro-progreso-bar" style="width: ${porcentaje}%"></div>
+                    </div>
+                    <div class="logro-progreso-texto">
+                        ${progreso.actual}/${progreso.requerido} completado
+                    </div>
+                </div>
+                <div class="logro-estado ${estaDesbloqueado ? 'logro-desbloqueado' : 'logro-bloqueado-texto'}">
+                    ${estaDesbloqueado ? '✅ Desbloqueado' : '🔒 Bloqueado'}
+                </div>
+            `;
+            
+            this.contenedorLogros.appendChild(logroElement);
+        });
+    }
+
+    calcularProgresoLogro(logro) {
+        switch(logro.tipo) {
+            case 'mazos_100':
+                return {
+                    actual: this.stats.mazosCompletados,
+                    requerido: logro.requerimiento
+                };
+            case 'racha':
+                const mejorRacha = Math.max(...Object.values(this.stats.mazos).map(m => m.mejorRacha));
+                return {
+                    actual: mejorRacha,
+                    requerido: logro.requerimiento
+                };
+            case 'total_100':
+                const total100 = Object.values(this.stats.mazos).reduce((sum, m) => sum + m.completados100, 0);
+                return {
+                    actual: total100,
+                    requerido: logro.requerimiento
+                };
+            default:
+                return { actual: 0, requerido: 1 };
+        }
+    }
+
+    verificarLogros() {
+        this.logros.forEach(logro => {
+            if (!this.stats.logrosDesbloqueados.includes(logro.id)) {
+                const progreso = this.calcularProgresoLogro(logro);
+                if (progreso.actual >= progreso.requerido) {
+                    this.stats.logrosDesbloqueados.push(logro.id);
+                    this.mostrarNotificacionLogro(logro);
+                }
+            }
+        });
+        this.guardarStats();
+    }
+
+    mostrarNotificacionLogro(logro) {
+        // En una versión futura se puede agregar una notificación bonita
+        console.log(`🎉 ¡Logro desbloqueado: ${logro.titulo}!`);
     }
 
     actualizarPantallaSeleccion() {
@@ -173,7 +322,6 @@ class AplicacionVocabulario {
         }
     }
 
-    // ... (el resto del código se mantiene igual)
     inicializarPantallaQuiz() {
         this.contador = document.getElementById('contador');
         this.botonHome = document.getElementById('boton-home');
@@ -352,78 +500,3 @@ class AplicacionVocabulario {
         
         // Actualizar estadísticas del mazo
         const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
-        statsMazo.ultimaPuntuacion = porcentaje;
-        statsMazo.aciertosTotales += this.estado.aciertos;
-        statsMazo.erroresTotales += this.estado.errores;
-        
-        if (porcentaje > statsMazo.mejorPuntuacion) {
-            statsMazo.mejorPuntuacion = porcentaje;
-        }
-        
-        // Contar completado al 100%
-        if (porcentaje === 100) {
-            this.stats.mazosCompletados++;
-            statsMazo.completados100++;
-        }
-        
-        this.guardarStats();
-        this.mostrarPantalla('resultados');
-        
-        // Mostrar resultados
-        const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
-        this.resultadoFinal.textContent = textoResultados;
-    }
-
-    crearTextoResultados(porcentaje, statsMazo) {
-        let emoji, mensajeEspecial;
-        
-        if (porcentaje === 100) {
-            emoji = "🎉";
-            mensajeEspecial = `\n🌟 ¡PERFECTO! Has completado este mazo al 100% por ${statsMazo.completados100}ª vez!`;
-        } else if (porcentaje >= 90) {
-            emoji = "🎉";
-            mensajeEspecial = "\n¡Excelente trabajo!";
-        } else if (porcentaje >= 70) {
-            emoji = "👍";
-            mensajeEspecial = "\n¡Buen trabajo!";
-        } else if (porcentaje >= 50) {
-            emoji = "😊";
-            mensajeEspecial = "\n¡Sigue practicando!";
-        } else {
-            emoji = "💪";
-            mensajeEspecial = "\n¡No te rindas!";
-        }
-        
-        return `${emoji} Quiz Completado - ${this.estado.nombreMazoActual} ${emoji}
-
-📊 RESULTADO ACTUAL:
-   Puntuación: ${porcentaje.toFixed(1)}%
-   Aciertos: ${this.estado.aciertos} | Errores: ${this.estado.errores}
-   Total de palabras: ${this.estado.totalInicial}${mensajeEspecial}
-
-🏆 ESTADÍSTICAS DEL MAZO:
-   Mejor puntuación: ${statsMazo.mejorPuntuacion.toFixed(1)}%
-   Veces jugado: ${statsMazo.vecesJugado}
-   Mejor racha: ${statsMazo.mejorRacha} aciertos
-   Aciertos totales: ${statsMazo.aciertosTotales}
-   Errores totales: ${statsMazo.erroresTotales}
-   Completados al 100%: ${statsMazo.completados100} veces
-
-⭐ LOGROS GLOBALES:
-   Mazos completados al 100%: ${this.stats.mazosCompletados}`;
-    }
-
-    reintentarMazo() {
-        this.iniciarQuiz(this.estado.nombreMazoActual);
-    }
-
-    volverMenu() {
-        this.actualizarPantallaSeleccion();
-        this.mostrarPantalla('seleccion');
-    }
-}
-
-// Inicializar la aplicación cuando se carga la página
-document.addEventListener('DOMContentLoaded', () => {
-    new AplicacionVocabulario();
-});
