@@ -63,16 +63,17 @@ class AplicacionVocabulario {
             ]
         };
 
-        // SISTEMA DE AUDIO - NUEVO
+        // SISTEMA DE AUDIO - URLs CORRECTAS
         this.audios = {
-            beso: null,
-            nalgada: null,
-            chupada: null
+            beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
+            nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
+            chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3'
         };
 
+        this.audioObjects = {}; // Aquí se guardarán los audios cargados
         this.cargarAudios();
 
-        // SISTEMA DE RECOMPENSAS - LOGROS Y ACCIONES
+        // SISTEMA DE RECOMPENSAS
         this.recompensas = {
             logros: [
                 {
@@ -113,7 +114,7 @@ class AplicacionVocabulario {
                     nombre: "Beso",
                     descripcion: "Desbloqueado al completar 3 mazos",
                     imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
-                    logroRequerido: 1, // ID del logro requerido
+                    logroRequerido: 1,
                     desbloqueado: false,
                     audio: "beso"
                 },
@@ -123,7 +124,7 @@ class AplicacionVocabulario {
                     nombre: "Nalgada",
                     descripcion: "Desbloqueado al completar 10 mazos",
                     imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
-                    logroRequerido: 2, // ID del logro requerido
+                    logroRequerido: 2,
                     desbloqueado: false,
                     audio: "nalgada"
                 },
@@ -133,7 +134,7 @@ class AplicacionVocabulario {
                     nombre: "Chupada",
                     descripcion: "Desbloqueado al completar 15 mazos",
                     imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
-                    logroRequerido: 3, // ID del logro requerido
+                    logroRequerido: 3,
                     desbloqueado: false,
                     audio: "chupada"
                 }
@@ -156,36 +157,59 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
-    // NUEVO: Sistema de carga de audios
+    // SISTEMA DE AUDIO MEJORADO
     cargarAudios() {
-        const baseURL = 'https://sorrow12171.github.io/vocabulario-japones/';
+        console.log('🎵 Iniciando carga de audios...');
         
-        this.audios.beso = new Audio(`${baseURL}beso.mp3`);
-        this.audios.nalgada = new Audio(`${baseURL}nalgada.mp3`);
-        this.audios.chupada = new Audio(`${baseURL}chupada.mp3`);
-
-        // Precargar audios
-        Object.values(this.audios).forEach(audio => {
-            if (audio) {
-                audio.preload = 'auto';
-                audio.load();
-            }
-        });
+        for (const [nombre, url] of Object.entries(this.audios)) {
+            console.log(`📥 Cargando: ${nombre} -> ${url}`);
+            
+            const audio = new Audio();
+            audio.src = url;
+            audio.preload = 'auto';
+            
+            audio.addEventListener('canplaythrough', () => {
+                console.log(`✅ ${nombre} cargado y listo!`);
+                this.audioObjects[nombre] = audio;
+            });
+            
+            audio.addEventListener('error', (e) => {
+                console.log(`❌ Error cargando ${nombre}:`, audio.error);
+            });
+            
+            audio.addEventListener('load', () => {
+                console.log(`🔊 ${nombre} load event`);
+            });
+            
+            // Forzar carga
+            audio.load();
+        }
+        
+        // Verificar estado después de 3 segundos
+        setTimeout(() => {
+            console.log('🔍 Estado final de audios:');
+            console.log('- beso:', this.audioObjects.beso ? '✅ Cargado' : '❌ No cargado');
+            console.log('- nalgada:', this.audioObjects.nalgada ? '✅ Cargado' : '❌ No cargado');
+            console.log('- chupada:', this.audioObjects.chupada ? '✅ Cargado' : '❌ No cargado');
+        }, 3000);
     }
 
-    // NUEVO: Reproducir audio
-    reproducirAudio(tipoAudio) {
-        try {
-            const audio = this.audios[tipoAudio];
-            if (audio) {
-                audio.currentTime = 0; // Reiniciar al inicio
-                audio.play().catch(error => {
-                    console.log('Error reproduciendo audio:', error);
-                    // Silenciar errores de autoplay
-                });
-            }
-        } catch (error) {
-            console.log('Error con el sistema de audio:', error);
+    reproducirAudio(nombre) {
+        console.log(`🎵 Intentando reproducir: ${nombre}`);
+        
+        const audio = this.audioObjects[nombre];
+        if (audio) {
+            console.log(`🔊 Audio encontrado, reproduciendo...`);
+            audio.currentTime = 0;
+            
+            audio.play().then(() => {
+                console.log(`✅ ${nombre} reproduciéndose!`);
+            }).catch(error => {
+                console.log(`❌ Error al reproducir ${nombre}:`, error);
+            });
+        } else {
+            console.log(`❌ Audio no disponible: ${nombre}`);
+            console.log('Audios cargados:', Object.keys(this.audioObjects));
         }
     }
 
@@ -193,14 +217,12 @@ class AplicacionVocabulario {
         const statsGuardadas = localStorage.getItem('vocabularioStats');
         if (statsGuardadas) {
             const stats = JSON.parse(statsGuardadas);
-            // Asegurar que exista la sección de recompensas
             if (!stats.recompensasDesbloqueadas) {
                 stats.recompensasDesbloqueadas = [];
             }
             return stats;
         }
         
-        // Estructura inicial
         const stats = { 
             mazosCompletados: 0, 
             mazos: {},
@@ -247,9 +269,7 @@ class AplicacionVocabulario {
         this.statsGlobal = document.getElementById('stats-global');
         this.listaCompletados = document.getElementById('lista-completados');
         
-        // Agregar funcionalidad a la sección novia
         this.inicializarSeccionNovia();
-        
         this.actualizarPantallaSeleccion();
     }
 
@@ -278,14 +298,12 @@ class AplicacionVocabulario {
     actualizarPantallaRecompensas() {
         this.actualizarProgresoRecompensas();
         
-        // Actualizar logros
         this.contenedorLogros.innerHTML = '';
         this.recompensas.logros.forEach(logro => {
             const logroElement = this.crearElementoRecompensa(logro);
             this.contenedorLogros.appendChild(logroElement);
         });
 
-        // Actualizar acciones
         this.contenedorAcciones.innerHTML = '';
         this.recompensas.acciones.forEach(accion => {
             const accionElement = this.crearElementoRecompensa(accion);
@@ -316,7 +334,6 @@ class AplicacionVocabulario {
                 </div>
             `;
         } else {
-            // Es una acción - NUEVO: Agregar evento de clic
             contenidoHTML = `
                 ${!esDesbloqueado ? '<div class="candado">🔒</div>' : ''}
                 <img src="${recompensa.imagen}" alt="${recompensa.nombre}" class="recompensa-imagen">
@@ -333,23 +350,26 @@ class AplicacionVocabulario {
         
         elemento.innerHTML = contenidoHTML;
         
-        // NUEVO: Agregar evento de clic para acciones desbloqueadas
+        // EVENTO DE CLIC PARA ACCIONES DESBLOQUEADAS
         if (!esLogro && esDesbloqueado) {
             elemento.style.cursor = 'pointer';
-            elemento.addEventListener('click', () => {
-                this.reproducirAudioAccion(recompensa);
+            elemento.addEventListener('click', (event) => {
+                console.log(`🖱️ Clic en acción: ${recompensa.nombre}`);
+                this.reproducirAudioAccion(recompensa, event);
             });
         }
         
         return elemento;
     }
 
-    // NUEVO: Reproducir audio de acción
-    reproducirAudioAccion(accion) {
-        if (accion.audio && this.audios[accion.audio]) {
+    reproducirAudioAccion(accion, event) {
+        console.log('🎵 ReproducirAudioAccion llamado para:', accion.nombre);
+        console.log('Audio a reproducir:', accion.audio);
+        
+        if (accion.audio) {
             this.reproducirAudio(accion.audio);
             
-            // Efecto visual temporal al hacer clic
+            // Efecto visual al hacer clic
             const elemento = event.currentTarget;
             elemento.style.transform = 'scale(0.95)';
             elemento.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.5)';
@@ -364,13 +384,11 @@ class AplicacionVocabulario {
     actualizarProgresoRecompensas() {
         const mazosCompletados = this.stats.mazosCompletados;
         
-        // Actualizar logros
         this.recompensas.logros.forEach(logro => {
             logro.progresoActual = mazosCompletados;
             logro.desbloqueado = mazosCompletados >= logro.requerimiento;
         });
 
-        // Actualizar acciones basado en logros desbloqueados
         this.recompensas.acciones.forEach(accion => {
             const logroRequerido = this.recompensas.logros.find(l => l.id === accion.logroRequerido);
             accion.desbloqueado = logroRequerido ? logroRequerido.desbloqueado : false;
@@ -380,18 +398,16 @@ class AplicacionVocabulario {
     verificarRecompensas() {
         this.actualizarProgresoRecompensas();
         
-        // Verificar si se desbloqueó alguna recompensa nueva
         const recompensasDesbloqueadas = [
             ...this.recompensas.logros.filter(l => l.desbloqueado),
             ...this.recompensas.acciones.filter(a => a.desbloqueado)
         ].map(r => r.id);
 
-        // Mostrar notificación si se desbloqueó algo nuevo
         recompensasDesbloqueadas.forEach(id => {
             if (!this.stats.recompensasDesbloqueadas.includes(id)) {
                 const recompensa = [...this.recompensas.logros, ...this.recompensas.acciones].find(r => r.id === id);
                 if (recompensa) {
-                    this.mostrarNotificacionRecompensa(recompensa);
+                    console.log(`🎉 ¡${recompensa.tipo === 'logro' ? 'Logro' : 'Acción'} desbloqueado: ${recompensa.nombre}!`);
                     this.stats.recompensasDesbloqueadas.push(id);
                 }
             }
@@ -400,13 +416,7 @@ class AplicacionVocabulario {
         this.guardarStats();
     }
 
-    mostrarNotificacionRecompensa(recompensa) {
-        // En una versión futura se puede hacer una notificación visual bonita
-        console.log(`🎉 ¡${recompensa.tipo === 'logro' ? 'Logro' : 'Acción'} desbloqueado: ${recompensa.nombre}!`);
-    }
-
     actualizarPantallaSeleccion() {
-        // Actualizar botones de mazos
         this.contenedorMazos.innerHTML = '';
         for (const nombreMazo in this.mazos) {
             const statsMazo = this.stats.mazos[nombreMazo];
@@ -423,10 +433,8 @@ class AplicacionVocabulario {
             this.contenedorMazos.appendChild(boton);
         }
 
-        // Actualizar estadísticas globales
         this.statsGlobal.textContent = `🏆 Mazos completados al 100%: ${this.stats.mazosCompletados}`;
 
-        // Actualizar lista de completados
         this.listaCompletados.innerHTML = '';
         for (const nombreMazo in this.mazos) {
             const completadosCount = this.stats.mazos[nombreMazo].completados100;
@@ -470,13 +478,11 @@ class AplicacionVocabulario {
         this.estado.mazoActual = [...this.mazos[nombreMazo]];
         this.mezclarArray(this.estado.mazoActual);
         
-        // Reiniciar contadores
         this.estado.aciertos = 0;
         this.estado.errores = 0;
         this.estado.totalInicial = this.estado.mazoActual.length;
         this.estado.preguntasRespondidas = 0;
         
-        // Actualizar estadísticas
         this.stats.mazos[nombreMazo].vecesJugado++;
         
         this.mostrarPantalla('quiz');
@@ -501,7 +507,6 @@ class AplicacionVocabulario {
         this.estado.correcta = correcta;
         this.estado.lectura = lectura;
 
-        // Generar opciones
         const opciones = [correcta];
         const todasTraducciones = [];
         
@@ -520,7 +525,6 @@ class AplicacionVocabulario {
 
         this.mezclarArray(opciones);
 
-        // Actualizar interfaz
         this.palabraJapones.textContent = palabraActual;
         this.lecturaElement.textContent = '';
         this.resultado.textContent = '';
@@ -528,7 +532,6 @@ class AplicacionVocabulario {
 
         this.actualizarContador();
 
-        // Configurar botones
         this.opciones.forEach((boton, i) => {
             boton.textContent = opciones[i];
             boton.className = 'opcion';
@@ -545,23 +548,19 @@ class AplicacionVocabulario {
     verificarRespuesta(opcionSeleccionada, boton) {
         this.estado.preguntasRespondidas++;
 
-        // Deshabilitar botones
         this.opciones.forEach(boton => boton.disabled = true);
 
         if (opcionSeleccionada === this.estado.correcta) {
-            // Respuesta correcta
             this.estado.aciertos++;
             this.resultado.textContent = '✅ ¡Correcto!';
             this.resultado.className = 'resultado correcto';
 
-            // Resaltar botón correcto
             this.opciones.forEach(boton => {
                 if (boton.textContent === this.estado.correcta) {
                     boton.classList.add('correcta');
                 }
             });
 
-            // Actualizar racha
             this.stats.mazos[this.estado.nombreMazoActual].rachaActual++;
             const rachaActual = this.stats.mazos[this.estado.nombreMazoActual].rachaActual;
             const mejorRacha = this.stats.mazos[this.estado.nombreMazoActual].mejorRacha;
@@ -570,22 +569,17 @@ class AplicacionVocabulario {
                 this.stats.mazos[this.estado.nombreMazoActual].mejorRacha = rachaActual;
             }
 
-            // Eliminar palabra del mazo
             this.estado.mazoActual.shift();
 
-            // Mostrar lectura
             this.lecturaElement.textContent = `Lectura: ${this.estado.lectura}`;
 
-            // Siguiente palabra después de delay
             setTimeout(() => this.mostrarSiguientePalabra(), 1500);
 
         } else {
-            // Respuesta incorrecta
             this.estado.errores++;
             this.resultado.textContent = '❌ Incorrecto';
             this.resultado.className = 'resultado incorrecto';
 
-            // Resaltar botones
             this.opciones.forEach(boton => {
                 if (boton.textContent === this.estado.correcta) {
                     boton.classList.add('correcta');
@@ -594,16 +588,12 @@ class AplicacionVocabulario {
                 }
             });
 
-            // Reiniciar racha
             this.stats.mazos[this.estado.nombreMazoActual].rachaActual = 0;
 
-            // Mover palabra al final
             this.estado.mazoActual.push(this.estado.mazoActual.shift());
 
-            // Mostrar lectura
             this.lecturaElement.textContent = `Lectura: ${this.estado.lectura}`;
 
-            // Siguiente palabra después de delay
             setTimeout(() => this.mostrarSiguientePalabra(), 2000);
         }
 
@@ -613,7 +603,6 @@ class AplicacionVocabulario {
     finalizarQuiz() {
         const porcentaje = Math.max(0, ((this.estado.aciertos - this.estado.errores) / this.estado.totalInicial) * 100);
         
-        // Actualizar estadísticas del mazo
         const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
         statsMazo.ultimaPuntuacion = porcentaje;
         statsMazo.aciertosTotales += this.estado.aciertos;
@@ -623,19 +612,16 @@ class AplicacionVocabulario {
             statsMazo.mejorPuntuacion = porcentaje;
         }
         
-        // Contar completado al 100%
         if (porcentaje === 100) {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
         }
         
-        // Verificar recompensas
         this.verificarRecompensas();
         
         this.guardarStats();
         this.mostrarPantalla('resultados');
         
-        // Mostrar resultados
         const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
         this.resultadoFinal.textContent = textoResultados;
     }
