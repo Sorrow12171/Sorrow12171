@@ -125,7 +125,20 @@ class AplicacionVocabulario {
         this.statsGlobal = document.getElementById('stats-global');
         this.listaCompletados = document.getElementById('lista-completados');
         
+        // Agregar funcionalidad a la sección novia
+        this.inicializarSeccionNovia();
+        
         this.actualizarPantallaSeleccion();
+    }
+
+    inicializarSeccionNovia() {
+        const noviaCard = document.querySelector('.novia-card');
+        if (noviaCard) {
+            noviaCard.addEventListener('click', () => {
+                // Aquí puedes cambiar la URL por la que quieras
+                window.open('https://www.example.com', '_blank');
+            });
+        }
     }
 
     actualizarPantallaSeleccion() {
@@ -160,6 +173,7 @@ class AplicacionVocabulario {
         }
     }
 
+    // ... (el resto del código se mantiene igual)
     inicializarPantallaQuiz() {
         this.contador = document.getElementById('contador');
         this.botonHome = document.getElementById('boton-home');
