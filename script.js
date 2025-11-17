@@ -63,57 +63,70 @@ class AplicacionVocabulario {
             ]
         };
 
-        // Sistema de logros
-        this.logros = [
-            {
-                id: 1,
-                emoji: "🎯",
-                titulo: "Primer 100%",
-                descripcion: "Completa tu primer mazo al 100%",
-                requerimiento: 1,
-                tipo: "mazos_100"
-            },
-            {
-                id: 2,
-                emoji: "🏆",
-                titulo: "Maestro de 3 Mazos",
-                descripcion: "Completa 3 mazos diferentes al 100%",
-                requerimiento: 3,
-                tipo: "mazos_100"
-            },
-            {
-                id: 3,
-                emoji: "🌟",
-                titulo: "Experto en Japonés",
-                descripcion: "Completa 5 mazos diferentes al 100%",
-                requerimiento: 5,
-                tipo: "mazos_100"
-            },
-            {
-                id: 4,
-                emoji: "⚡",
-                titulo: "Racha Inicial",
-                descripcion: "Consigue una racha de 5 aciertos seguidos",
-                requerimiento: 5,
-                tipo: "racha"
-            },
-            {
-                id: 5,
-                emoji: "💫",
-                titulo: "Racha Épica",
-                descripcion: "Consigue una racha de 10 aciertos seguidos",
-                requerimiento: 10,
-                tipo: "racha"
-            },
-            {
-                id: 6,
-                emoji: "❤️",
-                titulo: "Amor por el Aprendizaje",
-                descripcion: "Completa 10 mazos al 100% en total",
-                requerimiento: 10,
-                tipo: "total_100"
-            }
-        ];
+        // SISTEMA DE RECOMPENSAS - LOGROS Y ACCIONES
+        this.recompensas = {
+            logros: [
+                {
+                    id: 1,
+                    tipo: "logro",
+                    nombre: "Beso",
+                    descripcion: "Completa 3 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
+                    requerimiento: 3,
+                    progresoActual: 0,
+                    desbloqueado: false
+                },
+                {
+                    id: 2,
+                    tipo: "logro",
+                    nombre: "Nalgada",
+                    descripcion: "Completa 10 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
+                    requerimiento: 10,
+                    progresoActual: 0,
+                    desbloqueado: false
+                },
+                {
+                    id: 3,
+                    tipo: "logro",
+                    nombre: "Chupada",
+                    descripcion: "Completa 15 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
+                    requerimiento: 15,
+                    progresoActual: 0,
+                    desbloqueado: false
+                }
+            ],
+            acciones: [
+                {
+                    id: 4,
+                    tipo: "accion",
+                    nombre: "Beso",
+                    descripcion: "Desbloqueado al completar 3 mazos",
+                    imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
+                    logroRequerido: 1, // ID del logro requerido
+                    desbloqueado: false
+                },
+                {
+                    id: 5,
+                    tipo: "accion",
+                    nombre: "Nalgada",
+                    descripcion: "Desbloqueado al completar 10 mazos",
+                    imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
+                    logroRequerido: 2, // ID del logro requerido
+                    desbloqueado: false
+                },
+                {
+                    id: 6,
+                    tipo: "accion",
+                    nombre: "Chupada",
+                    descripcion: "Desbloqueado al completar 15 mazos",
+                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
+                    logroRequerido: 3, // ID del logro requerido
+                    desbloqueado: false
+                }
+            ]
+        };
 
         this.estado = {
             mazoActual: [],
@@ -135,9 +148,9 @@ class AplicacionVocabulario {
         const statsGuardadas = localStorage.getItem('vocabularioStats');
         if (statsGuardadas) {
             const stats = JSON.parse(statsGuardadas);
-            // Asegurar que exista la sección de logros
-            if (!stats.logrosDesbloqueados) {
-                stats.logrosDesbloqueados = [];
+            // Asegurar que exista la sección de recompensas
+            if (!stats.recompensasDesbloqueadas) {
+                stats.recompensasDesbloqueadas = [];
             }
             return stats;
         }
@@ -146,7 +159,7 @@ class AplicacionVocabulario {
         const stats = { 
             mazosCompletados: 0, 
             mazos: {},
-            logrosDesbloqueados: []
+            recompensasDesbloqueadas: []
         };
         
         for (const nombreMazo in this.mazos) {
@@ -173,13 +186,13 @@ class AplicacionVocabulario {
             seleccion: document.getElementById('pantalla-seleccion'),
             quiz: document.getElementById('pantalla-quiz'),
             resultados: document.getElementById('pantalla-resultados'),
-            logros: document.getElementById('pantalla-logros')
+            novia: document.getElementById('pantalla-novia')
         };
 
         this.inicializarPantallaSeleccion();
         this.inicializarPantallaQuiz();
         this.inicializarPantallaResultados();
-        this.inicializarPantallaLogros();
+        this.inicializarPantallaNovia();
         
         this.mostrarPantalla('seleccion');
     }
@@ -199,95 +212,126 @@ class AplicacionVocabulario {
         const noviaCard = document.getElementById('novia-card');
         if (noviaCard) {
             noviaCard.addEventListener('click', () => {
-                this.mostrarPantallaLogros();
+                this.mostrarPantallaNovia();
             });
         }
     }
 
-    inicializarPantallaLogros() {
+    inicializarPantallaNovia() {
         this.contenedorLogros = document.getElementById('contenedor-logros');
-        this.botonVolverMenuLogros = document.getElementById('boton-volver-menu-logros');
+        this.contenedorAcciones = document.getElementById('contenedor-acciones');
+        this.botonVolverMenuNovia = document.getElementById('boton-volver-menu-novia');
         
-        this.botonVolverMenuLogros.onclick = () => this.mostrarPantalla('seleccion');
+        this.botonVolverMenuNovia.onclick = () => this.mostrarPantalla('seleccion');
     }
 
-    mostrarPantallaLogros() {
-        this.actualizarPantallaLogros();
-        this.mostrarPantalla('logros');
+    mostrarPantallaNovia() {
+        this.actualizarPantallaRecompensas();
+        this.mostrarPantalla('novia');
     }
 
-    actualizarPantallaLogros() {
+    actualizarPantallaRecompensas() {
+        this.actualizarProgresoRecompensas();
+        
+        // Actualizar logros
         this.contenedorLogros.innerHTML = '';
-        
-        this.logros.forEach(logro => {
-            const estaDesbloqueado = this.stats.logrosDesbloqueados.includes(logro.id);
-            const progreso = this.calcularProgresoLogro(logro);
-            const porcentaje = Math.min(100, (progreso.actual / progreso.requerido) * 100);
-            
-            const logroElement = document.createElement('div');
-            logroElement.className = `logro ${estaDesbloqueado ? 'desbloqueado' : 'logro-bloqueado'}`;
-            
-            logroElement.innerHTML = `
-                <div class="logro-emoji">${logro.emoji}</div>
-                <div class="logro-contenido">
-                    <div class="logro-titulo">${logro.titulo}</div>
-                    <div class="logro-descripcion">${logro.descripcion}</div>
-                    <div class="logro-progreso">
-                        <div class="logro-progreso-bar" style="width: ${porcentaje}%"></div>
-                    </div>
-                    <div class="logro-progreso-texto">
-                        ${progreso.actual}/${progreso.requerido} completado
-                    </div>
-                </div>
-                <div class="logro-estado ${estaDesbloqueado ? 'logro-desbloqueado' : 'logro-bloqueado-texto'}">
-                    ${estaDesbloqueado ? '✅ Desbloqueado' : '🔒 Bloqueado'}
-                </div>
-            `;
-            
+        this.recompensas.logros.forEach(logro => {
+            const logroElement = this.crearElementoRecompensa(logro);
             this.contenedorLogros.appendChild(logroElement);
+        });
+
+        // Actualizar acciones
+        this.contenedorAcciones.innerHTML = '';
+        this.recompensas.acciones.forEach(accion => {
+            const accionElement = this.crearElementoRecompensa(accion);
+            this.contenedorAcciones.appendChild(accionElement);
         });
     }
 
-    calcularProgresoLogro(logro) {
-        switch(logro.tipo) {
-            case 'mazos_100':
-                return {
-                    actual: this.stats.mazosCompletados,
-                    requerido: logro.requerimiento
-                };
-            case 'racha':
-                const mejorRacha = Math.max(...Object.values(this.stats.mazos).map(m => m.mejorRacha));
-                return {
-                    actual: mejorRacha,
-                    requerido: logro.requerimiento
-                };
-            case 'total_100':
-                const total100 = Object.values(this.stats.mazos).reduce((sum, m) => sum + m.completados100, 0);
-                return {
-                    actual: total100,
-                    requerido: logro.requerimiento
-                };
-            default:
-                return { actual: 0, requerido: 1 };
+    crearElementoRecompensa(recompensa) {
+        const elemento = document.createElement('div');
+        const esDesbloqueado = recompensa.desbloqueado;
+        const esLogro = recompensa.tipo === 'logro';
+        
+        elemento.className = `recompensa ${esDesbloqueado ? 'desbloqueado' : 'recompensa-bloqueado'}`;
+        
+        let contenidoHTML = '';
+        
+        if (esLogro) {
+            const porcentaje = Math.min(100, (recompensa.progresoActual / recompensa.requerimiento) * 100);
+            contenidoHTML = `
+                <img src="${recompensa.imagen}" alt="${recompensa.nombre}" class="recompensa-imagen">
+                <div class="recompensa-titulo">${recompensa.nombre}</div>
+                <div class="recompensa-descripcion">${recompensa.descripcion}</div>
+                <div class="recompensa-progreso">
+                    <div class="recompensa-progreso-bar" style="width: ${porcentaje}%"></div>
+                </div>
+                <div class="recompensa-progreso-texto">
+                    ${recompensa.progresoActual}/${recompensa.requerimiento} mazos completados
+                </div>
+            `;
+        } else {
+            // Es una acción
+            contenidoHTML = `
+                ${!esDesbloqueado ? '<div class="candado">🔒</div>' : ''}
+                <img src="${recompensa.imagen}" alt="${recompensa.nombre}" class="recompensa-imagen">
+                <div class="recompensa-titulo">${recompensa.nombre}</div>
+                <div class="recompensa-descripcion">${recompensa.descripcion}</div>
+            `;
         }
+        
+        contenidoHTML += `
+            <div class="recompensa-estado ${esDesbloqueado ? 'recompensa-desbloqueado' : 'recompensa-bloqueado-texto'}">
+                ${esDesbloqueado ? '✅ Desbloqueado' : '🔒 Bloqueado'}
+            </div>
+        `;
+        
+        elemento.innerHTML = contenidoHTML;
+        return elemento;
     }
 
-    verificarLogros() {
-        this.logros.forEach(logro => {
-            if (!this.stats.logrosDesbloqueados.includes(logro.id)) {
-                const progreso = this.calcularProgresoLogro(logro);
-                if (progreso.actual >= progreso.requerido) {
-                    this.stats.logrosDesbloqueados.push(logro.id);
-                    this.mostrarNotificacionLogro(logro);
+    actualizarProgresoRecompensas() {
+        const mazosCompletados = this.stats.mazosCompletados;
+        
+        // Actualizar logros
+        this.recompensas.logros.forEach(logro => {
+            logro.progresoActual = mazosCompletados;
+            logro.desbloqueado = mazosCompletados >= logro.requerimiento;
+        });
+
+        // Actualizar acciones basado en logros desbloqueados
+        this.recompensas.acciones.forEach(accion => {
+            const logroRequerido = this.recompensas.logros.find(l => l.id === accion.logroRequerido);
+            accion.desbloqueado = logroRequerido ? logroRequerido.desbloqueado : false;
+        });
+    }
+
+    verificarRecompensas() {
+        this.actualizarProgresoRecompensas();
+        
+        // Verificar si se desbloqueó alguna recompensa nueva
+        const recompensasDesbloqueadas = [
+            ...this.recompensas.logros.filter(l => l.desbloqueado),
+            ...this.recompensas.acciones.filter(a => a.desbloqueado)
+        ].map(r => r.id);
+
+        // Mostrar notificación si se desbloqueó algo nuevo
+        recompensasDesbloqueadas.forEach(id => {
+            if (!this.stats.recompensasDesbloqueadas.includes(id)) {
+                const recompensa = [...this.recompensas.logros, ...this.recompensas.acciones].find(r => r.id === id);
+                if (recompensa) {
+                    this.mostrarNotificacionRecompensa(recompensa);
+                    this.stats.recompensasDesbloqueadas.push(id);
                 }
             }
         });
+
         this.guardarStats();
     }
 
-    mostrarNotificacionLogro(logro) {
-        // En una versión futura se puede agregar una notificación bonita
-        console.log(`🎉 ¡Logro desbloqueado: ${logro.titulo}!`);
+    mostrarNotificacionRecompensa(recompensa) {
+        // En una versión futura se puede hacer una notificación visual bonita
+        console.log(`🎉 ¡${recompensa.tipo === 'logro' ? 'Logro' : 'Acción'} desbloqueado: ${recompensa.nombre}!`);
     }
 
     actualizarPantallaSeleccion() {
@@ -514,8 +558,8 @@ class AplicacionVocabulario {
             statsMazo.completados100++;
         }
         
-        // Verificar logros
-        this.verificarLogros();
+        // Verificar recompensas
+        this.verificarRecompensas();
         
         this.guardarStats();
         this.mostrarPantalla('resultados');
