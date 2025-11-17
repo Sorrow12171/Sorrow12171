@@ -63,6 +63,15 @@ class AplicacionVocabulario {
             ]
         };
 
+        // SISTEMA DE AUDIO - NUEVO
+        this.audios = {
+            beso: null,
+            nalgada: null,
+            chupada: null
+        };
+
+        this.cargarAudios();
+
         // SISTEMA DE RECOMPENSAS - LOGROS Y ACCIONES
         this.recompensas = {
             logros: [
@@ -105,7 +114,8 @@ class AplicacionVocabulario {
                     descripcion: "Desbloqueado al completar 3 mazos",
                     imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
                     logroRequerido: 1, // ID del logro requerido
-                    desbloqueado: false
+                    desbloqueado: false,
+                    audio: "beso"
                 },
                 {
                     id: 5,
@@ -114,7 +124,8 @@ class AplicacionVocabulario {
                     descripcion: "Desbloqueado al completar 10 mazos",
                     imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
                     logroRequerido: 2, // ID del logro requerido
-                    desbloqueado: false
+                    desbloqueado: false,
+                    audio: "nalgada"
                 },
                 {
                     id: 6,
@@ -123,7 +134,8 @@ class AplicacionVocabulario {
                     descripcion: "Desbloqueado al completar 15 mazos",
                     imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
                     logroRequerido: 3, // ID del logro requerido
-                    desbloqueado: false
+                    desbloqueado: false,
+                    audio: "chupada"
                 }
             ]
         };
@@ -142,6 +154,39 @@ class AplicacionVocabulario {
 
         this.stats = this.cargarStats();
         this.inicializarApp();
+    }
+
+    // NUEVO: Sistema de carga de audios
+    cargarAudios() {
+        const baseURL = 'https://sorrow12171.github.io/vocabulario-japones/';
+        
+        this.audios.beso = new Audio(`${baseURL}beso.mp3`);
+        this.audios.nalgada = new Audio(`${baseURL}nalgada.mp3`);
+        this.audios.chupada = new Audio(`${baseURL}chupada.mp3`);
+
+        // Precargar audios
+        Object.values(this.audios).forEach(audio => {
+            if (audio) {
+                audio.preload = 'auto';
+                audio.load();
+            }
+        });
+    }
+
+    // NUEVO: Reproducir audio
+    reproducirAudio(tipoAudio) {
+        try {
+            const audio = this.audios[tipoAudio];
+            if (audio) {
+                audio.currentTime = 0; // Reiniciar al inicio
+                audio.play().catch(error => {
+                    console.log('Error reproduciendo audio:', error);
+                    // Silenciar errores de autoplay
+                });
+            }
+        } catch (error) {
+            console.log('Error con el sistema de audio:', error);
+        }
     }
 
     cargarStats() {
@@ -271,7 +316,7 @@ class AplicacionVocabulario {
                 </div>
             `;
         } else {
-            // Es una acción
+            // Es una acción - NUEVO: Agregar evento de clic
             contenidoHTML = `
                 ${!esDesbloqueado ? '<div class="candado">🔒</div>' : ''}
                 <img src="${recompensa.imagen}" alt="${recompensa.nombre}" class="recompensa-imagen">
@@ -287,7 +332,33 @@ class AplicacionVocabulario {
         `;
         
         elemento.innerHTML = contenidoHTML;
+        
+        // NUEVO: Agregar evento de clic para acciones desbloqueadas
+        if (!esLogro && esDesbloqueado) {
+            elemento.style.cursor = 'pointer';
+            elemento.addEventListener('click', () => {
+                this.reproducirAudioAccion(recompensa);
+            });
+        }
+        
         return elemento;
+    }
+
+    // NUEVO: Reproducir audio de acción
+    reproducirAudioAccion(accion) {
+        if (accion.audio && this.audios[accion.audio]) {
+            this.reproducirAudio(accion.audio);
+            
+            // Efecto visual temporal al hacer clic
+            const elemento = event.currentTarget;
+            elemento.style.transform = 'scale(0.95)';
+            elemento.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.5)';
+            
+            setTimeout(() => {
+                elemento.style.transform = 'scale(1)';
+                elemento.style.boxShadow = '';
+            }, 200);
+        }
     }
 
     actualizarProgresoRecompensas() {
