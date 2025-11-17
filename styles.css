@@ -72,6 +72,46 @@ h1 {
     transform: translateY(-2px);
 }
 
+/* SECCIÓN NOVIA - NUEVO ESTILO */
+.seccion-especial {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.novia-card {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    border: 3px solid #ff4757;
+    max-width: 300px;
+}
+
+.novia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5);
+}
+
+.novia-imagen {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    margin-bottom: 15px;
+}
+
+.novia-texto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .estadisticas-globales {
     background-color: #2d2d2d;
     border: 2px solid #444444;
@@ -287,5 +327,14 @@ h1 {
     
     h1 {
         font-size: 2rem;
+    }
+    
+    .novia-imagen {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .novia-texto {
+        font-size: 1.3rem;
     }
 }
