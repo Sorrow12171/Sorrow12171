@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendizaje de Vocabulario Japonés</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Pantalla de Selección -->
+        <div id="pantalla-seleccion" class="pantalla activa">
+            <div class="contenedor">
+                <h1>Aprendizaje de Japonés</h1>
+                <p class="subtitulo">Selecciona un mazo de vocabulario</p>
+                
+                <div id="contenedor-mazos" class="contenedor-mazos">
+                    <!-- Los botones de mazos se generarán dinámicamente -->
+                </div>
+                
+                <div class="estadisticas-globales">
+                    <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
+                </div>
+                
+                <div class="completados-mazos">
+                    <h3>📊 Completados al 100% por Mazo:</h3>
+                    <div id="lista-completados" class="lista-completados">
+                        <!-- Lista de completados se generará dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla del Quiz -->
+        <div id="pantalla-quiz" class="pantalla">
+            <div class="barra-superior">
+                <div id="contador" class="contador">Aciertos: 0 | Errores: 0 | Progreso: 0/0</div>
+                <button id="boton-home" class="boton-home">🏠 Menú</button>
+            </div>
+            
+            <div class="contenido-quiz">
+                <div id="palabra-japones" class="palabra-japones"></div>
+                <div id="lectura" class="lectura"></div>
+                
+                <div id="contenedor-opciones" class="contenedor-opciones">
+                    <button class="opcion" data-index="0"></button>
+                    <button class="opcion" data-index="1"></button>
+                    <button class="opcion" data-index="2"></button>
+                    <button class="opcion" data-index="3"></button>
+                </div>
+                
+                <div id="resultado" class="resultado"></div>
+            </div>
+        </div>
+
+        <!-- Pantalla de Resultados -->
+        <div id="pantalla-resultados" class="pantalla">
+            <div class="contenedor">
+                <div id="resultado-final" class="resultado-final"></div>
+                <button id="boton-volver-menu" class="boton-principal">🏠 Volver al Menú Principal</button>
+                <button id="boton-reintentar" class="boton-secundario">🔄 Reintentar Mazo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
