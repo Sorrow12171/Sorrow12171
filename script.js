@@ -13,7 +13,19 @@ class AplicacionVocabulario {
                 ["見送る", "Despedir", "miokuru"],
                 ["限る", "Limitar", "kagiru"]
             ],
-            "Mazo 2": [
+            "Mazo 2 - Expresiones Comunes": [
+                ["吐息", "Suspiro", "toiki"],
+                ["応援", "Apoyo", "ouen"],
+                ["文句", "Queja", "monku"],
+                ["構う", "Preocuparse", "kamau"],
+                ["残り香", "Aroma residual", "nokorika"],
+                ["減る", "Disminuir", "heru"],
+                ["誰彼", "Alguien", "darekare"],
+                ["過激", "Extremo", "kageki"],
+                ["開き直る", "Cambiar de actitud", "hirakinaoru"],
+                ["関係ない", "No relacionado", "kankeinai"]
+            ],
+            "Mazo 3 - Básicos": [
                 ["言葉", "Palabra", "kotoba"],
                 ["本", "Libro", "hon"],
                 ["水", "Agua", "mizu"],
@@ -25,7 +37,7 @@ class AplicacionVocabulario {
                 ["時間", "Tiempo", "jikan"],
                 ["今日", "Hoy", "kyou"]
             ],
-            "Mazo 3": [
+            "Mazo 4 - Tiempo": [
                 ["明日", "Mañana", "ashita"],
                 ["昨日", "Ayer", "kinou"],
                 ["今", "Ahora", "ima"],
@@ -37,7 +49,7 @@ class AplicacionVocabulario {
                 ["火曜日", "Martes", "kayoubi"],
                 ["水曜日", "Miércoles", "suiyoubi"]
             ],
-            "Mazo 4": [
+            "Mazo 5 - Adjetivos": [
                 ["大きい", "Grande", "ookii"],
                 ["小さい", "Pequeño", "chiisai"],
                 ["新しい", "Nuevo", "atarashii"],
@@ -48,18 +60,6 @@ class AplicacionVocabulario {
                 ["寒い", "Frío", "samui"],
                 ["楽しい", "Divertido", "tanoshii"],
                 ["難しい", "Difícil", "muzukashii"]
-            ],
-            "Mazo 5": [
-                ["食べる", "Comer", "taberu"],
-                ["飲む", "Beber", "nomu"],
-                ["行く", "Ir", "iku"],
-                ["来る", "Venir", "kuru"],
-                ["見る", "Ver", "miru"],
-                ["聞く", "Escuchar", "kiku"],
-                ["話す", "Hablar", "hanasu"],
-                ["読む", "Leer", "yomu"],
-                ["書く", "Escribir", "kaku"],
-                ["勉強する", "Estudiar", "benkyousuru"]
             ]
         };
 
