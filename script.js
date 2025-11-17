@@ -500,3 +500,81 @@ class AplicacionVocabulario {
         
         // Actualizar estadísticas del mazo
         const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
+        statsMazo.ultimaPuntuacion = porcentaje;
+        statsMazo.aciertosTotales += this.estado.aciertos;
+        statsMazo.erroresTotales += this.estado.errores;
+        
+        if (porcentaje > statsMazo.mejorPuntuacion) {
+            statsMazo.mejorPuntuacion = porcentaje;
+        }
+        
+        // Contar completado al 100%
+        if (porcentaje === 100) {
+            this.stats.mazosCompletados++;
+            statsMazo.completados100++;
+        }
+        
+        // Verificar logros
+        this.verificarLogros();
+        
+        this.guardarStats();
+        this.mostrarPantalla('resultados');
+        
+        // Mostrar resultados
+        const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
+        this.resultadoFinal.textContent = textoResultados;
+    }
+
+    crearTextoResultados(porcentaje, statsMazo) {
+        let emoji, mensajeEspecial;
+        
+        if (porcentaje === 100) {
+            emoji = "🎉";
+            mensajeEspecial = `\n🌟 ¡PERFECTO! Has completado este mazo al 100% por ${statsMazo.completados100}ª vez!`;
+        } else if (porcentaje >= 90) {
+            emoji = "🎉";
+            mensajeEspecial = "\n¡Excelente trabajo!";
+        } else if (porcentaje >= 70) {
+            emoji = "👍";
+            mensajeEspecial = "\n¡Buen trabajo!";
+        } else if (porcentaje >= 50) {
+            emoji = "😊";
+            mensajeEspecial = "\n¡Sigue practicando!";
+        } else {
+            emoji = "💪";
+            mensajeEspecial = "\n¡No te rindas!";
+        }
+        
+        return `${emoji} Quiz Completado - ${this.estado.nombreMazoActual} ${emoji}
+
+📊 RESULTADO ACTUAL:
+   Puntuación: ${porcentaje.toFixed(1)}%
+   Aciertos: ${this.estado.aciertos} | Errores: ${this.estado.errores}
+   Total de palabras: ${this.estado.totalInicial}${mensajeEspecial}
+
+🏆 ESTADÍSTICAS DEL MAZO:
+   Mejor puntuación: ${statsMazo.mejorPuntuacion.toFixed(1)}%
+   Veces jugado: ${statsMazo.vecesJugado}
+   Mejor racha: ${statsMazo.mejorRacha} aciertos
+   Aciertos totales: ${statsMazo.aciertosTotales}
+   Errores totales: ${statsMazo.erroresTotales}
+   Completados al 100%: ${statsMazo.completados100} veces
+
+⭐ LOGROS GLOBALES:
+   Mazos completados al 100%: ${this.stats.mazosCompletados}`;
+    }
+
+    reintentarMazo() {
+        this.iniciarQuiz(this.estado.nombreMazoActual);
+    }
+
+    volverMenu() {
+        this.actualizarPantallaSeleccion();
+        this.mostrarPantalla('seleccion');
+    }
+}
+
+// Inicializar la aplicación cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+    new AplicacionVocabulario();
+});
