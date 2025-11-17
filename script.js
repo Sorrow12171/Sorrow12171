@@ -63,17 +63,18 @@ class AplicacionVocabulario {
             ]
         };
 
-        // SISTEMA DE AUDIO - URLs CORRECTAS
+        // SISTEMA DE AUDIO - CON NUEVO AUDIO
         this.audios = {
             beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
             nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
-            chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3'
+            chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3',
+            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3'
         };
 
-        this.audioObjects = {}; // Aquí se guardarán los audios cargados
+        this.audioObjects = {};
         this.cargarAudios();
 
-        // SISTEMA DE RECOMPENSAS
+        // SISTEMA DE RECOMPENSAS ACTUALIZADO
         this.recompensas = {
             logros: [
                 {
@@ -99,17 +100,27 @@ class AplicacionVocabulario {
                 {
                     id: 3,
                     tipo: "logro",
-                    nombre: "Chupada",
+                    nombre: "Handjob",
                     descripcion: "Completa 15 mazos al 100%",
-                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
+                    imagen: "https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small",
                     requerimiento: 15,
+                    progresoActual: 0,
+                    desbloqueado: false
+                },
+                {
+                    id: 4,
+                    tipo: "logro",
+                    nombre: "Chupada",
+                    descripcion: "Completa 25 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
+                    requerimiento: 25,
                     progresoActual: 0,
                     desbloqueado: false
                 }
             ],
             acciones: [
                 {
-                    id: 4,
+                    id: 5,
                     tipo: "accion",
                     nombre: "Beso",
                     descripcion: "Desbloqueado al completar 3 mazos",
@@ -119,7 +130,7 @@ class AplicacionVocabulario {
                     audio: "beso"
                 },
                 {
-                    id: 5,
+                    id: 6,
                     tipo: "accion",
                     nombre: "Nalgada",
                     descripcion: "Desbloqueado al completar 10 mazos",
@@ -129,12 +140,22 @@ class AplicacionVocabulario {
                     audio: "nalgada"
                 },
                 {
-                    id: 6,
+                    id: 7,
+                    tipo: "accion",
+                    nombre: "Handjob",
+                    descripcion: "Desbloqueado al completar 15 mazos",
+                    imagen: "https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small",
+                    logroRequerido: 3,
+                    desbloqueado: false,
+                    audio: "handjob"
+                },
+                {
+                    id: 8,
                     tipo: "accion",
                     nombre: "Chupada",
-                    descripcion: "Desbloqueado al completar 15 mazos",
+                    descripcion: "Desbloqueado al completar 25 mazos",
                     imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
-                    logroRequerido: 3,
+                    logroRequerido: 4,
                     desbloqueado: false,
                     audio: "chupada"
                 }
@@ -157,7 +178,6 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
-    // SISTEMA DE AUDIO MEJORADO
     cargarAudios() {
         console.log('🎵 Iniciando carga de audios...');
         
@@ -177,20 +197,14 @@ class AplicacionVocabulario {
                 console.log(`❌ Error cargando ${nombre}:`, audio.error);
             });
             
-            audio.addEventListener('load', () => {
-                console.log(`🔊 ${nombre} load event`);
-            });
-            
-            // Forzar carga
             audio.load();
         }
         
-        // Verificar estado después de 3 segundos
         setTimeout(() => {
             console.log('🔍 Estado final de audios:');
-            console.log('- beso:', this.audioObjects.beso ? '✅ Cargado' : '❌ No cargado');
-            console.log('- nalgada:', this.audioObjects.nalgada ? '✅ Cargado' : '❌ No cargado');
-            console.log('- chupada:', this.audioObjects.chupada ? '✅ Cargado' : '❌ No cargado');
+            Object.keys(this.audios).forEach(nombre => {
+                console.log(`- ${nombre}:`, this.audioObjects[nombre] ? '✅ Cargado' : '❌ No cargado');
+            });
         }, 3000);
     }
 
@@ -209,7 +223,6 @@ class AplicacionVocabulario {
             });
         } else {
             console.log(`❌ Audio no disponible: ${nombre}`);
-            console.log('Audios cargados:', Object.keys(this.audioObjects));
         }
     }
 
@@ -350,7 +363,6 @@ class AplicacionVocabulario {
         
         elemento.innerHTML = contenidoHTML;
         
-        // EVENTO DE CLIC PARA ACCIONES DESBLOQUEADAS
         if (!esLogro && esDesbloqueado) {
             elemento.style.cursor = 'pointer';
             elemento.addEventListener('click', (event) => {
@@ -369,7 +381,6 @@ class AplicacionVocabulario {
         if (accion.audio) {
             this.reproducirAudio(accion.audio);
             
-            // Efecto visual al hacer clic
             const elemento = event.currentTarget;
             elemento.style.transform = 'scale(0.95)';
             elemento.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.5)';
