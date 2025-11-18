@@ -937,110 +937,111 @@ class AplicacionVocabulario {
         }
     }
 
-    mostrarImagenEspecial() {
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            flex-direction: column;
-        `;
+   mostrarImagenEspecial(imagenUrl = null, titulo = null, audio = null) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        flex-direction: column;
+    `;
 
-        const imagenContainer = document.createElement('div');
-        imagenContainer.style.cssText = `
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            max-width: 90%;
-            max-height: 90%;
-            border: 4px solid #ff4757;
-            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
-        `;
+    const imagenContainer = document.createElement('div');
+    imagenContainer.style.cssText = `
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        max-width: 90%;
+        max-height: 90%;
+        border: 4px solid #ff4757;
+        box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+    `;
 
-        const titulo = document.createElement('div');
-        titulo.textContent = '🎉 Nino esta feliz :D te la podras coger pronto  🎉';
-        titulo.style.cssText = `
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        `;
+    const tituloElement = document.createElement('div');
+    tituloElement.textContent = titulo || '🎉 Nino esta feliz :D te la podras coger pronto 🎉';
+    tituloElement.style.cssText = `
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    `;
 
-        const imagen = document.createElement('img');
-        imagen.src = this.imagenEspecial;
-        imagen.style.cssText = `
-            max-width: 400px;
-            max-height: 400px;
-            border-radius: 15px;
-            border: 3px solid white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        `;
+    const imagen = document.createElement('img');
+    imagen.src = imagenUrl || this.imagenEspecial;
+    imagen.style.cssText = `
+        max-width: 400px;
+        max-height: 400px;
+        border-radius: 15px;
+        border: 3px solid white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    `;
 
-        const mensaje = document.createElement('div');
-        mensaje.textContent = '¡Felicidades por completar el mazo al 100%!';
-        mensaje.style.cssText = `
-            font-size: 1.3rem;
-            color: white;
-            margin-top: 20px;
-            font-weight: bold;
-        `;
+    const mensaje = document.createElement('div');
+    mensaje.textContent = '¡Felicidades por completar el mazo al 100%!';
+    mensaje.style.cssText = `
+        font-size: 1.3rem;
+        color: white;
+        margin-top: 20px;
+        font-weight: bold;
+    `;
 
-        const botonCerrar = document.createElement('button');
-        botonCerrar.textContent = '✨ Continuar ✨';
-        botonCerrar.style.cssText = `
-            background: linear-gradient(135deg, #4a90e2, #7b68ee);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            border: 3px solid #4169e1;
-            transition: all 0.3s ease;
-        `;
+    const botonCerrar = document.createElement('button');
+    botonCerrar.textContent = '✨ Continuar ✨';
+    botonCerrar.style.cssText = `
+        background: linear-gradient(135deg, #4a90e2, #7b68ee);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        border: 3px solid #4169e1;
+        transition: all 0.3s ease;
+    `;
 
-        botonCerrar.onmouseover = () => {
-            botonCerrar.style.transform = 'scale(1.05)';
-            botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
-        };
+    botonCerrar.onmouseover = () => {
+        botonCerrar.style.transform = 'scale(1.05)';
+        botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+    };
 
-        botonCerrar.onmouseout = () => {
-            botonCerrar.style.transform = 'scale(1)';
-            botonCerrar.style.boxShadow = 'none';
-        };
+    botonCerrar.onmouseout = () => {
+        botonCerrar.style.transform = 'scale(1)';
+        botonCerrar.style.boxShadow = 'none';
+    };
 
-        botonCerrar.onclick = () => {
+    botonCerrar.onclick = () => {
+        document.body.removeChild(overlay);
+    };
+
+    imagenContainer.appendChild(tituloElement);
+    imagenContainer.appendChild(imagen);
+    imagenContainer.appendChild(mensaje);
+    imagenContainer.appendChild(botonCerrar);
+    overlay.appendChild(imagenContainer);
+    document.body.appendChild(overlay);
+
+    // Reproducir audio específico o el audio por defecto
+    setTimeout(() => {
+        this.reproducirAudio(audio || 'beso');
+    }, 500);
+
+    setTimeout(() => {
+        if (document.body.contains(overlay)) {
             document.body.removeChild(overlay);
-        };
-
-        imagenContainer.appendChild(titulo);
-        imagenContainer.appendChild(imagen);
-        imagenContainer.appendChild(mensaje);
-        imagenContainer.appendChild(botonCerrar);
-        overlay.appendChild(imagenContainer);
-        document.body.appendChild(overlay);
-
-        setTimeout(() => {
-            this.reproducirAudio('beso');
-        }, 500);
-
-        setTimeout(() => {
-            if (document.body.contains(overlay)) {
-                document.body.removeChild(overlay);
-            }
-        }, 8000);
-    }
+        }
+    }, 8000);
+}
 
     cargarStats() {
         const statsGuardadas = localStorage.getItem('vocabularioStats');
@@ -1752,43 +1753,79 @@ class AplicacionVocabulario {
     }
 
     finalizarQuiz() {
-        const porcentaje = Math.max(0, ((this.estado.aciertos - this.estado.errores) / this.estado.totalInicial) * 100);
-        
-        const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
-        statsMazo.ultimaPuntuacion = porcentaje;
-        statsMazo.aciertosTotales += this.estado.aciertos;
-        statsMazo.erroresTotales += this.estado.errores;
-        
-        if (porcentaje > statsMazo.mejorPuntuacion) {
-            statsMazo.mejorPuntuacion = porcentaje;
-        }
-        
-        if (porcentaje === 100) {
-            this.stats.mazosCompletados++;
-            statsMazo.completados100++;
-            
-            // Ganar 1 sol por completar mazo al 100%
-            this.ganarSoles(1, "Completar mazo al 100%");
-            
-            const probabilidad = Math.random();
-            if (probabilidad < 0.666) {
-                console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
-                setTimeout(() => {
-                    this.mostrarImagenEspecial();
-                }, 1000);
-            } else {
-                console.log('🎰 Esta vez no tocó la imagen especial');
-            }
-        }
-        
-        this.verificarRecompensas();
-        
-        this.guardarStats();
-        this.mostrarPantalla('resultados');
-        
-        const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
-        this.resultadoFinal.textContent = textoResultados;
+    const porcentaje = Math.max(0, ((this.estado.aciertos - this.estado.errores) / this.estado.totalInicial) * 100);
+    
+    const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
+    statsMazo.ultimaPuntuacion = porcentaje;
+    statsMazo.aciertosTotales += this.estado.aciertos;
+    statsMazo.erroresTotales += this.estado.errores;
+    
+    if (porcentaje > statsMazo.mejorPuntuacion) {
+        statsMazo.mejorPuntuacion = porcentaje;
     }
+    
+    if (porcentaje === 100) {
+        this.stats.mazosCompletados++;
+        statsMazo.completados100++;
+        
+        // Ganar 1 sol por completar mazo al 100%
+        this.ganarSoles(1, "Completar mazo al 100%");
+        
+        // SISTEMA MEJORADO DE PROBABILIDADES PARA IMÁGENES ESPECIALES
+        const probabilidad = Math.random() * 100; // 0 a 100%
+        
+        console.log(`🎰 Probabilidad calculada: ${probabilidad.toFixed(2)}%`);
+        
+        if (probabilidad < 30) {
+            // 30% de probabilidad - Besas a Nino
+            console.log('🎰 ¡30% de probabilidad! Mostrando imagen de besar a Nino...');
+            setTimeout(() => {
+                this.mostrarImagenEspecial(
+                    "https://pbs.twimg.com/media/G5PIDjDWAAAh9Mt?format=jpg&name=medium",
+                    "💋 Besas a Nino 💋",
+                    "beso"
+                );
+            }, 1000);
+        } else if (probabilidad < 40) {
+            // 10% de probabilidad - Nino te la chupa
+            console.log('🎰 ¡10% de probabilidad! Mostrando imagen de Nino chupando...');
+            setTimeout(() => {
+                this.mostrarImagenEspecial(
+                    "https://pbs.twimg.com/media/G5PIF7yXAAAKUj4?format=jpg&name=medium",
+                    "😋 Nino te la chupa 😋",
+                    "chupada"
+                );
+            }, 1000);
+        } else if (probabilidad < 49) {
+            // 9% de probabilidad - Nino te chupa el ano
+            console.log('🎰 ¡9% de probabilidad! Mostrando imagen de Nino chupando el ano...');
+            setTimeout(() => {
+                this.mostrarImagenEspecial(
+                    "https://pbs.twimg.com/media/G5PIriwXgAA8BaU?format=jpg&name=360x360",
+                    "🍑 Nino te chupa el ano 🍑",
+                    "chupada"
+                );
+            }, 1000);
+        } else if (probabilidad < 83.33) {
+            // 34.33% de probabilidad - Imagen original (2/3 ≈ 66.67% del 51% restante)
+            console.log('🎰 ¡Probabilidad original! Mostrando imagen especial...');
+            setTimeout(() => {
+                this.mostrarImagenEspecial();
+            }, 1000);
+        } else {
+            // 16.67% de probabilidad - No sale imagen especial
+            console.log('🎰 Esta vez no tocó ninguna imagen especial');
+        }
+    }
+    
+    this.verificarRecompensas();
+    
+    this.guardarStats();
+    this.mostrarPantalla('resultados');
+    
+    const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
+    this.resultadoFinal.textContent = textoResultados;
+}
 
     crearTextoResultados(porcentaje, statsMazo) {
         let emoji, mensajeEspecial;
