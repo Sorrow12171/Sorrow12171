@@ -32,6 +32,15 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN TIENDA -->
+                <div class="seccion-especial">
+                    <div class="tienda-card" id="tienda-card">
+                        <img src="https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small" 
+                             alt="Tienda" class="tienda-imagen">
+                        <div class="tienda-texto">🛍️ Tienda</div>
+                    </div>
+                </div>
+
                 <!-- SECCIÓN NOVIA -->
                 <div class="seccion-especial">
                     <div class="novia-card" id="novia-card">
@@ -44,6 +53,7 @@
                 <div class="estadisticas-globales">
                     <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
                     <p id="stats-diarias">✅ Tareas de hoy: 0/5</p>
+                    <p id="stats-soles">💰 Soles: 0</p>
                 </div>
             </div>
         </div>
@@ -149,6 +159,7 @@
                     </div>
                     <div class="racha-actual" id="racha-actual">🔥 Racha actual: 0 días</div>
                     <div class="mejor-racha" id="mejor-racha">🏆 Mejor racha: 0 días</div>
+                    <div class="ganancias-diarias" id="ganancias-diarias">💰 Ganancias de hoy: 0 soles</div>
                 </div>
                 
                 <button id="boton-volver-menu-diarias" class="boton-principal">🏠 Volver al Menú Principal</button>
@@ -224,6 +235,39 @@
                 </div>
                 
                 <button id="boton-volver-lastsummer3" class="boton-principal">⬅️ Volver a Last Summer</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: TIENDA -->
+        <div id="pantalla-tienda" class="pantalla">
+            <div class="contenedor">
+                <h1>🛍️ Tienda de Recompensas</h1>
+                <p class="subtitulo">Gasta tus soles en recompensas especiales</p>
+                
+                <div class="estadisticas-globales">
+                    <p id="balance-soles">💰 Soles disponibles: 0 soles</p>
+                    <p id="ganancias-totales">🏆 Soles ganados en total: 0 soles</p>
+                </div>
+                
+                <div class="categorias-recompensas">
+                    <div class="categoria">
+                        <h2>🎁 Recompensas Básicas</h2>
+                        <p class="descripcion-categoria">Recompensas accesibles para todos</p>
+                        <div id="contenedor-recompensas-basicas" class="contenedor-recompensas">
+                            <!-- Recompensas básicas se generarán aquí -->
+                        </div>
+                    </div>
+                    
+                    <div class="categoria">
+                        <h2>💎 Recompensas Premium</h2>
+                        <p class="descripcion-categoria">Recompensas especiales más costosas</p>
+                        <div id="contenedor-recompensas-premium" class="contenedor-recompensas">
+                            <!-- Recompensas premium se generarán aquí -->
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="boton-volver-menu-tienda" class="boton-principal">🏠 Volver al Menú</button>
             </div>
         </div>
 
