@@ -1,7 +1,7 @@
 class AplicacionVocabulario {
     constructor() {
         this.mazos = {
-            // LAST SUMMER 1
+            // LAST SUMMER 1 - 2 mazos
             "LS1 - Verano Inolvidable": [
                 ["夏", "Verano", "natsu"],
                 ["海", "Mar", "umi"],
@@ -28,35 +28,8 @@ class AplicacionVocabulario {
                 ["未来", "Futuro", "mirai"]
             ],
             
-            // LAST SUMMER 2
-            "LS2 - Vocabulario Esencial": [
-                ["今朝", "Esta mañana", "kesa"],
-                ["処", "Lugar", "sho"],
-                ["出掛け", "Salida", "dekake"],
-                ["女将", "Dueña", "okami"],
-                ["寂しい", "Solitario", "sabishii"],
-                ["憩い", "Descanso", "ikoi"],
-                ["手伝い", "Ayuda", "tetsudai"],
-                ["撮る", "Tomar foto", "toru"],
-                ["見送る", "Despedir", "miokuru"],
-                ["限る", "Limitar", "kagiru"]
-            ],
-            
-            "LS2 - Expresiones Comunes": [
-                ["吐息", "Suspiro", "toiki"],
-                ["応援", "Apoyo", "ouen"],
-                ["文句", "Queja", "monku"],
-                ["構う", "Preocuparse", "kamau"],
-                ["残り香", "Aroma residual", "nokorika"],
-                ["減る", "Disminuir", "heru"],
-                ["誰彼", "Alguien", "darekare"],
-                ["過激", "Extremo", "kageki"],
-                ["開き直る", "Cambiar de actitud", "hirakinaoru"],
-                ["関係ない", "No relacionado", "kankeinai"]
-            ],
-            
-            // LAST SUMMER 3 (los 5 mazos originales)
-            "LS3 - Básicos": [
+            // LAST SUMMER 2 - 2 mazos
+            "LS2 - Básicos": [
                 ["言葉", "Palabra", "kotoba"],
                 ["本", "Libro", "hon"],
                 ["水", "Agua", "mizu"],
@@ -69,7 +42,7 @@ class AplicacionVocabulario {
                 ["今日", "Hoy", "kyou"]
             ],
             
-            "LS3 - Tiempo": [
+            "LS2 - Tiempo": [
                 ["明日", "Mañana", "ashita"],
                 ["昨日", "Ayer", "kinou"],
                 ["今", "Ahora", "ima"],
@@ -82,7 +55,34 @@ class AplicacionVocabulario {
                 ["水曜日", "Miércoles", "suiyoubi"]
             ],
             
-            "LS3 - Adjetivos": [
+            // LAST SUMMER 3 - 5 MAZOS (Mazo 1, Mazo 2, Mazo 3, Mazo 4, Mazo 5)
+            "LS3 - Mazo 1": [
+                ["今朝", "Esta mañana", "kesa"],
+                ["処", "Lugar", "sho"],
+                ["出掛け", "Salida", "dekake"],
+                ["女将", "Dueña", "okami"],
+                ["寂しい", "Solitario", "sabishii"],
+                ["憩い", "Descanso", "ikoi"],
+                ["手伝い", "Ayuda", "tetsudai"],
+                ["撮る", "Tomar foto", "toru"],
+                ["見送る", "Despedir", "miokuru"],
+                ["限る", "Limitar", "kagiru"]
+            ],
+            
+            "LS3 - Mazo 2": [
+                ["吐息", "Suspiro", "toiki"],
+                ["応援", "Apoyo", "ouen"],
+                ["文句", "Queja", "monku"],
+                ["構う", "Preocuparse", "kamau"],
+                ["残り香", "Aroma residual", "nokorika"],
+                ["減る", "Disminuir", "heru"],
+                ["誰彼", "Alguien", "darekare"],
+                ["過激", "Extremo", "kageki"],
+                ["開き直る", "Cambiar de actitud", "hirakinaoru"],
+                ["関係ない", "No relacionado", "kankeinai"]
+            ],
+            
+            "LS3 - Mazo 3": [
                 ["大きい", "Grande", "ookii"],
                 ["小さい", "Pequeño", "chiisai"],
                 ["新しい", "Nuevo", "atarashii"],
@@ -95,7 +95,7 @@ class AplicacionVocabulario {
                 ["難しい", "Difícil", "muzukashii"]
             ],
             
-            "LS3 - Comida": [
+            "LS3 - Mazo 4": [
                 ["食べ物", "Comida", "tabemono"],
                 ["水", "Agua", "mizu"],
                 ["米", "Arroz", "kome"],
@@ -108,7 +108,7 @@ class AplicacionVocabulario {
                 ["美味しい", "Delicioso", "oishii"]
             ],
             
-            "LS3 - Familia": [
+            "LS3 - Mazo 5": [
                 ["家族", "Familia", "kazoku"],
                 ["父", "Padre", "chichi"],
                 ["母", "Madre", "haha"],
