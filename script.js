@@ -133,6 +133,9 @@ class AplicacionVocabulario {
         this.audioObjects = {};
         this.cargarAudios();
 
+        // IMAGEN ESPECIAL PARA RECOMPENSAS
+        this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
+
         // SISTEMA DE RECOMPENSAS
         this.recompensas = {
             logros: [
@@ -283,6 +286,123 @@ class AplicacionVocabulario {
         } else {
             console.log(`❌ Audio no disponible: ${nombre}`);
         }
+    }
+
+    // NUEVO MÉTODO PARA MOSTRAR IMAGEN ESPECIAL
+    mostrarImagenEspecial() {
+        // Crear overlay para la imagen
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        `;
+
+        // Crear contenedor de la imagen
+        const imagenContainer = document.createElement('div');
+        imagenContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        // Crear título
+        const titulo = document.createElement('div');
+        titulo.textContent = '🎉 ¡RECOMPENSA ESPECIAL! 🎉';
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        // Crear imagen
+        const imagen = document.createElement('img');
+        imagen.src = this.imagenEspecial;
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
+
+        // Crear mensaje
+        const mensaje = document.createElement('div');
+        mensaje.textContent = '¡Felicidades por completar el mazo al 100%!';
+        mensaje.style.cssText = `
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 20px;
+            font-weight: bold;
+        `;
+
+        // Crear botón de cerrar
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '✨ Continuar ✨';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #4169e1;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        // Ensamblar todo
+        imagenContainer.appendChild(titulo);
+        imagenContainer.appendChild(imagen);
+        imagenContainer.appendChild(mensaje);
+        imagenContainer.appendChild(botonCerrar);
+        overlay.appendChild(imagenContainer);
+
+        // Agregar al DOM
+        document.body.appendChild(overlay);
+
+        // Reproducir audio de beso cuando aparece la imagen
+        setTimeout(() => {
+            this.reproducirAudio('beso');
+        }, 500);
+
+        // Cerrar automáticamente después de 8 segundos
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 8000);
     }
 
     cargarStats() {
@@ -760,6 +880,17 @@ class AplicacionVocabulario {
         if (porcentaje === 100) {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
+            
+            // NUEVO: SISTEMA DE PROBABILIDAD 2/3 PARA IMAGEN ESPECIAL
+            const probabilidad = Math.random();
+            if (probabilidad < 0.666) { // 2/3 de probabilidad
+                console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
+                setTimeout(() => {
+                    this.mostrarImagenEspecial();
+                }, 1000);
+            } else {
+                console.log('🎰 Esta vez no tocó la imagen especial');
+            }
         }
         
         this.verificarRecompensas();
