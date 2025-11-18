@@ -1,5 +1,13 @@
 class AplicacionVocabulario {
     constructor() {
+        // SISTEMA DE VIDEO POR INACTIVIDAD - 5 MINUTOS
+        this.ultimaVisitaKey = 'ultimaVisitaVocabulario';
+        this.videoInactividadUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4';
+        this.tiempoInactividad = 5 * 60 * 1000; // 5 minutos en milisegundos
+
+        // Verificar inactividad al iniciar
+        this.verificarInactividad();
+
         this.mazos = {
             // LAST SUMMER 1 - 2 mazos
             "LS1 - Verano Inolvidable": [
@@ -240,6 +248,187 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
+    // MÉTODO: Verificar inactividad del usuario (5 MINUTOS)
+    verificarInactividad() {
+        const ahora = new Date().getTime();
+        const ultimaVisita = localStorage.getItem(this.ultimaVisitaKey);
+        
+        console.log('🕒 Verificando inactividad...');
+        console.log('Última visita:', ultimaVisita ? new Date(parseInt(ultimaVisita)).toLocaleString() : 'Primera vez');
+        
+        if (ultimaVisita) {
+            const tiempoDesdeUltimaVisita = ahora - parseInt(ultimaVisita);
+            console.log('Tiempo desde última visita:', Math.round(tiempoDesdeUltimaVisita / 1000 / 60) + ' minutos');
+            
+            // Si pasó más de 5 minutos desde la última visita
+            if (tiempoDesdeUltimaVisita > this.tiempoInactividad) {
+                console.log('🎬 ¡5 minutos de inactividad! Reproduciendo video...');
+                setTimeout(() => {
+                    this.reproducirVideoInactividad();
+                }, 2000); // Pequeño delay para que cargue la página
+            }
+        }
+        
+        // Actualizar el timestamp de la última visita
+        localStorage.setItem(this.ultimaVisitaKey, ahora.toString());
+    }
+
+    // MÉTODO: Reproducir video por inactividad
+    reproducirVideoInactividad() {
+        // Crear overlay para el video
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        // Crear contenedor del video
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 71, 87, 0.5);
+        `;
+
+        // Crear título
+        const titulo = document.createElement('div');
+        titulo.textContent = '⚠️ DESCUDASTE AL NIÑO ⚠️';
+        titulo.style.cssText = `
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        // Crear mensaje ESPECIAL
+        const mensaje = document.createElement('div');
+        mensaje.innerHTML = '🔥 <strong>ALDO SE LA ESTA FOLLANDO :D</strong> 🔥';
+        mensaje.style.cssText = `
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            border: 2px solid #ff4757;
+        `;
+
+        // Crear elemento de video
+        const video = document.createElement('video');
+        video.src = this.videoInactividadUrl;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false; // Sonido activado
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid #ff6b6b;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            background: #000;
+        `;
+
+        // Crear botón de cerrar
+        const botonCerrar = document.createElement('button');
+        botonCerrar.innerHTML = '❌ CERRAR VIDEO';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 0, 0, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        // Evento cuando el video termina
+        video.onended = () => {
+            mensaje.innerHTML = '🎬 <strong>VIDEO TERMINADO - ¿QUÉ HARÁS AHORA?</strong> 🎬';
+            mensaje.style.color = '#4a90e2';
+            mensaje.style.borderColor = '#4a90e2';
+            mensaje.style.background = 'rgba(74, 144, 226, 0.1)';
+            
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 3000);
+        };
+
+        // Manejar errores de video
+        video.onerror = () => {
+            console.log('❌ Error cargando el video');
+            mensaje.innerHTML = '❌ Error cargando el video<br><small>Pero el mensaje sigue siendo claro 😈</small>';
+            mensaje.style.color = '#ffa500';
+        };
+
+        // Ensamblar todo
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(mensaje);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+
+        // Agregar al DOM
+        document.body.appendChild(overlay);
+
+        // Forzar reproducción
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video:', error);
+                // Intentar reproducir con mute
+                video.muted = true;
+                video.play();
+            });
+        }
+
+        // Cerrar automáticamente después de 60 segundos
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                video.pause();
+                document.body.removeChild(overlay);
+            }
+        }, 60000);
+    }
+
     cargarAudios() {
         console.log('🎵 Iniciando carga de audios...');
         
@@ -288,7 +477,7 @@ class AplicacionVocabulario {
         }
     }
 
-    // NUEVO MÉTODO PARA MOSTRAR IMAGEN ESPECIAL
+    // MÉTODO PARA MOSTRAR IMAGEN ESPECIAL
     mostrarImagenEspecial() {
         // Crear overlay para la imagen
         const overlay = document.createElement('div');
@@ -439,7 +628,7 @@ class AplicacionVocabulario {
         return stats;
     }
 
-    // NUEVO MÉTODO PARA CREAR STATS VACÍOS
+    // MÉTODO PARA CREAR STATS VACÍOS
     crearStatsMazoVacio() {
         return {
             vecesJugado: 0,
@@ -480,7 +669,7 @@ class AplicacionVocabulario {
         this.mostrarPantalla('seleccion');
     }
 
-    // NUEVO MÉTODO PARA INICIALIZAR BOTONES DE VOLVER
+    // MÉTODO PARA INICIALIZAR BOTONES DE VOLVER
     inicializarPantallasLastSummerMazos() {
         // Botón volver de Last Summer 1
         document.getElementById('boton-volver-lastsummer1').onclick = () => {
@@ -881,7 +1070,7 @@ class AplicacionVocabulario {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
             
-            // NUEVO: SISTEMA DE PROBABILIDAD 2/3 PARA IMAGEN ESPECIAL
+            // SISTEMA DE PROBABILIDAD 2/3 PARA IMAGEN ESPECIAL
             const probabilidad = Math.random();
             if (probabilidad < 0.666) { // 2/3 de probabilidad
                 console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
