@@ -144,7 +144,11 @@ class AplicacionVocabulario {
             beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
             nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
             chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3',
-            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3'
+            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3',
+            risa: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/risa.mp3',
+            gemido: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/gemido.mp3',
+            susurro: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/susurro.mp3',
+            aplausos: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/aplausos.mp3'
         };
 
         this.audioObjects = {};
@@ -245,6 +249,74 @@ class AplicacionVocabulario {
                     imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
                     logroRequerido: 4,
                     desbloqueado: false,
+                    audio: "chupada"
+                }
+            ]
+        };
+
+        // SISTEMA DE TIENDA
+        this.recompensasTienda = {
+            basicas: [
+                {
+                    id: 101,
+                    tipo: "tienda",
+                    nombre: "Risa Especial",
+                    descripcion: "Una risa contagiosa para alegrar tu día",
+                    imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                    precio: 5,
+                    comprado: false,
+                    audio: "risa"
+                },
+                {
+                    id: 102,
+                    tipo: "tienda",
+                    nombre: "Susurro Cercano",
+                    descripcion: "Un susurro íntimo en tu oído",
+                    imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                    precio: 8,
+                    comprado: false,
+                    audio: "susurro"
+                },
+                {
+                    id: 103,
+                    tipo: "tienda",
+                    nombre: "Aplausos Motivadores",
+                    descripcion: "Aplausos por tu esfuerzo y dedicación",
+                    imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                    precio: 12,
+                    comprado: false,
+                    audio: "aplausos"
+                }
+            ],
+            premium: [
+                {
+                    id: 201,
+                    tipo: "tienda",
+                    nombre: "Gemido Íntimo",
+                    descripcion: "Un gemido especial solo para ti",
+                    imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                    precio: 20,
+                    comprado: false,
+                    audio: "gemido"
+                },
+                {
+                    id: 202,
+                    tipo: "tienda",
+                    nombre: "Pack Completo",
+                    descripcion: "Todos los audios básicos en un pack especial",
+                    imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                    precio: 30,
+                    comprado: false,
+                    audio: "beso"
+                },
+                {
+                    id: 203,
+                    tipo: "tienda",
+                    nombre: "Recompensa Máxima",
+                    descripcion: "La recompensa más exclusiva de la tienda",
+                    imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                    precio: 50,
+                    comprado: false,
                     audio: "chupada"
                 }
             ]
@@ -664,7 +736,20 @@ class AplicacionVocabulario {
 
     toggleTarea(tareaId) {
         if (this.tareasDiarias[tareaId]) {
+            const estabaCompletada = this.tareasDiarias[tareaId].completada;
             this.tareasDiarias[tareaId].completada = !this.tareasDiarias[tareaId].completada;
+            
+            // Calcular ganancias
+            if (!estabaCompletada && this.tareasDiarias[tareaId].completada) {
+                this.ganarSoles(5, `Completar tarea: ${this.tareasDiarias[tareaId].nombre}`);
+                
+                // Verificar si completó todas las tareas para bonus
+                const tareasCompletadas = Object.values(this.tareasDiarias).filter(t => t.completada).length;
+                if (tareasCompletadas === 5) {
+                    this.ganarSoles(10, "Bonus por completar todas las tareas diarias");
+                }
+            }
+            
             this.guardarTareasDiarias();
             this.actualizarPantallaTareas();
             this.actualizarEstadisticasDiarias();
@@ -704,6 +789,7 @@ class AplicacionVocabulario {
         const textoProgreso = document.getElementById('texto-progreso-tareas');
         const rachaActual = document.getElementById('racha-actual');
         const mejorRacha = document.getElementById('mejor-racha');
+        const gananciasDiarias = document.getElementById('ganancias-diarias');
         
         if (barraProgreso) {
             barraProgreso.style.width = `${porcentaje}%`;
@@ -717,6 +803,10 @@ class AplicacionVocabulario {
         if (mejorRacha) {
             mejorRacha.textContent = `🏆 Mejor racha: ${this.stats.mejorRachaDiarias || 0} días`;
         }
+        if (gananciasDiarias) {
+            const gananciasHoy = tareasCompletadas * 5;
+            gananciasDiarias.textContent = `💰 Ganancias de hoy: ${gananciasHoy} soles`;
+        }
     }
 
     actualizarEstadisticasDiarias() {
@@ -724,6 +814,78 @@ class AplicacionVocabulario {
         const statsDiarias = document.getElementById('stats-diarias');
         if (statsDiarias) {
             statsDiarias.textContent = `✅ Tareas de hoy: ${tareasCompletadas}/5`;
+        }
+    }
+
+    // SISTEMA DE MONEDAS (SOLES)
+    ganarSoles(cantidad, razon) {
+        console.log(`💰 Ganando ${cantidad} soles por: ${razon}`);
+        
+        this.stats.soles = (this.stats.soles || 0) + cantidad;
+        this.stats.solesGanadosTotal = (this.stats.solesGanadosTotal || 0) + cantidad;
+        
+        this.guardarStats();
+        this.actualizarEstadisticasSoles();
+        
+        // Mostrar notificación
+        this.mostrarNotificacionSoles(cantidad, razon);
+    }
+
+    gastarSoles(cantidad, razon) {
+        if (this.stats.soles >= cantidad) {
+            this.stats.soles -= cantidad;
+            this.guardarStats();
+            this.actualizarEstadisticasSoles();
+            console.log(`💸 Gastados ${cantidad} soles en: ${razon}`);
+            return true;
+        }
+        return false;
+    }
+
+    mostrarNotificacionSoles(cantidad, razon) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            border: 2px solid #ff8c00;
+            animation: slideInRight 0.5s ease;
+        `;
+
+        notificacion.innerHTML = `
+            <div>💰 +${cantidad} soles</div>
+            <div style="font-size: 0.8rem; opacity: 0.9;">${razon}</div>
+        `;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
+    }
+
+    actualizarEstadisticasSoles() {
+        const statsSoles = document.getElementById('stats-soles');
+        const balanceSoles = document.getElementById('balance-soles');
+        const gananciasTotales = document.getElementById('ganancias-totales');
+        
+        if (statsSoles) {
+            statsSoles.textContent = `💰 Soles: ${this.stats.soles || 0}`;
+        }
+        if (balanceSoles) {
+            balanceSoles.textContent = `💰 Soles disponibles: ${this.stats.soles || 0} soles`;
+        }
+        if (gananciasTotales) {
+            gananciasTotales.textContent = `🏆 Soles ganados en total: ${this.stats.solesGanadosTotal || 0} soles`;
         }
     }
 
@@ -893,6 +1055,13 @@ class AplicacionVocabulario {
             if (!stats.rachaDiarias) stats.rachaDiarias = 0;
             if (!stats.mejorRachaDiarias) stats.mejorRachaDiarias = 0;
             
+            // Inicializar sistema de soles
+            if (!stats.soles) stats.soles = 0;
+            if (!stats.solesGanadosTotal) stats.solesGanadosTotal = 0;
+            
+            // Inicializar recompensas compradas en tienda
+            if (!stats.recompensasCompradas) stats.recompensasCompradas = [];
+            
             for (const nombreMazo in this.mazos) {
                 if (!stats.mazos[nombreMazo]) {
                     stats.mazos[nombreMazo] = this.crearStatsMazoVacio();
@@ -907,7 +1076,10 @@ class AplicacionVocabulario {
             mazos: {},
             recompensasDesbloqueadas: [],
             rachaDiarias: 0,
-            mejorRachaDiarias: 0
+            mejorRachaDiarias: 0,
+            soles: 0,
+            solesGanadosTotal: 0,
+            recompensasCompradas: []
         };
         
         for (const nombreMazo in this.mazos) {
@@ -944,7 +1116,8 @@ class AplicacionVocabulario {
             lastsummer1: document.getElementById('pantalla-lastsummer1-mazos'),
             lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
             lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
-            diarias: document.getElementById('pantalla-diarias')
+            diarias: document.getElementById('pantalla-diarias'),
+            tienda: document.getElementById('pantalla-tienda')
         };
 
         // Cargar sistema de tareas diarias
@@ -958,6 +1131,7 @@ class AplicacionVocabulario {
         this.inicializarSeccionLastSummer();
         this.inicializarPantallasLastSummerMazos();
         this.inicializarPantallaDiarias();
+        this.inicializarPantallaTienda();
         
         // Mostrar mensaje si es primera vez en GitHub Pages
         if (this.esPrimeraVez) {
@@ -1008,6 +1182,14 @@ class AplicacionVocabulario {
         if (diariasCard) {
             diariasCard.addEventListener('click', () => {
                 this.mostrarPantalla('diarias');
+            });
+        }
+        
+        // Inicializar tarjeta de tienda
+        const tiendaCard = document.getElementById('tienda-card');
+        if (tiendaCard) {
+            tiendaCard.addEventListener('click', () => {
+                this.mostrarPantallaTienda();
             });
         }
         
@@ -1080,6 +1262,200 @@ class AplicacionVocabulario {
 
     mostrarPantallaLastSummer() {
         this.mostrarPantalla('lastsummer');
+    }
+
+    // SISTEMA DE TIENDA
+    inicializarPantallaTienda() {
+        this.contenedorRecompensasBasicas = document.getElementById('contenedor-recompensas-basicas');
+        this.contenedorRecompensasPremium = document.getElementById('contenedor-recompensas-premium');
+        this.botonVolverMenuTienda = document.getElementById('boton-volver-menu-tienda');
+        
+        this.botonVolverMenuTienda.onclick = () => this.mostrarPantalla('seleccion');
+    }
+
+    mostrarPantallaTienda() {
+        this.actualizarPantallaTienda();
+        this.mostrarPantalla('tienda');
+    }
+
+    actualizarPantallaTienda() {
+        this.actualizarEstadisticasSoles();
+        
+        // Actualizar recompensas básicas
+        this.contenedorRecompensasBasicas.innerHTML = '';
+        this.recompensasTienda.basicas.forEach(recompensa => {
+            const recompensaElement = this.crearElementoRecompensaTienda(recompensa);
+            this.contenedorRecompensasBasicas.appendChild(recompensaElement);
+        });
+
+        // Actualizar recompensas premium
+        this.contenedorRecompensasPremium.innerHTML = '';
+        this.recompensasTienda.premium.forEach(recompensa => {
+            const recompensaElement = this.crearElementoRecompensaTienda(recompensa);
+            this.contenedorRecompensasPremium.appendChild(recompensaElement);
+        });
+    }
+
+    crearElementoRecompensaTienda(recompensa) {
+        const elemento = document.createElement('div');
+        const esComprado = this.stats.recompensasCompradas.includes(recompensa.id);
+        const puedeComprar = this.stats.soles >= recompensa.precio && !esComprado;
+        
+        elemento.className = `recompensa ${esComprado ? 'recompensa-comprada' : (puedeComprar ? '' : 'recompensa-bloqueado')}`;
+        
+        let contenidoHTML = `
+            <img src="${recompensa.imagen}" alt="${recompensa.nombre}" class="recompensa-imagen">
+            <div class="recompensa-titulo">${recompensa.nombre}</div>
+            <div class="recompensa-descripcion">${recompensa.descripcion}</div>
+            <div class="recompensa-precio">💰 ${recompensa.precio} soles</div>
+        `;
+        
+        if (!esComprado && !puedeComprar) {
+            contenidoHTML += '<div class="candado">🔒</div>';
+        }
+        
+        contenidoHTML += `
+            <div class="recompensa-estado ${esComprado ? 'recompensa-comprado-texto' : (puedeComprar ? 'recompensa-desbloqueado' : 'recompensa-bloqueado-texto')}">
+                ${esComprado ? '✅ Comprado' : (puedeComprar ? '🛒 Comprar' : '🔒 Bloqueado')}
+            </div>
+        `;
+        
+        elemento.innerHTML = contenidoHTML;
+        
+        if (puedeComprar) {
+            elemento.style.cursor = 'pointer';
+            elemento.addEventListener('click', () => {
+                this.comprarRecompensa(recompensa);
+            });
+        } else if (esComprado) {
+            elemento.style.cursor = 'pointer';
+            elemento.addEventListener('click', () => {
+                this.usarRecompensaComprada(recompensa);
+            });
+        }
+        
+        return elemento;
+    }
+
+    comprarRecompensa(recompensa) {
+        if (this.gastarSoles(recompensa.precio, `Comprar: ${recompensa.nombre}`)) {
+            this.stats.recompensasCompradas.push(recompensa.id);
+            this.guardarStats();
+            this.actualizarPantallaTienda();
+            
+            // Mostrar mensaje de éxito
+            this.mostrarNotificacionCompra(recompensa);
+        }
+    }
+
+    usarRecompensaComprada(recompensa) {
+        console.log(`🎁 Usando recompensa comprada: ${recompensa.nombre}`);
+        
+        // Mostrar modal con la imagen y reproducir audio
+        this.mostrarModalRecompensa(recompensa);
+    }
+
+    mostrarModalRecompensa(recompensa) {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-recompensa';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        `;
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-recompensa-contenido';
+        modalContent.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.className = 'modal-recompensa-titulo';
+        titulo.textContent = recompensa.nombre;
+
+        const imagen = document.createElement('img');
+        imagen.src = recompensa.imagen;
+        imagen.className = 'modal-recompensa-imagen';
+        imagen.alt = recompensa.nombre;
+
+        const descripcion = document.createElement('div');
+        descripcion.className = 'modal-recompensa-descripcion';
+        descripcion.textContent = recompensa.descripcion;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.className = 'boton-cerrar-modal';
+        botonCerrar.textContent = '✨ Cerrar ✨';
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        modalContent.appendChild(titulo);
+        modalContent.appendChild(imagen);
+        modalContent.appendChild(descripcion);
+        modalContent.appendChild(botonCerrar);
+        overlay.appendChild(modalContent);
+        document.body.appendChild(overlay);
+
+        // Reproducir audio asociado
+        if (recompensa.audio) {
+            setTimeout(() => {
+                this.reproducirAudio(recompensa.audio);
+            }, 500);
+        }
+
+        // Cerrar automáticamente después de 8 segundos
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 8000);
+    }
+
+    mostrarNotificacionCompra(recompensa) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+            border: 2px solid #00cc66;
+            animation: slideInRight 0.5s ease;
+        `;
+
+        notificacion.innerHTML = `
+            <div>🎉 ¡Compra exitosa!</div>
+            <div style="font-size: 0.8rem; opacity: 0.9;">Has comprado: ${recompensa.nombre}</div>
+        `;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
     }
 
     inicializarPantallaNovia() {
@@ -1217,6 +1593,7 @@ class AplicacionVocabulario {
     actualizarPantallaSeleccion() {
         this.statsGlobal.textContent = `🏆 Mazos completados al 100%: ${this.stats.mazosCompletados}`;
         this.actualizarEstadisticasDiarias();
+        this.actualizarEstadisticasSoles();
     }
 
     inicializarPantallaQuiz() {
@@ -1390,6 +1767,9 @@ class AplicacionVocabulario {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
             
+            // Ganar 1 sol por completar mazo al 100%
+            this.ganarSoles(1, "Completar mazo al 100%");
+            
             const probabilidad = Math.random();
             if (probabilidad < 0.666) {
                 console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
@@ -1446,7 +1826,8 @@ class AplicacionVocabulario {
    Completados al 100%: ${statsMazo.completados100} veces
 
 ⭐ LOGROS GLOBALES:
-   Mazos completados al 100%: ${this.stats.mazosCompletados}`;
+   Mazos completados al 100%: ${this.stats.mazosCompletados}
+   Soles disponibles: ${this.stats.soles || 0}`;
     }
 
     reintentarMazo() {
