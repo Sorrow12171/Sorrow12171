@@ -91,7 +91,7 @@ class AplicacionVocabulario {
             ]
         };
 
-        // SISTEMA DE AUDIO - CON NUEVO AUDIO
+        // SISTEMA DE AUDIO
         this.audios = {
             beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
             nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
@@ -102,7 +102,7 @@ class AplicacionVocabulario {
         this.audioObjects = {};
         this.cargarAudios();
 
-        // SISTEMA DE RECOMPENSAS ACTUALIZADO
+        // SISTEMA DE RECOMPENSAS
         this.recompensas = {
             logros: [
                 {
@@ -256,33 +256,50 @@ class AplicacionVocabulario {
 
     cargarStats() {
         const statsGuardadas = localStorage.getItem('vocabularioStats');
+        
         if (statsGuardadas) {
             const stats = JSON.parse(statsGuardadas);
             if (!stats.recompensasDesbloqueadas) {
                 stats.recompensasDesbloqueadas = [];
             }
+            
+            // VERIFICAR Y AGREGAR NUEVOS MAZOS FALTANTES
+            for (const nombreMazo in this.mazos) {
+                if (!stats.mazos[nombreMazo]) {
+                    stats.mazos[nombreMazo] = this.crearStatsMazoVacio();
+                }
+            }
+            
             return stats;
         }
         
+        // Si no existen stats, crear nuevas
         const stats = { 
             mazosCompletados: 0, 
             mazos: {},
             recompensasDesbloqueadas: []
         };
         
+        // INICIALIZAR TODOS LOS MAZOS (incluyendo los nuevos)
         for (const nombreMazo in this.mazos) {
-            stats.mazos[nombreMazo] = {
-                vecesJugado: 0,
-                mejorPuntuacion: 0,
-                ultimaPuntuacion: 0,
-                aciertosTotales: 0,
-                erroresTotales: 0,
-                rachaActual: 0,
-                mejorRacha: 0,
-                completados100: 0
-            };
+            stats.mazos[nombreMazo] = this.crearStatsMazoVacio();
         }
+        
         return stats;
+    }
+
+    // NUEVO MÉTODO PARA CREAR STATS VACÍOS
+    crearStatsMazoVacio() {
+        return {
+            vecesJugado: 0,
+            mejorPuntuacion: 0,
+            ultimaPuntuacion: 0,
+            aciertosTotales: 0,
+            erroresTotales: 0,
+            rachaActual: 0,
+            mejorRacha: 0,
+            completados100: 0
+        };
     }
 
     guardarStats() {
@@ -708,7 +725,7 @@ class AplicacionVocabulario {
             mensajeEspecial = "\n¡Sigue practicando!";
         } else {
             emoji = "💪";
-            mensajeEspecial = "\n¡No te rindes!";
+            mensajeEspecial = "\n¡No te rindas!";
         }
         
         return `${emoji} Quiz Completado - ${this.estado.nombreMazoActual} ${emoji}
