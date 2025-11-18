@@ -355,8 +355,27 @@ class AplicacionVocabulario {
         this.inicializarPantallaNovia();
         this.inicializarPantallaLastSummer();
         this.inicializarSeccionLastSummer();
+        this.inicializarPantallasLastSummerMazos();
         
         this.mostrarPantalla('seleccion');
+    }
+
+    // NUEVO MÉTODO PARA INICIALIZAR BOTONES DE VOLVER
+    inicializarPantallasLastSummerMazos() {
+        // Botón volver de Last Summer 1
+        document.getElementById('boton-volver-lastsummer1').onclick = () => {
+            this.mostrarPantalla('lastsummer');
+        };
+        
+        // Botón volver de Last Summer 2
+        document.getElementById('boton-volver-lastsummer2').onclick = () => {
+            this.mostrarPantalla('lastsummer');
+        };
+        
+        // Botón volver de Last Summer 3
+        document.getElementById('boton-volver-lastsummer3').onclick = () => {
+            this.mostrarPantalla('lastsummer');
+        };
     }
 
     inicializarPantallaSeleccion() {
@@ -393,20 +412,20 @@ class AplicacionVocabulario {
         document.getElementById('lastsummer3').onclick = () => this.mostrarMazosLastSummer3();
     }
 
-    // NUEVOS MÉTODOS PARA MOSTRAR MAZOS DE CADA CATEGORÍA
+    // MÉTODOS CORREGIDOS
     mostrarMazosLastSummer1() {
-        this.mostrarMazosPorCategoria('LS1', 'pantalla-lastsummer1-mazos', 'contenedor-lastsummer1-mazos', 'boton-volver-lastsummer1');
+        this.mostrarMazosPorCategoria('LS1', 'lastsummer1', 'contenedor-lastsummer1-mazos');
     }
 
     mostrarMazosLastSummer2() {
-        this.mostrarMazosPorCategoria('LS2', 'pantalla-lastsummer2-mazos', 'contenedor-lastsummer2-mazos', 'boton-volver-lastsummer2');
+        this.mostrarMazosPorCategoria('LS2', 'lastsummer2', 'contenedor-lastsummer2-mazos');
     }
 
     mostrarMazosLastSummer3() {
-        this.mostrarMazosPorCategoria('LS3', 'pantalla-lastsummer3-mazos', 'contenedor-lastsummer3-mazos', 'boton-volver-lastsummer3');
+        this.mostrarMazosPorCategoria('LS3', 'lastsummer3', 'contenedor-lastsummer3-mazos');
     }
 
-    mostrarMazosPorCategoria(prefijo, pantallaId, contenedorId, botonVolverId) {
+    mostrarMazosPorCategoria(prefijo, pantallaId, contenedorId) {
         const contenedor = document.getElementById(contenedorId);
         contenedor.innerHTML = '';
         
@@ -427,9 +446,6 @@ class AplicacionVocabulario {
                 contenedor.appendChild(boton);
             }
         }
-        
-        // Configurar botón de volver
-        document.getElementById(botonVolverId).onclick = () => this.mostrarPantalla('lastsummer');
         
         this.mostrarPantalla(pantallaId);
     }
