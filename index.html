@@ -8,13 +8,23 @@
 </head>
 <body>
     <div id="app">
+        <!-- Pantalla de Evento Diario -->
+        <div id="pantalla-evento-diario" class="pantalla activa">
+            <div class="contenedor">
+                <div id="contenido-evento" class="contenido-evento">
+                    <!-- Contenido del evento se cargará aquí -->
+                </div>
+                <button id="boton-aceptar-reto" class="boton-reto">Aceptar el Reto</button>
+            </div>
+        </div>
+
         <!-- Pantalla de Selección PRINCIPAL -->
-        <div id="pantalla-seleccion" class="pantalla activa">
+        <div id="pantalla-seleccion" class="pantalla">
             <div class="contenedor">
                 <h1>Aprendizaje de Japonés</h1>
                 <p class="subtitulo">Selecciona una categoría</p>
                 
-                <!-- SECCIÓN TAREAS DIARIAS -->
+                <!-- SECCIÓN EVENTOS DIARIOS -->
                 <div class="seccion-especial">
                     <div class="diarias-card" id="diarias-card">
                         <img src="https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small" 
@@ -32,6 +42,15 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN FABRIZIO 2025 -->
+                <div class="seccion-especial">
+                    <div class="fabrizio-card" id="fabrizio-card">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" 
+                             alt="Fabrizio 2025" class="fabrizio-imagen">
+                        <div class="fabrizio-texto">📅 Fabrizio 2025</div>
+                    </div>
+                </div>
+
                 <!-- SECCIÓN NOVIA -->
                 <div class="seccion-especial">
                     <div class="novia-card" id="novia-card">
@@ -44,6 +63,7 @@
                 <div class="estadisticas-globales">
                     <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
                     <p id="stats-diarias">✅ Tareas de hoy: 0/5</p>
+                    <p id="stats-evento">🎯 Reto de hoy: Pendiente</p>
                 </div>
             </div>
         </div>
@@ -152,6 +172,67 @@
                 </div>
                 
                 <button id="boton-volver-menu-diarias" class="boton-principal">🏠 Volver al Menú Principal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: FABRIZIO 2025 -->
+        <div id="pantalla-fabrizio" class="pantalla">
+            <div class="contenedor">
+                <h1>📅 Fabrizio 2025 📅</h1>
+                <p class="subtitulo">Galería de imágenes por mes</p>
+                
+                <div class="galeria-meses">
+                    <div class="mes-card" data-mes="enero">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Enero" class="mes-imagen">
+                        <div class="mes-texto">Enero</div>
+                    </div>
+                    <div class="mes-card" data-mes="febrero">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Febrero" class="mes-imagen">
+                        <div class="mes-texto">Febrero</div>
+                    </div>
+                    <div class="mes-card" data-mes="marzo">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Marzo" class="mes-imagen">
+                        <div class="mes-texto">Marzo</div>
+                    </div>
+                    <div class="mes-card" data-mes="abril">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Abril" class="mes-imagen">
+                        <div class="mes-texto">Abril</div>
+                    </div>
+                    <div class="mes-card" data-mes="mayo">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Mayo" class="mes-imagen">
+                        <div class="mes-texto">Mayo</div>
+                    </div>
+                    <div class="mes-card" data-mes="junio">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Junio" class="mes-imagen">
+                        <div class="mes-texto">Junio</div>
+                    </div>
+                    <div class="mes-card" data-mes="julio">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Julio" class="mes-imagen">
+                        <div class="mes-texto">Julio</div>
+                    </div>
+                    <div class="mes-card" data-mes="agosto">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Agosto" class="mes-imagen">
+                        <div class="mes-texto">Agosto</div>
+                    </div>
+                    <div class="mes-card" data-mes="septiembre">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Septiembre" class="mes-imagen">
+                        <div class="mes-texto">Septiembre</div>
+                    </div>
+                    <div class="mes-card" data-mes="octubre">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Octubre" class="mes-imagen">
+                        <div class="mes-texto">Octubre</div>
+                    </div>
+                    <div class="mes-card" data-mes="noviembre">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Noviembre" class="mes-imagen">
+                        <div class="mes-texto">Noviembre</div>
+                    </div>
+                    <div class="mes-card" data-mes="diciembre">
+                        <img src="https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" alt="Diciembre" class="mes-imagen">
+                        <div class="mes-texto">Diciembre</div>
+                    </div>
+                </div>
+                
+                <button id="boton-volver-menu-fabrizio" class="boton-principal">🏠 Volver al Menú Principal</button>
             </div>
         </div>
 
