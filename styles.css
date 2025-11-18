@@ -26,6 +26,143 @@ body {
     margin: 0 auto;
 }
 
+/* PANTALLA DE EVENTO DIARIO */
+.pantalla-evento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+}
+
+.contenido-evento {
+    background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+    border: 4px solid #ff6b6b;
+    box-shadow: 0 0 50px rgba(255, 107, 107, 0.3);
+}
+
+.imagen-evento {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 3px solid white;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-evento {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6b6b;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.descripcion-evento {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.boton-reto {
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid #ff0000;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+.boton-reto:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
+
+/* PANTALLA FABRIZIO 2025 */
+.fabrizio-card {
+    background: linear-gradient(135deg, #4a90e2, #7b68ee);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    border: 3px solid #4169e1;
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.fabrizio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(74, 144, 226, 0.5);
+}
+
+.fabrizio-imagen {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    margin-bottom: 15px;
+}
+
+.fabrizio-texto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* GALERÍA DE MESES */
+.galeria-meses {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.mes-card {
+    background: linear-gradient(135deg, #3d3d3d, #4d4d4d);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #555555;
+}
+
+.mes-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    border-color: #4a90e2;
+}
+
+.mes-imagen {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid white;
+    margin-bottom: 10px;
+}
+
+.mes-texto {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
 /* Pantalla de Selección */
 h1 {
     text-align: center;
@@ -243,8 +380,12 @@ h1 {
     color: #00ff88;
 }
 
-.estadisticas-globales p:last-child {
+.estadisticas-globales p:nth-child(2) {
     color: #32cd32;
+}
+
+.estadisticas-globales p:last-child {
+    color: #ff6b6b;
 }
 
 /* PANTALLA DE TAREAS DIARIAS */
@@ -704,14 +845,16 @@ h1 {
     
     .diarias-imagen,
     .lastsummer-imagen,
-    .novia-imagen {
+    .novia-imagen,
+    .fabrizio-imagen {
         width: 150px;
         height: 150px;
     }
     
     .diarias-texto,
     .lastsummer-texto,
-    .novia-texto {
+    .novia-texto,
+    .fabrizio-texto {
         font-size: 1.3rem;
     }
     
@@ -737,5 +880,27 @@ h1 {
     
     .tarea-estado {
         align-self: flex-end;
+    }
+    
+    .imagen-evento {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .titulo-evento {
+        font-size: 2rem;
+    }
+    
+    .descripcion-evento {
+        font-size: 1.1rem;
+    }
+    
+    .galeria-meses {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .mes-imagen {
+        width: 100px;
+        height: 100px;
     }
 }
