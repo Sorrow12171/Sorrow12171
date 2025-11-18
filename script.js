@@ -1,70 +1,8 @@
 class AplicacionVocabulario {
     constructor() {
         this.mazos = {
-            // MAZOS ORIGINALES (ahora en Last Summer 3)
-            "Mazo 1 - Vocabulario Esencial": [
-                ["今朝", "Esta mañana", "kesa"],
-                ["処", "Lugar", "sho"],
-                ["出掛け", "Salida", "dekake"],
-                ["女将", "Dueña", "okami"],
-                ["寂しい", "Solitario", "sabishii"],
-                ["憩い", "Descanso", "ikoi"],
-                ["手伝い", "Ayuda", "tetsudai"],
-                ["撮る", "Tomar foto", "toru"],
-                ["見送る", "Despedir", "miokuru"],
-                ["限る", "Limitar", "kagiru"]
-            ],
-            "Mazo 2 - Expresiones Comunes": [
-                ["吐息", "Suspiro", "toiki"],
-                ["応援", "Apoyo", "ouen"],
-                ["文句", "Queja", "monku"],
-                ["構う", "Preocuparse", "kamau"],
-                ["残り香", "Aroma residual", "nokorika"],
-                ["減る", "Disminuir", "heru"],
-                ["誰彼", "Alguien", "darekare"],
-                ["過激", "Extremo", "kageki"],
-                ["開き直る", "Cambiar de actitud", "hirakinaoru"],
-                ["関係ない", "No relacionado", "kankeinai"]
-            ],
-            "Mazo 3 - Básicos": [
-                ["言葉", "Palabra", "kotoba"],
-                ["本", "Libro", "hon"],
-                ["水", "Agua", "mizu"],
-                ["学校", "Escuela", "gakkou"],
-                ["先生", "Maestro", "sensei"],
-                ["学生", "Estudiante", "gakusei"],
-                ["友達", "Amigo", "tomodachi"],
-                ["家族", "Familia", "kazoku"],
-                ["時間", "Tiempo", "jikan"],
-                ["今日", "Hoy", "kyou"]
-            ],
-            "Mazo 4 - Tiempo": [
-                ["明日", "Mañana", "ashita"],
-                ["昨日", "Ayer", "kinou"],
-                ["今", "Ahora", "ima"],
-                ["後で", "Después", "atode"],
-                ["前", "Antes", "mae"],
-                ["毎日", "Cada día", "mainichi"],
-                ["週末", "Fin de semana", "shuumatsu"],
-                ["月曜日", "Lunes", "getsuyoubi"],
-                ["火曜日", "Martes", "kayoubi"],
-                ["水曜日", "Miércoles", "suiyoubi"]
-            ],
-            "Mazo 5 - Adjetivos": [
-                ["大きい", "Grande", "ookii"],
-                ["小さい", "Pequeño", "chiisai"],
-                ["新しい", "Nuevo", "atarashii"],
-                ["古い", "Viejo", "furui"],
-                ["高い", "Alto/Caro", "takai"],
-                ["安い", "Barato", "yasui"],
-                ["暑い", "Caliente", "atsui"],
-                ["寒い", "Frío", "samui"],
-                ["楽しい", "Divertido", "tanoshii"],
-                ["難しい", "Difícil", "muzukashii"]
-            ],
-            
-            // NUEVOS MAZOS PARA LAST SUMMER 1 Y 2
-            "Last Summer 1 - Verano Inolvidable": [
+            // LAST SUMMER 1
+            "LS1 - Verano Inolvidable": [
                 ["夏", "Verano", "natsu"],
                 ["海", "Mar", "umi"],
                 ["太陽", "Sol", "taiyou"],
@@ -77,7 +15,7 @@ class AplicacionVocabulario {
                 ["花火", "Fuegos artificiales", "hanabi"]
             ],
             
-            "Last Summer 2 - Aventuras Estivales": [
+            "LS1 - Aventuras Estivales": [
                 ["冒険", "Aventura", "bouken"],
                 ["旅行", "Viaje", "ryokou"],
                 ["友情", "Amistad", "yuujou"],
@@ -88,6 +26,99 @@ class AplicacionVocabulario {
                 ["秘密", "Secreto", "himitsu"],
                 ["成長", "Crecimiento", "seichou"],
                 ["未来", "Futuro", "mirai"]
+            ],
+            
+            // LAST SUMMER 2
+            "LS2 - Vocabulario Esencial": [
+                ["今朝", "Esta mañana", "kesa"],
+                ["処", "Lugar", "sho"],
+                ["出掛け", "Salida", "dekake"],
+                ["女将", "Dueña", "okami"],
+                ["寂しい", "Solitario", "sabishii"],
+                ["憩い", "Descanso", "ikoi"],
+                ["手伝い", "Ayuda", "tetsudai"],
+                ["撮る", "Tomar foto", "toru"],
+                ["見送る", "Despedir", "miokuru"],
+                ["限る", "Limitar", "kagiru"]
+            ],
+            
+            "LS2 - Expresiones Comunes": [
+                ["吐息", "Suspiro", "toiki"],
+                ["応援", "Apoyo", "ouen"],
+                ["文句", "Queja", "monku"],
+                ["構う", "Preocuparse", "kamau"],
+                ["残り香", "Aroma residual", "nokorika"],
+                ["減る", "Disminuir", "heru"],
+                ["誰彼", "Alguien", "darekare"],
+                ["過激", "Extremo", "kageki"],
+                ["開き直る", "Cambiar de actitud", "hirakinaoru"],
+                ["関係ない", "No relacionado", "kankeinai"]
+            ],
+            
+            // LAST SUMMER 3 (los 5 mazos originales)
+            "LS3 - Básicos": [
+                ["言葉", "Palabra", "kotoba"],
+                ["本", "Libro", "hon"],
+                ["水", "Agua", "mizu"],
+                ["学校", "Escuela", "gakkou"],
+                ["先生", "Maestro", "sensei"],
+                ["学生", "Estudiante", "gakusei"],
+                ["友達", "Amigo", "tomodachi"],
+                ["家族", "Familia", "kazoku"],
+                ["時間", "Tiempo", "jikan"],
+                ["今日", "Hoy", "kyou"]
+            ],
+            
+            "LS3 - Tiempo": [
+                ["明日", "Mañana", "ashita"],
+                ["昨日", "Ayer", "kinou"],
+                ["今", "Ahora", "ima"],
+                ["後で", "Después", "atode"],
+                ["前", "Antes", "mae"],
+                ["毎日", "Cada día", "mainichi"],
+                ["週末", "Fin de semana", "shuumatsu"],
+                ["月曜日", "Lunes", "getsuyoubi"],
+                ["火曜日", "Martes", "kayoubi"],
+                ["水曜日", "Miércoles", "suiyoubi"]
+            ],
+            
+            "LS3 - Adjetivos": [
+                ["大きい", "Grande", "ookii"],
+                ["小さい", "Pequeño", "chiisai"],
+                ["新しい", "Nuevo", "atarashii"],
+                ["古い", "Viejo", "furui"],
+                ["高い", "Alto/Caro", "takai"],
+                ["安い", "Barato", "yasui"],
+                ["暑い", "Caliente", "atsui"],
+                ["寒い", "Frío", "samui"],
+                ["楽しい", "Divertido", "tanoshii"],
+                ["難しい", "Difícil", "muzukashii"]
+            ],
+            
+            "LS3 - Comida": [
+                ["食べ物", "Comida", "tabemono"],
+                ["水", "Agua", "mizu"],
+                ["米", "Arroz", "kome"],
+                ["魚", "Pescado", "sakana"],
+                ["肉", "Carne", "niku"],
+                ["野菜", "Vegetales", "yasai"],
+                ["果物", "Fruta", "kudamono"],
+                ["甘い", "Dulce", "amai"],
+                ["辛い", "Picante", "karai"],
+                ["美味しい", "Delicioso", "oishii"]
+            ],
+            
+            "LS3 - Familia": [
+                ["家族", "Familia", "kazoku"],
+                ["父", "Padre", "chichi"],
+                ["母", "Madre", "haha"],
+                ["兄", "Hermano mayor", "ani"],
+                ["姉", "Hermana mayor", "ane"],
+                ["弟", "Hermano menor", "otouto"],
+                ["妹", "Hermana menor", "imouto"],
+                ["祖父", "Abuelo", "sofu"],
+                ["祖母", "Abuela", "sobo"],
+                ["子供", "Niño", "kodomo"]
             ]
         };
 
@@ -312,7 +343,10 @@ class AplicacionVocabulario {
             quiz: document.getElementById('pantalla-quiz'),
             resultados: document.getElementById('pantalla-resultados'),
             novia: document.getElementById('pantalla-novia'),
-            lastsummer: document.getElementById('pantalla-lastsummer')
+            lastsummer: document.getElementById('pantalla-lastsummer'),
+            lastsummer1: document.getElementById('pantalla-lastsummer1-mazos'),
+            lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
+            lastsummer3: document.getElementById('pantalla-lastsummer3-mazos')
         };
 
         this.inicializarPantallaSeleccion();
@@ -326,10 +360,7 @@ class AplicacionVocabulario {
     }
 
     inicializarPantallaSeleccion() {
-        this.contenedorMazos = document.getElementById('contenedor-mazos');
         this.statsGlobal = document.getElementById('stats-global');
-        this.listaCompletados = document.getElementById('lista-completados');
-        
         this.inicializarSeccionNovia();
         this.actualizarPantallaSeleccion();
     }
@@ -356,10 +387,51 @@ class AplicacionVocabulario {
         this.botonVolverMenuLastSummer = document.getElementById('boton-volver-menu-lastsummer');
         this.botonVolverMenuLastSummer.onclick = () => this.mostrarPantalla('seleccion');
         
-        // Agregar event listeners a los mazos especiales
-        document.getElementById('lastsummer1').onclick = () => this.iniciarQuiz("Last Summer 1 - Verano Inolvidable");
-        document.getElementById('lastsummer2').onclick = () => this.iniciarQuiz("Last Summer 2 - Aventuras Estivales");
-        document.getElementById('lastsummer3').onclick = () => this.mostrarPantalla('seleccion');
+        // Agregar event listeners a las categorías
+        document.getElementById('lastsummer1').onclick = () => this.mostrarMazosLastSummer1();
+        document.getElementById('lastsummer2').onclick = () => this.mostrarMazosLastSummer2();
+        document.getElementById('lastsummer3').onclick = () => this.mostrarMazosLastSummer3();
+    }
+
+    // NUEVOS MÉTODOS PARA MOSTRAR MAZOS DE CADA CATEGORÍA
+    mostrarMazosLastSummer1() {
+        this.mostrarMazosPorCategoria('LS1', 'pantalla-lastsummer1-mazos', 'contenedor-lastsummer1-mazos', 'boton-volver-lastsummer1');
+    }
+
+    mostrarMazosLastSummer2() {
+        this.mostrarMazosPorCategoria('LS2', 'pantalla-lastsummer2-mazos', 'contenedor-lastsummer2-mazos', 'boton-volver-lastsummer2');
+    }
+
+    mostrarMazosLastSummer3() {
+        this.mostrarMazosPorCategoria('LS3', 'pantalla-lastsummer3-mazos', 'contenedor-lastsummer3-mazos', 'boton-volver-lastsummer3');
+    }
+
+    mostrarMazosPorCategoria(prefijo, pantallaId, contenedorId, botonVolverId) {
+        const contenedor = document.getElementById(contenedorId);
+        contenedor.innerHTML = '';
+        
+        // Filtrar mazos por prefijo
+        for (const nombreMazo in this.mazos) {
+            if (nombreMazo.startsWith(prefijo)) {
+                const statsMazo = this.stats.mazos[nombreMazo];
+                const boton = document.createElement('button');
+                boton.className = 'boton-mazo';
+                boton.innerHTML = `
+                    ${nombreMazo.replace(prefijo + ' - ', '')}<br>
+                    Mejor: ${statsMazo.mejorPuntuacion}%<br>
+                    Jugado: ${statsMazo.vecesJugado} veces<br>
+                    Récord: ${statsMazo.mejorRacha} aciertos<br>
+                    100%: ${statsMazo.completados100} veces
+                `;
+                boton.onclick = () => this.iniciarQuiz(nombreMazo);
+                contenedor.appendChild(boton);
+            }
+        }
+        
+        // Configurar botón de volver
+        document.getElementById(botonVolverId).onclick = () => this.mostrarPantalla('lastsummer');
+        
+        this.mostrarPantalla(pantallaId);
     }
 
     mostrarPantallaLastSummer() {
@@ -499,32 +571,7 @@ class AplicacionVocabulario {
     }
 
     actualizarPantallaSeleccion() {
-        this.contenedorMazos.innerHTML = '';
-        for (const nombreMazo in this.mazos) {
-            const statsMazo = this.stats.mazos[nombreMazo];
-            const boton = document.createElement('button');
-            boton.className = 'boton-mazo';
-            boton.innerHTML = `
-                ${nombreMazo}<br>
-                Mejor: ${statsMazo.mejorPuntuacion}%<br>
-                Jugado: ${statsMazo.vecesJugado} veces<br>
-                Récord: ${statsMazo.mejorRacha} aciertos<br>
-                100%: ${statsMazo.completados100} veces
-            `;
-            boton.onclick = () => this.iniciarQuiz(nombreMazo);
-            this.contenedorMazos.appendChild(boton);
-        }
-
         this.statsGlobal.textContent = `🏆 Mazos completados al 100%: ${this.stats.mazosCompletados}`;
-
-        this.listaCompletados.innerHTML = '';
-        for (const nombreMazo in this.mazos) {
-            const completadosCount = this.stats.mazos[nombreMazo].completados100;
-            const item = document.createElement('div');
-            item.className = 'item-completado';
-            item.textContent = `${nombreMazo}: ${completadosCount} veces`;
-            this.listaCompletados.appendChild(item);
-        }
     }
 
     inicializarPantallaQuiz() {
