@@ -3,7 +3,7 @@ class AplicacionVocabulario {
         // SISTEMA DE VIDEO POR INACTIVIDAD - 5 MINUTOS
         this.ultimaVisitaKey = 'ultimaVisitaVocabulario';
         this.videoInactividadUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4';
-        this.tiempoInactividad = 5 * 60 * 1000; // 5 minutos en milisegundos
+        this.tiempoInactividad = 5 * 60 * 1000;
 
         // Verificar inactividad al iniciar
         this.verificarInactividad();
@@ -63,7 +63,7 @@ class AplicacionVocabulario {
                 ["水曜日", "Miércoles", "suiyoubi"]
             ],
             
-            // LAST SUMMER 3 - 5 MAZOS (Mazo 1, Mazo 2, Mazo 3, Mazo 4, Mazo 5)
+            // LAST SUMMER 3 - 5 MAZOS
             "LS3 - Mazo 1": [
                 ["今朝", "Esta mañana", "kesa"],
                 ["処", "Lugar", "sho"],
@@ -143,6 +143,15 @@ class AplicacionVocabulario {
 
         // IMAGEN ESPECIAL PARA RECOMPENSAS
         this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
+
+        // SISTEMA DE TAREAS DIARIAS
+        this.tareasDiarias = {
+            'lectura': { nombre: 'Leer 10 minutos', completada: false },
+            'idiomas': { nombre: 'Practicar idiomas - 50 palabras', completada: false },
+            'correr': { nombre: 'Correr 100 metros', completada: false },
+            'trotar': { nombre: 'Trotar 1000 metros', completada: false },
+            'fuerza': { nombre: 'Ejercicios de fuerza - 10 pull ups', completada: false }
+        };
 
         // SISTEMA DE RECOMPENSAS
         this.recompensas = {
@@ -248,6 +257,128 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
+    // SISTEMA DE TAREAS DIARIAS
+    cargarTareasDiarias() {
+        const hoy = new Date().toDateString();
+        const tareasGuardadas = localStorage.getItem('tareasDiarias');
+        
+        if (tareasGuardadas) {
+            const datos = JSON.parse(tareasGuardadas);
+            
+            // Si es un nuevo día, reiniciar tareas
+            if (datos.fecha !== hoy) {
+                this.reiniciarTareasDiarias(datos);
+            } else {
+                // Cargar tareas del día actual
+                this.tareasDiarias = datos.tareas;
+            }
+        } else {
+            // Primera vez - inicializar
+            this.guardarTareasDiarias();
+        }
+    }
+
+    reiniciarTareasDiarias(datosAnteriores) {
+        const hoy = new Date().toDateString();
+        const ayer = new Date(Date.now() - 86400000).toDateString();
+        
+        // Verificar si completó todas las tareas ayer para mantener la racha
+        if (datosAnteriores.fecha === ayer) {
+            const tareasCompletadasAyer = Object.values(datosAnteriores.tareas).filter(t => t.completada).length;
+            if (tareasCompletadasAyer === 5) {
+                // Incrementar racha
+                this.stats.rachaDiarias = (this.stats.rachaDiarias || 0) + 1;
+                if (this.stats.rachaDiarias > (this.stats.mejorRachaDiarias || 0)) {
+                    this.stats.mejorRachaDiarias = this.stats.rachaDiarias;
+                }
+            } else {
+                // Reiniciar racha
+                this.stats.rachaDiarias = 0;
+            }
+            this.guardarStats();
+        }
+        
+        // Reiniciar tareas para hoy
+        for (let tarea in this.tareasDiarias) {
+            this.tareasDiarias[tarea].completada = false;
+        }
+        
+        this.guardarTareasDiarias();
+    }
+
+    guardarTareasDiarias() {
+        const datos = {
+            fecha: new Date().toDateString(),
+            tareas: this.tareasDiarias
+        };
+        localStorage.setItem('tareasDiarias', JSON.stringify(datos));
+    }
+
+    toggleTarea(tareaId) {
+        if (this.tareasDiarias[tareaId]) {
+            this.tareasDiarias[tareaId].completada = !this.tareasDiarias[tareaId].completada;
+            this.guardarTareasDiarias();
+            this.actualizarPantallaTareas();
+            this.actualizarEstadisticasDiarias();
+        }
+    }
+
+    actualizarPantallaTareas() {
+        for (let tareaId in this.tareasDiarias) {
+            const checkbox = document.getElementById(`check-${tareaId}`);
+            const estadoElement = document.getElementById(`estado-${tareaId}`);
+            const tareaElement = document.getElementById(`tarea-${tareaId}`);
+            
+            if (checkbox && estadoElement && tareaElement) {
+                checkbox.checked = this.tareasDiarias[tareaId].completada;
+                
+                if (this.tareasDiarias[tareaId].completada) {
+                    estadoElement.textContent = '✅ Completada';
+                    estadoElement.className = 'tarea-estado completada';
+                    tareaElement.className = 'tarea completada';
+                } else {
+                    estadoElement.textContent = '⏳ Pendiente';
+                    estadoElement.className = 'tarea-estado pendiente';
+                    tareaElement.className = 'tarea';
+                }
+            }
+        }
+        
+        this.actualizarProgresoTareas();
+    }
+
+    actualizarProgresoTareas() {
+        const tareasCompletadas = Object.values(this.tareasDiarias).filter(t => t.completada).length;
+        const totalTareas = Object.keys(this.tareasDiarias).length;
+        const porcentaje = (tareasCompletadas / totalTareas) * 100;
+        
+        const barraProgreso = document.getElementById('barra-progreso-tareas');
+        const textoProgreso = document.getElementById('texto-progreso-tareas');
+        const rachaActual = document.getElementById('racha-actual');
+        const mejorRacha = document.getElementById('mejor-racha');
+        
+        if (barraProgreso) {
+            barraProgreso.style.width = `${porcentaje}%`;
+        }
+        if (textoProgreso) {
+            textoProgreso.textContent = `${tareasCompletadas}/${totalTareas} tareas completadas`;
+        }
+        if (rachaActual) {
+            rachaActual.textContent = `🔥 Racha actual: ${this.stats.rachaDiarias || 0} días`;
+        }
+        if (mejorRacha) {
+            mejorRacha.textContent = `🏆 Mejor racha: ${this.stats.mejorRachaDiarias || 0} días`;
+        }
+    }
+
+    actualizarEstadisticasDiarias() {
+        const tareasCompletadas = Object.values(this.tareasDiarias).filter(t => t.completada).length;
+        const statsDiarias = document.getElementById('stats-diarias');
+        if (statsDiarias) {
+            statsDiarias.textContent = `✅ Tareas de hoy: ${tareasCompletadas}/5`;
+        }
+    }
+
     // MÉTODO: Verificar inactividad del usuario (5 MINUTOS)
     verificarInactividad() {
         const ahora = new Date().getTime();
@@ -260,22 +391,18 @@ class AplicacionVocabulario {
             const tiempoDesdeUltimaVisita = ahora - parseInt(ultimaVisita);
             console.log('Tiempo desde última visita:', Math.round(tiempoDesdeUltimaVisita / 1000 / 60) + ' minutos');
             
-            // Si pasó más de 5 minutos desde la última visita
             if (tiempoDesdeUltimaVisita > this.tiempoInactividad) {
                 console.log('🎬 ¡5 minutos de inactividad! Reproduciendo video...');
                 setTimeout(() => {
                     this.reproducirVideoInactividad();
-                }, 2000); // Pequeño delay para que cargue la página
+                }, 2000);
             }
         }
         
-        // Actualizar el timestamp de la última visita
         localStorage.setItem(this.ultimaVisitaKey, ahora.toString());
     }
 
-    // MÉTODO: Reproducir video por inactividad
     reproducirVideoInactividad() {
-        // Crear overlay para el video
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -291,7 +418,6 @@ class AplicacionVocabulario {
             flex-direction: column;
         `;
 
-        // Crear contenedor del video
         const videoContainer = document.createElement('div');
         videoContainer.style.cssText = `
             background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
@@ -304,7 +430,6 @@ class AplicacionVocabulario {
             box-shadow: 0 0 50px rgba(255, 71, 87, 0.5);
         `;
 
-        // Crear título
         const titulo = document.createElement('div');
         titulo.textContent = '🚨 ALERTA DE CORNUDO 🚨 Descuidaste a Nino y ahora aldo se la esta cogiendo';
         titulo.style.cssText = `
@@ -315,7 +440,6 @@ class AplicacionVocabulario {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         `;
 
-        // Crear mensaje ESPECIAL
         const mensaje = document.createElement('div');
         mensaje.innerHTML = '🔥 <strong>ALDO SE LA ESTA FOLLANDO :D</strong> 🔥';
         mensaje.style.cssText = `
@@ -330,12 +454,11 @@ class AplicacionVocabulario {
             border: 2px solid #ff4757;
         `;
 
-        // Crear elemento de video
         const video = document.createElement('video');
         video.src = this.videoInactividadUrl;
         video.controls = true;
         video.autoplay = true;
-        video.muted = false; // Sonido activado
+        video.muted = false;
         video.playsInline = true;
         video.style.cssText = `
             max-width: 500px;
@@ -346,7 +469,6 @@ class AplicacionVocabulario {
             background: #000;
         `;
 
-        // Crear botón de cerrar
         const botonCerrar = document.createElement('button');
         botonCerrar.innerHTML = '❌ CERRAR VIDEO';
         botonCerrar.style.cssText = `
@@ -378,7 +500,6 @@ class AplicacionVocabulario {
             document.body.removeChild(overlay);
         };
 
-        // Evento cuando el video termina
         video.onended = () => {
             mensaje.innerHTML = '🎬 <strong>VIDEO TERMINADO - ¿QUÉ HARÁS AHORA?</strong> 🎬';
             mensaje.style.color = '#4a90e2';
@@ -392,35 +513,28 @@ class AplicacionVocabulario {
             }, 3000);
         };
 
-        // Manejar errores de video
         video.onerror = () => {
             console.log('❌ Error cargando el video');
             mensaje.innerHTML = '❌ Error cargando el video<br><small>Pero el mensaje sigue siendo claro 😈</small>';
             mensaje.style.color = '#ffa500';
         };
 
-        // Ensamblar todo
         videoContainer.appendChild(titulo);
         videoContainer.appendChild(mensaje);
         videoContainer.appendChild(video);
         videoContainer.appendChild(botonCerrar);
         overlay.appendChild(videoContainer);
-
-        // Agregar al DOM
         document.body.appendChild(overlay);
 
-        // Forzar reproducción
         const playPromise = video.play();
         if (playPromise !== undefined) {
             playPromise.catch(error => {
                 console.log('❌ Error reproduciendo video:', error);
-                // Intentar reproducir con mute
                 video.muted = true;
                 video.play();
             });
         }
 
-        // Cerrar automáticamente después de 60 segundos
         setTimeout(() => {
             if (document.body.contains(overlay)) {
                 video.pause();
@@ -477,9 +591,7 @@ class AplicacionVocabulario {
         }
     }
 
-    // MÉTODO PARA MOSTRAR IMAGEN ESPECIAL
     mostrarImagenEspecial() {
-        // Crear overlay para la imagen
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -495,7 +607,6 @@ class AplicacionVocabulario {
             flex-direction: column;
         `;
 
-        // Crear contenedor de la imagen
         const imagenContainer = document.createElement('div');
         imagenContainer.style.cssText = `
             background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
@@ -508,7 +619,6 @@ class AplicacionVocabulario {
             box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
         `;
 
-        // Crear título
         const titulo = document.createElement('div');
         titulo.textContent = '🎉 Nino esta feliz :D te la podras coger pronto  🎉';
         titulo.style.cssText = `
@@ -519,7 +629,6 @@ class AplicacionVocabulario {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         `;
 
-        // Crear imagen
         const imagen = document.createElement('img');
         imagen.src = this.imagenEspecial;
         imagen.style.cssText = `
@@ -530,7 +639,6 @@ class AplicacionVocabulario {
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         `;
 
-        // Crear mensaje
         const mensaje = document.createElement('div');
         mensaje.textContent = '¡Felicidades por completar el mazo al 100%!';
         mensaje.style.cssText = `
@@ -540,7 +648,6 @@ class AplicacionVocabulario {
             font-weight: bold;
         `;
 
-        // Crear botón de cerrar
         const botonCerrar = document.createElement('button');
         botonCerrar.textContent = '✨ Continuar ✨';
         botonCerrar.style.cssText = `
@@ -571,22 +678,17 @@ class AplicacionVocabulario {
             document.body.removeChild(overlay);
         };
 
-        // Ensamblar todo
         imagenContainer.appendChild(titulo);
         imagenContainer.appendChild(imagen);
         imagenContainer.appendChild(mensaje);
         imagenContainer.appendChild(botonCerrar);
         overlay.appendChild(imagenContainer);
-
-        // Agregar al DOM
         document.body.appendChild(overlay);
 
-        // Reproducir audio de beso cuando aparece la imagen
         setTimeout(() => {
             this.reproducirAudio('beso');
         }, 500);
 
-        // Cerrar automáticamente después de 8 segundos
         setTimeout(() => {
             if (document.body.contains(overlay)) {
                 document.body.removeChild(overlay);
@@ -603,7 +705,10 @@ class AplicacionVocabulario {
                 stats.recompensasDesbloqueadas = [];
             }
             
-            // VERIFICAR Y AGREGAR NUEVOS MAZOS FALTANTES
+            // Inicializar estadísticas de tareas diarias si no existen
+            if (!stats.rachaDiarias) stats.rachaDiarias = 0;
+            if (!stats.mejorRachaDiarias) stats.mejorRachaDiarias = 0;
+            
             for (const nombreMazo in this.mazos) {
                 if (!stats.mazos[nombreMazo]) {
                     stats.mazos[nombreMazo] = this.crearStatsMazoVacio();
@@ -613,14 +718,14 @@ class AplicacionVocabulario {
             return stats;
         }
         
-        // Si no existen stats, crear nuevas
         const stats = { 
             mazosCompletados: 0, 
             mazos: {},
-            recompensasDesbloqueadas: []
+            recompensasDesbloqueadas: [],
+            rachaDiarias: 0,
+            mejorRachaDiarias: 0
         };
         
-        // INICIALIZAR TODOS LOS MAZOS (incluyendo los nuevos)
         for (const nombreMazo in this.mazos) {
             stats.mazos[nombreMazo] = this.crearStatsMazoVacio();
         }
@@ -628,7 +733,6 @@ class AplicacionVocabulario {
         return stats;
     }
 
-    // MÉTODO PARA CREAR STATS VACÍOS
     crearStatsMazoVacio() {
         return {
             vecesJugado: 0,
@@ -655,9 +759,13 @@ class AplicacionVocabulario {
             lastsummer: document.getElementById('pantalla-lastsummer'),
             lastsummer1: document.getElementById('pantalla-lastsummer1-mazos'),
             lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
-            lastsummer3: document.getElementById('pantalla-lastsummer3-mazos')
+            lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
+            diarias: document.getElementById('pantalla-diarias')
         };
 
+        // Cargar sistema de tareas diarias
+        this.cargarTareasDiarias();
+        
         this.inicializarPantallaSeleccion();
         this.inicializarPantallaQuiz();
         this.inicializarPantallaResultados();
@@ -665,23 +773,37 @@ class AplicacionVocabulario {
         this.inicializarPantallaLastSummer();
         this.inicializarSeccionLastSummer();
         this.inicializarPantallasLastSummerMazos();
+        this.inicializarPantallaDiarias();
         
         this.mostrarPantalla('seleccion');
     }
 
-    // MÉTODO PARA INICIALIZAR BOTONES DE VOLVER
+    inicializarPantallaDiarias() {
+        // Botón volver
+        document.getElementById('boton-volver-menu-diarias').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // Event listeners para checkboxes
+        document.getElementById('check-lectura').addEventListener('change', () => this.toggleTarea('lectura'));
+        document.getElementById('check-idiomas').addEventListener('change', () => this.toggleTarea('idiomas'));
+        document.getElementById('check-correr').addEventListener('change', () => this.toggleTarea('correr'));
+        document.getElementById('check-trotar').addEventListener('change', () => this.toggleTarea('trotar'));
+        document.getElementById('check-fuerza').addEventListener('change', () => this.toggleTarea('fuerza'));
+
+        // Actualizar pantalla
+        this.actualizarPantallaTareas();
+    }
+
     inicializarPantallasLastSummerMazos() {
-        // Botón volver de Last Summer 1
         document.getElementById('boton-volver-lastsummer1').onclick = () => {
             this.mostrarPantalla('lastsummer');
         };
         
-        // Botón volver de Last Summer 2
         document.getElementById('boton-volver-lastsummer2').onclick = () => {
             this.mostrarPantalla('lastsummer');
         };
         
-        // Botón volver de Last Summer 3
         document.getElementById('boton-volver-lastsummer3').onclick = () => {
             this.mostrarPantalla('lastsummer');
         };
@@ -689,6 +811,15 @@ class AplicacionVocabulario {
 
     inicializarPantallaSeleccion() {
         this.statsGlobal = document.getElementById('stats-global');
+        
+        // Inicializar tarjeta de tareas diarias
+        const diariasCard = document.getElementById('diarias-card');
+        if (diariasCard) {
+            diariasCard.addEventListener('click', () => {
+                this.mostrarPantalla('diarias');
+            });
+        }
+        
         this.inicializarSeccionNovia();
         this.actualizarPantallaSeleccion();
     }
@@ -715,13 +846,11 @@ class AplicacionVocabulario {
         this.botonVolverMenuLastSummer = document.getElementById('boton-volver-menu-lastsummer');
         this.botonVolverMenuLastSummer.onclick = () => this.mostrarPantalla('seleccion');
         
-        // Agregar event listeners a las categorías
         document.getElementById('lastsummer1').onclick = () => this.mostrarMazosLastSummer1();
         document.getElementById('lastsummer2').onclick = () => this.mostrarMazosLastSummer2();
         document.getElementById('lastsummer3').onclick = () => this.mostrarMazosLastSummer3();
     }
 
-    // MÉTODOS CORREGIDOS
     mostrarMazosLastSummer1() {
         this.mostrarMazosPorCategoria('LS1', 'lastsummer1', 'contenedor-lastsummer1-mazos');
     }
@@ -738,7 +867,6 @@ class AplicacionVocabulario {
         const contenedor = document.getElementById(contenedorId);
         contenedor.innerHTML = '';
         
-        // Filtrar mazos por prefijo
         for (const nombreMazo in this.mazos) {
             if (nombreMazo.startsWith(prefijo)) {
                 const statsMazo = this.stats.mazos[nombreMazo];
@@ -897,6 +1025,7 @@ class AplicacionVocabulario {
 
     actualizarPantallaSeleccion() {
         this.statsGlobal.textContent = `🏆 Mazos completados al 100%: ${this.stats.mazosCompletados}`;
+        this.actualizarEstadisticasDiarias();
     }
 
     inicializarPantallaQuiz() {
@@ -1070,9 +1199,8 @@ class AplicacionVocabulario {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
             
-            // SISTEMA DE PROBABILIDAD 2/3 PARA IMAGEN ESPECIAL
             const probabilidad = Math.random();
-            if (probabilidad < 0.666) { // 2/3 de probabilidad
+            if (probabilidad < 0.666) {
                 console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
                 setTimeout(() => {
                     this.mostrarImagenEspecial();
