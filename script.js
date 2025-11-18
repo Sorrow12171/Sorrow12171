@@ -527,12 +527,7 @@ class AplicacionVocabulario {
             });
         }
 
-        setTimeout(() => {
-            if (document.body.contains(overlay)) {
-                video.pause();
-                document.body.removeChild(overlay);
-            }
-        }, 60000);
+
     }
 
     // MÉTODO: Reproducir video por inactividad de 8 HORAS (Zahiry)
@@ -640,11 +635,6 @@ class AplicacionVocabulario {
             mensaje.style.borderColor = '#ffd700';
             mensaje.style.background = 'rgba(255, 215, 0, 0.1)';
             
-            setTimeout(() => {
-                if (document.body.contains(overlay)) {
-                    document.body.removeChild(overlay);
-                }
-            }, 3000);
         };
 
         video.onerror = () => {
@@ -937,7 +927,7 @@ class AplicacionVocabulario {
         }
     }
 
-   mostrarImagenEspecial(imagenUrl = null, titulo = null, audio = null) {
+  mostrarImagenEspecial() {
     const overlay = document.createElement('div');
     overlay.style.cssText = `
         position: fixed;
@@ -945,7 +935,7 @@ class AplicacionVocabulario {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(0, 0, 0, 0.95);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -965,9 +955,9 @@ class AplicacionVocabulario {
         box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
     `;
 
-    const tituloElement = document.createElement('div');
-    tituloElement.textContent = titulo || '🎉 Nino esta feliz :D te la podras coger pronto 🎉';
-    tituloElement.style.cssText = `
+    const titulo = document.createElement('div');
+    titulo.textContent = '🎉 Nino esta feliz :D te la podras coger pronto  🎉';
+    titulo.style.cssText = `
         font-size: 2rem;
         font-weight: bold;
         color: white;
@@ -976,7 +966,7 @@ class AplicacionVocabulario {
     `;
 
     const imagen = document.createElement('img');
-    imagen.src = imagenUrl || this.imagenEspecial;
+    imagen.src = this.imagenEspecial;
     imagen.style.cssText = `
         max-width: 400px;
         max-height: 400px;
@@ -995,7 +985,7 @@ class AplicacionVocabulario {
     `;
 
     const botonCerrar = document.createElement('button');
-    botonCerrar.textContent = '✨ Continuar ✨';
+    botonCerrar.textContent = '✨ Cerrar ✨';
     botonCerrar.style.cssText = `
         background: linear-gradient(135deg, #4a90e2, #7b68ee);
         color: white;
@@ -1024,23 +1014,23 @@ class AplicacionVocabulario {
         document.body.removeChild(overlay);
     };
 
-    imagenContainer.appendChild(tituloElement);
+    imagenContainer.appendChild(titulo);
     imagenContainer.appendChild(imagen);
     imagenContainer.appendChild(mensaje);
     imagenContainer.appendChild(botonCerrar);
     overlay.appendChild(imagenContainer);
     document.body.appendChild(overlay);
 
-    // Reproducir audio específico o el audio por defecto
     setTimeout(() => {
-        this.reproducirAudio(audio || 'beso');
+        this.reproducirAudio('beso');
     }, 500);
 
-    setTimeout(() => {
-        if (document.body.contains(overlay)) {
-            document.body.removeChild(overlay);
-        }
-    }, 8000);
+    // ELIMINAR ESTE setTimeout QUE CIERRA AUTOMÁTICAMENTE
+    // setTimeout(() => {
+    //     if (document.body.contains(overlay)) {
+    //         document.body.removeChild(overlay);
+    //     }
+    // }, 8000);
 }
 
     cargarStats() {
@@ -1357,76 +1347,76 @@ class AplicacionVocabulario {
     }
 
     mostrarModalRecompensa(recompensa) {
-        const overlay = document.createElement('div');
-        overlay.className = 'modal-recompensa';
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            flex-direction: column;
-        `;
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-recompensa';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        flex-direction: column;
+    `;
 
-        const modalContent = document.createElement('div');
-        modalContent.className = 'modal-recompensa-contenido';
-        modalContent.style.cssText = `
-            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            max-width: 90%;
-            max-height: 90%;
-            border: 4px solid #ff4757;
-            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
-        `;
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-recompensa-contenido';
+    modalContent.style.cssText = `
+        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        max-width: 90%;
+        max-height: 90%;
+        border: 4px solid #ff4757;
+        box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+    `;
 
-        const titulo = document.createElement('div');
-        titulo.className = 'modal-recompensa-titulo';
-        titulo.textContent = recompensa.nombre;
+    const titulo = document.createElement('div');
+    titulo.className = 'modal-recompensa-titulo';
+    titulo.textContent = recompensa.nombre;
 
-        const imagen = document.createElement('img');
-        imagen.src = recompensa.imagen;
-        imagen.className = 'modal-recompensa-imagen';
-        imagen.alt = recompensa.nombre;
+    const imagen = document.createElement('img');
+    imagen.src = recompensa.imagen;
+    imagen.className = 'modal-recompensa-imagen';
+    imagen.alt = recompensa.nombre;
 
-        const descripcion = document.createElement('div');
-        descripcion.className = 'modal-recompensa-descripcion';
-        descripcion.textContent = recompensa.descripcion;
+    const descripcion = document.createElement('div');
+    descripcion.className = 'modal-recompensa-descripcion';
+    descripcion.textContent = recompensa.descripcion;
 
-        const botonCerrar = document.createElement('button');
-        botonCerrar.className = 'boton-cerrar-modal';
-        botonCerrar.textContent = '✨ Cerrar ✨';
-        botonCerrar.onclick = () => {
-            document.body.removeChild(overlay);
-        };
+    const botonCerrar = document.createElement('button');
+    botonCerrar.className = 'boton-cerrar-modal';
+    botonCerrar.textContent = '✨ Cerrar ✨';
+    botonCerrar.onclick = () => {
+        document.body.removeChild(overlay);
+    };
 
-        modalContent.appendChild(titulo);
-        modalContent.appendChild(imagen);
-        modalContent.appendChild(descripcion);
-        modalContent.appendChild(botonCerrar);
-        overlay.appendChild(modalContent);
-        document.body.appendChild(overlay);
+    modalContent.appendChild(titulo);
+    modalContent.appendChild(imagen);
+    modalContent.appendChild(descripcion);
+    modalContent.appendChild(botonCerrar);
+    overlay.appendChild(modalContent);
+    document.body.appendChild(overlay);
 
-        // Reproducir audio asociado
-        if (recompensa.audio) {
-            setTimeout(() => {
-                this.reproducirAudio(recompensa.audio);
-            }, 500);
-        }
-
-        // Cerrar automáticamente después de 8 segundos
+    // Reproducir audio asociado
+    if (recompensa.audio) {
         setTimeout(() => {
-            if (document.body.contains(overlay)) {
-                document.body.removeChild(overlay);
-            }
-        }, 8000);
+            this.reproducirAudio(recompensa.audio);
+        }, 500);
     }
+
+    // ELIMINAR ESTE setTimeout QUE CIERRA AUTOMÁTICAMENTE
+    // setTimeout(() => {
+    //     if (document.body.contains(overlay)) {
+    //         document.body.removeChild(overlay);
+    //     }
+    // }, 8000);
+}
 
     mostrarNotificacionCompra(recompensa) {
         const notificacion = document.createElement('div');
