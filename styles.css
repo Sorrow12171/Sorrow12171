@@ -72,6 +72,41 @@ h1 {
     transform: translateY(-2px);
 }
 
+/* SECCIÓN TAREAS DIARIAS */
+.diarias-card {
+    background: linear-gradient(135deg, #32cd32, #228b22);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(50, 205, 50, 0.3);
+    border: 3px solid #228b22;
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.diarias-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(50, 205, 50, 0.5);
+}
+
+.diarias-imagen {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    margin-bottom: 15px;
+}
+
+.diarias-texto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 /* SECCIÓN LAST SUMMER */
 .lastsummer-card {
     background: linear-gradient(135deg, #4a90e2, #7b68ee);
@@ -201,7 +236,134 @@ h1 {
 .estadisticas-globales p {
     font-size: 1.2rem;
     font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.estadisticas-globales p:first-child {
     color: #00ff88;
+}
+
+.estadisticas-globales p:last-child {
+    color: #32cd32;
+}
+
+/* PANTALLA DE TAREAS DIARIAS */
+.contenedor-tareas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.tarea {
+    background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+    border-radius: 15px;
+    padding: 20px;
+    border: 2px solid #444444;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tarea.completada {
+    border-color: #32cd32;
+    background: linear-gradient(135deg, #2d5a2d, #3d6b3d);
+}
+
+.tarea:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tarea-contenido {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.tarea-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.tarea-info {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.tarea-titulo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.tarea-descripcion {
+    font-size: 0.9rem;
+    color: #cccccc;
+}
+
+.tarea-estado {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    min-width: 120px;
+    text-align: center;
+}
+
+.tarea-estado.pendiente {
+    background-color: #444444;
+    color: #ffa500;
+}
+
+.tarea-estado.completada {
+    background-color: #32cd32;
+    color: white;
+}
+
+.estadisticas-tareas {
+    background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+    border: 2px solid #444444;
+}
+
+.progreso-tareas {
+    margin-bottom: 15px;
+}
+
+.progreso-bar {
+    background: linear-gradient(90deg, #32cd32, #228b22);
+    height: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: width 0.5s ease;
+}
+
+.progreso-texto {
+    text-align: center;
+    font-weight: bold;
+    color: #32cd32;
+}
+
+.racha-actual, .mejor-racha {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.racha-actual {
+    color: #ff6b6b;
+}
+
+.mejor-racha {
+    color: #ffd700;
 }
 
 .completados-mazos {
@@ -228,7 +390,7 @@ h1 {
     font-size: 0.9rem;
 }
 
-/* PANTALLA DE RECOMPENSAS - NUEVO DISEÑO */
+/* PANTALLA DE RECOMPENSAS */
 .categorias-recompensas {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -540,20 +702,15 @@ h1 {
         font-size: 2rem;
     }
     
-    .lastsummer-imagen {
-        width: 150px;
-        height: 150px;
-    }
-    
-    .lastsummer-texto {
-        font-size: 1.3rem;
-    }
-    
+    .diarias-imagen,
+    .lastsummer-imagen,
     .novia-imagen {
         width: 150px;
         height: 150px;
     }
     
+    .diarias-texto,
+    .lastsummer-texto,
     .novia-texto {
         font-size: 1.3rem;
     }
@@ -570,5 +727,15 @@ h1 {
     .mazo-especial-imagen {
         width: 120px;
         height: 120px;
+    }
+    
+    .tarea {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .tarea-estado {
+        align-self: flex-end;
     }
 }
