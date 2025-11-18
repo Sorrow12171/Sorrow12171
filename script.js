@@ -72,70 +72,110 @@ class AplicacionVocabulario {
                 ["水曜日", "Miércoles", "suiyoubi"]
             ],
             
-            // LAST SUMMER 3 - 5 MAZOS
-            "LS3 - Mazo 1": [
-                ["今朝", "Esta mañana", "kesa"],
-                ["処", "Lugar", "sho"],
-                ["出掛け", "Salida", "dekake"],
-                ["女将", "Dueña", "okami"],
-                ["寂しい", "Solitario", "sabishii"],
-                ["憩い", "Descanso", "ikoi"],
-                ["手伝い", "Ayuda", "tetsudai"],
-                ["撮る", "Tomar foto", "toru"],
-                ["見送る", "Despedir", "miokuru"],
-                ["限る", "Limitar", "kagiru"]
-            ],
-            
-            "LS3 - Mazo 2": [
-                ["吐息", "Suspiro", "toiki"],
-                ["応援", "Apoyo", "ouen"],
-                ["文句", "Queja", "monku"],
-                ["構う", "Preocuparse", "kamau"],
-                ["残り香", "Aroma residual", "nokorika"],
-                ["減る", "Disminuir", "heru"],
-                ["誰彼", "Alguien", "darekare"],
-                ["過激", "Extremo", "kageki"],
-                ["開き直る", "Cambiar de actitud", "hirakinaoru"],
-                ["関係ない", "No relacionado", "kankeinai"]
-            ],
-            
+            // LAST SUMMER 3 - 5 MAZOS MODIFICADOS
             "LS3 - Mazo 3": [
-                ["大きい", "Grande", "ookii"],
-                ["小さい", "Pequeño", "chiisai"],
-                ["新しい", "Nuevo", "atarashii"],
-                ["古い", "Viejo", "furui"],
-                ["高い", "Alto/Caro", "takai"],
-                ["安い", "Barato", "yasui"],
-                ["暑い", "Caliente", "atsui"],
-                ["寒い", "Frío", "samui"],
-                ["楽しい", "Divertido", "tanoshii"],
-                ["難しい", "Difícil", "muzukashii"]
+                ["刺激", "Estímulo", "shigeki"],
+                ["否定", "Negación", "hitei"],
+                ["宝の持ち腐れ", "Talento desperdiciado", "takarano mochiguse"],
+                ["心配", "Preocupación", "shinpai"],
+                ["性欲", "Deseo sexual", "seiyoku"],
+                ["機会", "Oportunidad", "kikai"],
+                ["活かす", "Aprovechar", "ikasu"],
+                ["経験不足", "Falta de experiencia", "keiken busoku"],
+                ["言い寄る", "Acercarse románticamente", "iiyoru"],
+                ["飽きる", "Cansarse", "akiru"]
             ],
             
             "LS3 - Mazo 4": [
-                ["食べ物", "Comida", "tabemono"],
-                ["水", "Agua", "mizu"],
-                ["米", "Arroz", "kome"],
-                ["魚", "Pescado", "sakana"],
-                ["肉", "Carne", "niku"],
-                ["野菜", "Vegetales", "yasai"],
-                ["果物", "Fruta", "kudamono"],
-                ["甘い", "Dulce", "amai"],
-                ["辛い", "Picante", "karai"],
-                ["美味しい", "Delicioso", "oishii"]
+                ["合格", "Aprobación", "goukaku"],
+                ["圧し潰す", "Aplastar", "asshitsubusu"],
+                ["密着", "Contacto cercano", "micchaku"],
+                ["届く", "Alcanzar", "todoku"],
+                ["巻きつく", "Enrollarse", "makitsuku"],
+                ["惜しい", "Lamentable", "oshii"],
+                ["拒否権", "Derecho de veto", "kyohiken"],
+                ["経験", "Experiencia", "keiken"],
+                ["膣", "Vagina", "chitsu"],
+                ["蒸す", "Humedecer", "musu"]
             ],
             
             "LS3 - Mazo 5": [
-                ["家族", "Familia", "kazoku"],
-                ["父", "Padre", "chichi"],
-                ["母", "Madre", "haha"],
-                ["兄", "Hermano mayor", "ani"],
-                ["姉", "Hermana mayor", "ane"],
-                ["弟", "Hermano menor", "otouto"],
-                ["妹", "Hermana menor", "imouto"],
-                ["祖父", "Abuelo", "sofu"],
-                ["祖母", "Abuela", "sobo"],
-                ["子供", "Niño", "kodomo"]
+                ["大体", "Generalmente", "daitai"],
+                ["起きる", "Despertarse", "okiru"],
+                ["考える", "Pensar", "kangaeru"],
+                ["大切", "Importante", "taisetsu"],
+                ["変化", "Cambio", "henka"],
+                ["努力", "Esfuerzo", "doryoku"],
+                ["成功", "Éxito", "seikou"],
+                ["未来", "Futuro", "mirai"],
+                ["希望", "Esperanza", "kibou"],
+                ["挑戦", "Desafío", "chousen"]
+            ],
+
+            // TOONO ESUKE - 5 mazos nuevos
+            "TE - Mazo 1": [
+                ["愛", "Amor", "ai"],
+                ["夢", "Sueño", "yume"],
+                ["勇気", "Valentía", "yuuki"],
+                ["希望", "Esperanza", "kibou"],
+                ["信頼", "Confianza", "shinrai"],
+                ["努力", "Esfuerzo", "doryoku"],
+                ["成功", "Éxito", "seikou"],
+                ["幸福", "Felicidad", "koufuku"],
+                ["平和", "Paz", "heiwa"],
+                ["未来", "Futuro", "mirai"]
+            ],
+
+            "TE - Mazo 2": [
+                ["自然", "Naturaleza", "shizen"],
+                ["美しさ", "Belleza", "utsukushisa"],
+                ["芸術", "Arte", "geijutsu"],
+                ["音楽", "Música", "ongaku"],
+                ["文化", "Cultura", "bunka"],
+                ["歴史", "Historia", "rekishi"],
+                ["伝統", "Tradición", "dentou"],
+                ["創造", "Creación", "souzou"],
+                ["表現", "Expresión", "hyougen"],
+                ["感性", "Sensibilidad", "kansei"]
+            ],
+
+            "TE - Mazo 3": [
+                ["技術", "Tecnología", "gijutsu"],
+                ["科学", "Ciencia", "kagaku"],
+                ["発明", "Invención", "hatsumei"],
+                ["進歩", "Progreso", "shinpo"],
+                ["知識", "Conocimiento", "chishiki"],
+                ["研究", "Investigación", "kenkyuu"],
+                ["発見", "Descubrimiento", "hakken"],
+                ["理論", "Teoría", "riron"],
+                ["実験", "Experimento", "jikken"],
+                ["革新", "Innovación", "kakushin"]
+            ],
+
+            "TE - Mazo 4": [
+                ["都市", "Ciudad", "toshi"],
+                ["社会", "Sociedad", "shakai"],
+                ["経済", "Economía", "keizai"],
+                ["政治", "Política", "seiji"],
+                ["国際", "Internacional", "kokusai"],
+                ["環境", "Medio ambiente", "kankyou"],
+                ["教育", "Educación", "kyouiku"],
+                ["健康", "Salud", "kenkou"],
+                ["福祉", "Bienestar", "fukushi"],
+                ["開発", "Desarrollo", "kaihatsu"]
+            ],
+
+            "TE - Mazo 5": [
+                ["哲学", "Filosofía", "tetsugaku"],
+                ["思想", "Pensamiento", "shisou"],
+                ["真理", "Verdad", "shinri"],
+                ["存在", "Existencia", "sonzai"],
+                ["意識", "Conciencia", "ishiki"],
+                ["自由", "Libertad", "jiyuu"],
+                ["正義", "Justicia", "seigi"],
+                ["倫理", "Ética", "rinri"],
+                ["運命", "Destino", "unmei"],
+                ["永遠", "Eternidad", "eien"]
             ]
         };
 
@@ -156,6 +196,40 @@ class AplicacionVocabulario {
 
         // IMAGEN ESPECIAL PARA RECOMPENSAS
         this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
+
+        // SISTEMA DE EVENTOS DIARIOS
+        this.eventosDiarios = [
+            {
+                id: 1,
+                nombre: "Las Quitillizas",
+                descripcion: "Las quitillizas estan con sus amantes recuperalas si no completas 5 mazos desde ahora las perderas",
+                imagen: "https://pbs.twimg.com/media/G6EA3MPW0AAdAIi?format=png&name=small",
+                objetivo: 5,
+                recompensaImagen: "https://pbs.twimg.com/media/G5hQ9lxX0AAZFPX?format=jpg&name=medium",
+                recompensaTexto: "¡Las recuepraste!",
+                completado: false
+            },
+            {
+                id: 2,
+                nombre: "Ichika la Traicionera",
+                descripcion: "Ichika esta intentado que nino te olvide y te engañe con otro chico si no completas 10 mazos hoy nino cedera",
+                imagen: "https://i.pximg.net/img-master/img/2025/08/06/08/00/09/133544107_p1_master1200.jpg",
+                objetivo: 10,
+                recompensaImagen: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
+                recompensaTexto: "Demostaste tu dominancia con nino y no permitiste a ichika que se la llvara con otro chico",
+                completado: false
+            },
+            {
+                id: 3,
+                nombre: "El Profesor",
+                descripcion: "El profesor trata de llevarse a nino de ti tendras que compeltar 20 mazos hoy para recueprarla",
+                imagen: "https://pbs.twimg.com/media/G5PbknPWkAAfgjK?format=jpg&name=medium",
+                objetivo: 20,
+                recompensaImagen: "https://pbs.twimg.com/media/G4OWnyyXEAAkOeh?format=jpg&name=medium",
+                recompensaTexto: "No dejaste que el profesor te la robara bien hecho :D",
+                completado: false
+            }
+        ];
 
         // SISTEMA DE TAREAS DIARIAS
         this.tareasDiarias = {
@@ -322,6 +396,22 @@ class AplicacionVocabulario {
             ]
         };
 
+        // GALERÍA FABRIZIO 2025
+        this.galeriaMeses = [
+            { mes: "Enero", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Febrero", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Marzo", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Abril", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Mayo", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Junio", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Julio", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Agosto", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Septiembre", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Octubre", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Noviembre", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" },
+            { mes: "Diciembre", imagen: "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small" }
+        ];
+
         this.estado = {
             mazoActual: [],
             nombreMazoActual: "",
@@ -331,7 +421,8 @@ class AplicacionVocabulario {
             aciertos: 0,
             errores: 0,
             totalInicial: 0,
-            preguntasRespondidas: 0
+            preguntasRespondidas: 0,
+            mazosCompletadosHoy: 0
         };
 
         // MEJORA: Detectar si es primera vez en este dominio
@@ -527,7 +618,12 @@ class AplicacionVocabulario {
             });
         }
 
-
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                video.pause();
+                document.body.removeChild(overlay);
+            }
+        }, 60000);
     }
 
     // MÉTODO: Reproducir video por inactividad de 8 HORAS (Zahiry)
@@ -635,6 +731,11 @@ class AplicacionVocabulario {
             mensaje.style.borderColor = '#ffd700';
             mensaje.style.background = 'rgba(255, 215, 0, 0.1)';
             
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 3000);
         };
 
         video.onerror = () => {
@@ -665,6 +766,184 @@ class AplicacionVocabulario {
                 document.body.removeChild(overlay);
             }
         }, 60000);
+    }
+
+    // SISTEMA DE EVENTOS DIARIOS
+    verificarEventoDiario() {
+        const hoy = new Date().toDateString();
+        const ultimoEvento = localStorage.getItem('ultimoEventoDiario');
+        
+        // Si ya se mostró un evento hoy, no mostrar otro
+        if (ultimoEvento === hoy) {
+            console.log('📅 Ya se mostró un evento hoy');
+            return;
+        }
+        
+        // Verificar si es después de las 3 AM para resetear eventos
+        const horaActual = new Date().getHours();
+        if (horaActual < 3) {
+            console.log('⏰ Aún no es hora de resetear eventos (antes de las 3 AM)');
+            return;
+        }
+        
+        // Seleccionar evento aleatorio
+        const eventoAleatorio = this.eventosDiarios[Math.floor(Math.random() * this.eventosDiarios.length)];
+        console.log('🎲 Evento diario seleccionado:', eventoAleatorio.nombre);
+        
+        // Mostrar el evento
+        this.mostrarEventoDiario(eventoAleatorio);
+        
+        // Guardar que ya se mostró un evento hoy
+        localStorage.setItem('ultimoEventoDiario', hoy);
+    }
+
+    mostrarEventoDiario(evento) {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-evento';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+        `;
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-evento-contenido';
+        modalContent.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #4169e1;
+            box-shadow: 0 0 50px rgba(74, 144, 226, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.className = 'modal-evento-titulo';
+        titulo.textContent = `🎭 ${evento.nombre} 🎭`;
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.imagen;
+        imagen.className = 'modal-evento-imagen';
+        imagen.alt = evento.nombre;
+
+        const descripcion = document.createElement('div');
+        descripcion.className = 'modal-evento-descripcion';
+        descripcion.textContent = evento.descripcion;
+
+        const objetivo = document.createElement('div');
+        objetivo.className = 'modal-evento-objetivo';
+        objetivo.textContent = `🎯 OBJETIVO: Completar ${evento.objetivo} mazos hoy`;
+
+        const botonAceptar = document.createElement('button');
+        botonAceptar.className = 'boton-aceptar-evento';
+        botonAceptar.textContent = '🎮 ¡Aceptar Desafío!';
+        botonAceptar.onclick = () => {
+            // Guardar el evento activo
+            localStorage.setItem('eventoActivo', JSON.stringify(evento));
+            localStorage.setItem('mazosCompletadosEvento', '0');
+            document.body.removeChild(overlay);
+        };
+
+        modalContent.appendChild(titulo);
+        modalContent.appendChild(imagen);
+        modalContent.appendChild(descripcion);
+        modalContent.appendChild(objetivo);
+        modalContent.appendChild(botonAceptar);
+        overlay.appendChild(modalContent);
+        document.body.appendChild(overlay);
+    }
+
+    verificarProgresoEvento() {
+        const eventoActivoStr = localStorage.getItem('eventoActivo');
+        if (!eventoActivoStr) return;
+
+        const eventoActivo = JSON.parse(eventoActivoStr);
+        const mazosCompletados = parseInt(localStorage.getItem('mazosCompletadosEvento') || '0') + 1;
+        
+        localStorage.setItem('mazosCompletadosEvento', mazosCompletados.toString());
+        
+        console.log(`📊 Progreso del evento: ${mazosCompletados}/${eventoActivo.objetivo} mazos`);
+
+        if (mazosCompletados >= eventoActivo.objetivo) {
+            // Mostrar recompensa del evento
+            this.mostrarRecompensaEvento(eventoActivo);
+            // Limpiar evento activo
+            localStorage.removeItem('eventoActivo');
+            localStorage.removeItem('mazosCompletadosEvento');
+        }
+    }
+
+    mostrarRecompensaEvento(evento) {
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-evento';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+        `;
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-evento-contenido';
+        modalContent.style.cssText = `
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #00cc66;
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.className = 'modal-evento-titulo';
+        titulo.textContent = '🎉 ¡Misión Cumplida! 🎉';
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.recompensaImagen;
+        imagen.className = 'modal-evento-imagen';
+        imagen.alt = 'Recompensa';
+
+        const descripcion = document.createElement('div');
+        descripcion.className = 'modal-evento-descripcion';
+        descripcion.textContent = evento.recompensaTexto;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.className = 'boton-aceptar-evento';
+        botonCerrar.textContent = '✨ ¡Continuar! ✨';
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        modalContent.appendChild(titulo);
+        modalContent.appendChild(imagen);
+        modalContent.appendChild(descripcion);
+        modalContent.appendChild(botonCerrar);
+        overlay.appendChild(modalContent);
+        document.body.appendChild(overlay);
+
+        // Reproducir audio de celebración
+        setTimeout(() => {
+            this.reproducirAudio('aplausos');
+        }, 500);
     }
 
     // SISTEMA DE TAREAS DIARIAS
@@ -927,111 +1206,111 @@ class AplicacionVocabulario {
         }
     }
 
-  mostrarImagenEspecial() {
-    const overlay = document.createElement('div');
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        flex-direction: column;
-    `;
+    mostrarImagenEspecial(imagenUrl = null, titulo = null, audio = null) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        `;
 
-    const imagenContainer = document.createElement('div');
-    imagenContainer.style.cssText = `
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        border-radius: 20px;
-        padding: 30px;
-        text-align: center;
-        max-width: 90%;
-        max-height: 90%;
-        border: 4px solid #ff4757;
-        box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
-    `;
+        const imagenContainer = document.createElement('div');
+        imagenContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
 
-    const titulo = document.createElement('div');
-    titulo.textContent = '🎉 Nino esta feliz :D te la podras coger pronto  🎉';
-    titulo.style.cssText = `
-        font-size: 2rem;
-        font-weight: bold;
-        color: white;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    `;
+        const tituloElement = document.createElement('div');
+        tituloElement.textContent = titulo || '🎉 Nino esta feliz :D te la podras coger pronto 🎉';
+        tituloElement.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
 
-    const imagen = document.createElement('img');
-    imagen.src = this.imagenEspecial;
-    imagen.style.cssText = `
-        max-width: 400px;
-        max-height: 400px;
-        border-radius: 15px;
-        border: 3px solid white;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    `;
+        const imagen = document.createElement('img');
+        imagen.src = imagenUrl || this.imagenEspecial;
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
 
-    const mensaje = document.createElement('div');
-    mensaje.textContent = '¡Felicidades por completar el mazo al 100%!';
-    mensaje.style.cssText = `
-        font-size: 1.3rem;
-        color: white;
-        margin-top: 20px;
-        font-weight: bold;
-    `;
+        const mensaje = document.createElement('div');
+        mensaje.textContent = '¡Felicidades por completar el mazo al 100%!';
+        mensaje.style.cssText = `
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 20px;
+            font-weight: bold;
+        `;
 
-    const botonCerrar = document.createElement('button');
-    botonCerrar.textContent = '✨ Cerrar ✨';
-    botonCerrar.style.cssText = `
-        background: linear-gradient(135deg, #4a90e2, #7b68ee);
-        color: white;
-        border: none;
-        border-radius: 10px;
-        padding: 15px 30px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-        margin-top: 20px;
-        border: 3px solid #4169e1;
-        transition: all 0.3s ease;
-    `;
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '✨ Continuar ✨';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #4169e1;
+            transition: all 0.3s ease;
+        `;
 
-    botonCerrar.onmouseover = () => {
-        botonCerrar.style.transform = 'scale(1.05)';
-        botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
-    };
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+        };
 
-    botonCerrar.onmouseout = () => {
-        botonCerrar.style.transform = 'scale(1)';
-        botonCerrar.style.boxShadow = 'none';
-    };
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
 
-    botonCerrar.onclick = () => {
-        document.body.removeChild(overlay);
-    };
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
 
-    imagenContainer.appendChild(titulo);
-    imagenContainer.appendChild(imagen);
-    imagenContainer.appendChild(mensaje);
-    imagenContainer.appendChild(botonCerrar);
-    overlay.appendChild(imagenContainer);
-    document.body.appendChild(overlay);
+        imagenContainer.appendChild(tituloElement);
+        imagenContainer.appendChild(imagen);
+        imagenContainer.appendChild(mensaje);
+        imagenContainer.appendChild(botonCerrar);
+        overlay.appendChild(imagenContainer);
+        document.body.appendChild(overlay);
 
-    setTimeout(() => {
-        this.reproducirAudio('beso');
-    }, 500);
+        // Reproducir audio específico o el audio por defecto
+        setTimeout(() => {
+            this.reproducirAudio(audio || 'beso');
+        }, 500);
 
-    // ELIMINAR ESTE setTimeout QUE CIERRA AUTOMÁTICAMENTE
-    // setTimeout(() => {
-    //     if (document.body.contains(overlay)) {
-    //         document.body.removeChild(overlay);
-    //     }
-    // }, 8000);
-}
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 8000);
+    }
 
     cargarStats() {
         const statsGuardadas = localStorage.getItem('vocabularioStats');
@@ -1108,7 +1387,9 @@ class AplicacionVocabulario {
             lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
             lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
             diarias: document.getElementById('pantalla-diarias'),
-            tienda: document.getElementById('pantalla-tienda')
+            tienda: document.getElementById('pantalla-tienda'),
+            toono: document.getElementById('pantalla-toono-mazos'),
+            fabrizio: document.getElementById('pantalla-fabrizio')
         };
 
         // Cargar sistema de tareas diarias
@@ -1123,6 +1404,13 @@ class AplicacionVocabulario {
         this.inicializarPantallasLastSummerMazos();
         this.inicializarPantallaDiarias();
         this.inicializarPantallaTienda();
+        this.inicializarPantallaToono();
+        this.inicializarPantallaFabrizio();
+        
+        // Verificar evento diario al iniciar
+        setTimeout(() => {
+            this.verificarEventoDiario();
+        }, 2000);
         
         // Mostrar mensaje si es primera vez en GitHub Pages
         if (this.esPrimeraVez) {
@@ -1165,6 +1453,128 @@ class AplicacionVocabulario {
         };
     }
 
+    inicializarPantallaToono() {
+        document.getElementById('boton-volver-toono').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+    }
+
+    inicializarPantallaFabrizio() {
+        document.getElementById('boton-volver-fabrizio').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // Inicializar galería de meses
+        this.inicializarGaleriaMeses();
+    }
+
+    inicializarGaleriaMeses() {
+        const contenedorMeses = document.getElementById('galeria-meses');
+        if (!contenedorMeses) return;
+
+        contenedorMeses.innerHTML = '';
+        
+        this.galeriaMeses.forEach(mes => {
+            const mesCard = document.createElement('div');
+            mesCard.className = 'mes-card';
+            mesCard.innerHTML = `
+                <img src="${mes.imagen}" alt="${mes.mes}" class="mes-imagen">
+                <div class="mes-nombre">${mes.mes}</div>
+            `;
+            
+            mesCard.addEventListener('click', () => {
+                this.mostrarImagenMes(mes);
+            });
+            
+            contenedorMeses.appendChild(mesCard);
+        });
+    }
+
+    mostrarImagenMes(mes) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        `;
+
+        const imagenContainer = document.createElement('div');
+        imagenContainer.style.cssText = `
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #8e44ad;
+            box-shadow: 0 0 50px rgba(155, 89, 182, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = `📅 ${mes.mes} 2025`;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = mes.imagen;
+        imagen.style.cssText = `
+            max-width: 500px;
+            max-height: 500px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '✨ Cerrar ✨';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #4169e1;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        imagenContainer.appendChild(titulo);
+        imagenContainer.appendChild(imagen);
+        imagenContainer.appendChild(botonCerrar);
+        overlay.appendChild(imagenContainer);
+        document.body.appendChild(overlay);
+    }
+
     inicializarPantallaSeleccion() {
         this.statsGlobal = document.getElementById('stats-global');
         
@@ -1181,6 +1591,22 @@ class AplicacionVocabulario {
         if (tiendaCard) {
             tiendaCard.addEventListener('click', () => {
                 this.mostrarPantallaTienda();
+            });
+        }
+        
+        // Inicializar tarjeta de Toono Esuke
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarMazosToono();
+            });
+        }
+        
+        // Inicializar tarjeta de Fabrizio
+        const fabrizioCard = document.getElementById('fabrizio-card');
+        if (fabrizioCard) {
+            fabrizioCard.addEventListener('click', () => {
+                this.mostrarPantalla('fabrizio');
             });
         }
         
@@ -1225,6 +1651,10 @@ class AplicacionVocabulario {
 
     mostrarMazosLastSummer3() {
         this.mostrarMazosPorCategoria('LS3', 'lastsummer3', 'contenedor-lastsummer3-mazos');
+    }
+
+    mostrarMazosToono() {
+        this.mostrarMazosPorCategoria('TE', 'toono', 'contenedor-toono-mazos');
     }
 
     mostrarMazosPorCategoria(prefijo, pantallaId, contenedorId) {
@@ -1347,76 +1777,76 @@ class AplicacionVocabulario {
     }
 
     mostrarModalRecompensa(recompensa) {
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-recompensa';
-    overlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        flex-direction: column;
-    `;
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-recompensa';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        `;
 
-    const modalContent = document.createElement('div');
-    modalContent.className = 'modal-recompensa-contenido';
-    modalContent.style.cssText = `
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        border-radius: 20px;
-        padding: 30px;
-        text-align: center;
-        max-width: 90%;
-        max-height: 90%;
-        border: 4px solid #ff4757;
-        box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
-    `;
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-recompensa-contenido';
+        modalContent.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
 
-    const titulo = document.createElement('div');
-    titulo.className = 'modal-recompensa-titulo';
-    titulo.textContent = recompensa.nombre;
+        const titulo = document.createElement('div');
+        titulo.className = 'modal-recompensa-titulo';
+        titulo.textContent = recompensa.nombre;
 
-    const imagen = document.createElement('img');
-    imagen.src = recompensa.imagen;
-    imagen.className = 'modal-recompensa-imagen';
-    imagen.alt = recompensa.nombre;
+        const imagen = document.createElement('img');
+        imagen.src = recompensa.imagen;
+        imagen.className = 'modal-recompensa-imagen';
+        imagen.alt = recompensa.nombre;
 
-    const descripcion = document.createElement('div');
-    descripcion.className = 'modal-recompensa-descripcion';
-    descripcion.textContent = recompensa.descripcion;
+        const descripcion = document.createElement('div');
+        descripcion.className = 'modal-recompensa-descripcion';
+        descripcion.textContent = recompensa.descripcion;
 
-    const botonCerrar = document.createElement('button');
-    botonCerrar.className = 'boton-cerrar-modal';
-    botonCerrar.textContent = '✨ Cerrar ✨';
-    botonCerrar.onclick = () => {
-        document.body.removeChild(overlay);
-    };
+        const botonCerrar = document.createElement('button');
+        botonCerrar.className = 'boton-cerrar-modal';
+        botonCerrar.textContent = '✨ Cerrar ✨';
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
 
-    modalContent.appendChild(titulo);
-    modalContent.appendChild(imagen);
-    modalContent.appendChild(descripcion);
-    modalContent.appendChild(botonCerrar);
-    overlay.appendChild(modalContent);
-    document.body.appendChild(overlay);
+        modalContent.appendChild(titulo);
+        modalContent.appendChild(imagen);
+        modalContent.appendChild(descripcion);
+        modalContent.appendChild(botonCerrar);
+        overlay.appendChild(modalContent);
+        document.body.appendChild(overlay);
 
-    // Reproducir audio asociado
-    if (recompensa.audio) {
+        // Reproducir audio asociado
+        if (recompensa.audio) {
+            setTimeout(() => {
+                this.reproducirAudio(recompensa.audio);
+            }, 500);
+        }
+
+        // Cerrar automáticamente después de 8 segundos
         setTimeout(() => {
-            this.reproducirAudio(recompensa.audio);
-        }, 500);
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 8000);
     }
-
-    // ELIMINAR ESTE setTimeout QUE CIERRA AUTOMÁTICAMENTE
-    // setTimeout(() => {
-    //     if (document.body.contains(overlay)) {
-    //         document.body.removeChild(overlay);
-    //     }
-    // }, 8000);
-}
 
     mostrarNotificacionCompra(recompensa) {
         const notificacion = document.createElement('div');
@@ -1534,6 +1964,9 @@ class AplicacionVocabulario {
         
         if (accion.audio) {
             this.reproducirAudio(accion.audio);
+            
+            // Mostrar la imagen en grande
+            this.mostrarModalRecompensa(accion);
             
             const elemento = event.currentTarget;
             elemento.style.transform = 'scale(0.95)';
@@ -1743,79 +2176,97 @@ class AplicacionVocabulario {
     }
 
     finalizarQuiz() {
-    const porcentaje = Math.max(0, ((this.estado.aciertos - this.estado.errores) / this.estado.totalInicial) * 100);
-    
-    const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
-    statsMazo.ultimaPuntuacion = porcentaje;
-    statsMazo.aciertosTotales += this.estado.aciertos;
-    statsMazo.erroresTotales += this.estado.errores;
-    
-    if (porcentaje > statsMazo.mejorPuntuacion) {
-        statsMazo.mejorPuntuacion = porcentaje;
-    }
-    
-    if (porcentaje === 100) {
-        this.stats.mazosCompletados++;
-        statsMazo.completados100++;
+        const porcentaje = Math.max(0, ((this.estado.aciertos - this.estado.errores) / this.estado.totalInicial) * 100);
         
-        // Ganar 1 sol por completar mazo al 100%
-        this.ganarSoles(1, "Completar mazo al 100%");
+        const statsMazo = this.stats.mazos[this.estado.nombreMazoActual];
+        statsMazo.ultimaPuntuacion = porcentaje;
+        statsMazo.aciertosTotales += this.estado.aciertos;
+        statsMazo.erroresTotales += this.estado.errores;
         
-        // SISTEMA MEJORADO DE PROBABILIDADES PARA IMÁGENES ESPECIALES
-        const probabilidad = Math.random() * 100; // 0 a 100%
-        
-        console.log(`🎰 Probabilidad calculada: ${probabilidad.toFixed(2)}%`);
-        
-        if (probabilidad < 30) {
-            // 30% de probabilidad - Besas a Nino
-            console.log('🎰 ¡30% de probabilidad! Mostrando imagen de besar a Nino...');
-            setTimeout(() => {
-                this.mostrarImagenEspecial(
-                    "https://pbs.twimg.com/media/G5PIDjDWAAAh9Mt?format=jpg&name=medium",
-                    "💋 Besas a Nino 💋",
-                    "beso"
-                );
-            }, 1000);
-        } else if (probabilidad < 40) {
-            // 10% de probabilidad - Nino te la chupa
-            console.log('🎰 ¡10% de probabilidad! Mostrando imagen de Nino chupando...');
-            setTimeout(() => {
-                this.mostrarImagenEspecial(
-                    "https://pbs.twimg.com/media/G5PIF7yXAAAKUj4?format=jpg&name=medium",
-                    "😋 Nino te la chupa 😋",
-                    "chupada"
-                );
-            }, 1000);
-        } else if (probabilidad < 49) {
-            // 9% de probabilidad - Nino te chupa el ano
-            console.log('🎰 ¡9% de probabilidad! Mostrando imagen de Nino chupando el ano...');
-            setTimeout(() => {
-                this.mostrarImagenEspecial(
-                    "https://pbs.twimg.com/media/G5PIriwXgAA8BaU?format=jpg&name=360x360",
-                    "🍑 Nino te chupa el ano 🍑",
-                    "chupada"
-                );
-            }, 1000);
-        } else if (probabilidad < 83.33) {
-            // 34.33% de probabilidad - Imagen original (2/3 ≈ 66.67% del 51% restante)
-            console.log('🎰 ¡Probabilidad original! Mostrando imagen especial...');
-            setTimeout(() => {
-                this.mostrarImagenEspecial();
-            }, 1000);
-        } else {
-            // 16.67% de probabilidad - No sale imagen especial
-            console.log('🎰 Esta vez no tocó ninguna imagen especial');
+        if (porcentaje > statsMazo.mejorPuntuacion) {
+            statsMazo.mejorPuntuacion = porcentaje;
         }
+        
+        if (porcentaje === 100) {
+            this.stats.mazosCompletados++;
+            statsMazo.completados100++;
+            
+            // Ganar 1 sol por completar mazo al 100%
+            this.ganarSoles(1, "Completar mazo al 100%");
+            
+            // Verificar progreso de evento diario
+            this.verificarProgresoEvento();
+            
+            // SISTEMA MEJORADO DE PROBABILIDADES PARA IMÁGENES ESPECIALES
+            const ahora = new Date();
+            const horaActual = ahora.getHours();
+            const esHorarioMatutino = horaActual >= 5 && horaActual < 7;
+            
+            const probabilidad = Math.random() * 100;
+            
+            console.log(`🎰 Probabilidad calculada: ${probabilidad.toFixed(2)}%`);
+            console.log(`🌅 Horario matutino (5AM-7AM): ${esHorarioMatutino}`);
+            
+            if (esHorarioMatutino && probabilidad < 20) {
+                // 20% de probabilidad solo entre 5AM-7AM - Nino Atención Matutina
+                console.log('🎰 ¡20% de probabilidad matutina! Mostrando Nino atención matutina...');
+                setTimeout(() => {
+                    this.mostrarImagenEspecial(
+                        "https://pbs.twimg.com/media/G5PFF_gXgAEm6O7?format=jpg&name=medium",
+                        "🌅 Nino Atención Matutina 🌅",
+                        "beso"
+                    );
+                }, 1000);
+            } else if (probabilidad < 30) {
+                // 30% de probabilidad - Besas a Nino
+                console.log('🎰 ¡30% de probabilidad! Mostrando imagen de besar a Nino...');
+                setTimeout(() => {
+                    this.mostrarImagenEspecial(
+                        "https://pbs.twimg.com/media/G5PIDjDWAAAh9Mt?format=jpg&name=medium",
+                        "💋 Besas a Nino 💋",
+                        "beso"
+                    );
+                }, 1000);
+            } else if (probabilidad < 40) {
+                // 10% de probabilidad - Nino te la chupa
+                console.log('🎰 ¡10% de probabilidad! Mostrando imagen de Nino chupando...');
+                setTimeout(() => {
+                    this.mostrarImagenEspecial(
+                        "https://pbs.twimg.com/media/G5PIF7yXAAAKUj4?format=jpg&name=medium",
+                        "😋 Nino te la chupa 😋",
+                        "chupada"
+                    );
+                }, 1000);
+            } else if (probabilidad < 49) {
+                // 9% de probabilidad - Nino te chupa el ano
+                console.log('🎰 ¡9% de probabilidad! Mostrando imagen de Nino chupando el ano...');
+                setTimeout(() => {
+                    this.mostrarImagenEspecial(
+                        "https://pbs.twimg.com/media/G5PIriwXgAA8BaU?format=jpg&name=360x360",
+                        "🍑 Nino te chupa el ano 🍑",
+                        "chupada"
+                    );
+                }, 1000);
+            } else if (probabilidad < 83.33) {
+                // 34.33% de probabilidad - Imagen original (2/3 ≈ 66.67% del 51% restante)
+                console.log('🎰 ¡Probabilidad original! Mostrando imagen especial...');
+                setTimeout(() => {
+                    this.mostrarImagenEspecial();
+                }, 1000);
+            } else {
+                // 16.67% de probabilidad - No sale imagen especial
+                console.log('🎰 Esta vez no tocó ninguna imagen especial');
+            }
+        }
+        
+        this.verificarRecompensas();
+        
+        this.guardarStats();
+        this.mostrarPantalla('resultados');
+        
+        const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
+        this.resultadoFinal.textContent = textoResultados;
     }
-    
-    this.verificarRecompensas();
-    
-    this.guardarStats();
-    this.mostrarPantalla('resultados');
-    
-    const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
-    this.resultadoFinal.textContent = textoResultados;
-}
 
     crearTextoResultados(porcentaje, statsMazo) {
         let emoji, mensajeEspecial;
