@@ -14,6 +14,44 @@ class AplicacionVocabulario {
         this.videoZahiryUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4';
         this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000;
 
+        // SISTEMA DE EVENTOS DIARIOS
+        this.eventosDiarios = {
+            eventos: [
+                {
+                    id: 1,
+                    nombre: "Rescate de Quitillizas",
+                    imagenInicio: "https://pbs.twimg.com/media/G6EA3MPW0AAdAIi?format=png&name=small",
+                    textoInicio: "¡Las quitillizas están con sus amantes! Recupéralas si no completas 5 mazos desde ahora las perderás",
+                    imagenExito: "https://pbs.twimg.com/media/G5hQ9lxX0AAZFPX?format=jpg&name=medium", 
+                    textoExito: "¡Las recuperaste! Bien hecho",
+                    mazosRequeridos: 5,
+                    completado: false
+                },
+                {
+                    id: 2,
+                    nombre: "Defensa contra Ichika",
+                    imagenInicio: "https://i.pximg.net/img-master/img/2025/08/06/08/00/09/133544107_p1_master1200.jpg",
+                    textoInicio: "Ichika está intentando que Nino te olvide y te engañe con otro chico. Si no completas 10 mazos hoy, Nino cedera",
+                    imagenExito: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
+                    textoExito: "Demostaste tu dominancia con Nino y no permitiste a Ichika que se la llevara con otro chico",
+                    mazosRequeridos: 10,
+                    completado: false
+                },
+                {
+                    id: 3,
+                    nombre: "Rescate del Profesor",
+                    imagenInicio: "https://pbs.twimg.com/media/G5PbknPWkAAfgjK?format=jpg&name=medium",
+                    textoInicio: "El profesor trata de llevarse a Nino de ti. Tendrás que completar 20 mazos hoy para recuperarla",
+                    imagenExito: "https://pbs.twimg.com/media/G4OWnyyXEAAkOeh?format=jpg&name=medium",
+                    textoExito: "No dejaste que el profesor te la robara. ¡Bien hecho! :D",
+                    mazosRequeridos: 20,
+                    completado: false
+                }
+            ],
+            eventoActual: null,
+            mazosCompletadosHoy: 0
+        };
+
         // Verificar inactividad al iniciar
         this.verificarInactividad();
 
@@ -605,6 +643,224 @@ class AplicacionVocabulario {
         }, 60000);
     }
 
+    // SISTEMA DE EVENTOS DIARIOS
+    verificarEventoDiario() {
+        const hoy = new Date().toDateString();
+        const datosEvento = localStorage.getItem('eventoDiario');
+        
+        // Verificar si es un nuevo día (después de las 3 AM)
+        const ahora = new Date();
+        const horaActual = ahora.getHours();
+        const esNuevoDia = horaActual >= 3; // Se reinicia después de las 3 AM
+        
+        if (datosEvento) {
+            const eventoData = JSON.parse(datosEvento);
+            
+            // Si es un nuevo día o la fecha cambió, reiniciar eventos
+            if (eventoData.fecha !== hoy || esNuevoDia) {
+                this.reiniciarEventosDiarios();
+                this.generarNuevoEvento();
+            } else {
+                // Cargar evento del día actual
+                this.eventosDiarios.eventoActual = eventoData.eventoActual;
+                this.eventosDiarios.mazosCompletadosHoy = eventoData.mazosCompletadosHoy || 0;
+                
+                // Verificar si ya se completó el evento de hoy
+                if (eventoData.eventoCompletado) {
+                    this.mostrarPantalla('seleccion');
+                } else {
+                    this.mostrarEventoDiario();
+                }
+            }
+        } else {
+            // Primera vez - generar evento
+            this.generarNuevoEvento();
+        }
+    }
+
+    reiniciarEventosDiarios() {
+        this.eventosDiarios.mazosCompletadosHoy = 0;
+        this.eventosDiarios.eventos.forEach(evento => {
+            evento.completado = false;
+        });
+        localStorage.removeItem('eventoDiario');
+    }
+
+    generarNuevoEvento() {
+        // Seleccionar evento aleatorio que no esté completado
+        const eventosDisponibles = this.eventosDiarios.eventos.filter(evento => !evento.completado);
+        
+        if (eventosDisponibles.length > 0) {
+            const eventoAleatorio = eventosDisponibles[Math.floor(Math.random() * eventosDisponibles.length)];
+            this.eventosDiarios.eventoActual = eventoAleatorio;
+            
+            // Guardar evento del día
+            this.guardarEventoDiario();
+            
+            // Mostrar evento
+            this.mostrarEventoDiario();
+        } else {
+            // Todos los eventos completados, ir directamente al menú
+            this.mostrarPantalla('seleccion');
+        }
+    }
+
+    mostrarEventoDiario() {
+        const evento = this.eventosDiarios.eventoActual;
+        if (!evento) return;
+        
+        const contenidoEvento = document.getElementById('contenido-evento');
+        contenidoEvento.innerHTML = `
+            <img src="${evento.imagenInicio}" alt="${evento.nombre}" class="imagen-evento">
+            <div class="titulo-evento">${evento.nombre}</div>
+            <div class="descripcion-evento">${evento.textoInicio}</div>
+            <div class="progreso-evento">Mazos requeridos: ${evento.mazosRequeridos}</div>
+        `;
+        
+        this.mostrarPantalla('evento-diario');
+    }
+
+    guardarEventoDiario() {
+        const datos = {
+            fecha: new Date().toDateString(),
+            eventoActual: this.eventosDiarios.eventoActual,
+            mazosCompletadosHoy: this.eventosDiarios.mazosCompletadosHoy,
+            eventoCompletado: false
+        };
+        localStorage.setItem('eventoDiario', JSON.stringify(datos));
+    }
+
+    completarMazoParaEvento() {
+        if (!this.eventosDiarios.eventoActual) return;
+        
+        this.eventosDiarios.mazosCompletadosHoy++;
+        this.guardarEventoDiario();
+        
+        // Actualizar estadística en pantalla principal
+        this.actualizarEstadisticaEvento();
+        
+        // Verificar si se completó el evento
+        if (this.eventosDiarios.mazosCompletadosHoy >= this.eventosDiarios.eventoActual.mazosRequeridos) {
+            this.mostrarExitoEvento();
+        }
+    }
+
+    mostrarExitoEvento() {
+        const evento = this.eventosDiarios.eventoActual;
+        
+        // Marcar evento como completado
+        evento.completado = true;
+        
+        // Actualizar datos guardados
+        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario'));
+        datosEvento.eventoCompletado = true;
+        localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
+        
+        // Mostrar pantalla de éxito
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const exitoContainer = document.createElement('div');
+        exitoContainer.style.cssText = `
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #00ff00;
+            box-shadow: 0 0 50px rgba(50, 205, 50, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = '🎉 ¡EVENTO COMPLETADO! 🎉';
+        titulo.style.cssText = `
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.imagenExito;
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        `;
+
+        const mensaje = document.createElement('div');
+        mensaje.textContent = evento.textoExito;
+        mensaje.style.cssText = `
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '✨ Continuar ✨';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid #4169e1;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+            this.mostrarPantalla('seleccion');
+        };
+
+        exitoContainer.appendChild(titulo);
+        exitoContainer.appendChild(imagen);
+        exitoContainer.appendChild(mensaje);
+        exitoContainer.appendChild(botonCerrar);
+        overlay.appendChild(exitoContainer);
+        document.body.appendChild(overlay);
+    }
+
+    actualizarEstadisticaEvento() {
+        const statsEvento = document.getElementById('stats-evento');
+        if (statsEvento && this.eventosDiarios.eventoActual) {
+            const evento = this.eventosDiarios.eventoActual;
+            statsEvento.textContent = `🎯 Reto de hoy: ${this.eventosDiarios.mazosCompletadosHoy}/${evento.mazosRequeridos} mazos`;
+        }
+    }
+
     // SISTEMA DE TAREAS DIARIAS
     cargarTareasDiarias() {
         const hoy = new Date().toDateString();
@@ -944,7 +1200,9 @@ class AplicacionVocabulario {
             lastsummer1: document.getElementById('pantalla-lastsummer1-mazos'),
             lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
             lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
-            diarias: document.getElementById('pantalla-diarias')
+            diarias: document.getElementById('pantalla-diarias'),
+            eventoDiario: document.getElementById('pantalla-evento-diario'),
+            fabrizio: document.getElementById('pantalla-fabrizio')
         };
 
         // Cargar sistema de tareas diarias
@@ -958,6 +1216,11 @@ class AplicacionVocabulario {
         this.inicializarSeccionLastSummer();
         this.inicializarPantallasLastSummerMazos();
         this.inicializarPantallaDiarias();
+        this.inicializarPantallaEventos();
+        this.inicializarPantallaFabrizio();
+        
+        // Verificar evento diario
+        this.verificarEventoDiario();
         
         // Mostrar mensaje si es primera vez en GitHub Pages
         if (this.esPrimeraVez) {
@@ -965,8 +1228,120 @@ class AplicacionVocabulario {
                 alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
             }, 1000);
         }
+    }
+
+    inicializarPantallaEventos() {
+        document.getElementById('boton-aceptar-reto').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+    }
+
+    inicializarPantallaFabrizio() {
+        const fabrizioCard = document.getElementById('fabrizio-card');
+        if (fabrizioCard) {
+            fabrizioCard.addEventListener('click', () => {
+                this.mostrarPantalla('fabrizio');
+            });
+        }
         
-        this.mostrarPantalla('seleccion');
+        document.getElementById('boton-volver-menu-fabrizio').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+        
+        // Agregar event listeners para las imágenes de meses
+        document.querySelectorAll('.mes-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const mes = card.getAttribute('data-mes');
+                this.mostrarImagenMes(mes);
+            });
+        });
+    }
+
+    mostrarImagenMes(mes) {
+        const imagenUrl = "https://pbs.twimg.com/media/G4xCUqJWQAAZQRQ?format=png&name=small";
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        `;
+
+        const imagenContainer = document.createElement('div');
+        imagenContainer.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #4169e1;
+            box-shadow: 0 0 50px rgba(74, 144, 226, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = `📅 ${mes.charAt(0).toUpperCase() + mes.slice(1)} 2025`;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = imagenUrl;
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '❌ Cerrar';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 107, 107, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        imagenContainer.appendChild(titulo);
+        imagenContainer.appendChild(imagen);
+        imagenContainer.appendChild(botonCerrar);
+        overlay.appendChild(imagenContainer);
+        document.body.appendChild(overlay);
     }
 
     inicializarPantallaDiarias() {
@@ -1008,6 +1383,14 @@ class AplicacionVocabulario {
         if (diariasCard) {
             diariasCard.addEventListener('click', () => {
                 this.mostrarPantalla('diarias');
+            });
+        }
+        
+        // Inicializar tarjeta de Fabrizio
+        const fabrizioCard = document.getElementById('fabrizio-card');
+        if (fabrizioCard) {
+            fabrizioCard.addEventListener('click', () => {
+                this.mostrarPantalla('fabrizio');
             });
         }
         
@@ -1217,6 +1600,7 @@ class AplicacionVocabulario {
     actualizarPantallaSeleccion() {
         this.statsGlobal.textContent = `🏆 Mazos completados al 100%: ${this.stats.mazosCompletados}`;
         this.actualizarEstadisticasDiarias();
+        this.actualizarEstadisticaEvento();
     }
 
     inicializarPantallaQuiz() {
@@ -1389,6 +1773,9 @@ class AplicacionVocabulario {
         if (porcentaje === 100) {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
+            
+            // CONTAR PARA EVENTO DIARIO
+            this.completarMazoParaEvento();
             
             const probabilidad = Math.random();
             if (probabilidad < 0.666) {
