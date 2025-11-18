@@ -1365,7 +1365,7 @@ this.verificarEventoDiario();
         // Mostrar mensaje si es primera vez en GitHub Pages
         if (this.esPrimeraVez) {
             setTimeout(() => {
-                alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
+                alert('🌐 Nino es una kachera');
             }, 1000);
         }
         
