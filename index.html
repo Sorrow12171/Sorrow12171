@@ -14,21 +14,21 @@
                 <h1>Aprendizaje de Japonés</h1>
                 <p class="subtitulo">Selecciona una categoría</p>
                 
+                <!-- SECCIÓN TAREAS DIARIAS -->
+                <div class="seccion-especial">
+                    <div class="diarias-card" id="diarias-card">
+                        <img src="https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small" 
+                             alt="Tareas Diarias" class="diarias-imagen">
+                        <div class="diarias-texto">📋 Tareas Diarias</div>
+                    </div>
+                </div>
+
                 <!-- SECCIÓN LAST SUMMER -->
                 <div class="seccion-especial">
                     <div class="lastsummer-card" id="lastsummer-card">
                         <img src="https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small" 
                              alt="Last Summer" class="lastsummer-imagen">
                         <div class="lastsummer-texto">Last Summer</div>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN TAREAS DIARIAS -->
-                <div class="seccion-especial">
-                    <div class="tareas-card" id="tareas-card">
-                        <img src="https://pbs.twimg.com/media/G5_unInW4AA4bVq?format=png&name=large" 
-                             alt="Tareas Diarias" class="tareas-imagen">
-                        <div class="tareas-texto">📋 Tareas Diarias</div>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                 
                 <div class="estadisticas-globales">
                     <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
-                    <p id="stats-tareas">✅ Días consecutivos: 0 | Tareas hoy: 0/5</p>
+                    <p id="stats-diarias">✅ Tareas de hoy: 0/5</p>
                 </div>
             </div>
         </div>
@@ -76,6 +76,82 @@
                 <div id="resultado-final" class="resultado-final"></div>
                 <button id="boton-volver-menu" class="boton-principal">🏠 Volver al Menú Principal</button>
                 <button id="boton-reintentar" class="boton-secundario">🔄 Reintentar Mazo</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: TAREAS DIARIAS -->
+        <div id="pantalla-diarias" class="pantalla">
+            <div class="contenedor">
+                <h1>📋 Tareas Diarias 📋</h1>
+                <p class="subtitulo">Completa tus tareas diarias para mantener tu rutina</p>
+                
+                <div class="contenedor-tareas">
+                    <div class="tarea" id="tarea-lectura">
+                        <div class="tarea-contenido">
+                            <input type="checkbox" id="check-lectura" class="tarea-checkbox">
+                            <label for="check-lectura" class="tarea-info">
+                                <span class="tarea-titulo">📖 Leer 10 minutos</span>
+                                <span class="tarea-descripcion">Lectura diaria para mejorar conocimiento</span>
+                            </label>
+                        </div>
+                        <div class="tarea-estado" id="estado-lectura">⏳ Pendiente</div>
+                    </div>
+                    
+                    <div class="tarea" id="tarea-idiomas">
+                        <div class="tarea-contenido">
+                            <input type="checkbox" id="check-idiomas" class="tarea-checkbox">
+                            <label for="check-idiomas" class="tarea-info">
+                                <span class="tarea-titulo">🗣️ Practicar idiomas - 50 palabras</span>
+                                <span class="tarea-descripcion">Estudiar vocabulario en japonés</span>
+                            </label>
+                        </div>
+                        <div class="tarea-estado" id="estado-idiomas">⏳ Pendiente</div>
+                    </div>
+                    
+                    <div class="tarea" id="tarea-correr">
+                        <div class="tarea-contenido">
+                            <input type="checkbox" id="check-correr" class="tarea-checkbox">
+                            <label for="check-correr" class="tarea-info">
+                                <span class="tarea-titulo">🏃‍♂️ Correr 100 metros</span>
+                                <span class="tarea-descripcion">Ejercicio cardiovascular rápido</span>
+                            </label>
+                        </div>
+                        <div class="tarea-estado" id="estado-correr">⏳ Pendiente</div>
+                    </div>
+                    
+                    <div class="tarea" id="tarea-trotar">
+                        <div class="tarea-contenido">
+                            <input type="checkbox" id="check-trotar" class="tarea-checkbox">
+                            <label for="check-trotar" class="tarea-info">
+                                <span class="tarea-titulo">🚶‍♂️ Trotar 1000 metros</span>
+                                <span class="tarea-descripcion">Ejercicio de resistencia</span>
+                            </label>
+                        </div>
+                        <div class="tarea-estado" id="estado-trotar">⏳ Pendiente</div>
+                    </div>
+                    
+                    <div class="tarea" id="tarea-fuerza">
+                        <div class="tarea-contenido">
+                            <input type="checkbox" id="check-fuerza" class="tarea-checkbox">
+                            <label for="check-fuerza" class="tarea-info">
+                                <span class="tarea-titulo">💪 Ejercicios de fuerza - 10 pull ups</span>
+                                <span class="tarea-descripcion">Fuerza superior del cuerpo</span>
+                            </label>
+                        </div>
+                        <div class="tarea-estado" id="estado-fuerza">⏳ Pendiente</div>
+                    </div>
+                </div>
+                
+                <div class="estadisticas-tareas">
+                    <div class="progreso-tareas">
+                        <div class="progreso-bar" id="barra-progreso-tareas"></div>
+                        <div class="progreso-texto" id="texto-progreso-tareas">0/5 tareas completadas</div>
+                    </div>
+                    <div class="racha-actual" id="racha-actual">🔥 Racha actual: 0 días</div>
+                    <div class="mejor-racha" id="mejor-racha">🏆 Mejor racha: 0 días</div>
+                </div>
+                
+                <button id="boton-volver-menu-diarias" class="boton-principal">🏠 Volver al Menú Principal</button>
             </div>
         </div>
 
@@ -148,92 +224,6 @@
                 </div>
                 
                 <button id="boton-volver-lastsummer3" class="boton-principal">⬅️ Volver a Last Summer</button>
-            </div>
-        </div>
-
-        <!-- NUEVA PANTALLA: TAREAS DIARIAS -->
-        <div id="pantalla-tareas" class="pantalla">
-            <div class="contenedor">
-                <h1>📋 Tareas Diarias</h1>
-                <p class="subtitulo">Completa tus tareas diarias para mantener tu racha</p>
-                
-                <div class="info-racha">
-                    <div class="racha-item">
-                        <span class="racha-numero" id="dias-consecutivos">0</span>
-                        <span class="racha-texto">Días consecutivos</span>
-                    </div>
-                    <div class="racha-item">
-                        <span class="racha-numero" id="tareas-completadas">0</span>
-                        <span class="racha-texto">Tareas hoy</span>
-                    </div>
-                    <div class="racha-item">
-                        <span class="racha-numero" id="total-tareas">5</span>
-                        <span class="racha-texto">Total tareas</span>
-                    </div>
-                </div>
-                
-                <div class="contenedor-tareas">
-                    <div class="tarea-item" data-id="leer">
-                        <div class="tarea-checkbox">
-                            <input type="checkbox" id="tarea-leer" class="tarea-checkbox-input">
-                            <label for="tarea-leer" class="tarea-checkbox-custom"></label>
-                        </div>
-                        <div class="tarea-contenido">
-                            <div class="tarea-titulo">📖 Leer 10 minutos</div>
-                            <div class="tarea-descripcion">Desarrolla tu mente leyendo cada día</div>
-                        </div>
-                    </div>
-                    
-                    <div class="tarea-item" data-id="idiomas">
-                        <div class="tarea-checkbox">
-                            <input type="checkbox" id="tarea-idiomas" class="tarea-checkbox-input">
-                            <label for="tarea-idiomas" class="tarea-checkbox-custom"></label>
-                        </div>
-                        <div class="tarea-contenido">
-                            <div class="tarea-titulo">🗣️ Practicar idiomas (50 palabras)</div>
-                            <div class="tarea-descripcion">Aprende 50 palabras nuevas hoy</div>
-                        </div>
-                    </div>
-                    
-                    <div class="tarea-item" data-id="correr">
-                        <div class="tarea-checkbox">
-                            <input type="checkbox" id="tarea-correr" class="tarea-checkbox-input">
-                            <label for="tarea-correr" class="tarea-checkbox-custom"></label>
-                        </div>
-                        <div class="tarea-contenido">
-                            <div class="tarea-titulo">🏃 Correr 100 metros</div>
-                            <div class="tarea-descripcion">Mantén tu cuerpo activo</div>
-                        </div>
-                    </div>
-                    
-                    <div class="tarea-item" data-id="trotar">
-                        <div class="tarea-checkbox">
-                            <input type="checkbox" id="tarea-trotar" class="tarea-checkbox-input">
-                            <label for="tarea-trotar" class="tarea-checkbox-custom"></label>
-                        </div>
-                        <div class="tarea-contenido">
-                            <div class="tarea-titulo">🚶 Trotar 1000 metros</div>
-                            <div class="tarea-descripcion">Mejora tu resistencia cardiovascular</div>
-                        </div>
-                    </div>
-                    
-                    <div class="tarea-item" data-id="fuerza">
-                        <div class="tarea-checkbox">
-                            <input type="checkbox" id="tarea-fuerza" class="tarea-checkbox-input">
-                            <label for="tarea-fuerza" class="tarea-checkbox-custom"></label>
-                        </div>
-                        <div class="tarea-contenido">
-                            <div class="tarea-titulo">💪 Ejercicios de fuerza (10 pull ups)</div>
-                            <div class="tarea-descripcion">Fortalece tu musculatura</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="recompensa-tareas" id="recompensa-tareas">
-                    <div class="recompensa-texto">🎯 Completa todas las tareas para mantener tu racha</div>
-                </div>
-                
-                <button id="boton-volver-tareas" class="boton-principal">🏠 Volver al Menú Principal</button>
             </div>
         </div>
 
