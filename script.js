@@ -1,9 +1,15 @@
 class AplicacionVocabulario {
     constructor() {
-        // SISTEMA DE VIDEO POR INACTIVIDAD - 5 MINUTOS
+        // SISTEMA DE VIDEOS POR INACTIVIDAD
         this.ultimaVisitaKey = 'ultimaVisitaVocabulario';
+        
+        // Video cada 1 DÍA (24 horas)
         this.videoInactividadUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4';
-        this.tiempoInactividad = 5 * 60 * 1000;
+        this.tiempoInactividadDia = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
+        
+        // Video cada 8 HORAS (Zahiry)
+        this.videoZahiryUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4';
+        this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000; // 8 horas en milisegundos
 
         // Verificar inactividad al iniciar
         this.verificarInactividad();
@@ -257,6 +263,326 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
+    // MÉTODO: Verificar inactividad del usuario (1 DÍA y 8 HORAS)
+    verificarInactividad() {
+        const ahora = new Date().getTime();
+        const ultimaVisita = localStorage.getItem(this.ultimaVisitaKey);
+        
+        console.log('🕒 Verificando inactividad...');
+        console.log('Última visita:', ultimaVisita ? new Date(parseInt(ultimaVisita)).toLocaleString() : 'Primera vez');
+        
+        if (ultimaVisita) {
+            const tiempoDesdeUltimaVisita = ahora - parseInt(ultimaVisita);
+            const horasDesdeUltimaVisita = Math.round(tiempoDesdeUltimaVisita / 1000 / 60 / 60);
+            const diasDesdeUltimaVisita = Math.round(tiempoDesdeUltimaVisita / 1000 / 60 / 60 / 24);
+            
+            console.log(`⏰ Tiempo desde última visita: ${horasDesdeUltimaVisita} horas (${diasDesdeUltimaVisita} días)`);
+            
+            // Verificar si pasó 1 DÍA (24 horas)
+            if (tiempoDesdeUltimaVisita > this.tiempoInactividadDia) {
+                console.log('🎬 ¡24 horas de inactividad! Reproduciendo video de Nino...');
+                setTimeout(() => {
+                    this.reproducirVideoInactividad();
+                }, 2000);
+            }
+            
+            // Verificar si pasó 8 HORAS (Zahiry)
+            if (tiempoDesdeUltimaVisita > this.tiempoInactividadZahiry) {
+                console.log('🎬 ¡8 horas de inactividad! Reproduciendo video de Zahiry...');
+                setTimeout(() => {
+                    this.reproducirVideoZahiry();
+                }, 4000); // Delay de 4 segundos después del posible primer video
+            }
+        }
+        
+        // Actualizar el timestamp de la última visita
+        localStorage.setItem(this.ultimaVisitaKey, ahora.toString());
+    }
+
+    // MÉTODO: Reproducir video por inactividad de 1 DÍA (Nino)
+    reproducirVideoInactividad() {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 71, 87, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = '🚨 ALERTA DE CORNUDO 🚨 Descuidaste a Nino y ahora aldo se la esta cogiendo';
+        titulo.style.cssText = `
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const mensaje = document.createElement('div');
+        mensaje.innerHTML = '🔥 <strong>ALDO SE LA ESTA FOLLANDO :D</strong> 🔥';
+        mensaje.style.cssText = `
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            border: 2px solid #ff4757;
+        `;
+
+        const video = document.createElement('video');
+        video.src = this.videoInactividadUrl;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid #ff6b6b;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            background: #000;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.innerHTML = '❌ CERRAR VIDEO';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 0, 0, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        video.onended = () => {
+            mensaje.innerHTML = '🎬 <strong>VIDEO TERMINADO - ¿QUÉ HARÁS AHORA?</strong> 🎬';
+            mensaje.style.color = '#4a90e2';
+            mensaje.style.borderColor = '#4a90e2';
+            mensaje.style.background = 'rgba(74, 144, 226, 0.1)';
+            
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 3000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video de Nino');
+            mensaje.innerHTML = '❌ Error cargando el video<br><small>Pero el mensaje sigue siendo claro 😈</small>';
+            mensaje.style.color = '#ffa500';
+        };
+
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(mensaje);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+        document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video de Nino:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
+
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                video.pause();
+                document.body.removeChild(overlay);
+            }
+        }, 60000);
+    }
+
+    // MÉTODO: Reproducir video por inactividad de 8 HORAS (Zahiry)
+    reproducirVideoZahiry() {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff0000;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = '💔 DESCUIDASTE A ZAHIRY 💔';
+        titulo.style.cssText = `
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const mensaje = document.createElement('div');
+        mensaje.innerHTML = '🔥 <strong>FABRIZIO NO APRECIA A ZAHIRY</strong> 🔥';
+        mensaje.style.cssText = `
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid white;
+        `;
+
+        const video = document.createElement('video');
+        video.src = this.videoZahiryUrl;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+            background: #000;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.innerHTML = '❌ CERRAR VIDEO';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ffffff, #cccccc);
+            color: #ff4757;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff4757;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 71, 87, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        video.onended = () => {
+            mensaje.innerHTML = '💔 <strong>VIDEO TERMINADO - CUIDA MEJOR A ZAHIRY</strong> 💔';
+            mensaje.style.color = '#ffd700';
+            mensaje.style.borderColor = '#ffd700';
+            mensaje.style.background = 'rgba(255, 215, 0, 0.1)';
+            
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 3000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video de Zahiry');
+            mensaje.innerHTML = '❌ Error cargando el video<br><small>Pero el mensaje sobre Zahiry sigue siendo importante 💔</small>';
+            mensaje.style.color = '#ffd700';
+        };
+
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(mensaje);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+        document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video de Zahiry:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
+
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                video.pause();
+                document.body.removeChild(overlay);
+            }
+        }, 60000);
+    }
+
     // SISTEMA DE TAREAS DIARIAS
     cargarTareasDiarias() {
         const hoy = new Date().toDateString();
@@ -377,170 +703,6 @@ class AplicacionVocabulario {
         if (statsDiarias) {
             statsDiarias.textContent = `✅ Tareas de hoy: ${tareasCompletadas}/5`;
         }
-    }
-
-    // MÉTODO: Verificar inactividad del usuario (5 MINUTOS)
-    verificarInactividad() {
-        const ahora = new Date().getTime();
-        const ultimaVisita = localStorage.getItem(this.ultimaVisitaKey);
-        
-        console.log('🕒 Verificando inactividad...');
-        console.log('Última visita:', ultimaVisita ? new Date(parseInt(ultimaVisita)).toLocaleString() : 'Primera vez');
-        
-        if (ultimaVisita) {
-            const tiempoDesdeUltimaVisita = ahora - parseInt(ultimaVisita);
-            console.log('Tiempo desde última visita:', Math.round(tiempoDesdeUltimaVisita / 1000 / 60) + ' minutos');
-            
-            if (tiempoDesdeUltimaVisita > this.tiempoInactividad) {
-                console.log('🎬 ¡5 minutos de inactividad! Reproduciendo video...');
-                setTimeout(() => {
-                    this.reproducirVideoInactividad();
-                }, 2000);
-            }
-        }
-        
-        localStorage.setItem(this.ultimaVisitaKey, ahora.toString());
-    }
-
-    reproducirVideoInactividad() {
-        const overlay = document.createElement('div');
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            flex-direction: column;
-        `;
-
-        const videoContainer = document.createElement('div');
-        videoContainer.style.cssText = `
-            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            max-width: 90%;
-            max-height: 90%;
-            border: 4px solid #ff4757;
-            box-shadow: 0 0 50px rgba(255, 71, 87, 0.5);
-        `;
-
-        const titulo = document.createElement('div');
-        titulo.textContent = '🚨 ALERTA DE CORNUDO 🚨 Descuidaste a Nino y ahora aldo se la esta cogiendo';
-        titulo.style.cssText = `
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #ff6b6b;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        `;
-
-        const mensaje = document.createElement('div');
-        mensaje.innerHTML = '🔥 <strong>ALDO SE LA ESTA FOLLANDO :D</strong> 🔥';
-        mensaje.style.cssText = `
-            font-size: 1.8rem;
-            color: #ff6b6b;
-            margin-bottom: 25px;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            background: rgba(255, 107, 107, 0.1);
-            border-radius: 10px;
-            border: 2px solid #ff4757;
-        `;
-
-        const video = document.createElement('video');
-        video.src = this.videoInactividadUrl;
-        video.controls = true;
-        video.autoplay = true;
-        video.muted = false;
-        video.playsInline = true;
-        video.style.cssText = `
-            max-width: 500px;
-            max-height: 400px;
-            border-radius: 15px;
-            border: 3px solid #ff6b6b;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-            background: #000;
-        `;
-
-        const botonCerrar = document.createElement('button');
-        botonCerrar.innerHTML = '❌ CERRAR VIDEO';
-        botonCerrar.style.cssText = `
-            background: linear-gradient(135deg, #ff6b6b, #ff4757);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            border: 3px solid #ff0000;
-            transition: all 0.3s ease;
-        `;
-
-        botonCerrar.onmouseover = () => {
-            botonCerrar.style.transform = 'scale(1.05)';
-            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 0, 0, 0.4)';
-        };
-
-        botonCerrar.onmouseout = () => {
-            botonCerrar.style.transform = 'scale(1)';
-            botonCerrar.style.boxShadow = 'none';
-        };
-
-        botonCerrar.onclick = () => {
-            video.pause();
-            document.body.removeChild(overlay);
-        };
-
-        video.onended = () => {
-            mensaje.innerHTML = '🎬 <strong>VIDEO TERMINADO - ¿QUÉ HARÁS AHORA?</strong> 🎬';
-            mensaje.style.color = '#4a90e2';
-            mensaje.style.borderColor = '#4a90e2';
-            mensaje.style.background = 'rgba(74, 144, 226, 0.1)';
-            
-            setTimeout(() => {
-                if (document.body.contains(overlay)) {
-                    document.body.removeChild(overlay);
-                }
-            }, 3000);
-        };
-
-        video.onerror = () => {
-            console.log('❌ Error cargando el video');
-            mensaje.innerHTML = '❌ Error cargando el video<br><small>Pero el mensaje sigue siendo claro 😈</small>';
-            mensaje.style.color = '#ffa500';
-        };
-
-        videoContainer.appendChild(titulo);
-        videoContainer.appendChild(mensaje);
-        videoContainer.appendChild(video);
-        videoContainer.appendChild(botonCerrar);
-        overlay.appendChild(videoContainer);
-        document.body.appendChild(overlay);
-
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log('❌ Error reproduciendo video:', error);
-                video.muted = true;
-                video.play();
-            });
-        }
-
-        setTimeout(() => {
-            if (document.body.contains(overlay)) {
-                video.pause();
-                document.body.removeChild(overlay);
-            }
-        }, 60000);
     }
 
     cargarAudios() {
