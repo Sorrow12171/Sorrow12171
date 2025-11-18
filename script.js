@@ -1,15 +1,18 @@
 class AplicacionVocabulario {
     constructor() {
+        // SISTEMA MEJORADO PARA GITHUB PAGES
+        this.esPrimeraVez = false;
+        
         // SISTEMA DE VIDEOS POR INACTIVIDAD
         this.ultimaVisitaKey = 'ultimaVisitaVocabulario';
         
         // Video cada 1 DÍA (24 horas)
         this.videoInactividadUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4';
-        this.tiempoInactividadDia = 24 * 60 * 60 * 1000; // 24 horas en milisegundos
+        this.tiempoInactividadDia = 24 * 60 * 60 * 1000;
         
         // Video cada 8 HORAS (Zahiry)
         this.videoZahiryUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4';
-        this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000; // 8 horas en milisegundos
+        this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000;
 
         // Verificar inactividad al iniciar
         this.verificarInactividad();
@@ -259,8 +262,26 @@ class AplicacionVocabulario {
             preguntasRespondidas: 0
         };
 
+        // MEJORA: Detectar si es primera vez en este dominio
+        this.detectarPrimeraVez();
+        
         this.stats = this.cargarStats();
         this.inicializarApp();
+    }
+
+    // NUEVO MÉTODO: Detectar si es primera vez en GitHub Pages
+    detectarPrimeraVez() {
+        const dominioActual = window.location.hostname;
+        const esGitHubPages = dominioActual.includes('github.io');
+        
+        if (esGitHubPages) {
+            console.log('🌐 Ejecutándose en GitHub Pages');
+            const statsExisten = localStorage.getItem('vocabularioStats');
+            if (!statsExisten) {
+                console.log('🆕 Primera vez en GitHub Pages');
+                this.esPrimeraVez = true;
+            }
+        }
     }
 
     // MÉTODO: Verificar inactividad del usuario (1 DÍA y 8 HORAS)
@@ -269,6 +290,7 @@ class AplicacionVocabulario {
         const ultimaVisita = localStorage.getItem(this.ultimaVisitaKey);
         
         console.log('🕒 Verificando inactividad...');
+        console.log('Dominio actual:', window.location.hostname);
         console.log('Última visita:', ultimaVisita ? new Date(parseInt(ultimaVisita)).toLocaleString() : 'Primera vez');
         
         if (ultimaVisita) {
@@ -291,7 +313,7 @@ class AplicacionVocabulario {
                 console.log('🎬 ¡8 horas de inactividad! Reproduciendo video de Zahiry...');
                 setTimeout(() => {
                     this.reproducirVideoZahiry();
-                }, 4000); // Delay de 4 segundos después del posible primer video
+                }, 4000);
             }
         }
         
@@ -936,6 +958,13 @@ class AplicacionVocabulario {
         this.inicializarSeccionLastSummer();
         this.inicializarPantallasLastSummerMazos();
         this.inicializarPantallaDiarias();
+        
+        // Mostrar mensaje si es primera vez en GitHub Pages
+        if (this.esPrimeraVez) {
+            setTimeout(() => {
+                alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
+            }, 1000);
+        }
         
         this.mostrarPantalla('seleccion');
     }
