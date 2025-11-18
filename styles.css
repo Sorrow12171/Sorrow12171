@@ -27,7 +27,7 @@ body {
 }
 
 /* PANTALLA DE EVENTO DIARIO */
-.pantalla-evento {
+#pantalla-evento-diario {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,6 +68,13 @@ body {
     color: #ffffff;
     margin-bottom: 25px;
     line-height: 1.6;
+}
+
+.progreso-evento {
+    font-size: 1.2rem;
+    color: #ffa500;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .boton-reto {
