@@ -1,6 +1,7 @@
 class AplicacionVocabulario {
     constructor() {
         this.mazos = {
+            // MAZOS ORIGINALES (ahora en Last Summer 3)
             "Mazo 1 - Vocabulario Esencial": [
                 ["今朝", "Esta mañana", "kesa"],
                 ["処", "Lugar", "sho"],
@@ -60,6 +61,33 @@ class AplicacionVocabulario {
                 ["寒い", "Frío", "samui"],
                 ["楽しい", "Divertido", "tanoshii"],
                 ["難しい", "Difícil", "muzukashii"]
+            ],
+            
+            // NUEVOS MAZOS PARA LAST SUMMER 1 Y 2
+            "Last Summer 1 - Verano Inolvidable": [
+                ["夏", "Verano", "natsu"],
+                ["海", "Mar", "umi"],
+                ["太陽", "Sol", "taiyou"],
+                ["砂浜", "Playa", "sunahama"],
+                ["波", "Ola", "nami"],
+                ["貝殻", "Concha", "kaigara"],
+                ["夕日", "Atardecer", "yuuhi"],
+                ["思い出", "Recuerdo", "omoide"],
+                ["祭り", "Festival", "matsuri"],
+                ["花火", "Fuegos artificiales", "hanabi"]
+            ],
+            
+            "Last Summer 2 - Aventuras Estivales": [
+                ["冒険", "Aventura", "bouken"],
+                ["旅行", "Viaje", "ryokou"],
+                ["友情", "Amistad", "yuujou"],
+                ["笑顔", "Sonrisa", "egao"],
+                ["自由", "Libertad", "jiyuu"],
+                ["青春", "Juventud", "seishun"],
+                ["恋", "Amor", "koi"],
+                ["秘密", "Secreto", "himitsu"],
+                ["成長", "Crecimiento", "seichou"],
+                ["未来", "Futuro", "mirai"]
             ]
         };
 
@@ -266,13 +294,16 @@ class AplicacionVocabulario {
             seleccion: document.getElementById('pantalla-seleccion'),
             quiz: document.getElementById('pantalla-quiz'),
             resultados: document.getElementById('pantalla-resultados'),
-            novia: document.getElementById('pantalla-novia')
+            novia: document.getElementById('pantalla-novia'),
+            lastsummer: document.getElementById('pantalla-lastsummer')
         };
 
         this.inicializarPantallaSeleccion();
         this.inicializarPantallaQuiz();
         this.inicializarPantallaResultados();
         this.inicializarPantallaNovia();
+        this.inicializarPantallaLastSummer();
+        this.inicializarSeccionLastSummer();
         
         this.mostrarPantalla('seleccion');
     }
@@ -293,6 +324,29 @@ class AplicacionVocabulario {
                 this.mostrarPantallaNovia();
             });
         }
+    }
+
+    inicializarSeccionLastSummer() {
+        const lastSummerCard = document.getElementById('lastsummer-card');
+        if (lastSummerCard) {
+            lastSummerCard.addEventListener('click', () => {
+                this.mostrarPantallaLastSummer();
+            });
+        }
+    }
+
+    inicializarPantallaLastSummer() {
+        this.botonVolverMenuLastSummer = document.getElementById('boton-volver-menu-lastsummer');
+        this.botonVolverMenuLastSummer.onclick = () => this.mostrarPantalla('seleccion');
+        
+        // Agregar event listeners a los mazos especiales
+        document.getElementById('lastsummer1').onclick = () => this.iniciarQuiz("Last Summer 1 - Verano Inolvidable");
+        document.getElementById('lastsummer2').onclick = () => this.iniciarQuiz("Last Summer 2 - Aventuras Estivales");
+        document.getElementById('lastsummer3').onclick = () => this.mostrarPantalla('seleccion');
+    }
+
+    mostrarPantallaLastSummer() {
+        this.mostrarPantalla('lastsummer');
     }
 
     inicializarPantallaNovia() {
@@ -654,7 +708,7 @@ class AplicacionVocabulario {
             mensajeEspecial = "\n¡Sigue practicando!";
         } else {
             emoji = "💪";
-            mensajeEspecial = "\n¡No te rindas!";
+            mensajeEspecial = "\n¡No te rindes!";
         }
         
         return `${emoji} Quiz Completado - ${this.estado.nombreMazoActual} ${emoji}
