@@ -8,11 +8,11 @@
 </head>
 <body>
     <div id="app">
-        <!-- Pantalla de Selección -->
+        <!-- Pantalla de Selección PRINCIPAL -->
         <div id="pantalla-seleccion" class="pantalla activa">
             <div class="contenedor">
                 <h1>Aprendizaje de Japonés</h1>
-                <p class="subtitulo">Selecciona un mazo de vocabulario</p>
+                <p class="subtitulo">Selecciona una categoría</p>
                 
                 <!-- SECCIÓN LAST SUMMER -->
                 <div class="seccion-especial">
@@ -21,10 +21,6 @@
                              alt="Last Summer" class="lastsummer-imagen">
                         <div class="lastsummer-texto">Last Summer</div>
                     </div>
-                </div>
-                
-                <div id="contenedor-mazos" class="contenedor-mazos">
-                    <!-- Los botones de mazos se generarán dinámicamente -->
                 </div>
 
                 <!-- SECCIÓN NOVIA -->
@@ -38,13 +34,6 @@
                 
                 <div class="estadisticas-globales">
                     <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
-                </div>
-                
-                <div class="completados-mazos">
-                    <h3>📊 Completados al 100% por Mazo:</h3>
-                    <div id="lista-completados" class="lista-completados">
-                        <!-- Lista de completados se generará dinámicamente -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -80,11 +69,11 @@
             </div>
         </div>
 
-        <!-- NUEVA PANTALLA: LAST SUMMER MAZOS -->
+        <!-- PANTALLA: LAST SUMMER CATEGORÍAS -->
         <div id="pantalla-lastsummer" class="pantalla">
             <div class="contenedor">
                 <h1>🌴 Last Summer Mazos 🌴</h1>
-                <p class="subtitulo">Selecciona un mazo de la colección Last Summer</p>
+                <p class="subtitulo">Selecciona una categoría de Last Summer</p>
                 
                 <div class="contenedor-mazos-especiales">
                     <div class="mazo-especial" id="lastsummer1">
@@ -107,6 +96,48 @@
                 </div>
                 
                 <button id="boton-volver-menu-lastsummer" class="boton-principal">🏠 Volver al Menú Principal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: LAST SUMMER 1 MAZOS -->
+        <div id="pantalla-lastsummer1-mazos" class="pantalla">
+            <div class="contenedor">
+                <h1>🌊 Last Summer 1 - Mazos 🌊</h1>
+                <p class="subtitulo">Selecciona un mazo de Last Summer 1</p>
+                
+                <div id="contenedor-lastsummer1-mazos" class="contenedor-mazos">
+                    <!-- Mazos de Last Summer 1 se generarán aquí -->
+                </div>
+                
+                <button id="boton-volver-lastsummer1" class="boton-principal">⬅️ Volver a Last Summer</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: LAST SUMMER 2 MAZOS -->
+        <div id="pantalla-lastsummer2-mazos" class="pantalla">
+            <div class="contenedor">
+                <h1>🏄‍♂️ Last Summer 2 - Mazos 🏄‍♂️</h1>
+                <p class="subtitulo">Selecciona un mazo de Last Summer 2</p>
+                
+                <div id="contenedor-lastsummer2-mazos" class="contenedor-mazos">
+                    <!-- Mazos de Last Summer 2 se generarán aquí -->
+                </div>
+                
+                <button id="boton-volver-lastsummer2" class="boton-principal">⬅️ Volver a Last Summer</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: LAST SUMMER 3 MAZOS -->
+        <div id="pantalla-lastsummer3-mazos" class="pantalla">
+            <div class="contenedor">
+                <h1>🎯 Last Summer 3 - Mazos 🎯</h1>
+                <p class="subtitulo">Selecciona un mazo de Last Summer 3</p>
+                
+                <div id="contenedor-lastsummer3-mazos" class="contenedor-mazos">
+                    <!-- Mazos de Last Summer 3 se generarán aquí -->
+                </div>
+                
+                <button id="boton-volver-lastsummer3" class="boton-principal">⬅️ Volver a Last Summer</button>
             </div>
         </div>
 
