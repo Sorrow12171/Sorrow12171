@@ -306,7 +306,7 @@ class AplicacionVocabulario {
 
         // Crear título
         const titulo = document.createElement('div');
-        titulo.textContent = '⚠️ DESCUDASTE AL NIÑO ⚠️';
+        titulo.textContent = '🚨 ALERTA DE CORNUDO 🚨 Descuidaste a Nino y ahora aldo se la esta cogiendo';
         titulo.style.cssText = `
             font-size: 2.5rem;
             font-weight: bold;
@@ -510,7 +510,7 @@ class AplicacionVocabulario {
 
         // Crear título
         const titulo = document.createElement('div');
-        titulo.textContent = '🎉 ¡RECOMPENSA ESPECIAL! 🎉';
+        titulo.textContent = '🎉 Nino esta feliz :D te la podras coger pronto  🎉';
         titulo.style.cssText = `
             font-size: 2rem;
             font-weight: bold;
