@@ -165,7 +165,39 @@ class AplicacionVocabulario {
             'trotar': { nombre: 'Trotar 1000 metros', completada: false },
             'fuerza': { nombre: 'Ejercicios de fuerza - 10 pull ups', completada: false }
         };
-
+// SISTEMA DE EVENTOS DIARIOS
+this.eventosDiarios = [
+    {
+        id: 1,
+        nombre: "Rescate de Quitillizas",
+        imagenInicio: "https://pbs.twimg.com/media/G6EA3MPW0AAdAIi?format=png&name=small",
+        descripcion: "Las quitillizas están con sus amantes. Recupéralas si no completas 5 mazos desde ahora las perderás",
+        imagenExito: "https://pbs.twimg.com/media/G5hQ9lxX0AAZFPX?format=jpg&name=medium",
+        textoExito: "¡Las recuperaste!",
+        mazosRequeridos: 5,
+        recompensaSoles: 15
+    },
+    {
+        id: 2,
+        nombre: "Defensa contra Ichika",
+        imagenInicio: "https://i.pximg.net/img-master/img/2025/08/06/08/00/09/133544107_p1_master1200.jpg",
+        descripcion: "Ichika está intentando que Nino te olvide y te engañe con otro chico. Si no completas 10 mazos hoy Nino cederá",
+        imagenExito: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
+        textoExito: "Demostaste tu dominancia con Nino y no permitiste a Ichika que se la llevara con otro chico",
+        mazosRequeridos: 10,
+        recompensaSoles: 25
+    },
+    {
+        id: 3,
+        nombre: "Rescate del Profesor",
+        imagenInicio: "https://pbs.twimg.com/media/G5PbknPWkAAfgjK?format=jpg&name=medium",
+        descripcion: "El profesor trata de llevarse a Nino de ti. Tendrás que completar 20 mazos hoy para recuperarla",
+        imagenExito: "https://pbs.twimg.com/media/G4OWnyyXEAAkOeh?format=jpg&name=medium",
+        textoExito: "No dejaste que el profesor te la robara. ¡Bien hecho! :D",
+        mazosRequeridos: 20,
+        recompensaSoles: 50
+    }
+];
         // SISTEMA DE RECOMPENSAS
         this.recompensas = {
             logros: [
@@ -371,7 +403,8 @@ class AplicacionVocabulario {
             const diasDesdeUltimaVisita = Math.round(tiempoDesdeUltimaVisita / 1000 / 60 / 60 / 24);
             
             console.log(`⏰ Tiempo desde última visita: ${horasDesdeUltimaVisita} horas (${diasDesdeUltimaVisita} días)`);
-            
+            // Verificar eventos diarios al iniciar
+this.verificarEventoDiario();
             // Verificar si pasó 1 DÍA (24 horas)
             if (tiempoDesdeUltimaVisita > this.tiempoInactividadDia) {
                 console.log('🎬 ¡24 horas de inactividad! Reproduciendo video de Nino...');
@@ -676,7 +709,200 @@ class AplicacionVocabulario {
             }
         }, 60000);
     }
+    // SISTEMA DE EVENTOS DIARIOS
+    verificarEventoDiario() {
+        const hoy = new Date().toDateString();
+        const eventoGuardado = localStorage.getItem('eventoDiarioActual');
+        
+        // Reiniciar eventos a las 3 AM
+        const ahora = new Date();
+        const horaReinicio = 3; // 3 AM
+        const necesitaReinicio = ahora.getHours() >= horaReinicio;
+        
+        if (!eventoGuardado || necesitaReinicio) {
+            // Seleccionar evento aleatorio del día
+            this.seleccionarNuevoEventoDiario();
+        } else {
+            const eventoData = JSON.parse(eventoGuardado);
+            
+            // Verificar si el evento ya fue completado hoy
+            if (eventoData.fecha === hoy && !eventoData.completado) {
+                // Mostrar evento pendiente
+                setTimeout(() => {
+                    this.mostrarEventoDiario(eventoData);
+                }, 1000);
+            }
+        }
+    }
 
+    seleccionarNuevoEventoDiario() {
+        const eventoAleatorio = this.eventosDiarios[Math.floor(Math.random() * this.eventosDiarios.length)];
+        const eventoData = {
+            id: eventoAleatorio.id,
+            fecha: new Date().toDateString(),
+            completado: false,
+            mazosCompletadosHoy: 0,
+            mazosRequeridos: eventoAleatorio.mazosRequeridos,
+            evento: eventoAleatorio
+        };
+        
+        localStorage.setItem('eventoDiarioActual', JSON.stringify(eventoData));
+        
+        // Mostrar el nuevo evento
+        setTimeout(() => {
+            this.mostrarEventoDiario(eventoData);
+        }, 1000);
+    }
+
+    mostrarEventoDiario(eventoData) {
+        const evento = eventoData.evento;
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-evento-diario';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+        `;
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-evento-contenido';
+
+        const titulo = document.createElement('div');
+        titulo.className = 'modal-evento-titulo';
+        titulo.textContent = '🚨 EVENTO DIARIO 🚨';
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.imagenInicio;
+        imagen.className = 'modal-evento-imagen';
+        imagen.alt = evento.nombre;
+
+        const descripcion = document.createElement('div');
+        descripcion.className = 'modal-evento-descripcion';
+        descripcion.textContent = evento.descripcion;
+
+        const progreso = document.createElement('div');
+        progreso.className = 'modal-evento-progreso';
+        progreso.innerHTML = `
+            <div class="modal-evento-progreso-texto">
+                Mazos completados hoy: ${eventoData.mazosCompletadosHoy}/${eventoData.mazosRequeridos}
+            </div>
+        `;
+
+        const recompensa = document.createElement('div');
+        recompensa.className = 'modal-evento-recompensa';
+        recompensa.textContent = `Recompensa: ${evento.recompensaSoles} soles`;
+
+        const botonAceptar = document.createElement('button');
+        botonAceptar.className = 'boton-aceptar-evento';
+        botonAceptar.textContent = '🎯 Aceptar Desafío';
+        botonAceptar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        modalContent.appendChild(titulo);
+        modalContent.appendChild(imagen);
+        modalContent.appendChild(descripcion);
+        modalContent.appendChild(progreso);
+        modalContent.appendChild(recompensa);
+        modalContent.appendChild(botonAceptar);
+        overlay.appendChild(modalContent);
+        document.body.appendChild(overlay);
+    }
+
+    verificarCompletadoEventoDiario() {
+        const eventoGuardado = localStorage.getItem('eventoDiarioActual');
+        if (!eventoGuardado) return;
+
+        const eventoData = JSON.parse(eventoGuardado);
+        const hoy = new Date().toDateString();
+
+        if (eventoData.fecha === hoy && !eventoData.completado) {
+            eventoData.mazosCompletadosHoy = (eventoData.mazosCompletadosHoy || 0) + 1;
+
+            if (eventoData.mazosCompletadosHoy >= eventoData.mazosRequeridos) {
+                eventoData.completado = true;
+                this.mostrarEventoCompletado(eventoData);
+            }
+
+            localStorage.setItem('eventoDiarioActual', JSON.stringify(eventoData));
+        }
+    }
+
+    mostrarEventoCompletado(eventoData) {
+        const evento = eventoData.evento;
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'modal-evento-diario';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'modal-evento-contenido';
+        modalContent.style.background = 'linear-gradient(135deg, #00ff88, #00cc66)';
+        modalContent.style.borderColor = '#00cc66';
+
+        const titulo = document.createElement('div');
+        titulo.className = 'modal-evento-titulo';
+        titulo.textContent = '🎉 ¡EVENTO COMPLETADO! 🎉';
+        titulo.style.color = '#006633';
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.imagenExito;
+        imagen.className = 'modal-evento-imagen';
+        imagen.alt = 'Evento Completado';
+
+        const descripcion = document.createElement('div');
+        descripcion.className = 'modal-evento-descripcion';
+        descripcion.textContent = evento.textoExito;
+        descripcion.style.color = '#006633';
+
+        const recompensa = document.createElement('div');
+        recompensa.className = 'modal-evento-recompensa';
+        recompensa.textContent = `¡Has ganado ${evento.recompensaSoles} soles!`;
+        recompensa.style.color = '#006633';
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.className = 'boton-aceptar-evento';
+        botonCerrar.textContent = '✨ ¡Genial! ✨';
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+            // Dar recompensa
+            this.ganarSoles(evento.recompensaSoles, `Completar evento: ${evento.nombre}`);
+        };
+
+        modalContent.appendChild(titulo);
+        modalContent.appendChild(imagen);
+        modalContent.appendChild(descripcion);
+        modalContent.appendChild(recompensa);
+        modalContent.appendChild(botonCerrar);
+        overlay.appendChild(modalContent);
+        document.body.appendChild(overlay);
+    }
+
+    // SISTEMA TOONO ESUKE
+    inicializarPantallaToono() {
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarPantallaToono();
+            });
+        }
+
+        document.getElementById('boton-volver-menu-toono').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+    }
+
+    mostrarPantallaToono() {
+        this.mostrarPantalla('toono');
+    }
     // SISTEMA DE TAREAS DIARIAS
     cargarTareasDiarias() {
         const hoy = new Date().toDateString();
@@ -1135,7 +1361,7 @@ class AplicacionVocabulario {
         this.inicializarPantallaDiarias();
         this.inicializarPantallaTienda();
         this.inicializarPantallaFabrizio();
-        
+        this.inicializarPantallaToono();
         // Mostrar mensaje si es primera vez en GitHub Pages
         if (this.esPrimeraVez) {
             setTimeout(() => {
@@ -1791,7 +2017,8 @@ class AplicacionVocabulario {
         
         // Ganar 1 sol por completar mazo al 100%
         this.ganarSoles(1, "Completar mazo al 100%");
-        
+            // Verificar si completó mazo para evento diario
+    this.verificarCompletadoEventoDiario();
         // SISTEMA MEJORADO DE PROBABILIDADES PARA IMÁGENES ESPECIALES
         const probabilidad = Math.random() * 100; // 0 a 100%
         
