@@ -169,6 +169,69 @@ class AplicacionVocabulario {
             mazosCompletadosEstaSemana: 0
         };
 
+        // SISTEMA DE VIVIENDA
+        this.vivienda = {
+            nivel: 1,
+            mejoras: {
+                cocina: { nivel: 0, costo: 100, felicidad: 10 },
+                dormitorio: { nivel: 0, costo: 200, intimidad: 1 },
+                jardin: { nivel: 0, costo: 150, felicidad: 5 }
+            },
+            nino: {
+                estado: "😊 Feliz",
+                humor: 85,
+                ropaActual: "normal",
+                ropas: {
+                    normal: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                    elegante: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                    casual: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                    intima: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium"
+                }
+            },
+            intimidadDisponible: 0,
+            bebes: [],
+            probabilidadBebe: 5
+        };
+
+        // SISTEMA DE TIENDA +18
+        this.tienda18 = {
+            items: [
+                { id: "condones-3", nombre: "🔞 Pack de 3 Condones", descripcion: "Protección básica para 3 encuentros", precio: 25, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: "condones-10", nombre: "🔞 Pack de 10 Condones", descripcion: "Protección para encuentros frecuentes", precio: 70, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: "lubricante", nombre: "🔞 Lubricante Íntimo", descripcion: "Aumenta el placer y comodidad", precio: 40, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: "juguetes", nombre: "🔞 Juguetes Eróticos", descripcion: "Aumenta la experiencia íntima", precio: 120, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: "lenceria", nombre: "🔞 Lencería Erótica", descripcion: "Ropa íntima especial para Nino", precio: 80, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" }
+            ]
+        };
+
+        // EVENTOS ALEATORIOS EN VIVIENDA
+        this.eventosAleatorios = [
+            {
+                id: 1,
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                titulo: "💖 Nino te pide un masaje 💖",
+                descripcion: "Nino está cansada y te pide un masaje relajante. ¿Quieres ayudarla?",
+                tipo: "positivo",
+                recompensa: { corazones: 15 }
+            },
+            {
+                id: 2,
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                titulo: "🍳 Cena romántica 🍳",
+                descripcion: "Nino quiere preparar una cena especial para ti. ¿Aceptas?",
+                tipo: "positivo",
+                recompensa: { corazones: 20 }
+            },
+            {
+                id: 3,
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                titulo: "🎬 Noche de películas 🎬",
+                descripcion: "Nino quiere ver una película contigo. ¿Te unes a ella?",
+                tipo: "positivo",
+                recompensa: { corazones: 10 }
+            }
+        ];
+
         // SISTEMA MEJORADO PARA GITHUB PAGES
         this.esPrimeraVez = false;
         
@@ -496,8 +559,62 @@ class AplicacionVocabulario {
         // Cargar sistemas nuevos
         this.cargarSistemaNovia();
         this.cargarMisionesSemanales();
+        this.cargarVivienda();
+        this.cargarTienda18();
 
         this.inicializarApp();
+    }
+
+    // SISTEMA DE VIVIENDA
+    cargarVivienda() {
+        const viviendaData = localStorage.getItem('sistemaVivienda');
+        
+        if (viviendaData) {
+            const data = JSON.parse(viviendaData);
+            this.vivienda = { ...this.vivienda, ...data };
+            
+            // Verificar si es nuevo día para reiniciar la intimidad disponible
+            const hoy = new Date().toDateString();
+            if (data.fecha !== hoy) {
+                this.vivienda.intimidadDisponible = 0;
+                this.guardarVivienda();
+            }
+        } else {
+            // Primera vez - inicializar
+            this.guardarVivienda();
+        }
+    }
+
+    guardarVivienda() {
+        const datos = {
+            ...this.vivienda,
+            fecha: new Date().toDateString()
+        };
+        localStorage.setItem('sistemaVivienda', JSON.stringify(datos));
+    }
+
+    // SISTEMA DE TIENDA +18
+    cargarTienda18() {
+        const tienda18Data = localStorage.getItem('tienda18');
+        
+        if (tienda18Data) {
+            const data = JSON.parse(tienda18Data);
+            this.stats.condones = data.condones || 0;
+            this.stats.bebes = data.bebes || 0;
+        } else {
+            // Primera vez - inicializar
+            this.stats.condones = 0;
+            this.stats.bebes = 0;
+            this.guardarTienda18();
+        }
+    }
+
+    guardarTienda18() {
+        const datos = {
+            condones: this.stats.condones || 0,
+            bebes: this.stats.bebes || 0
+        };
+        localStorage.setItem('tienda18', JSON.stringify(datos));
     }
 
     // NUEVO: Sistema RPG Novia
@@ -936,6 +1053,397 @@ class AplicacionVocabulario {
                 }
             }
         });
+    }
+
+    // SISTEMA DE VIVIENDA - FUNCIONALIDADES
+    actualizarPantallaVivienda() {
+        // Actualizar información de vivienda
+        const nivelVivienda = document.getElementById('nivel-vivienda');
+        const mejorasDisponibles = document.getElementById('mejoras-disponibles');
+        
+        if (nivelVivienda) nivelVivienda.textContent = this.vivienda.nivel;
+        if (mejorasDisponibles) {
+            const mejorasCount = Object.values(this.vivienda.mejoras).filter(m => m.nivel > 0).length;
+            mejorasDisponibles.textContent = mejorasCount;
+        }
+
+        // Actualizar información de Nino
+        const estadoNino = document.getElementById('estado-nino');
+        const humorNino = document.getElementById('humor-nino');
+        const contadorIntimidad = document.getElementById('contador-intimidad');
+        const botonIntimidad = document.getElementById('boton-intimidad');
+        const ninoImagen = document.getElementById('nino-imagen');
+        
+        if (estadoNino) estadoNino.textContent = this.vivienda.nino.estado;
+        if (humorNino) humorNino.textContent = `${this.vivienda.nino.humor}%`;
+        if (contadorIntimidad) contadorIntimidad.textContent = this.vivienda.intimidadDisponible;
+        if (botonIntimidad) {
+            botonIntimidad.disabled = this.vivienda.intimidadDisponible === 0 || this.stats.condones === 0;
+        }
+        if (ninoImagen) {
+            ninoImagen.src = this.vivienda.nino.ropas[this.vivienda.nino.ropaActual];
+        }
+
+        // Actualizar botones de ropa
+        document.querySelectorAll('.boton-ropa').forEach(boton => {
+            const tipoRopa = boton.getAttribute('data-ropa');
+            if (tipoRopa === this.vivienda.nino.ropaActual) {
+                boton.classList.add('activo');
+            } else {
+                boton.classList.remove('activo');
+            }
+        });
+
+        // Actualizar mejoras
+        document.querySelectorAll('.mejora-vivienda').forEach(elemento => {
+            const tipoMejora = elemento.getAttribute('data-mejora');
+            const mejora = this.vivienda.mejoras[tipoMejora];
+            const botonMejora = elemento.querySelector('.boton-mejora');
+            
+            if (mejora && botonMejora) {
+                if (this.stats.soles >= mejora.costo) {
+                    botonMejora.disabled = false;
+                } else {
+                    botonMejora.disabled = true;
+                }
+            }
+        });
+
+        // Actualizar información de bebés
+        const cantidadBebes = document.getElementById('cantidad-bebes');
+        const probabilidadBebe = document.getElementById('probabilidad-bebe');
+        const contenedorBebes = document.getElementById('contenedor-bebes');
+        
+        if (cantidadBebes) cantidadBebes.textContent = this.vivienda.bebes.length;
+        if (probabilidadBebe) probabilidadBebe.textContent = `${this.vivienda.probabilidadBebe}%`;
+        if (contenedorBebes) {
+            contenedorBebes.innerHTML = '';
+            this.vivienda.bebes.forEach((bebe, index) => {
+                const bebeElement = document.createElement('div');
+                bebeElement.className = 'bebe-card';
+                bebeElement.innerHTML = `
+                    <div class="bebe-nombre">👶 Bebé ${index + 1}</div>
+                    <div class="bebe-edad">${bebe.edad} días</div>
+                `;
+                contenedorBebes.appendChild(bebeElement);
+            });
+        }
+
+        // Actualizar estadísticas globales
+        this.actualizarEstadisticasBebes();
+        this.actualizarEstadisticasCondones();
+    }
+
+    cambiarRopaNino(tipoRopa) {
+        this.vivienda.nino.ropaActual = tipoRopa;
+        this.guardarVivienda();
+        this.actualizarPantallaVivienda();
+        
+        // Efecto especial para ropa íntima
+        if (tipoRopa === 'intima') {
+            this.agregarCorazones(5);
+            this.mostrarNotificacion('💖 +5 corazones - Nino está emocionada con su nueva ropa');
+        }
+    }
+
+    mejorarVivienda(tipoMejora) {
+        const mejora = this.vivienda.mejoras[tipoMejora];
+        
+        if (mejora && this.stats.soles >= mejora.costo) {
+            // Gastar soles
+            this.gastarSoles(mejora.costo);
+            
+            // Aplicar mejora
+            mejora.nivel++;
+            
+            // Aplicar efectos de la mejora
+            switch(tipoMejora) {
+                case 'cocina':
+                    this.vivienda.nino.humor = Math.min(100, this.vivienda.nino.humor + mejora.felicidad);
+                    this.mostrarNotificacion(`🍳 Cocina mejorada! +${mejora.felicidad}% humor para Nino`);
+                    break;
+                case 'dormitorio':
+                    this.vivienda.intimidadDisponible += mejora.intimidad;
+                    this.mostrarNotificacion(`🛏️ Dormitorio mejorado! +${mejora.intimidad} intimidad disponible`);
+                    break;
+                case 'jardin':
+                    this.vivienda.nino.humor = Math.min(100, this.vivienda.nino.humor + mejora.felicidad);
+                    this.mostrarNotificacion(`🌳 Jardín construido! +${mejora.felicidad}% humor para Nino`);
+                    break;
+            }
+            
+            // Subir nivel de vivienda si se mejoran todas
+            const todasMejoradas = Object.values(this.vivienda.mejoras).every(m => m.nivel > 0);
+            if (todasMejoradas && this.vivienda.nivel === 1) {
+                this.vivienda.nivel++;
+                this.mostrarNotificacion('🏠 ¡Vivienda subió al nivel 2!');
+            }
+            
+            this.guardarVivienda();
+            this.actualizarPantallaVivienda();
+        }
+    }
+
+    iniciarIntimidad() {
+        if (this.vivienda.intimidadDisponible > 0 && this.stats.condones > 0) {
+            // Usar una oportunidad de intimidad
+            this.vivienda.intimidadDisponible--;
+            
+            // Usar un condón
+            this.stats.condones--;
+            this.guardarTienda18();
+            
+            // Agregar corazones
+            this.agregarCorazones(30);
+            
+            // Verificar probabilidad de bebé
+            const probabilidad = Math.random() * 100;
+            if (probabilidad <= this.vivienda.probabilidadBebe) {
+                this.agregarBebe();
+            }
+            
+            this.guardarVivienda();
+            this.actualizarPantallaVivienda();
+            
+            this.mostrarNotificacion('🔞 Intimidad completada! +30 corazones');
+        } else if (this.stats.condones === 0) {
+            this.mostrarNotificacion('❌ No tienes condones. Compra en la Tienda +18');
+        }
+    }
+
+    agregarBebe() {
+        this.vivienda.bebes.push({
+            nombre: `Bebé ${this.vivienda.bebes.length + 1}`,
+            edad: 0,
+            fechaNacimiento: new Date().toDateString()
+        });
+        
+        this.stats.bebes = this.vivienda.bebes.length;
+        this.guardarTienda18();
+        
+        this.mostrarNotificacion('👶 ¡Felicidades! Nino está embarazada');
+        
+        // Aumentar probabilidad de bebé para el próximo
+        this.vivienda.probabilidadBebe = Math.min(50, this.vivienda.probabilidadBebe + 5);
+    }
+
+    // SISTEMA DE EVENTOS ALEATORIOS EN VIVIENDA
+    verificarEventoAleatorio() {
+        const probabilidad = Math.random() * 100;
+        
+        // 50% de probabilidad de evento aleatorio
+        if (probabilidad <= 50) {
+            this.mostrarEventoAleatorio();
+        }
+    }
+
+    mostrarEventoAleatorio() {
+        const evento = this.eventosAleatorios[Math.floor(Math.random() * this.eventosAleatorios.length)];
+        
+        const overlay = document.createElement('div');
+        overlay.className = 'evento-aleatorio-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const contenedor = document.createElement('div');
+        contenedor.className = 'evento-aleatorio-contenedor';
+        contenedor.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            border: 4px solid #ff0000;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.imagen;
+        imagen.className = 'evento-aleatorio-imagen';
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            margin-bottom: 20px;
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = evento.titulo;
+        titulo.className = 'evento-aleatorio-titulo';
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const descripcion = document.createElement('div');
+        descripcion.textContent = evento.descripcion;
+        descripcion.className = 'evento-aleatorio-descripcion';
+        descripcion.style.cssText = `
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 25px;
+        `;
+
+        const botones = document.createElement('div');
+        botones.className = 'botones-evento-aleatorio';
+        botones.style.cssText = `
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        `;
+
+        const botonSi = document.createElement('button');
+        botonSi.textContent = '✅ Sí';
+        botonSi.className = 'boton-evento-si';
+        botonSi.style.cssText = `
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid #228b22;
+            transition: all 0.3s ease;
+        `;
+
+        const botonNo = document.createElement('button');
+        botonNo.textContent = '❌ No';
+        botonNo.className = 'boton-evento-no';
+        botonNo.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonSi.onmouseover = () => {
+            botonSi.style.transform = 'scale(1.05)';
+            botonSi.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
+        };
+
+        botonSi.onmouseout = () => {
+            botonSi.style.transform = 'scale(1)';
+            botonSi.style.boxShadow = 'none';
+        };
+
+        botonNo.onmouseover = () => {
+            botonNo.style.transform = 'scale(1.05)';
+            botonNo.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
+        };
+
+        botonNo.onmouseout = () => {
+            botonNo.style.transform = 'scale(1)';
+            botonNo.style.boxShadow = 'none';
+        };
+
+        botonSi.onclick = () => {
+            // Aplicar recompensa del evento
+            if (evento.recompensa.corazones) {
+                this.agregarCorazones(evento.recompensa.corazones);
+            }
+            
+            document.body.removeChild(overlay);
+            this.mostrarNotificacion(`🎁 +${evento.recompensa.corazones} corazones por el evento especial`);
+        };
+
+        botonNo.onclick = () => {
+            document.body.removeChild(overlay);
+            // Mostrar otro evento si eligió "No" (50% de probabilidad)
+            setTimeout(() => {
+                if (Math.random() <= 0.5) {
+                    this.mostrarEventoAleatorio();
+                }
+            }, 1000);
+        };
+
+        botones.appendChild(botonSi);
+        botones.appendChild(botonNo);
+        
+        contenedor.appendChild(imagen);
+        contenedor.appendChild(titulo);
+        contenedor.appendChild(descripcion);
+        contenedor.appendChild(botones);
+        overlay.appendChild(contenedor);
+        document.body.appendChild(overlay);
+    }
+
+    // SISTEMA DE TIENDA +18
+    comprarItem18(itemId) {
+        const item = this.tienda18.items.find(i => i.id === itemId);
+        
+        if (item && this.gastarSoles(item.precio)) {
+            if (itemId.includes('condones')) {
+                const cantidad = itemId === 'condones-3' ? 3 : 10;
+                this.stats.condones += cantidad;
+                this.mostrarNotificacion(`🔞 +${cantidad} condones comprados`);
+            } else {
+                this.mostrarNotificacion(`🔞 ${item.nombre} comprado`);
+            }
+            
+            this.guardarTienda18();
+            this.actualizarPantallaTienda18();
+        } else if (item) {
+            this.mostrarNotificacion('❌ Fondos insuficientes');
+        }
+    }
+
+    actualizarPantallaTienda18() {
+        const saldoSoles18 = document.getElementById('saldo-soles-18');
+        const saldoCondones = document.getElementById('saldo-condones');
+        
+        if (saldoSoles18) saldoSoles18.textContent = this.stats.soles || 0;
+        if (saldoCondones) saldoCondones.textContent = this.stats.condones || 0;
+        
+        // Actualizar botones de compra
+        document.querySelectorAll('.boton-comprar-18').forEach(boton => {
+            const itemId = boton.closest('.item-tienda-18').getAttribute('data-id');
+            const item = this.tienda18.items.find(i => i.id === itemId);
+            
+            if (item && this.stats.soles >= item.precio) {
+                boton.disabled = false;
+            } else {
+                boton.disabled = true;
+            }
+        });
+        
+        this.actualizarEstadisticasCondones();
+    }
+
+    actualizarEstadisticasBebes() {
+        const statsBebes = document.getElementById('stats-bebes');
+        if (statsBebes) {
+            statsBebes.textContent = `👶 Bebés: ${this.stats.bebes || 0}`;
+        }
+    }
+
+    actualizarEstadisticasCondones() {
+        const statsCondones = document.getElementById('stats-condones');
+        if (statsCondones) {
+            statsCondones.textContent = `🔞 Condones: ${this.stats.condones || 0}`;
+        }
     }
 
     // MÉTODOS EXISTENTES (se mantienen igual pero se actualizan donde sea necesario)
@@ -2290,7 +2798,9 @@ class AplicacionVocabulario {
             fabrizio: document.getElementById('pantalla-fabrizio'),
             // NUEVAS PANTALLAS
             noviaRpg: document.getElementById('pantalla-novia-rpg'),
-            misiones: document.getElementById('pantalla-misiones')
+            misiones: document.getElementById('pantalla-misiones'),
+            vivienda: document.getElementById('pantalla-vivienda'),
+            tienda18: document.getElementById('pantalla-tienda-18')
         };
 
         // Cargar sistema de tareas diarias
@@ -2312,6 +2822,8 @@ class AplicacionVocabulario {
         // NUEVO: Inicializar pantallas RPG
         this.inicializarPantallaNoviaRPG();
         this.inicializarPantallaMisiones();
+        this.inicializarPantallaVivienda();
+        this.inicializarPantallaTienda18();
         
         // Verificar evento diario
         this.verificarEventoDiario();
@@ -2322,6 +2834,85 @@ class AplicacionVocabulario {
                 alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
             }, 1000);
         }
+    }
+
+    // NUEVO: Inicializar pantalla Vivienda
+    inicializarPantallaVivienda() {
+        const viviendaCard = document.getElementById('vivienda-card');
+        if (viviendaCard) {
+            viviendaCard.addEventListener('click', () => {
+                this.mostrarPantalla('vivienda');
+                this.actualizarPantallaVivienda();
+                // Verificar evento aleatorio al entrar a la vivienda
+                setTimeout(() => {
+                    this.verificarEventoAleatorio();
+                }, 1000);
+            });
+        }
+
+        document.getElementById('boton-volver-menu-vivienda').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // Event listeners para botones de ropa
+        document.querySelectorAll('.boton-ropa').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const tipoRopa = e.target.getAttribute('data-ropa');
+                this.cambiarRopaNino(tipoRopa);
+            });
+        });
+
+        // Event listener para botón de intimidad
+        document.getElementById('boton-intimidad').addEventListener('click', () => {
+            this.iniciarIntimidad();
+        });
+
+        // Event listeners para mejoras de vivienda
+        document.querySelectorAll('.boton-mejora').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const tipoMejora = e.target.closest('.mejora-vivienda').getAttribute('data-mejora');
+                this.mejorarVivienda(tipoMejora);
+            });
+        });
+
+        // Event listener para imagen de Nino
+        document.getElementById('nino-imagen').addEventListener('click', () => {
+            this.mostrarImagenGrande(this.vivienda.nino.ropas[this.vivienda.nino.ropaActual], '💖 Nino');
+        });
+    }
+
+    // NUEVO: Inicializar pantalla Tienda +18
+    inicializarPantallaTienda18() {
+        const tienda18Card = document.getElementById('tienda-18-card');
+        if (tienda18Card) {
+            tienda18Card.addEventListener('click', () => {
+                this.mostrarPantalla('tienda18');
+                this.actualizarPantallaTienda18();
+            });
+        }
+
+        document.getElementById('boton-volver-menu-tienda-18').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // Event listeners para botones de compra +18
+        document.querySelectorAll('.boton-comprar-18').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const itemId = e.target.closest('.item-tienda-18').getAttribute('data-id');
+                this.comprarItem18(itemId);
+            });
+        });
+
+        // Event listeners para imágenes de items +18
+        document.querySelectorAll('.item-imagen-18').forEach(imagen => {
+            imagen.addEventListener('click', (e) => {
+                const itemId = e.target.closest('.item-tienda-18').getAttribute('data-id');
+                const item = this.tienda18.items.find(i => i.id === itemId);
+                if (item) {
+                    this.mostrarImagenGrande(item.imagen, item.nombre);
+                }
+            });
+        });
     }
 
     // NUEVO: Inicializar pantalla Novia RPG
@@ -2838,6 +3429,8 @@ class AplicacionVocabulario {
         this.actualizarEstadisticaEvento();
         this.actualizarEstadisticasSoles();
         this.actualizarEstadisticasCorazones();
+        this.actualizarEstadisticasBebes();
+        this.actualizarEstadisticasCondones();
     }
 
     inicializarPantallaQuiz() {
