@@ -1,5 +1,174 @@
 class AplicacionVocabulario {
     constructor() {
+        // SISTEMA RPG NOVIA
+        this.sistemaNovia = {
+            corazones: 0,
+            corazonesMaximos: 1000,
+            accionesDiarias: [
+                {
+                    id: "saludo",
+                    nombre: "👋 Saludar",
+                    descripcion: "Un dulce saludo mañanero",
+                    corazones: 5,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp4"
+                },
+                {
+                    id: "caricia",
+                    nombre: "🤗 Acariciar cabeza",
+                    descripcion: "Una suave caricia en su cabeza",
+                    corazones: 10,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3"
+                },
+                {
+                    id: "abrazar",
+                    nombre: "🫂 Abrazar",
+                    descripcion: "Un cálido y fuerte abrazo",
+                    corazones: 15,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3"
+                },
+                {
+                    id: "beso-mejilla",
+                    nombre: "😚 Beso en mejilla",
+                    descripcion: "Un tierno beso en la mejilla",
+                    corazones: 20,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3"
+                },
+                {
+                    id: "halago",
+                    nombre: "💝 Halagar",
+                    descripcion: "Decirle lo especial que es",
+                    corazones: 8,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp4"
+                },
+                {
+                    id: "cocinar",
+                    nombre: "🍳 Cocinar juntos",
+                    descripcion: "Preparar una comida especial",
+                    corazones: 25,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3"
+                },
+                {
+                    id: "paseo",
+                    nombre: "🌅 Paseo nocturno",
+                    descripcion: "Caminar bajo las estrellas",
+                    corazones: 18,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3"
+                },
+                {
+                    id: "masaje",
+                    nombre: "💆‍♀️ Masaje relajante",
+                    descripcion: "Un masaje para relajarse",
+                    corazones: 22,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3"
+                },
+                {
+                    id: "bailar",
+                    nombre: "💃 Bailar juntos",
+                    descripcion: "Bailar al ritmo de la música",
+                    corazones: 30,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp4"
+                },
+                {
+                    id: "declaracion",
+                    nombre: "💌 Declaración de amor",
+                    descripcion: "Decirle cuánto la amas",
+                    corazones: 50,
+                    completada: false,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4"
+                }
+            ],
+            recompensasEspeciales: [
+                {
+                    id: "flores",
+                    nombre: "💐 Ramo de flores",
+                    descripcion: "Un hermoso ramo para ella",
+                    costo: 50,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp4"
+                },
+                {
+                    id: "cena",
+                    nombre: "🍽️ Cena romántica",
+                    descripcion: "Una cena a la luz de velas",
+                    costo: 100,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3"
+                },
+                {
+                    id: "joyas",
+                    nombre: "💎 Joyas elegantes",
+                    descripcion: "Un regalo muy especial",
+                    costo: 200,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3"
+                },
+                {
+                    id: "viaje",
+                    nombre: "✈️ Viaje romántico",
+                    descripcion: "Un viaje inolvidable juntos",
+                    costo: 500,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3"
+                },
+                {
+                    id: "anillo",
+                    nombre: "💍 Anillo de compromiso",
+                    descripcion: "La promesa más importante",
+                    costo: 1000,
+                    video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4"
+                }
+            ]
+        };
+
+        // SISTEMA DE MISIONES SEMANALES
+        this.misionesSemanales = {
+            misiones: [
+                {
+                    id: 1,
+                    nombre: "Principiante dedicado",
+                    descripcion: "Completa 5 mazos al 100% esta semana",
+                    mazosRequeridos: 5,
+                    recompensa: 10,
+                    completada: false,
+                    progreso: 0
+                },
+                {
+                    id: 2,
+                    nombre: "Estudiante constante",
+                    descripcion: "Completa 15 mazos al 100% esta semana",
+                    mazosRequeridos: 15,
+                    recompensa: 25,
+                    completada: false,
+                    progreso: 0
+                },
+                {
+                    id: 3,
+                    nombre: "Maestro del vocabulario",
+                    descripcion: "Completa 30 mazos al 100% esta semana",
+                    mazosRequeridos: 30,
+                    recompensa: 50,
+                    completada: false,
+                    progreso: 0
+                },
+                {
+                    id: 4,
+                    nombre: "Leyenda japonesa",
+                    descripcion: "Completa 50 mazos al 100% esta semana",
+                    mazosRequeridos: 50,
+                    recompensa: 100,
+                    completada: false,
+                    progreso: 0
+                }
+            ],
+            semanaActual: this.obtenerNumeroSemana(),
+            mazosCompletadosEstaSemana: 0
+        };
+
         // SISTEMA MEJORADO PARA GITHUB PAGES
         this.esPrimeraVez = false;
         
@@ -74,8 +243,116 @@ class AplicacionVocabulario {
             ]
         };
 
-        // Verificar inactividad al iniciar
-        this.verificarInactividad();
+        // SISTEMA DE AUDIO
+        this.audios = {
+            beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
+            nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
+            chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3',
+            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3'
+        };
+
+        this.audioObjects = {};
+        this.cargarAudios();
+
+        // IMAGEN ESPECIAL PARA RECOMPENSAS
+        this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
+
+        // SISTEMA DE TAREAS DIARIAS
+        this.tareasDiarias = {
+            'lectura': { nombre: 'Leer 10 minutos', completada: false },
+            'idiomas': { nombre: 'Practicar idiomas - 50 palabras', completada: false },
+            'correr': { nombre: 'Correr 100 metros', completada: false },
+            'trotar': { nombre: 'Trotar 1000 metros', completada: false },
+            'fuerza': { nombre: 'Ejercicios de fuerza - 10 pull ups', completada: false }
+        };
+
+        // SISTEMA DE RECOMPENSAS
+        this.recompensas = {
+            logros: [
+                {
+                    id: 1,
+                    tipo: "logro",
+                    nombre: "Beso",
+                    descripcion: "Completa 3 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
+                    requerimiento: 3,
+                    progresoActual: 0,
+                    desbloqueado: false
+                },
+                {
+                    id: 2,
+                    tipo: "logro",
+                    nombre: "Nalgada",
+                    descripcion: "Completa 10 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
+                    requerimiento: 10,
+                    progresoActual: 0,
+                    desbloqueado: false
+                },
+                {
+                    id: 3,
+                    tipo: "logro",
+                    nombre: "Handjob",
+                    descripcion: "Completa 15 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small",
+                    requerimiento: 15,
+                    progresoActual: 0,
+                    desbloqueado: false
+                },
+                {
+                    id: 4,
+                    tipo: "logro",
+                    nombre: "Chupada",
+                    descripcion: "Completa 25 mazos al 100%",
+                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
+                    requerimiento: 25,
+                    progresoActual: 0,
+                    desbloqueado: false
+                }
+            ],
+            acciones: [
+                {
+                    id: 5,
+                    tipo: "accion",
+                    nombre: "Beso",
+                    descripcion: "Desbloqueado al completar 3 mazos",
+                    imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
+                    logroRequerido: 1,
+                    desbloqueado: false,
+                    audio: "beso"
+                },
+                {
+                    id: 6,
+                    tipo: "accion",
+                    nombre: "Nalgada",
+                    descripcion: "Desbloqueado al completar 10 mazos",
+                    imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
+                    logroRequerido: 2,
+                    desbloqueado: false,
+                    audio: "nalgada"
+                },
+                {
+                    id: 7,
+                    tipo: "accion",
+                    nombre: "Handjob",
+                    descripcion: "Desbloqueado al completar 15 mazos",
+                    imagen: "https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small",
+                    logroRequerido: 3,
+                    desbloqueado: false,
+                    audio: "handjob"
+                },
+                {
+                    id: 8,
+                    tipo: "accion",
+                    nombre: "Chupada",
+                    descripcion: "Desbloqueado al completar 25 mazos",
+                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
+                    logroRequerido: 4,
+                    desbloqueado: false,
+                    audio: "chupada"
+                }
+            ]
+        };
 
         this.mazos = {
             // LAST SUMMER 1 - 2 mazos
@@ -199,117 +476,6 @@ class AplicacionVocabulario {
             ]
         };
 
-        // SISTEMA DE AUDIO
-        this.audios = {
-            beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
-            nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
-            chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3',
-            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3'
-        };
-
-        this.audioObjects = {};
-        this.cargarAudios();
-
-        // IMAGEN ESPECIAL PARA RECOMPENSAS
-        this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
-
-        // SISTEMA DE TAREAS DIARIAS
-        this.tareasDiarias = {
-            'lectura': { nombre: 'Leer 10 minutos', completada: false },
-            'idiomas': { nombre: 'Practicar idiomas - 50 palabras', completada: false },
-            'correr': { nombre: 'Correr 100 metros', completada: false },
-            'trotar': { nombre: 'Trotar 1000 metros', completada: false },
-            'fuerza': { nombre: 'Ejercicios de fuerza - 10 pull ups', completada: false }
-        };
-
-        // SISTEMA DE RECOMPENSAS
-        this.recompensas = {
-            logros: [
-                {
-                    id: 1,
-                    tipo: "logro",
-                    nombre: "Beso",
-                    descripcion: "Completa 3 mazos al 100%",
-                    imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
-                    requerimiento: 3,
-                    progresoActual: 0,
-                    desbloqueado: false
-                },
-                {
-                    id: 2,
-                    tipo: "logro",
-                    nombre: "Nalgada",
-                    descripcion: "Completa 10 mazos al 100%",
-                    imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
-                    requerimiento: 10,
-                    progresoActual: 0,
-                    desbloqueado: false
-                },
-                {
-                    id: 3,
-                    tipo: "logro",
-                    nombre: "Handjob",
-                    descripcion: "Completa 15 mazos al 100%",
-                    imagen: "https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small",
-                    requerimiento: 15,
-                    progresoActual: 0,
-                    desbloqueado: false
-                },
-                {
-                    id: 4,
-                    tipo: "logro",
-                    nombre: "Chupada",
-                    descripcion: "Completa 25 mazos al 100%",
-                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
-                    requerimiento: 25,
-                    progresoActual: 0,
-                    desbloqueado: false
-                }
-            ],
-            acciones: [
-                {
-                    id: 5,
-                    tipo: "accion",
-                    nombre: "Beso",
-                    descripcion: "Desbloqueado al completar 3 mazos",
-                    imagen: "https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small",
-                    logroRequerido: 1,
-                    desbloqueado: false,
-                    audio: "beso"
-                },
-                {
-                    id: 6,
-                    tipo: "accion",
-                    nombre: "Nalgada",
-                    descripcion: "Desbloqueado al completar 10 mazos",
-                    imagen: "https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small",
-                    logroRequerido: 2,
-                    desbloqueado: false,
-                    audio: "nalgada"
-                },
-                {
-                    id: 7,
-                    tipo: "accion",
-                    nombre: "Handjob",
-                    descripcion: "Desbloqueado al completar 15 mazos",
-                    imagen: "https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small",
-                    logroRequerido: 3,
-                    desbloqueado: false,
-                    audio: "handjob"
-                },
-                {
-                    id: 8,
-                    tipo: "accion",
-                    nombre: "Chupada",
-                    descripcion: "Desbloqueado al completar 25 mazos",
-                    imagen: "https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small",
-                    logroRequerido: 4,
-                    desbloqueado: false,
-                    audio: "chupada"
-                }
-            ]
-        };
-
         this.estado = {
             mazoActual: [],
             nombreMazoActual: "",
@@ -326,10 +492,453 @@ class AplicacionVocabulario {
         this.detectarPrimeraVez();
         
         this.stats = this.cargarStats();
+        
+        // Cargar sistemas nuevos
+        this.cargarSistemaNovia();
+        this.cargarMisionesSemanales();
+
         this.inicializarApp();
     }
 
-    // NUEVO MÉTODO: Detectar si es primera vez en GitHub Pages
+    // NUEVO: Sistema RPG Novia
+    cargarSistemaNovia() {
+        const hoy = new Date().toDateString();
+        const noviaData = localStorage.getItem('sistemaNovia');
+        
+        if (noviaData) {
+            const data = JSON.parse(noviaData);
+            this.sistemaNovia.corazones = data.corazones || 0;
+            
+            // Verificar si es nuevo día para reiniciar acciones diarias
+            if (data.fecha !== hoy) {
+                this.reiniciarAccionesDiarias();
+                this.verificarPenalizacionDiaAnterior(data);
+            } else {
+                // Cargar acciones del día actual
+                this.sistemaNovia.accionesDiarias = data.accionesDiarias || this.sistemaNovia.accionesDiarias;
+            }
+        } else {
+            // Primera vez - inicializar
+            this.guardarSistemaNovia();
+        }
+    }
+
+    verificarPenalizacionDiaAnterior(datosAnteriores) {
+        const accionesCompletadasAyer = datosAnteriores.accionesDiarias.filter(accion => accion.completada).length;
+        
+        if (accionesCompletadasAyer < 3) {
+            // Penalización por no completar al menos 3 acciones
+            const penalizacion = 20;
+            this.quitarCorazones(penalizacion);
+            this.mostrarNotificacion(`💔 -${penalizacion} corazones por no cuidar a tu novia ayer`);
+        }
+    }
+
+    reiniciarAccionesDiarias() {
+        this.sistemaNovia.accionesDiarias.forEach(accion => {
+            accion.completada = false;
+        });
+    }
+
+    guardarSistemaNovia() {
+        const datos = {
+            fecha: new Date().toDateString(),
+            corazones: this.sistemaNovia.corazones,
+            accionesDiarias: this.sistemaNovia.accionesDiarias
+        };
+        localStorage.setItem('sistemaNovia', JSON.stringify(datos));
+    }
+
+    agregarCorazones(cantidad) {
+        const nuevosCorazones = Math.min(this.sistemaNovia.corazonesMaximos, this.sistemaNovia.corazones + cantidad);
+        const diferencia = nuevosCorazones - this.sistemaNovia.corazones;
+        
+        if (diferencia > 0) {
+            this.sistemaNovia.corazones = nuevosCorazones;
+            this.guardarSistemaNovia();
+            this.actualizarPantallaNoviaRPG();
+            this.mostrarNotificacionCorazones(diferencia);
+        }
+    }
+
+    quitarCorazones(cantidad) {
+        this.sistemaNovia.corazones = Math.max(0, this.sistemaNovia.corazones - cantidad);
+        this.guardarSistemaNovia();
+        this.actualizarPantallaNoviaRPG();
+        this.mostrarNotificacion(`💔 -${cantidad} corazones`);
+    }
+
+    realizarAccionDiaria(accionId) {
+        const accion = this.sistemaNovia.accionesDiarias.find(a => a.id === accionId);
+        
+        if (accion && !accion.completada) {
+            accion.completada = true;
+            this.agregarCorazones(accion.corazones);
+            this.guardarSistemaNovia();
+            this.actualizarPantallaNoviaRPG();
+            this.reproducirVideoAccion(accion);
+        }
+    }
+
+    comprarRecompensaEspecial(recompensaId) {
+        const recompensa = this.sistemaNovia.recompensasEspeciales.find(r => r.id === recompensaId);
+        
+        if (recompensa && this.sistemaNovia.corazones >= recompensa.costo) {
+            this.quitarCorazones(recompensa.costo);
+            this.reproducirVideoAccion(recompensa);
+            this.mostrarNotificacion(`🎁 ¡${recompensa.nombre} entregado!`);
+        } else if (recompensa) {
+            this.mostrarNotificacion(`❌ No tienes suficientes corazones para ${recompensa.nombre}`);
+        }
+    }
+
+    reproducirVideoAccion(accion) {
+        console.log(`🎬 Reproduciendo video para: ${accion.nombre}`);
+        
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = accion.nombre;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const video = document.createElement('video');
+        video.src = accion.video;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #000;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '❌ Cerrar';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 107, 107, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        video.onended = () => {
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 2000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video');
+            titulo.innerHTML += '<br><small>❌ Error cargando el video</small>';
+        };
+
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+        document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
+    }
+
+    mostrarNotificacionCorazones(cantidad) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+            border: 2px solid #ff4757;
+            animation: slideInLeft 0.5s ease;
+        `;
+
+        notificacion.innerHTML = `
+            <div>💖 +${cantidad} Corazones</div>
+            <div style="font-size: 0.8rem;">¡Tu novia está más feliz!</div>
+        `;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
+    }
+
+    mostrarNotificacion(mensaje) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+            border: 2px solid #ff4757;
+            animation: slideInRight 0.5s ease;
+        `;
+
+        notificacion.textContent = mensaje;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
+    }
+
+    actualizarPantallaNoviaRPG() {
+        // Actualizar barra de corazones
+        const corazonesActual = document.getElementById('corazones-actual');
+        const corazonesProgreso = document.getElementById('corazones-progreso');
+        
+        if (corazonesActual && corazonesProgreso) {
+            const porcentaje = (this.sistemaNovia.corazones / this.sistemaNovia.corazonesMaximos) * 100;
+            corazonesActual.textContent = this.sistemaNovia.corazones;
+            corazonesProgreso.style.width = `${porcentaje}%`;
+        }
+
+        // Actualizar acciones diarias
+        document.querySelectorAll('.accion-diaria').forEach(elemento => {
+            const accionId = elemento.getAttribute('data-id');
+            const accion = this.sistemaNovia.accionesDiarias.find(a => a.id === accionId);
+            const boton = elemento.querySelector('.boton-accion');
+            
+            if (accion && boton) {
+                if (accion.completada) {
+                    boton.textContent = '✅ Completada';
+                    boton.disabled = true;
+                    elemento.style.opacity = '0.7';
+                } else {
+                    boton.textContent = 'Realizar';
+                    boton.disabled = false;
+                    elemento.style.opacity = '1';
+                }
+            }
+        });
+
+        // Actualizar recompensas especiales
+        document.querySelectorAll('.recompensa-especial').forEach(elemento => {
+            const recompensaId = elemento.getAttribute('data-id');
+            const recompensa = this.sistemaNovia.recompensasEspeciales.find(r => r.id === recompensaId);
+            const boton = elemento.querySelector('.boton-recompensa');
+            
+            if (recompensa && boton) {
+                if (this.sistemaNovia.corazones >= recompensa.costo) {
+                    boton.disabled = false;
+                    elemento.style.opacity = '1';
+                } else {
+                    boton.disabled = true;
+                    elemento.style.opacity = '0.6';
+                }
+            }
+        });
+
+        // Actualizar estadísticas globales
+        this.actualizarEstadisticasCorazones();
+    }
+
+    actualizarEstadisticasCorazones() {
+        const statsCorazones = document.getElementById('stats-corazones');
+        if (statsCorazones) {
+            statsCorazones.textContent = `💖 Corazones: ${this.sistemaNovia.corazones}/1000`;
+        }
+    }
+
+    // NUEVO: Sistema de Misiones Semanales
+    obtenerNumeroSemana() {
+        const ahora = new Date();
+        const inicioAño = new Date(ahora.getFullYear(), 0, 1);
+        const dias = Math.floor((ahora - inicioAño) / (24 * 60 * 60 * 1000));
+        return Math.ceil((dias + inicioAño.getDay() + 1) / 7);
+    }
+
+    cargarMisionesSemanales() {
+        const misionesData = localStorage.getItem('misionesSemanales');
+        if (misionesData) {
+            const data = JSON.parse(misionesData);
+            
+            // Verificar si es nueva semana
+            if (data.semanaActual !== this.misionesSemanales.semanaActual) {
+                // Reiniciar misiones para nueva semana
+                this.reiniciarMisionesSemanales();
+            } else {
+                // Cargar progreso de la semana actual
+                this.misionesSemanales.misiones = data.misiones;
+                this.misionesSemanales.mazosCompletadosEstaSemana = data.mazosCompletadosEstaSemana || 0;
+            }
+        }
+    }
+
+    guardarMisionesSemanales() {
+        localStorage.setItem('misionesSemanales', JSON.stringify({
+            semanaActual: this.misionesSemanales.semanaActual,
+            misiones: this.misionesSemanales.misiones,
+            mazosCompletadosEstaSemana: this.misionesSemanales.mazosCompletadosEstaSemana
+        }));
+    }
+
+    reiniciarMisionesSemanales() {
+        this.misionesSemanales.misiones.forEach(mision => {
+            mision.completada = false;
+            mision.progreso = 0;
+        });
+        this.misionesSemanales.mazosCompletadosEstaSemana = 0;
+        this.guardarMisionesSemanales();
+    }
+
+    completarMazoParaMisiones() {
+        this.misionesSemanales.mazosCompletadosEstaSemana++;
+        
+        // Actualizar progreso de misiones
+        let misionesCompletadas = 0;
+        
+        this.misionesSemanales.misiones.forEach(mision => {
+            if (!mision.completada) {
+                mision.progreso = this.misionesSemanales.mazosCompletadosEstaSemana;
+                if (mision.progreso >= mision.mazosRequeridos) {
+                    mision.completada = true;
+                    this.entregarRecompensaMision(mision);
+                    misionesCompletadas++;
+                }
+            }
+        });
+        
+        this.guardarMisionesSemanales();
+        this.actualizarPantallaMisiones();
+        
+        // Si se completó alguna misión, mostrar notificación
+        if (misionesCompletadas > 0) {
+            this.mostrarNotificacion(`🎉 ¡Completaste ${misionesCompletadas} misión(es) semanal(es)!`);
+        }
+    }
+
+    entregarRecompensaMision(mision) {
+        this.agregarSoles(mision.recompensa);
+        this.mostrarNotificacion(`💰 +${mision.recompensa} Soles por completar: ${mision.nombre}`);
+    }
+
+    actualizarPantallaMisiones() {
+        // Actualizar información semanal
+        const numeroSemana = document.getElementById('numero-semana');
+        const mazosSemana = document.getElementById('mazos-semana');
+        
+        if (numeroSemana) {
+            numeroSemana.textContent = this.misionesSemanales.semanaActual;
+        }
+        if (mazosSemana) {
+            mazosSemana.textContent = this.misionesSemanales.mazosCompletadosEstaSemana;
+        }
+
+        // Actualizar misiones
+        document.querySelectorAll('.mision-semanal').forEach(elemento => {
+            const misionId = parseInt(elemento.getAttribute('data-id'));
+            const mision = this.misionesSemanales.misiones.find(m => m.id === misionId);
+            
+            if (mision) {
+                const barraProgreso = elemento.querySelector('.mision-progreso-bar');
+                const textoProgreso = elemento.querySelector('.mision-texto');
+                const estadoRecompensa = elemento.querySelector('.recompensa-estado');
+                
+                if (barraProgreso && textoProgreso && estadoRecompensa) {
+                    const porcentaje = Math.min(100, (mision.progreso / mision.mazosRequeridos) * 100);
+                    barraProgreso.style.width = `${porcentaje}%`;
+                    textoProgreso.textContent = `${mision.progreso}/${mision.mazosRequeridos} mazos`;
+                    
+                    if (mision.completada) {
+                        estadoRecompensa.textContent = '✅ Completada';
+                        estadoRecompensa.className = 'recompensa-estado completada';
+                        elemento.style.opacity = '0.7';
+                    } else {
+                        estadoRecompensa.textContent = '🔒 Pendiente';
+                        estadoRecompensa.className = 'recompensa-estado pendiente';
+                        elemento.style.opacity = '1';
+                    }
+                }
+            }
+        });
+    }
+
+    // MÉTODOS EXISTENTES (se mantienen igual pero se actualizan donde sea necesario)
     detectarPrimeraVez() {
         const dominioActual = window.location.hostname;
         const esGitHubPages = dominioActual.includes('github.io');
@@ -344,7 +953,6 @@ class AplicacionVocabulario {
         }
     }
 
-    // MÉTODO: Verificar inactividad del usuario (1 DÍA y 8 HORAS)
     verificarInactividad() {
         const ahora = new Date().getTime();
         const ultimaVisita = localStorage.getItem(this.ultimaVisitaKey);
@@ -381,7 +989,6 @@ class AplicacionVocabulario {
         localStorage.setItem(this.ultimaVisitaKey, ahora.toString());
     }
 
-    // MÉTODO: Reproducir video por inactividad de 1 DÍA (Nino)
     reproducirVideoInactividad() {
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -523,7 +1130,6 @@ class AplicacionVocabulario {
         }, 60000);
     }
 
-    // MÉTODO: Reproducir video por inactividad de 8 HORAS (Zahiry)
     reproducirVideoZahiry() {
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -665,7 +1271,6 @@ class AplicacionVocabulario {
         }, 60000);
     }
 
-    // SISTEMA MEJORADO DE EVENTOS DIARIOS CON FALLO TEMPORAL
     verificarEventoDiario() {
         const hoy = new Date().toDateString();
         const datosEvento = localStorage.getItem('eventoDiario');
@@ -722,7 +1327,6 @@ class AplicacionVocabulario {
         }
     }
 
-    // NUEVO MÉTODO: Mostrar fallo del evento anterior
     mostrarFalloEventoAnterior(eventoAnterior) {
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -1683,7 +2287,10 @@ class AplicacionVocabulario {
             tienda: document.getElementById('pantalla-tienda'),
             toono: document.getElementById('pantalla-toono'),
             eventoDiario: document.getElementById('pantalla-evento-diario'),
-            fabrizio: document.getElementById('pantalla-fabrizio')
+            fabrizio: document.getElementById('pantalla-fabrizio'),
+            // NUEVAS PANTALLAS
+            noviaRpg: document.getElementById('pantalla-novia-rpg'),
+            misiones: document.getElementById('pantalla-misiones')
         };
 
         // Cargar sistema de tareas diarias
@@ -1702,6 +2309,10 @@ class AplicacionVocabulario {
         this.inicializarPantallaEventos();
         this.inicializarPantallaFabrizio();
         
+        // NUEVO: Inicializar pantallas RPG
+        this.inicializarPantallaNoviaRPG();
+        this.inicializarPantallaMisiones();
+        
         // Verificar evento diario
         this.verificarEventoDiario();
         
@@ -1711,6 +2322,63 @@ class AplicacionVocabulario {
                 alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
             }, 1000);
         }
+    }
+
+    // NUEVO: Inicializar pantalla Novia RPG
+    inicializarPantallaNoviaRPG() {
+        const noviaRpgCard = document.getElementById('novia-rpg-card');
+        if (noviaRpgCard) {
+            noviaRpgCard.addEventListener('click', () => {
+                this.mostrarPantalla('noviaRpg');
+                this.actualizarPantallaNoviaRPG();
+            });
+        }
+
+        document.getElementById('boton-volver-menu-novia-rpg').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // Event listeners para acciones diarias
+        document.querySelectorAll('.boton-accion').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const accionId = e.target.closest('.accion-diaria').getAttribute('data-id');
+                this.realizarAccionDiaria(accionId);
+            });
+        });
+
+        // Event listeners para recompensas especiales
+        document.querySelectorAll('.boton-recompensa').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const recompensaId = e.target.closest('.recompensa-especial').getAttribute('data-id');
+                this.comprarRecompensaEspecial(recompensaId);
+            });
+        });
+
+        // Event listeners para imágenes de recompensas
+        document.querySelectorAll('.recompensa-imagen').forEach(imagen => {
+            imagen.addEventListener('click', (e) => {
+                const recompensaId = e.target.closest('.recompensa-especial').getAttribute('data-id');
+                const recompensa = this.sistemaNovia.recompensasEspeciales.find(r => r.id === recompensaId);
+                if (recompensa) {
+                    this.mostrarImagenGrande(recompensa.imagen, recompensa.nombre);
+                }
+            });
+        });
+    }
+
+    // NUEVO: Inicializar pantalla Misiones
+    inicializarPantallaMisiones() {
+        const misionesCard = document.getElementById('misiones-card');
+        if (misionesCard) {
+            misionesCard.addEventListener('click', () => {
+                this.mostrarPantalla('misiones');
+                this.actualizarPantallaMisiones();
+            });
+        }
+
+        document.getElementById('boton-volver-menu-misiones').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
     }
 
     inicializarPantallaEventos() {
@@ -2169,6 +2837,7 @@ class AplicacionVocabulario {
         this.actualizarEstadisticasDiarias();
         this.actualizarEstadisticaEvento();
         this.actualizarEstadisticasSoles();
+        this.actualizarEstadisticasCorazones();
     }
 
     inicializarPantallaQuiz() {
@@ -2346,6 +3015,12 @@ class AplicacionVocabulario {
             this.agregarSoles(1);
             this.mostrarNotificacionSoles(1, 'Mazo completado al 100%');
             
+            // NUEVO: Agregar corazones por completar mazo
+            this.agregarCorazones(5);
+            
+            // NUEVO: Contar para misiones semanales
+            this.completarMazoParaMisiones();
+            
             // CONTAR PARA EVENTO DIARIO
             this.completarMazoParaEvento();
             
@@ -2358,6 +3033,9 @@ class AplicacionVocabulario {
             } else {
                 console.log('🎰 Esta vez no tocó la imagen especial');
             }
+        } else {
+            // NUEVO: Penalización por no completar mazo al 100%
+            this.quitarCorazones(2);
         }
         
         this.verificarRecompensas();
@@ -2406,7 +3084,8 @@ class AplicacionVocabulario {
 
 ⭐ LOGROS GLOBALES:
    Mazos completados al 100%: ${this.stats.mazosCompletados}
-   💰 Soles obtenidos: ${porcentaje === 100 ? '1 Sol' : '0 Soles'}`;
+   💰 Soles obtenidos: ${porcentaje === 100 ? '1 Sol' : '0 Soles'}
+   💖 Corazones obtenidos: ${porcentaje === 100 ? '+5 corazones' : '-2 corazones'}`;
     }
 
     reintentarMazo() {
