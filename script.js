@@ -52,6 +52,22 @@ class AplicacionVocabulario {
             mazosCompletadosHoy: 0
         };
 
+        // SISTEMA DE TIENDA
+        this.tienda = {
+            items: [
+                { id: 1, nombre: "Figura Coleccionable Nino", descripcion: "Figura exclusiva de Nino Nakano", precio: 15, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 2, nombre: "Poster Autografiado", descripcion: "Poster firmado por el creador", precio: 25, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 3, nombre: "Libro de Arte Exclusivo", descripcion: "Libro con arte conceptual", precio: 35, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 4, nombre: "Set de Stickers", descripcion: "Colección de stickers premium", precio: 10, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 5, nombre: "Fondo de Pantalla HD", descripcion: "Fondo exclusivo para dispositivos", precio: 8, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 6, nombre: "Soundtrack Original", descripcion: "Banda sonora completa", precio: 20, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 7, nombre: "Camiseta Exclusiva", descripcion: "Camiseta de edición limitada", precio: 30, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 8, nombre: "Llavero Personalizado", descripcion: "Llavero con diseño único", precio: 12, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 9, nombre: "Taza Coleccionable", descripcion: "Taza con diseño especial", precio: 18, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" },
+                { id: 10, nombre: "Pack de Avatares", descripcion: "Colección de avatares exclusivos", precio: 15, imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" }
+            ]
+        };
+
         // Verificar inactividad al iniciar
         this.verificarInactividad();
 
@@ -765,6 +781,9 @@ class AplicacionVocabulario {
         datosEvento.eventoCompletado = true;
         localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
         
+        // Recompensa por completar evento: 30 Soles
+        this.agregarSoles(30);
+        
         // Mostrar pantalla de éxito
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -819,9 +838,23 @@ class AplicacionVocabulario {
         mensaje.style.cssText = `
             font-size: 1.5rem;
             color: white;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const recompensa = document.createElement('div');
+        recompensa.textContent = '💰 ¡Has ganado 30 Soles! 💰';
+        recompensa.style.cssText = `
+            font-size: 1.8rem;
+            color: #ffd700;
             margin-bottom: 25px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            border: 2px solid #ffd700;
         `;
 
         const botonCerrar = document.createElement('button');
@@ -857,6 +890,7 @@ class AplicacionVocabulario {
         exitoContainer.appendChild(titulo);
         exitoContainer.appendChild(imagen);
         exitoContainer.appendChild(mensaje);
+        exitoContainer.appendChild(recompensa);
         exitoContainer.appendChild(botonCerrar);
         overlay.appendChild(exitoContainer);
         document.body.appendChild(overlay);
@@ -929,10 +963,17 @@ class AplicacionVocabulario {
 
     toggleTarea(tareaId) {
         if (this.tareasDiarias[tareaId]) {
+            const estabaCompletada = this.tareasDiarias[tareaId].completada;
             this.tareasDiarias[tareaId].completada = !this.tareasDiarias[tareaId].completada;
             this.guardarTareasDiarias();
             this.actualizarPantallaTareas();
             this.actualizarEstadisticasDiarias();
+            
+            // Si se completó la tarea, agregar 5 Soles
+            if (!estabaCompletada && this.tareasDiarias[tareaId].completada) {
+                this.agregarSoles(5);
+                this.mostrarNotificacionSoles(5, 'Tarea completada');
+            }
         }
     }
 
@@ -990,6 +1031,244 @@ class AplicacionVocabulario {
         if (statsDiarias) {
             statsDiarias.textContent = `✅ Tareas de hoy: ${tareasCompletadas}/5`;
         }
+    }
+
+    // SISTEMA DE TIENDA Y MONEDA
+    agregarSoles(cantidad) {
+        if (!this.stats.soles) {
+            this.stats.soles = 0;
+        }
+        this.stats.soles += cantidad;
+        this.guardarStats();
+        this.actualizarSaldoTienda();
+        this.actualizarEstadisticasSoles();
+    }
+
+    gastarSoles(cantidad) {
+        if (!this.stats.soles || this.stats.soles < cantidad) {
+            return false;
+        }
+        this.stats.soles -= cantidad;
+        this.guardarStats();
+        this.actualizarSaldoTienda();
+        this.actualizarEstadisticasSoles();
+        return true;
+    }
+
+    actualizarSaldoTienda() {
+        const saldoElement = document.getElementById('saldo-soles');
+        if (saldoElement) {
+            saldoElement.textContent = this.stats.soles || 0;
+        }
+    }
+
+    actualizarEstadisticasSoles() {
+        const statsSoles = document.getElementById('stats-soles');
+        if (statsSoles) {
+            statsSoles.textContent = `💰 Soles: ${this.stats.soles || 0}`;
+        }
+    }
+
+    mostrarNotificacionSoles(cantidad, motivo) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #8b4513;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+            border: 2px solid #ff8c00;
+            animation: slideIn 0.5s ease;
+        `;
+
+        notificacion.innerHTML = `
+            <div>💰 +${cantidad} Soles</div>
+            <div style="font-size: 0.8rem;">${motivo}</div>
+        `;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
+    }
+
+    comprarItem(itemId) {
+        const item = this.tienda.items.find(i => i.id === itemId);
+        if (!item) return;
+
+        if (this.gastarSoles(item.precio)) {
+            console.log(`🛒 Item comprado: ${item.nombre}`);
+            this.mostrarNotificacionCompra(item);
+        } else {
+            console.log('❌ Fondos insuficientes');
+            this.mostrarNotificacionError('Fondos insuficientes');
+        }
+    }
+
+    mostrarNotificacionCompra(item) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(50, 205, 50, 0.5);
+            border: 2px solid #228b22;
+            animation: slideIn 0.5s ease;
+        `;
+
+        notificacion.innerHTML = `
+            <div>✅ ¡Comprado!</div>
+            <div style="font-size: 0.8rem;">${item.nombre}</div>
+        `;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
+    }
+
+    mostrarNotificacionError(mensaje) {
+        const notificacion = document.createElement('div');
+        notificacion.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+            border: 2px solid #ff4757;
+            animation: slideIn 0.5s ease;
+        `;
+
+        notificacion.textContent = `❌ ${mensaje}`;
+
+        document.body.appendChild(notificacion);
+
+        setTimeout(() => {
+            if (document.body.contains(notificacion)) {
+                document.body.removeChild(notificacion);
+            }
+        }, 3000);
+    }
+
+    // SISTEMA DE IMÁGENES GRANDES
+    mostrarImagenGrande(url, titulo = '') {
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay-imagen';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const contenedor = document.createElement('div');
+        contenedor.className = 'contenedor-imagen-grande';
+        contenedor.style.cssText = `
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff6b6b;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        if (titulo) {
+            const tituloElement = document.createElement('div');
+            tituloElement.textContent = titulo;
+            tituloElement.style.cssText = `
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: white;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            `;
+            contenedor.appendChild(tituloElement);
+        }
+
+        const imagen = document.createElement('img');
+        imagen.src = url;
+        imagen.className = 'imagen-grande';
+        imagen.style.cssText = `
+            max-width: 500px;
+            max-height: 500px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '❌ Cerrar';
+        botonCerrar.className = 'boton-cerrar-imagen';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 107, 107, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        contenedor.appendChild(imagen);
+        contenedor.appendChild(botonCerrar);
+        overlay.appendChild(contenedor);
+        document.body.appendChild(overlay);
+
+        // Cerrar al hacer click fuera de la imagen
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        };
     }
 
     cargarAudios() {
@@ -1158,6 +1437,9 @@ class AplicacionVocabulario {
             if (!stats.rachaDiarias) stats.rachaDiarias = 0;
             if (!stats.mejorRachaDiarias) stats.mejorRachaDiarias = 0;
             
+            // Inicializar soles si no existen
+            if (!stats.soles) stats.soles = 0;
+            
             for (const nombreMazo in this.mazos) {
                 if (!stats.mazos[nombreMazo]) {
                     stats.mazos[nombreMazo] = this.crearStatsMazoVacio();
@@ -1172,7 +1454,8 @@ class AplicacionVocabulario {
             mazos: {},
             recompensasDesbloqueadas: [],
             rachaDiarias: 0,
-            mejorRachaDiarias: 0
+            mejorRachaDiarias: 0,
+            soles: 0
         };
         
         for (const nombreMazo in this.mazos) {
@@ -1210,6 +1493,8 @@ class AplicacionVocabulario {
             lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
             lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
             diarias: document.getElementById('pantalla-diarias'),
+            tienda: document.getElementById('pantalla-tienda'),
+            toono: document.getElementById('pantalla-toono'),
             eventoDiario: document.getElementById('pantalla-evento-diario'),
             fabrizio: document.getElementById('pantalla-fabrizio')
         };
@@ -1225,6 +1510,8 @@ class AplicacionVocabulario {
         this.inicializarSeccionLastSummer();
         this.inicializarPantallasLastSummerMazos();
         this.inicializarPantallaDiarias();
+        this.inicializarPantallaTienda();
+        this.inicializarPantallaToono();
         this.inicializarPantallaEventos();
         this.inicializarPantallaFabrizio();
         
@@ -1237,6 +1524,62 @@ class AplicacionVocabulario {
                 alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
             }, 1000);
         }
+    }
+
+    inicializarPantallaTienda() {
+        const tiendaCard = document.getElementById('tienda-card');
+        if (tiendaCard) {
+            tiendaCard.addEventListener('click', () => {
+                this.mostrarPantalla('tienda');
+            });
+        }
+        
+        document.getElementById('boton-volver-menu-tienda').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+        
+        // Event listeners para botones de compra
+        document.querySelectorAll('.boton-comprar').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const itemId = parseInt(e.target.closest('.item-tienda').getAttribute('data-id'));
+                this.comprarItem(itemId);
+            });
+        });
+        
+        // Event listeners para imágenes de items
+        document.querySelectorAll('.item-imagen').forEach(imagen => {
+            imagen.addEventListener('click', (e) => {
+                const itemId = parseInt(e.target.closest('.item-tienda').getAttribute('data-id'));
+                const item = this.tienda.items.find(i => i.id === itemId);
+                if (item) {
+                    this.mostrarImagenGrande(item.imagen, item.nombre);
+                }
+            });
+        });
+        
+        this.actualizarSaldoTienda();
+    }
+
+    inicializarPantallaToono() {
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarPantalla('toono');
+            });
+        }
+        
+        document.getElementById('boton-volver-menu-toono').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+        
+        // Event listeners para imágenes de personajes
+        document.querySelectorAll('.personaje-imagen').forEach(imagen => {
+            imagen.addEventListener('click', (e) => {
+                const url = e.target.src;
+                const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
+                this.mostrarImagenGrande(url, titulo);
+            });
+        });
     }
 
     inicializarPantallaEventos() {
@@ -1395,6 +1738,22 @@ class AplicacionVocabulario {
             });
         }
         
+        // Inicializar tarjeta de tienda
+        const tiendaCard = document.getElementById('tienda-card');
+        if (tiendaCard) {
+            tiendaCard.addEventListener('click', () => {
+                this.mostrarPantalla('tienda');
+            });
+        }
+        
+        // Inicializar tarjeta de Toono Esuke
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarPantalla('toono');
+            });
+        }
+        
         // Inicializar tarjeta de Fabrizio
         const fabrizioCard = document.getElementById('fabrizio-card');
         if (fabrizioCard) {
@@ -1542,6 +1901,14 @@ class AplicacionVocabulario {
         
         elemento.innerHTML = contenidoHTML;
         
+        // Agregar event listener para mostrar imagen en grande
+        const imagen = elemento.querySelector('.recompensa-imagen');
+        if (imagen) {
+            imagen.addEventListener('click', () => {
+                this.mostrarImagenGrande(recompensa.imagen, recompensa.nombre);
+            });
+        }
+        
         if (!esLogro && esDesbloqueado) {
             elemento.style.cursor = 'pointer';
             elemento.addEventListener('click', (event) => {
@@ -1610,6 +1977,7 @@ class AplicacionVocabulario {
         this.statsGlobal.textContent = `🏆 Mazos completados al 100%: ${this.stats.mazosCompletados}`;
         this.actualizarEstadisticasDiarias();
         this.actualizarEstadisticaEvento();
+        this.actualizarEstadisticasSoles();
     }
 
     inicializarPantallaQuiz() {
@@ -1783,6 +2151,10 @@ class AplicacionVocabulario {
             this.stats.mazosCompletados++;
             statsMazo.completados100++;
             
+            // Recompensa por completar mazo al 100%: 1 Sol
+            this.agregarSoles(1);
+            this.mostrarNotificacionSoles(1, 'Mazo completado al 100%');
+            
             // CONTAR PARA EVENTO DIARIO
             this.completarMazoParaEvento();
             
@@ -1842,7 +2214,8 @@ class AplicacionVocabulario {
    Completados al 100%: ${statsMazo.completados100} veces
 
 ⭐ LOGROS GLOBALES:
-   Mazos completados al 100%: ${this.stats.mazosCompletados}`;
+   Mazos completados al 100%: ${this.stats.mazosCompletados}
+   💰 Soles obtenidos: ${porcentaje === 100 ? '1 Sol' : '0 Soles'}`;
     }
 
     reintentarMazo() {
