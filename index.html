@@ -33,6 +33,24 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN TIENDA -->
+                <div class="seccion-especial">
+                    <div class="tienda-card" id="tienda-card">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" 
+                             alt="Tienda" class="tienda-imagen">
+                        <div class="tienda-texto">🛒 Tienda</div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN TOONO ESUKE -->
+                <div class="seccion-especial">
+                    <div class="toono-card" id="toono-card">
+                        <img src="https://pbs.twimg.com/media/G6EARd6XIAEYjvU?format=jpg&name=360x360" 
+                             alt="Toono Esuke" class="toono-imagen">
+                        <div class="toono-texto">🎭 Toono Esuke</div>
+                    </div>
+                </div>
+
                 <!-- SECCIÓN LAST SUMMER -->
                 <div class="seccion-especial">
                     <div class="lastsummer-card" id="lastsummer-card">
@@ -64,6 +82,7 @@
                     <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
                     <p id="stats-diarias">✅ Tareas de hoy: 0/5</p>
                     <p id="stats-evento">🎯 Reto de hoy: Pendiente</p>
+                    <p id="stats-soles">💰 Soles: 0</p>
                 </div>
             </div>
         </div>
@@ -172,6 +191,152 @@
                 </div>
                 
                 <button id="boton-volver-menu-diarias" class="boton-principal">🏠 Volver al Menú Principal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: TIENDA -->
+        <div id="pantalla-tienda" class="pantalla">
+            <div class="contenedor">
+                <h1>🛒 Tienda 🛒</h1>
+                <p class="subtitulo">Gasta tus Soles en items especiales</p>
+                
+                <div class="saldo-tienda">
+                    <div class="saldo-texto">💰 Tienes: <span id="saldo-soles">0</span> Soles</div>
+                </div>
+                
+                <div class="contenedor-items-tienda">
+                    <div class="item-tienda" data-id="1">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 1" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Figura Coleccionable Nino</div>
+                            <div class="item-descripcion">Figura exclusiva de Nino Nakano</div>
+                            <div class="item-precio">💲 15 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="2">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 2" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Poster Autografiado</div>
+                            <div class="item-descripcion">Poster firmado por el creador</div>
+                            <div class="item-precio">💲 25 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="3">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 3" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Libro de Arte Exclusivo</div>
+                            <div class="item-descripcion">Libro con arte conceptual</div>
+                            <div class="item-precio">💲 35 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="4">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 4" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Set de Stickers</div>
+                            <div class="item-descripcion">Colección de stickers premium</div>
+                            <div class="item-precio">💲 10 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="5">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 5" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Fondo de Pantalla HD</div>
+                            <div class="item-descripcion">Fondo exclusivo para dispositivos</div>
+                            <div class="item-precio">💲 8 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="6">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 6" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Soundtrack Original</div>
+                            <div class="item-descripcion">Banda sonora completa</div>
+                            <div class="item-precio">💲 20 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="7">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 7" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Camiseta Exclusiva</div>
+                            <div class="item-descripcion">Camiseta de edición limitada</div>
+                            <div class="item-precio">💲 30 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="8">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 8" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Llavero Personalizado</div>
+                            <div class="item-descripcion">Llavero con diseño único</div>
+                            <div class="item-precio">💲 12 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="9">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 9" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Taza Coleccionable</div>
+                            <div class="item-descripcion">Taza con diseño especial</div>
+                            <div class="item-precio">💲 18 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                    
+                    <div class="item-tienda" data-id="10">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" alt="Item 10" class="item-imagen">
+                        <div class="item-info">
+                            <div class="item-nombre">Pack de Avatares</div>
+                            <div class="item-descripcion">Colección de avatares exclusivos</div>
+                            <div class="item-precio">💲 15 Soles</div>
+                        </div>
+                        <button class="boton-comprar">Comprar</button>
+                    </div>
+                </div>
+                
+                <button id="boton-volver-menu-tienda" class="boton-principal">🏠 Volver al Menú Principal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: TOONO ESUKE -->
+        <div id="pantalla-toono" class="pantalla">
+            <div class="contenedor">
+                <h1>🎭 Toono Esuke 🎭</h1>
+                <p class="subtitulo">Personajes especiales</p>
+                
+                <div class="contenedor-personajes">
+                    <div class="personaje-card" data-personaje="hermana-rubia">
+                        <img src="https://pbs.twimg.com/media/G6FAe2wWIAAIYTu?format=jpg&name=small" 
+                             alt="Hermana Rubia Rusa" class="personaje-imagen">
+                        <div class="personaje-texto">👱‍♀️ Hermana Rubia Rusa</div>
+                    </div>
+                    
+                    <div class="personaje-card" data-personaje="hermana-madre">
+                        <img src="https://pbs.twimg.com/media/G6FAHBHW8AAX4f1?format=png&name=small" 
+                             alt="Hermana y Madre" class="personaje-imagen">
+                        <div class="personaje-texto">👩‍👧 Hermana y Madre</div>
+                    </div>
+                    
+                    <div class="personaje-card" data-personaje="chica-escuela">
+                        <img src="https://pbs.twimg.com/media/G6FAoTbXAAAhbIB?format=png&name=small" 
+                             alt="Chica de la Escuela" class="personaje-imagen">
+                        <div class="personaje-texto">🎓 Chica de la Escuela</div>
+                    </div>
+                </div>
+                
+                <button id="boton-volver-menu-toono" class="boton-principal">🏠 Volver al Menú Principal</button>
             </div>
         </div>
 
