@@ -206,31 +206,31 @@ class AplicacionVocabulario {
 
         // EVENTOS ALEATORIOS EN VIVIENDA
         this.eventosAleatorios = [
-            {
-                id: 1,
-                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
-                titulo: "💖 Nino te pide un masaje 💖",
-                descripcion: "Nino está cansada y te pide un masaje relajante. ¿Quieres ayudarla?",
-                tipo: "positivo",
-                recompensa: { corazones: 15 }
-            },
-            {
-                id: 2,
-                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
-                titulo: "🍳 Cena romántica 🍳",
-                descripcion: "Nino quiere preparar una cena especial para ti. ¿Aceptas?",
-                tipo: "positivo",
-                recompensa: { corazones: 20 }
-            },
-            {
-                id: 3,
-                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
-                titulo: "🎬 Noche de películas 🎬",
-                descripcion: "Nino quiere ver una película contigo. ¿Te unes a ella?",
-                tipo: "positivo",
-                recompensa: { corazones: 10 }
-            }
-        ];
+    {
+        id: 1,
+        imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+        titulo: "💖 Nino te pide un masaje 💖",
+        descripcion: "Nino está cansada y te pide un masaje relajante. ¿Quieres ayudarla?",
+        tipo: "positivo",
+        recompensa: { corazones: 15 }
+    },
+    {
+        id: 2,
+        imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+        titulo: "🍳 Cena romántica 🍳",
+        descripcion: "Nino quiere preparar una cena especial para ti. ¿Aceptas?",
+        tipo: "positivo",
+        recompensa: { corazones: 20 }
+    },
+    {
+        id: 3,
+        imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+        titulo: "🎬 Noche de películas 🎬",
+        descripcion: "Nino quiere ver una película contigo. ¿Te unes a ella?",
+        tipo: "positivo",
+        recompensa: { corazones: 10 }
+    }
+];
 
         // SISTEMA MEJORADO PARA GITHUB PAGES
         this.esPrimeraVez = false;
@@ -1228,167 +1228,178 @@ class AplicacionVocabulario {
     }
 
     // SISTEMA DE EVENTOS ALEATORIOS EN VIVIENDA
-    verificarEventoAleatorio() {
-        const probabilidad = Math.random() * 100;
-        
-        // 50% de probabilidad de evento aleatorio
-        if (probabilidad <= 50) {
-            this.mostrarEventoAleatorio();
-        }
+   verificarEventoAleatorio() {
+    const probabilidad = Math.random() * 100;
+    
+    // 50% de probabilidad de evento aleatorio
+    if (probabilidad <= 50) {
+        this.mostrarEventoAleatorio();
+        return true;
     }
+    return false;
+}
 
-    mostrarEventoAleatorio() {
-        const evento = this.eventosAleatorios[Math.floor(Math.random() * this.eventosAleatorios.length)];
+   mostrarEventoAleatorio() {
+    const evento = this.eventosAleatorios[Math.floor(Math.random() * this.eventosAleatorios.length)];
+    
+    const overlay = document.createElement('div');
+    overlay.className = 'evento-aleatorio-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        flex-direction: column;
+    `;
+
+    const contenedor = document.createElement('div');
+    contenedor.className = 'evento-aleatorio-contenedor';
+    contenedor.style.cssText = `
+        background: linear-gradient(135deg, #ff6b6b, #ff4757);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        max-width: 500px;
+        border: 4px solid #ff0000;
+        box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+    `;
+
+    const imagen = document.createElement('img');
+    imagen.src = evento.imagen;
+    imagen.className = 'evento-aleatorio-imagen';
+    imagen.style.cssText = `
+        max-width: 400px;
+        max-height: 400px;
+        border-radius: 15px;
+        border: 3px solid white;
+        margin-bottom: 20px;
+    `;
+
+    const titulo = document.createElement('div');
+    titulo.textContent = evento.titulo;
+    titulo.className = 'evento-aleatorio-titulo';
+    titulo.style.cssText = `
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    `;
+
+    const descripcion = document.createElement('div');
+    descripcion.textContent = evento.descripcion;
+    descripcion.className = 'evento-aleatorio-descripcion';
+    descripcion.style.cssText = `
+        font-size: 1.2rem;
+        color: white;
+        margin-bottom: 25px;
+    `;
+
+    const botones = document.createElement('div');
+    botones.className = 'botones-evento-aleatorio';
+    botones.style.cssText = `
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    `;
+
+    const botonSi = document.createElement('button');
+    botonSi.textContent = '✅ Sí';
+    botonSi.className = 'boton-evento-si';
+    botonSi.style.cssText = `
+        background: linear-gradient(135deg, #32cd32, #228b22);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        border: 3px solid #228b22;
+        transition: all 0.3s ease;
+    `;
+
+    const botonNo = document.createElement('button');
+    botonNo.textContent = '❌ No';
+    botonNo.className = 'boton-evento-no';
+    botonNo.style.cssText = `
+        background: linear-gradient(135deg, #ff6b6b, #ff4757);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        border: 3px solid #ff0000;
+        transition: all 0.3s ease;
+    `;
+
+    botonSi.onmouseover = () => {
+        botonSi.style.transform = 'scale(1.05)';
+        botonSi.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
+    };
+
+    botonSi.onmouseout = () => {
+        botonSi.style.transform = 'scale(1)';
+        botonSi.style.boxShadow = 'none';
+    };
+
+    botonNo.onmouseover = () => {
+        botonNo.style.transform = 'scale(1.05)';
+        botonNo.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
+    };
+
+    botonNo.onmouseout = () => {
+        botonNo.style.transform = 'scale(1)';
+        botonNo.style.boxShadow = 'none';
+    };
+
+    botonSi.onclick = () => {
+        // Cerrar el overlay actual
+        document.body.removeChild(overlay);
         
-        const overlay = document.createElement('div');
-        overlay.className = 'evento-aleatorio-overlay';
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            flex-direction: column;
-        `;
-
-        const contenedor = document.createElement('div');
-        contenedor.className = 'evento-aleatorio-contenedor';
-        contenedor.style.cssText = `
-            background: linear-gradient(135deg, #ff6b6b, #ff4757);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            max-width: 500px;
-            border: 4px solid #ff0000;
-            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
-        `;
-
-        const imagen = document.createElement('img');
-        imagen.src = evento.imagen;
-        imagen.className = 'evento-aleatorio-imagen';
-        imagen.style.cssText = `
-            max-width: 400px;
-            max-height: 400px;
-            border-radius: 15px;
-            border: 3px solid white;
-            margin-bottom: 20px;
-        `;
-
-        const titulo = document.createElement('div');
-        titulo.textContent = evento.titulo;
-        titulo.className = 'evento-aleatorio-titulo';
-        titulo.style.cssText = `
-            font-size: 2rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        `;
-
-        const descripcion = document.createElement('div');
-        descripcion.textContent = evento.descripcion;
-        descripcion.className = 'evento-aleatorio-descripcion';
-        descripcion.style.cssText = `
-            font-size: 1.2rem;
-            color: white;
-            margin-bottom: 25px;
-        `;
-
-        const botones = document.createElement('div');
-        botones.className = 'botones-evento-aleatorio';
-        botones.style.cssText = `
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        `;
-
-        const botonSi = document.createElement('button');
-        botonSi.textContent = '✅ Sí';
-        botonSi.className = 'boton-evento-si';
-        botonSi.style.cssText = `
-            background: linear-gradient(135deg, #32cd32, #228b22);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            border: 3px solid #228b22;
-            transition: all 0.3s ease;
-        `;
-
-        const botonNo = document.createElement('button');
-        botonNo.textContent = '❌ No';
-        botonNo.className = 'boton-evento-no';
-        botonNo.style.cssText = `
-            background: linear-gradient(135deg, #ff6b6b, #ff4757);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            border: 3px solid #ff0000;
-            transition: all 0.3s ease;
-        `;
-
-        botonSi.onmouseover = () => {
-            botonSi.style.transform = 'scale(1.05)';
-            botonSi.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
-        };
-
-        botonSi.onmouseout = () => {
-            botonSi.style.transform = 'scale(1)';
-            botonSi.style.boxShadow = 'none';
-        };
-
-        botonNo.onmouseover = () => {
-            botonNo.style.transform = 'scale(1.05)';
-            botonNo.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.4)';
-        };
-
-        botonNo.onmouseout = () => {
-            botonNo.style.transform = 'scale(1)';
-            botonNo.style.boxShadow = 'none';
-        };
-
-        botonSi.onclick = () => {
-            // Aplicar recompensa del evento
+        // Reproducir video cuando elige "Sí"
+        this.reproducirVideoEvento(evento, 'si');
+        
+        // Aplicar recompensa después del video
+        setTimeout(() => {
             if (evento.recompensa.corazones) {
                 this.agregarCorazones(evento.recompensa.corazones);
+                this.mostrarNotificacion(`🎁 +${evento.recompensa.corazones} corazones por aceptar el evento`);
             }
-            
-            document.body.removeChild(overlay);
-            this.mostrarNotificacion(`🎁 +${evento.recompensa.corazones} corazones por el evento especial`);
-        };
+        }, 500);
+    };
 
-        botonNo.onclick = () => {
-            document.body.removeChild(overlay);
-            // Mostrar otro evento si eligió "No" (50% de probabilidad)
-            setTimeout(() => {
-                if (Math.random() <= 0.5) {
-                    this.mostrarEventoAleatorio();
-                }
-            }, 1000);
-        };
-
-        botones.appendChild(botonSi);
-        botones.appendChild(botonNo);
+    botonNo.onclick = () => {
+        // Cerrar el overlay actual
+        document.body.removeChild(overlay);
         
-        contenedor.appendChild(imagen);
-        contenedor.appendChild(titulo);
-        contenedor.appendChild(descripcion);
-        contenedor.appendChild(botones);
-        overlay.appendChild(contenedor);
-        document.body.appendChild(overlay);
-    }
+        // Reproducir video diferente cuando elige "No"
+        this.reproducirVideoEvento(evento, 'no');
+        
+        // Sin recompensas cuando dice "No"
+        setTimeout(() => {
+            this.mostrarNotificacion('😔 Rechazaste la oportunidad');
+        }, 500);
+    };
+
+    botones.appendChild(botonSi);
+    botones.appendChild(botonNo);
+    
+    contenedor.appendChild(imagen);
+    contenedor.appendChild(titulo);
+    contenedor.appendChild(descripcion);
+    contenedor.appendChild(botones);
+    overlay.appendChild(contenedor);
+    document.body.appendChild(overlay);
+}
 
     // SISTEMA DE TIENDA +18
     comprarItem18(itemId) {
@@ -3690,7 +3701,149 @@ class AplicacionVocabulario {
         this.mostrarPantalla('seleccion');
     }
 }
+// MÉTODO PARA REPRODUCIR VIDEO DEPENDIENDO DE LA ELECCIÓN (SÍ/NO)
+reproducirVideoEvento(evento, eleccion) {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        flex-direction: column;
+    `;
 
+    const videoContainer = document.createElement('div');
+    videoContainer.style.cssText = `
+        background: linear-gradient(135deg, ${eleccion === 'si' ? '#32cd32, #228b22' : '#ff6b6b, #ff4757'});
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        max-width: 90%;
+        max-height: 90%;
+        border: 4px solid ${eleccion === 'si' ? '#228b22' : '#ff0000'};
+        box-shadow: 0 0 50px ${eleccion === 'si' ? 'rgba(50, 205, 50, 0.5)' : 'rgba(255, 107, 107, 0.5)'};
+    `;
+
+    const titulo = document.createElement('div');
+    titulo.textContent = eleccion === 'si' ? '🎬 Aceptaste: ' + evento.titulo : '😔 Rechazaste: ' + evento.titulo;
+    titulo.style.cssText = `
+        font-size: 2rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 15px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    `;
+
+    // Videos diferentes para Sí y No
+    let videoUrl;
+    if (eleccion === 'si') {
+        // Videos positivos cuando dice SÍ
+        const videosSi = [
+            "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp4",
+            "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3",
+            "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3"
+        ];
+        videoUrl = videosSi[Math.floor(Math.random() * videosSi.length)];
+    } else {
+        // Videos negativos/tristes cuando dice NO
+        const videosNo = [
+            "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+            "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4"
+        ];
+        videoUrl = videosNo[Math.floor(Math.random() * videosNo.length)];
+    }
+
+    const video = document.createElement('video');
+    video.src = videoUrl;
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = false;
+    video.playsInline = true;
+    video.style.cssText = `
+        max-width: 500px;
+        max-height: 400px;
+        border-radius: 15px;
+        border: 3px solid white;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        background: #000;
+    `;
+
+    const mensaje = document.createElement('div');
+    mensaje.textContent = eleccion === 'si' ? '✨ ¡Gracias por aceptar! ✨' : '💔 Nino está triste... 💔';
+    mensaje.style.cssText = `
+        font-size: 1.3rem;
+        color: white;
+        margin: 15px 0;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    `;
+
+    const botonCerrar = document.createElement('button');
+    botonCerrar.textContent = '❌ Cerrar Video';
+    botonCerrar.style.cssText = `
+        background: linear-gradient(135deg, #4a90e2, #7b68ee);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+        border: 3px solid #4169e1;
+        transition: all 0.3s ease;
+    `;
+
+    botonCerrar.onmouseover = () => {
+        botonCerrar.style.transform = 'scale(1.05)';
+        botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+    };
+
+    botonCerrar.onmouseout = () => {
+        botonCerrar.style.transform = 'scale(1)';
+        botonCerrar.style.boxShadow = 'none';
+    };
+
+    botonCerrar.onclick = () => {
+        video.pause();
+        document.body.removeChild(overlay);
+    };
+
+    video.onended = () => {
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 2000);
+    };
+
+    video.onerror = () => {
+        console.log('❌ Error cargando el video del evento');
+        titulo.innerHTML += '<br><small>❌ Error cargando el video</small>';
+    };
+
+    videoContainer.appendChild(titulo);
+    videoContainer.appendChild(video);
+    videoContainer.appendChild(mensaje);
+    videoContainer.appendChild(botonCerrar);
+    overlay.appendChild(videoContainer);
+    document.body.appendChild(overlay);
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log('❌ Error reproduciendo video del evento:', error);
+            video.muted = true;
+            video.play();
+        });
+    }
+}    
 // Inicializar la aplicación cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
     new AplicacionVocabulario();
