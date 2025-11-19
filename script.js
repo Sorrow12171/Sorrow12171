@@ -30,10 +30,10 @@ class AplicacionVocabulario {
                 {
                     id: 2,
                     nombre: "Defensa contra Ichika",
-                    imagenInicio: "https://i.pximg.net/img-master/img/2025/08/06/08/00/09/133544107_p1_master1200.jpg",
+                    imagenInicio: "https://pbs.twimg.com/media/G6E4i2TWQAA5Eib?format=jpg&name=small",
                     textoInicio: "Ichika está intentando que Nino te olvide y te engañe con otro chico. Si no completas 10 mazos hoy, Nino cedera",
                     imagenExito: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
-                    textoExito: "Demostaste tu dominancia con Nino y no permitiste a Ichika que se la llevara con otro chico",
+                    textoExito: "Demostraste tu dominancia con Nino y no permitiste a Ichika que se la llevara con otro chico",
                     mazosRequeridos: 10,
                     completado: false
                 },
