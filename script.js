@@ -658,6 +658,7 @@ class AplicacionVocabulario {
             
             // Si es un nuevo día o la fecha cambió, reiniciar eventos
             if (eventoData.fecha !== hoy || esNuevoDia) {
+                console.log('🆕 Nuevo día - reiniciando eventos');
                 this.reiniciarEventosDiarios();
                 this.generarNuevoEvento();
             } else {
@@ -667,13 +668,16 @@ class AplicacionVocabulario {
                 
                 // Verificar si ya se completó el evento de hoy
                 if (eventoData.eventoCompletado) {
+                    console.log('✅ Evento ya completado hoy - mostrando menú principal');
                     this.mostrarPantalla('seleccion');
                 } else {
+                    console.log('🎯 Mostrando evento diario pendiente');
                     this.mostrarEventoDiario();
                 }
             }
         } else {
             // Primera vez - generar evento
+            console.log('🆕 Primera vez - generando nuevo evento');
             this.generarNuevoEvento();
         }
     }
@@ -701,13 +705,18 @@ class AplicacionVocabulario {
             this.mostrarEventoDiario();
         } else {
             // Todos los eventos completados, ir directamente al menú
+            console.log('✅ Todos los eventos completados - mostrando menú principal');
             this.mostrarPantalla('seleccion');
         }
     }
 
     mostrarEventoDiario() {
         const evento = this.eventosDiarios.eventoActual;
-        if (!evento) return;
+        if (!evento) {
+            console.log('❌ No hay evento actual - mostrando menú principal');
+            this.mostrarPantalla('seleccion');
+            return;
+        }
         
         const contenidoEvento = document.getElementById('contenido-evento');
         contenidoEvento.innerHTML = `
