@@ -36,6 +36,24 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN NOVIA RPG -->
+                <div class="seccion-especial">
+                    <div class="novia-rpg-card" id="novia-rpg-card">
+                        <img src="https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium" 
+                             alt="Novia RPG" class="novia-rpg-imagen">
+                        <div class="novia-rpg-texto">💖 Novia RPG</div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN MISIONES SEMANALES -->
+                <div class="seccion-especial">
+                    <div class="misiones-card" id="misiones-card">
+                        <img src="https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small" 
+                             alt="Misiones Semanales" class="misiones-imagen">
+                        <div class="misiones-texto">📅 Misiones Semanales</div>
+                    </div>
+                </div>
+
                 <!-- SECCIÓN TIENDA -->
                 <div class="seccion-especial">
                     <div class="tienda-card" id="tienda-card">
@@ -71,21 +89,13 @@
                         <div class="fabrizio-texto">📅 Fabrizio 2025</div>
                     </div>
                 </div>
-
-                <!-- SECCIÓN NOVIA -->
-                <div class="seccion-especial">
-                    <div class="novia-card" id="novia-card">
-                        <img src="https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium" 
-                             alt="Novia" class="novia-imagen">
-                        <div class="novia-texto">💖 Zahiry mi puta culona tetona 💖</div>
-                    </div>
-                </div>
                 
                 <div class="estadisticas-globales">
                     <p id="stats-global">🏆 Mazos completados al 100%: 0</p>
                     <p id="stats-diarias">✅ Tareas de hoy: 0/5</p>
                     <p id="stats-evento">🎯 Reto de hoy: Pendiente</p>
                     <p id="stats-soles">💰 Soles: 0</p>
+                    <p id="stats-corazones">💖 Corazones: 0/1000</p>
                 </div>
             </div>
         </div>
@@ -194,6 +204,312 @@
                 </div>
                 
                 <button id="boton-volver-menu-diarias" class="boton-principal">🏠 Volver al Menú Principal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: NOVIA RPG -->
+        <div id="pantalla-novia-rpg" class="pantalla">
+            <div class="contenedor">
+                <h1>💖 Novia RPG 💖</h1>
+                <p class="subtitulo">Cuida de tu novia y gana su amor</p>
+                
+                <!-- BARRA DE CORAZONES -->
+                <div class="corazones-container">
+                    <div class="corazones-info">
+                        <div class="corazones-texto">💖 Corazones: <span id="corazones-actual">0</span>/1000</div>
+                        <div class="corazones-bar">
+                            <div class="corazones-progreso" id="corazones-progreso"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACCIONES DIARIAS -->
+                <div class="seccion-acciones">
+                    <h2>🌟 Acciones Diarias</h2>
+                    <p class="subtitulo">Haz estas acciones cada día para hacerla feliz</p>
+                    
+                    <div class="contenedor-acciones-diarias">
+                        <div class="accion-diaria" data-id="saludo">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">👋 Saludar</div>
+                                    <div class="accion-descripcion">Un dulce saludo mañanero</div>
+                                </div>
+                                <div class="accion-recompensa">+5 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="caricia">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">🤗 Acariciar cabeza</div>
+                                    <div class="accion-descripcion">Una suave caricia en su cabeza</div>
+                                </div>
+                                <div class="accion-recompensa">+10 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="abrazar">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">🫂 Abrazar</div>
+                                    <div class="accion-descripcion">Un cálido y fuerte abrazo</div>
+                                </div>
+                                <div class="accion-recompensa">+15 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="beso-mejilla">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">😚 Beso en mejilla</div>
+                                    <div class="accion-descripcion">Un tierno beso en la mejilla</div>
+                                </div>
+                                <div class="accion-recompensa">+20 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="halago">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">💝 Halagar</div>
+                                    <div class="accion-descripcion">Decirle lo especial que es</div>
+                                </div>
+                                <div class="accion-recompensa">+8 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="cocinar">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">🍳 Cocinar juntos</div>
+                                    <div class="accion-descripcion">Preparar una comida especial</div>
+                                </div>
+                                <div class="accion-recompensa">+25 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="paseo">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">🌅 Paseo nocturno</div>
+                                    <div class="accion-descripcion">Caminar bajo las estrellas</div>
+                                </div>
+                                <div class="accion-recompensa">+18 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="masaje">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">💆‍♀️ Masaje relajante</div>
+                                    <div class="accion-descripcion">Un masaje para relajarse</div>
+                                </div>
+                                <div class="accion-recompensa">+22 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="bailar">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">💃 Bailar juntos</div>
+                                    <div class="accion-descripcion">Bailar al ritmo de la música</div>
+                                </div>
+                                <div class="accion-recompensa">+30 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                        
+                        <div class="accion-diaria" data-id="declaracion">
+                            <div class="accion-contenido">
+                                <div class="accion-info">
+                                    <div class="accion-nombre">💌 Declaración de amor</div>
+                                    <div class="accion-descripcion">Decirle cuánto la amas</div>
+                                </div>
+                                <div class="accion-recompensa">+50 💖</div>
+                            </div>
+                            <button class="boton-accion">Realizar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECOMPENSAS ESPECIALES -->
+                <div class="seccion-recompensas">
+                    <h2>🎁 Recompensas Especiales</h2>
+                    <p class="subtitulo">Desbloquea premios especiales con corazones</p>
+                    
+                    <div class="contenedor-recompensas-especiales">
+                        <div class="recompensa-especial" data-id="flores">
+                            <div class="recompensa-contenido">
+                                <img src="https://pbs.twimg.com/media/GohHxZcXAAAzv1p?format=jpg&name=small" 
+                                     alt="Flores" class="recompensa-imagen">
+                                <div class="recompensa-info">
+                                    <div class="recompensa-nombre">💐 Ramo de flores</div>
+                                    <div class="recompensa-descripcion">Un hermoso ramo para ella</div>
+                                    <div class="recompensa-costo">Costo: 50 💖</div>
+                                </div>
+                            </div>
+                            <button class="boton-recompensa">Ofrecer</button>
+                        </div>
+                        
+                        <div class="recompensa-especial" data-id="cena">
+                            <div class="recompensa-contenido">
+                                <img src="https://pbs.twimg.com/media/Gov2VBlXwAATAja?format=png&name=small" 
+                                     alt="Cena" class="recompensa-imagen">
+                                <div class="recompensa-info">
+                                    <div class="recompensa-nombre">🍽️ Cena romántica</div>
+                                    <div class="recompensa-descripcion">Una cena a la luz de velas</div>
+                                    <div class="recompensa-costo">Costo: 100 💖</div>
+                                </div>
+                            </div>
+                            <button class="boton-recompensa">Ofrecer</button>
+                        </div>
+                        
+                        <div class="recompensa-especial" data-id="joyas">
+                            <div class="recompensa-contenido">
+                                <img src="https://pbs.twimg.com/media/G5gV7afWgAAtIwI?format=png&name=small" 
+                                     alt="Joyas" class="recompensa-imagen">
+                                <div class="recompensa-info">
+                                    <div class="recompensa-nombre">💎 Joyas elegantes</div>
+                                    <div class="recompensa-descripcion">Un regalo muy especial</div>
+                                    <div class="recompensa-costo">Costo: 200 💖</div>
+                                </div>
+                            </div>
+                            <button class="boton-recompensa">Ofrecer</button>
+                        </div>
+                        
+                        <div class="recompensa-especial" data-id="viaje">
+                            <div class="recompensa-contenido">
+                                <img src="https://pbs.twimg.com/media/G5_an4LXEAAnxQY?format=jpg&name=small" 
+                                     alt="Viaje" class="recompensa-imagen">
+                                <div class="recompensa-info">
+                                    <div class="recompensa-nombre">✈️ Viaje romántico</div>
+                                    <div class="recompensa-descripcion">Un viaje inolvidable juntos</div>
+                                    <div class="recompensa-costo">Costo: 500 💖</div>
+                                </div>
+                            </div>
+                            <button class="boton-recompensa">Ofrecer</button>
+                        </div>
+                        
+                        <div class="recompensa-especial" data-id="anillo">
+                            <div class="recompensa-contenido">
+                                <img src="https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium" 
+                                     alt="Anillo" class="recompensa-imagen">
+                                <div class="recompensa-info">
+                                    <div class="recompensa-nombre">💍 Anillo de compromiso</div>
+                                    <div class="recompensa-descripcion">La promesa más importante</div>
+                                    <div class="recompensa-costo">Costo: 1000 💖</div>
+                                </div>
+                            </div>
+                            <button class="boton-recompensa">Ofrecer</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="boton-volver-menu-novia-rpg" class="boton-principal">🏠 Volver al Menú Principal</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: MISIONES SEMANALES -->
+        <div id="pantalla-misiones" class="pantalla">
+            <div class="contenedor">
+                <h1>📅 Misiones Semanales 📅</h1>
+                <p class="subtitulo">Completa mazos para ganar recompensas semanales</p>
+                
+                <div class="info-semanal">
+                    <div class="semana-info">
+                        <div class="semana-texto">Semana actual: <span id="numero-semana">1</span></div>
+                        <div class="progreso-semanal">Mazos completados esta semana: <span id="mazos-semana">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="contenedor-misiones">
+                    <div class="mision-semanal" data-id="1">
+                        <div class="mision-contenido">
+                            <div class="mision-info">
+                                <div class="mision-nombre">Principiante dedicado</div>
+                                <div class="mision-descripcion">Completa 5 mazos al 100% esta semana</div>
+                                <div class="mision-progreso">
+                                    <div class="mision-bar">
+                                        <div class="mision-progreso-bar" data-progreso="0"></div>
+                                    </div>
+                                    <div class="mision-texto">0/5 mazos</div>
+                                </div>
+                            </div>
+                            <div class="mision-recompensa">
+                                <div class="recompensa-cantidad">10 💰</div>
+                                <div class="recompensa-estado">🔒 Pendiente</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mision-semanal" data-id="2">
+                        <div class="mision-contenido">
+                            <div class="mision-info">
+                                <div class="mision-nombre">Estudiante constante</div>
+                                <div class="mision-descripcion">Completa 15 mazos al 100% esta semana</div>
+                                <div class="mision-progreso">
+                                    <div class="mision-bar">
+                                        <div class="mision-progreso-bar" data-progreso="0"></div>
+                                    </div>
+                                    <div class="mision-texto">0/15 mazos</div>
+                                </div>
+                            </div>
+                            <div class="mision-recompensa">
+                                <div class="recompensa-cantidad">25 💰</div>
+                                <div class="recompensa-estado">🔒 Pendiente</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mision-semanal" data-id="3">
+                        <div class="mision-contenido">
+                            <div class="mision-info">
+                                <div class="mision-nombre">Maestro del vocabulario</div>
+                                <div class="mision-descripcion">Completa 30 mazos al 100% esta semana</div>
+                                <div class="mision-progreso">
+                                    <div class="mision-bar">
+                                        <div class="mision-progreso-bar" data-progreso="0"></div>
+                                    </div>
+                                    <div class="mision-texto">0/30 mazos</div>
+                                </div>
+                            </div>
+                            <div class="mision-recompensa">
+                                <div class="recompensa-cantidad">50 💰</div>
+                                <div class="recompensa-estado">🔒 Pendiente</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mision-semanal" data-id="4">
+                        <div class="mision-contenido">
+                            <div class="mision-info">
+                                <div class="mision-nombre">Leyenda japonesa</div>
+                                <div class="mision-descripcion">Completa 50 mazos al 100% esta semana</div>
+                                <div class="mision-progreso">
+                                    <div class="mision-bar">
+                                        <div class="mision-progreso-bar" data-progreso="0"></div>
+                                    </div>
+                                    <div class="mision-texto">0/50 mazos</div>
+                                </div>
+                            </div>
+                            <div class="mision-recompensa">
+                                <div class="recompensa-cantidad">100 💰</div>
+                                <div class="recompensa-estado">🔒 Pendiente</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="boton-volver-menu-misiones" class="boton-principal">🏠 Volver al Menú Principal</button>
             </div>
         </div>
 
