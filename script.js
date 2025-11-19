@@ -659,37 +659,46 @@ class AplicacionVocabulario {
         }, 60000);
     }
 
-    // SISTEMA DE EVENTOS DIARIOS
+    // SISTEMA MEJORADO DE EVENTOS DIARIOS
     verificarEventoDiario() {
         const hoy = new Date().toDateString();
         const datosEvento = localStorage.getItem('eventoDiario');
         
-        // Verificar si es un nuevo día (después de las 3 AM)
-        const ahora = new Date();
-        const horaActual = ahora.getHours();
-        const esNuevoDia = horaActual >= 3; // Se reinicia después de las 3 AM
+        console.log('📅 Verificando evento diario...');
+        console.log('Fecha actual:', hoy);
         
         if (datosEvento) {
             const eventoData = JSON.parse(datosEvento);
+            console.log('Datos del evento guardados:', eventoData);
             
-            // Si es un nuevo día o la fecha cambió, reiniciar eventos
-            if (eventoData.fecha !== hoy || esNuevoDia) {
+            // Verificar si es un nuevo día (después de las 3 AM)
+            const ahora = new Date();
+            const horaActual = ahora.getHours();
+            const esNuevoDia = horaActual >= 3 && eventoData.fecha !== hoy;
+            
+            console.log('Hora actual:', horaActual);
+            console.log('¿Es nuevo día?', esNuevoDia);
+            
+            if (esNuevoDia) {
                 console.log('🆕 Nuevo día - reiniciando eventos');
                 this.reiniciarEventosDiarios();
                 this.generarNuevoEvento();
-            } else {
+            } else if (eventoData.fecha === hoy) {
                 // Cargar evento del día actual
                 this.eventosDiarios.eventoActual = eventoData.eventoActual;
                 this.eventosDiarios.mazosCompletadosHoy = eventoData.mazosCompletadosHoy || 0;
                 
-                // Verificar si ya se completó el evento de hoy
-                if (eventoData.eventoCompletado) {
-                    console.log('✅ Evento ya completado hoy - mostrando menú principal');
+                // Verificar si ya se completó el evento de hoy o si ya se aceptó
+                if (eventoData.eventoCompletado || eventoData.yaAceptado) {
+                    console.log('✅ Evento ya completado/aceptado hoy - mostrando menú principal');
                     this.mostrarPantalla('seleccion');
                 } else {
                     console.log('🎯 Mostrando evento diario pendiente');
                     this.mostrarEventoDiario();
                 }
+            } else {
+                console.log('📅 Fecha diferente - generando nuevo evento');
+                this.generarNuevoEvento();
             }
         } else {
             // Primera vez - generar evento
@@ -742,6 +751,22 @@ class AplicacionVocabulario {
             <div class="progreso-evento">Mazos requeridos: ${evento.mazosRequeridos}</div>
         `;
         
+        // Configurar botones
+        const botonAceptar = document.getElementById('boton-aceptar-reto');
+        const botonCerrar = document.getElementById('boton-cerrar-evento');
+        
+        // Verificar si ya fue aceptado
+        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario') || '{}');
+        if (datosEvento.yaAceptado) {
+            botonAceptar.textContent = '✅ Ya Aceptado';
+            botonAceptar.disabled = true;
+            botonAceptar.classList.add('aceptado');
+        } else {
+            botonAceptar.textContent = 'Aceptar el Reto';
+            botonAceptar.disabled = false;
+            botonAceptar.classList.remove('aceptado');
+        }
+        
         this.mostrarPantalla('evento-diario');
     }
 
@@ -750,16 +775,44 @@ class AplicacionVocabulario {
             fecha: new Date().toDateString(),
             eventoActual: this.eventosDiarios.eventoActual,
             mazosCompletadosHoy: this.eventosDiarios.mazosCompletadosHoy,
-            eventoCompletado: false
+            eventoCompletado: false,
+            yaAceptado: false
         };
         localStorage.setItem('eventoDiario', JSON.stringify(datos));
+    }
+
+    aceptarReto() {
+        console.log('🎯 Reto aceptado');
+        
+        // Actualizar datos del evento
+        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario'));
+        datosEvento.yaAceptado = true;
+        localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
+        
+        // Actualizar botón
+        const botonAceptar = document.getElementById('boton-aceptar-reto');
+        botonAceptar.textContent = '✅ Ya Aceptado';
+        botonAceptar.disabled = true;
+        botonAceptar.classList.add('aceptado');
+        
+        // Mostrar notificación
+        this.mostrarNotificacionSoles(0, '¡Reto aceptado! Completa los mazos para ganar 30 Soles');
+        
+        // Ir al menú principal después de un breve delay
+        setTimeout(() => {
+            this.mostrarPantalla('seleccion');
+        }, 1500);
     }
 
     completarMazoParaEvento() {
         if (!this.eventosDiarios.eventoActual) return;
         
         this.eventosDiarios.mazosCompletadosHoy++;
-        this.guardarEventoDiario();
+        
+        // Actualizar datos guardados
+        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario'));
+        datosEvento.mazosCompletadosHoy = this.eventosDiarios.mazosCompletadosHoy;
+        localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
         
         // Actualizar estadística en pantalla principal
         this.actualizarEstadisticaEvento();
@@ -1526,6 +1579,16 @@ class AplicacionVocabulario {
         }
     }
 
+    inicializarPantallaEventos() {
+        document.getElementById('boton-aceptar-reto').onclick = () => {
+            this.aceptarReto();
+        };
+        
+        document.getElementById('boton-cerrar-evento').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+    }
+
     inicializarPantallaTienda() {
         const tiendaCard = document.getElementById('tienda-card');
         if (tiendaCard) {
@@ -1580,12 +1643,6 @@ class AplicacionVocabulario {
                 this.mostrarImagenGrande(url, titulo);
             });
         });
-    }
-
-    inicializarPantallaEventos() {
-        document.getElementById('boton-aceptar-reto').onclick = () => {
-            this.mostrarPantalla('seleccion');
-        };
     }
 
     inicializarPantallaFabrizio() {
