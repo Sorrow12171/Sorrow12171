@@ -14,7 +14,7 @@ class AplicacionVocabulario {
         this.videoZahiryUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4';
         this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000;
 
-        // SISTEMA DE EVENTOS DIARIOS
+        // SISTEMA DE EVENTOS DIARIOS CON FALLO TEMPORAL
         this.eventosDiarios = {
             eventos: [
                 {
@@ -24,6 +24,8 @@ class AplicacionVocabulario {
                     textoInicio: "¡Las quitillizas están con sus amantes! Recupéralas si no completas 5 mazos desde ahora las perderás",
                     imagenExito: "https://pbs.twimg.com/media/G5hQ9lxX0AAZFPX?format=jpg&name=medium", 
                     textoExito: "¡Las recuperaste! Bien hecho",
+                    imagenFallo: "https://pbs.twimg.com/media/G6EA3MPW0AAdAIi?format=png&name=small",
+                    textoFallo: "¡Fallaste! Las quitillizas se quedaron con sus amantes",
                     mazosRequeridos: 5,
                     completado: false
                 },
@@ -34,6 +36,8 @@ class AplicacionVocabulario {
                     textoInicio: "Ichika está intentando que Nino te olvide y te engañe con otro chico. Si no completas 10 mazos hoy, Nino cedera",
                     imagenExito: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
                     textoExito: "Demostraste tu dominancia con Nino y no permitiste a Ichika que se la llevara con otro chico",
+                    imagenFallo: "https://pbs.twimg.com/media/G6E4i2TWQAA5Eib?format=jpg&name=small",
+                    textoFallo: "¡Fallaste! Ichika logró que Nino te olvidara y ahora está con otro chico",
                     mazosRequeridos: 10,
                     completado: false
                 },
@@ -44,6 +48,8 @@ class AplicacionVocabulario {
                     textoInicio: "El profesor trata de llevarse a Nino de ti. Tendrás que completar 20 mazos hoy para recuperarla",
                     imagenExito: "https://pbs.twimg.com/media/G4OWnyyXEAAkOeh?format=jpg&name=medium",
                     textoExito: "No dejaste que el profesor te la robara. ¡Bien hecho! :D",
+                    imagenFallo: "https://pbs.twimg.com/media/G5PbknPWkAAfgjK?format=jpg&name=medium",
+                    textoFallo: "¡Fallaste! El profesor se llevó a Nino y ahora es suya",
                     mazosRequeridos: 20,
                     completado: false
                 }
@@ -659,7 +665,7 @@ class AplicacionVocabulario {
         }, 60000);
     }
 
-    // SISTEMA MEJORADO DE EVENTOS DIARIOS
+    // SISTEMA MEJORADO DE EVENTOS DIARIOS CON FALLO TEMPORAL
     verificarEventoDiario() {
         const hoy = new Date().toDateString();
         const datosEvento = localStorage.getItem('eventoDiario');
@@ -680,9 +686,18 @@ class AplicacionVocabulario {
             console.log('¿Es nuevo día?', esNuevoDia);
             
             if (esNuevoDia) {
-                console.log('🆕 Nuevo día - reiniciando eventos');
-                this.reiniciarEventosDiarios();
-                this.generarNuevoEvento();
+                console.log('🆕 Nuevo día - verificando si falló el evento anterior');
+                
+                // Verificar si el evento anterior se completó o falló
+                if (eventoData.eventoActual && !eventoData.eventoCompletado && eventoData.yaAceptado) {
+                    // El usuario falló el evento del día anterior
+                    console.log('❌ El usuario falló el evento del día anterior');
+                    this.mostrarFalloEventoAnterior(eventoData.eventoActual);
+                } else {
+                    console.log('✅ Evento anterior completado o no aceptado - continuando normalmente');
+                    this.reiniciarEventosDiarios();
+                    this.generarNuevoEvento();
+                }
             } else if (eventoData.fecha === hoy) {
                 // Cargar evento del día actual
                 this.eventosDiarios.eventoActual = eventoData.eventoActual;
@@ -707,16 +722,134 @@ class AplicacionVocabulario {
         }
     }
 
+    // NUEVO MÉTODO: Mostrar fallo del evento anterior
+    mostrarFalloEventoAnterior(eventoAnterior) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const falloContainer = document.createElement('div');
+        falloContainer.style.cssText = `
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #FF0000;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = '💔 ¡FALLASTE EL EVENTO! 💔';
+        titulo.style.cssText = `
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = eventoAnterior.imagenFallo;
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        `;
+
+        const mensaje = document.createElement('div');
+        mensaje.textContent = eventoAnterior.textoFallo;
+        mensaje.style.cssText = `
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const consecuencia = document.createElement('div');
+        consecuencia.textContent = '😔 No obtuviste recompensa por este evento';
+        consecuencia.style.cssText = `
+            font-size: 1.3rem;
+            color: #ffd700;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+        `;
+
+        const botonContinuar = document.createElement('button');
+        botonContinuar.textContent = '😞 Continuar';
+        botonContinuar.style.cssText = `
+            background: linear-gradient(135deg, #666666, #888888);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid #555555;
+            transition: all 0.3s ease;
+        `;
+
+        botonContinuar.onmouseover = () => {
+            botonContinuar.style.transform = 'scale(1.05)';
+            botonContinuar.style.boxShadow = '0 5px 15px rgba(102, 102, 102, 0.4)';
+        };
+
+        botonContinuar.onmouseout = () => {
+            botonContinuar.style.transform = 'scale(1)';
+            botonContinuar.style.boxShadow = 'none';
+        };
+
+        botonContinuar.onclick = () => {
+            document.body.removeChild(overlay);
+            // Reiniciar eventos y generar nuevo evento (el evento fallado vuelve al pool)
+            this.reiniciarEventosDiarios();
+            this.generarNuevoEvento();
+        };
+
+        falloContainer.appendChild(titulo);
+        falloContainer.appendChild(imagen);
+        falloContainer.appendChild(mensaje);
+        falloContainer.appendChild(consecuencia);
+        falloContainer.appendChild(botonContinuar);
+        overlay.appendChild(falloContainer);
+        document.body.appendChild(overlay);
+    }
+
     reiniciarEventosDiarios() {
         this.eventosDiarios.mazosCompletadosHoy = 0;
+        
+        // Reiniciar todos los eventos (los eventos fallados vuelven al pool)
         this.eventosDiarios.eventos.forEach(evento => {
             evento.completado = false;
         });
+        
         localStorage.removeItem('eventoDiario');
     }
 
     generarNuevoEvento() {
-        // Seleccionar evento aleatorio que no esté completado
+        // Seleccionar evento aleatorio que no esté completado (todos están disponibles)
         const eventosDisponibles = this.eventosDiarios.eventos.filter(evento => !evento.completado);
         
         if (eventosDisponibles.length > 0) {
@@ -729,9 +862,10 @@ class AplicacionVocabulario {
             // Mostrar evento
             this.mostrarEventoDiario();
         } else {
-            // Todos los eventos completados, ir directamente al menú
-            console.log('✅ Todos los eventos completados - mostrando menú principal');
-            this.mostrarPantalla('seleccion');
+            // Todos los eventos completados, reiniciar todos
+            console.log('🔄 Todos los eventos completados - reiniciando pool de eventos');
+            this.reiniciarEventosDiarios();
+            this.generarNuevoEvento();
         }
     }
 
