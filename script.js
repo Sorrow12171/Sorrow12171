@@ -183,11 +183,124 @@ class AplicacionVocabulario {
         this.videoZahiryUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4';
         this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000;
 
-        // NUEVO: Sistema de evento en vivienda
+        // NUEVO: Sistema de evento en vivienda - 10 EVENTOS NUEVOS
         this.videosVivienda = {
             si: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4',
             no: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4'
         };
+
+        this.eventosVivienda = [
+            {
+                id: 1,
+                nombre: "Noche Romántica",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino te preparó una cena especial... ¿Quieres pasar una noche romántica con ella?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 30,
+                corazonesNo: -15
+            },
+            {
+                id: 2,
+                nombre: "Baño Juntos",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino te invita a un baño relajante juntos... ¿Aceptas esta intimidad?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 25,
+                corazonesNo: -10
+            },
+            {
+                id: 3,
+                nombre: "Masaje Especial",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino quiere darte un masaje muy especial... ¿Te dejas consentir?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 20,
+                corazonesNo: -8
+            },
+            {
+                id: 4,
+                nombre: "Sorpresa en el Dormitorio",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino tiene una sorpresa especial para ti en el dormitorio... ¿Quieres ver qué es?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 35,
+                corazonesNo: -20
+            },
+            {
+                id: 5,
+                nombre: "Juego de Roles",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino quiere jugar a los roles contigo... ¿Te animas a esta fantasía?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 28,
+                corazonesNo: -12
+            },
+            {
+                id: 6,
+                nombre: "Amanecer Juntos",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino te pide que pasen el amanecer juntos en la cama... ¿Aceptas?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 22,
+                corazonesNo: -10
+            },
+            {
+                id: 7,
+                nombre: "Fotos Íntimas",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino quiere tomar fotos íntimas contigo... ¿Te atreves?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 40,
+                corazonesNo: -25
+            },
+            {
+                id: 8,
+                nombre: "Cita en la Cocina",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino te espera en la cocina para algo picante... ¿Vas con ella?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 18,
+                corazonesNo: -8
+            },
+            {
+                id: 9,
+                nombre: "Vestidor Secreto",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino te llama al vestidor para mostrarte algo especial... ¿Entras?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 32,
+                corazonesNo: -18
+            },
+            {
+                id: 10,
+                nombre: "Noche de Película",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino quiere ver una película 'especial' contigo en el sofá... ¿Qué decides?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 15,
+                corazonesNo: -5
+            },
+            {
+                id: 11,
+                nombre: "Sorpresa en el Jardín",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                pregunta: "Nino te espera en el jardín con una sorpresa bajo la luz de la luna... ¿Vas?",
+                videoSi: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                videoNo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                corazonesSi: 26,
+                corazonesNo: -14
+            }
+        ];
 
         // SISTEMA DE EVENTOS DIARIOS CON FALLO TEMPORAL
         this.eventosDiarios = {
@@ -506,14 +619,14 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
-    // NUEVO: Sistema de evento en vivienda
+    // NUEVO: Sistema de evento en vivienda - CON 10 EVENTOS NUEVOS
     verificarEventoVivienda() {
         // 50% de probabilidad de que aparezca el evento
         const probabilidad = Math.random() < 0.5;
         
         if (probabilidad) {
             console.log('🏠 ¡Evento de vivienda activado!');
-            this.mostrarEventoVivienda();
+            this.mostrarEventoViviendaAleatorio();
             return true;
         } else {
             console.log('🏠 No hay evento de vivienda esta vez');
@@ -521,7 +634,13 @@ class AplicacionVocabulario {
         }
     }
 
-    mostrarEventoVivienda() {
+    mostrarEventoViviendaAleatorio() {
+        // Seleccionar un evento aleatorio de los 10 disponibles
+        const eventoAleatorio = this.eventosVivienda[Math.floor(Math.random() * this.eventosVivienda.length)];
+        this.mostrarEventoVivienda(eventoAleatorio);
+    }
+
+    mostrarEventoVivienda(evento) {
         const overlay = document.createElement('div');
         overlay.id = 'overlay-evento-vivienda';
         overlay.style.cssText = `
@@ -551,7 +670,7 @@ class AplicacionVocabulario {
         `;
 
         const titulo = document.createElement('div');
-        titulo.textContent = '💖 EVENTO ESPECIAL EN LA VIVIENDA 💖';
+        titulo.textContent = `💖 ${evento.nombre} 💖`;
         titulo.style.cssText = `
             font-size: 2rem;
             font-weight: bold;
@@ -561,7 +680,7 @@ class AplicacionVocabulario {
         `;
 
         const imagen = document.createElement('img');
-        imagen.src = "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium";
+        imagen.src = evento.imagen;
         imagen.style.cssText = `
             max-width: 300px;
             max-height: 300px;
@@ -572,7 +691,7 @@ class AplicacionVocabulario {
         `;
 
         const pregunta = document.createElement('div');
-        pregunta.textContent = 'Nino te mira con ojos seductores... ¿Quieres pasar un momento especial con ella?';
+        pregunta.textContent = evento.pregunta;
         pregunta.style.cssText = `
             font-size: 1.5rem;
             color: white;
@@ -646,12 +765,12 @@ class AplicacionVocabulario {
         };
 
         botonSi.onclick = () => {
-            this.reproducirVideoVivienda('si');
+            this.reproducirVideoVivienda(evento, 'si');
             document.body.removeChild(overlay);
         };
 
         botonNo.onclick = () => {
-            this.reproducirVideoVivienda('no');
+            this.reproducirVideoVivienda(evento, 'no');
             document.body.removeChild(overlay);
         };
 
@@ -666,8 +785,8 @@ class AplicacionVocabulario {
         document.body.appendChild(overlay);
     }
 
-    reproducirVideoVivienda(opcion) {
-        const videoUrl = this.videosVivienda[opcion];
+    reproducirVideoVivienda(evento, opcion) {
+        const videoUrl = opcion === 'si' ? evento.videoSi : evento.videoNo;
         const mensaje = opcion === 'si' ? 
             '💖 ¡Nino está muy feliz! Disfruten este momento especial.' : 
             '😔 Nino se siente rechazada...';
@@ -800,11 +919,11 @@ class AplicacionVocabulario {
 
         // Efectos en el sistema según la opción elegida
         if (opcion === 'si') {
-            this.agregarCorazones(20);
-            this.mostrarNotificacion('💖 +20 corazones - Nino está muy feliz');
+            this.agregarCorazones(evento.corazonesSi);
+            this.mostrarNotificacion(`💖 +${evento.corazonesSi} corazones - Nino está muy feliz`);
         } else {
-            this.quitarCorazones(10);
-            this.mostrarNotificacion('💔 -10 corazones - Nino se siente rechazada');
+            this.quitarCorazones(Math.abs(evento.corazonesNo));
+            this.mostrarNotificacion(`💔 ${evento.corazonesNo} corazones - Nino se siente rechazada`);
         }
     }
 
@@ -872,7 +991,7 @@ class AplicacionVocabulario {
     quitarCorazones(cantidad) {
         this.sistemaNovia.corazones = Math.max(0, this.sistemaNovia.corazones - cantidad);
         this.guardarSistemaNovia();
-        this.actualizarPantallaNoviaRPG();
+            this.actualizarPantallaNoviaRPG();
         this.mostrarNotificacion(`💔 -${cantidad} corazones`);
     }
 
