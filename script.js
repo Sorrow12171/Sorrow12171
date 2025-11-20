@@ -2843,13 +2843,13 @@ class AplicacionVocabulario {
                 ninoImagen.src = "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium";
                 break;
             case 'elegante':
-                ninoImagen.src = "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium";
+                ninoImagen.src = "https://pbs.twimg.com/media/G4X8IO9XEAAabhy?format=png&name=small";
                 break;
             case 'casual':
-                ninoImagen.src = "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium";
+                ninoImagen.src = "https://pbs.twimg.com/media/G4X0KxYWIAA1VL_?format=png&name=small";
                 break;
             case 'intima':
-                ninoImagen.src = "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium";
+                ninoImagen.src = "https://pbs.twimg.com/media/G6PD1HqXEAARPnr?format=jpg&name=smallcr";
                 break;
         }
         
