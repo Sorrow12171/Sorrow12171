@@ -2849,7 +2849,7 @@ class AplicacionVocabulario {
                 ninoImagen.src = "https://pbs.twimg.com/media/G4X0KxYWIAA1VL_?format=png&name=small";
                 break;
             case 'intima':
-                ninoImagen.src = "https://pbs.twimg.com/media/G6PD1HqXEAARPnr?format=jpg&name=smallcr";
+                ninoImagen.src = "https://pbs.twimg.com/media/G6PD1HqXEAARPnr?format=jpg&name=small";
                 break;
         }
         
