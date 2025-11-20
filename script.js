@@ -183,6 +183,12 @@ class AplicacionVocabulario {
         this.videoZahiryUrl = 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4';
         this.tiempoInactividadZahiry = 8 * 60 * 60 * 1000;
 
+        // NUEVO: Sistema de evento en vivienda
+        this.videosVivienda = {
+            si: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4',
+            no: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4'
+        };
+
         // SISTEMA DE EVENTOS DIARIOS CON FALLO TEMPORAL
         this.eventosDiarios = {
             eventos: [
@@ -498,6 +504,308 @@ class AplicacionVocabulario {
         this.cargarMisionesSemanales();
 
         this.inicializarApp();
+    }
+
+    // NUEVO: Sistema de evento en vivienda
+    verificarEventoVivienda() {
+        // 50% de probabilidad de que aparezca el evento
+        const probabilidad = Math.random() < 0.5;
+        
+        if (probabilidad) {
+            console.log('🏠 ¡Evento de vivienda activado!');
+            this.mostrarEventoVivienda();
+            return true;
+        } else {
+            console.log('🏠 No hay evento de vivienda esta vez');
+            return false;
+        }
+    }
+
+    mostrarEventoVivienda() {
+        const overlay = document.createElement('div');
+        overlay.id = 'overlay-evento-vivienda';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const eventoContainer = document.createElement('div');
+        eventoContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = '💖 EVENTO ESPECIAL EN LA VIVIENDA 💖';
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium";
+        imagen.style.cssText = `
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        `;
+
+        const pregunta = document.createElement('div');
+        pregunta.textContent = 'Nino te mira con ojos seductores... ¿Quieres pasar un momento especial con ella?';
+        pregunta.style.cssText = `
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid white;
+        `;
+
+        const contenedorBotones = document.createElement('div');
+        contenedorBotones.style.cssText = `
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        `;
+
+        const botonSi = document.createElement('button');
+        botonSi.textContent = '✅ SÍ';
+        botonSi.style.cssText = `
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid #228b22;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        `;
+
+        const botonNo = document.createElement('button');
+        botonNo.textContent = '❌ NO';
+        botonNo.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 3px solid #ff4757;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        `;
+
+        botonSi.onmouseover = () => {
+            botonSi.style.transform = 'scale(1.05)';
+            botonSi.style.boxShadow = '0 5px 15px rgba(50, 205, 50, 0.4)';
+        };
+
+        botonSi.onmouseout = () => {
+            botonSi.style.transform = 'scale(1)';
+            botonSi.style.boxShadow = 'none';
+        };
+
+        botonNo.onmouseover = () => {
+            botonNo.style.transform = 'scale(1.05)';
+            botonNo.style.boxShadow = '0 5px 15px rgba(255, 107, 107, 0.4)';
+        };
+
+        botonNo.onmouseout = () => {
+            botonNo.style.transform = 'scale(1)';
+            botonNo.style.boxShadow = 'none';
+        };
+
+        botonSi.onclick = () => {
+            this.reproducirVideoVivienda('si');
+            document.body.removeChild(overlay);
+        };
+
+        botonNo.onclick = () => {
+            this.reproducirVideoVivienda('no');
+            document.body.removeChild(overlay);
+        };
+
+        contenedorBotones.appendChild(botonSi);
+        contenedorBotones.appendChild(botonNo);
+
+        eventoContainer.appendChild(titulo);
+        eventoContainer.appendChild(imagen);
+        eventoContainer.appendChild(pregunta);
+        eventoContainer.appendChild(contenedorBotones);
+        overlay.appendChild(eventoContainer);
+        document.body.appendChild(overlay);
+    }
+
+    reproducirVideoVivienda(opcion) {
+        const videoUrl = this.videosVivienda[opcion];
+        const mensaje = opcion === 'si' ? 
+            '💖 ¡Nino está muy feliz! Disfruten este momento especial.' : 
+            '😔 Nino se siente rechazada...';
+
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, ${opcion === 'si' ? '#32cd32, #228b22' : '#ff6b6b, #ff4757'});
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid ${opcion === 'si' ? '#228b22' : '#ff4757'};
+            box-shadow: 0 0 50px ${opcion === 'si' ? 'rgba(50, 205, 50, 0.5)' : 'rgba(255, 107, 107, 0.5)'};
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = opcion === 'si' ? '💖 MOMENTO ESPECIAL CON NINO 💖' : '💔 DECISIÓN TOMADA 💔';
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const mensajeElement = document.createElement('div');
+        mensajeElement.textContent = mensaje;
+        mensajeElement.style.cssText = `
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 2px solid white;
+        `;
+
+        const video = document.createElement('video');
+        video.src = videoUrl;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #000;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '❌ Cerrar Video';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #666666, #888888);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #555555;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(102, 102, 102, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        video.onended = () => {
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 2000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video de vivienda');
+            mensajeElement.innerHTML += '<br><small>❌ Error cargando el video</small>';
+        };
+
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(mensajeElement);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+        document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video de vivienda:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
+
+        // Efectos en el sistema según la opción elegida
+        if (opcion === 'si') {
+            this.agregarCorazones(20);
+            this.mostrarNotificacion('💖 +20 corazones - Nino está muy feliz');
+        } else {
+            this.quitarCorazones(10);
+            this.mostrarNotificacion('💔 -10 corazones - Nino se siente rechazada');
+        }
     }
 
     // NUEVO: Sistema RPG Novia
@@ -2337,7 +2645,11 @@ class AplicacionVocabulario {
         if (viviendaCard) {
             viviendaCard.addEventListener('click', () => {
                 this.mostrarPantalla('vivienda');
-                this.actualizarPantallaVivienda();
+                // Verificar evento al entrar a la vivienda
+                const hayEvento = this.verificarEventoVivienda();
+                if (!hayEvento) {
+                    this.actualizarPantallaVivienda();
+                }
             });
         }
 
