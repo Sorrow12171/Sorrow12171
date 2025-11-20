@@ -1234,8 +1234,20 @@ h1 {
     color: #ff6b6b;
 }
 
-.estadisticas-globales p:last-child {
+.estadisticas-globales p:nth-child(4) {
     color: #ffd700;
+}
+
+.estadisticas-globales p:nth-child(5) {
+    color: #ff6b6b;
+}
+
+.estadisticas-globales p:nth-child(6) {
+    color: #8b0000;
+}
+
+.estadisticas-globales p:last-child {
+    color: #ffb6c1;
 }
 
 /* PANTALLA DE TAREAS DIARIAS */
@@ -2113,6 +2125,17 @@ h1 {
     }
 }
 
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .contenedor-mazos {
@@ -2148,7 +2171,9 @@ h1 {
     .tienda-imagen,
     .toono-imagen,
     .novia-rpg-imagen,
-    .misiones-imagen {
+    .misiones-imagen,
+    .vivienda-imagen,
+    .tienda-18-imagen {
         width: 150px;
         height: 150px;
     }
@@ -2160,7 +2185,9 @@ h1 {
     .tienda-texto,
     .toono-texto,
     .novia-rpg-texto,
-    .misiones-texto {
+    .misiones-texto,
+    .vivienda-texto,
+    .tienda-18-texto {
         font-size: 1.3rem;
     }
     
@@ -2314,5 +2341,21 @@ h1 {
     
     .contenedor-items-tienda-18 {
         grid-template-columns: 1fr;
+    }
+    
+    .info-bebes {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .mejora-vivienda {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .boton-mejora {
+        align-self: center;
     }
 }
