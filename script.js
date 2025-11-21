@@ -4638,7 +4638,7 @@ class AplicacionVocabulario {
                 }
             },
             {
-                probabilidad: 0.2, // 20% - NUEVO: Evento especial 100%
+                probabilidad: 0.5, // 20% - NUEVO: Evento especial 100%
                 tipo: 'evento_especial_100',
                 activar: () => {
                     this.mostrarEventoEspecial100();
