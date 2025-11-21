@@ -473,6 +473,7 @@ class AplicacionVocabulario {
             ]
         };
 
+        // MAZOS ACTUALIZADOS CON 5 CLONES DE LAST SUMMER
         this.mazos = {
             // LAST SUMMER 1 - 2 mazos
             "LS1 - Verano Inolvidable": [
@@ -592,6 +593,336 @@ class AplicacionVocabulario {
                 ["祖父", "Abuelo", "sofu"],
                 ["祖母", "Abuela", "sobo"],
                 ["子供", "Niño", "kodomo"]
+            ],
+            
+            // LAST SUMMER 4 - 5 MAZOS NUEVOS
+            "LS4 - Vocabulario Avanzado 1": [
+                ["経済", "Economía", "keizai"],
+                ["政治", "Política", "seiji"],
+                ["文化", "Cultura", "bunka"],
+                ["社会", "Sociedad", "shakai"],
+                ["技術", "Tecnología", "gijutsu"],
+                ["環境", "Medio ambiente", "kankyou"],
+                ["教育", "Educación", "kyouiku"],
+                ["健康", "Salud", "kenkou"],
+                ["国際", "Internacional", "kokusai"],
+                ["開発", "Desarrollo", "kaihatsu"]
+            ],
+            
+            "LS4 - Vocabulario Avanzado 2": [
+                ["企業", "Empresa", "kigyou"],
+                ["市場", "Mercado", "shijou"],
+                ["投資", "Inversión", "toushi"],
+                ["消費", "Consumo", "shouhi"],
+                ["生産", "Producción", "seisan"],
+                ["貿易", "Comercio", "boueki"],
+                ["競争", "Competencia", "kyousou"],
+                ["成長", "Crecimiento", "seichou"],
+                ["利益", "Beneficio", "rieki"],
+                ["雇用", "Empleo", "koyou"]
+            ],
+            
+            "LS4 - Vocabulario Avanzado 3": [
+                ["法律", "Ley", "houritsu"],
+                ["権利", "Derecho", "kenri"],
+                ["義務", "Obligación", "gimu"],
+                ["裁判", "Juicio", "saiban"],
+                ["契約", "Contrato", "keiyaku"],
+                ["責任", "Responsabilidad", "sekinin"],
+                ["自由", "Libertad", "jiyuu"],
+                ["平等", "Igualdad", "byoudou"],
+                ["正義", "Justicia", "seigi"],
+                ["民主主義", "Democracia", "minshushugi"]
+            ],
+            
+            "LS4 - Vocabulario Avanzado 4": [
+                ["芸術", "Arte", "geijutsu"],
+                ["文学", "Literatura", "bungaku"],
+                ["音楽", "Música", "ongaku"],
+                ["映画", "Cine", "eiga"],
+                ["演劇", "Teatro", "engeki"],
+                ["美術", "Bellas artes", "bijutsu"],
+                ["建築", "Arquitectura", "kenchiku"],
+                ["写真", "Fotografía", "shashin"],
+                ["デザイン", "Diseño", "dezain"],
+                ["創造", "Creatividad", "souzou"]
+            ],
+            
+            "LS4 - Vocabulario Avanzado 5": [
+                ["科学", "Ciencia", "kagaku"],
+                ["研究", "Investigación", "kenkyuu"],
+                ["実験", "Experimento", "jikken"],
+                ["発見", "Descubrimiento", "hakken"],
+                ["理論", "Teoría", "riron"],
+                ["技術", "Técnica", "gijutsu"],
+                ["進化", "Evolución", "shinka"],
+                ["宇宙", "Universo", "uchuu"],
+                ["自然", "Naturaleza", "shizen"],
+                ["生命", "Vida", "seimei"]
+            ],
+            
+            // LAST SUMMER 5 - 5 MAZOS NUEVOS
+            "LS5 - Expresiones Idiomáticas 1": [
+                ["猿も木から落ちる", "Hasta los monos se caen de los árboles", "saru mo ki kara ochiru"],
+                ["猫の手も借りたい", "Tan ocupado que pediría ayuda hasta a un gato", "neko no te mo karitai"],
+                ["石の上にも三年", "Paciencia y perseverancia triunfan", "ishi no ue ni mo sannen"],
+                ["井の中の蛙", "Rana en un pozo (visión limitada)", "i no naka no kawazu"],
+                ["能ある鷹は爪を隠す", "El halón hábil esconde sus garras", "nou aru taka wa tsume wo kakusu"],
+                ["花より団子", "Sustancia sobre forma", "hana yori dango"],
+                ["釈迦に説法", "Enseñar a Buda", "shaka ni seppou"],
+                ["馬の耳に念仏", "Como rezarle a un caballo", "uma no mimi ni nenbutsu"],
+                ["鬼に金棒", "Dar un bastón de hierro a un ogro", "oni ni kanabou"],
+                ["灯台下暗し", "La oscuridad bajo la linterna", "toudai moto kurashi"]
+            ],
+            
+            "LS5 - Expresiones Idiomáticas 2": [
+                ["二兎を追う者は一兎をも得ず", "Quien persigue dos liebres no atrapa ninguna", "nito wo ou mono wa itto wo mo ezu"],
+                ["知らぬが仏", "Ignorancia es felicidad", "shiranu ga hotoke"],
+                ["情けは人の為ならず", "La bondad se devuelve", "nasake wa hito no tame narazu"],
+                ["蓼食う虫も好き好き", "Cada uno tiene sus gustos", "tade kuu mushi mo sukizuki"],
+                ["朱に交われば赤くなる", "Quien con lobos anda a aullar aprende", "shu ni majiwareba akaku naru"],
+                ["備えあれば憂いなし", "Mejor prevenir que lamentar", "sonae areba urei nashi"],
+                ["急がば回れ", "Más vale lento pero seguro", "isogaba maware"],
+                ["好きこそ物の上手なれ", "La práctica hace al maestro", "suki koso mono no jouzu nare"],
+                ["初心忘るべからず", "No olvides tus comienzos", "shoshin wasuru bekarazu"],
+                ["失敗は成功の基", "El fracaso es la base del éxito", "shippai wa seikou no moto"]
+            ],
+            
+            "LS5 - Expresiones Idiomáticas 3": [
+                ["雨降って地固まる", "Después de la tormenta viene la calma", "ame futte ji katamaru"],
+                ["一石二鳥", "Matar dos pájaros de un tiro", "isseki nichou"],
+                ["因果応報", "Cosechas lo que siembras", "inga ouhou"],
+                ["温故知新", "Aprender del pasado", "onko chishin"],
+                ["臥薪嘗胆", "Perseverancia a través del sufrimiento", "gashin shoutan"],
+                ["四面楚歌", "Rodeado de enemigos", "shimen soka"],
+                ["自業自得", "Consecuencias de tus actos", "jigou jitoku"],
+                ["十人十色", "Cada persona es diferente", "juunin toiro"],
+                ["他山之石", "Aprender de los errores ajenos", "tazan no ishi"],
+                ["不言実行", "Acciones sobre palabras", "fugen jikkou"]
+            ],
+            
+            "LS5 - Expresiones Idiomáticas 4": [
+                ["一期一会", "Una vez en la vida", "ichigo ichie"],
+                ["以心伝心", "Comunicación sin palabras", "ishin denshin"],
+                ["起死回生", "Recuperación milagrosa", "kishi kaisei"],
+                ["切磋琢磨", "Mejorar a través del esfuerzo", "sessa takuma"],
+                ["天真爛漫", "Inocente y sin pretensiones", "tenshin ranman"],
+                ["不撓不屈", "Indomable e inquebrantable", "futou fukutsu"],
+                ["無我夢中", "Completamente absorto", "muga muchuu"],
+                ["勇往邁進", "Avanzar con valentía", "yuou maishin"],
+                ["一日千秋", "Un día parece mil años", "ichijitsu senshuu"],
+                ["順風満帆", "Viento en popa", "junpuu manpan"]
+            ],
+            
+            "LS5 - Expresiones Idiomáticas 5": [
+                ["七転八起", "Caer siete veces, levantarse ocho", "shichi ten hakki"],
+                ["一蓮托生", "Compartir el mismo destino", "ichiren takushou"],
+                ["油断大敵", "La complacencia es el peor enemigo", "yudai taiteki"],
+                ["三日坊主", "Persona que no persevera", "mikka bouzu"],
+                ["八方美人", "Persona que trata de agradar a todos", "happou bijin"],
+                ["自画自賛", "Alabarse a uno mismo", "jiga jisan"],
+                ["我田引水", "Actuar en beneficio propio", "gaden insui"],
+                ["単刀直入", "Ir directo al grano", "tantou chokunyuu"],
+                ["五里霧中", "Completamente perdido", "gori muchuu"],
+                ["暗中模索", "Buscar a ciegas", "anchuu mosaku"]
+            ],
+            
+            // LAST SUMMER 6 - 5 MAZOS NUEVOS
+            "LS6 - Verbos Avanzados 1": [
+                ["企画する", "Planear", "kikaku suru"],
+                ["実施する", "Implementar", "jisshi suru"],
+                ["評価する", "Evaluar", "hyouka suru"],
+                ["改善する", "Mejorar", "kaizen suru"],
+                ["検討する", "Considerar", "kentou suru"],
+                ["提案する", "Proponer", "teian suru"],
+                ["承認する", "Aprobar", "shounin suru"],
+                ["報告する", "Reportar", "houkoku suru"],
+                ["調整する", "Ajustar", "chousei suru"],
+                ["確認する", "Confirmar", "kakunin suru"]
+            ],
+            
+            "LS6 - Verbos Avanzados 2": [
+                ["開発する", "Desarrollar", "kaihatsu suru"],
+                ["設計する", "Diseñar", "sekkei suru"],
+                ["製造する", "Fabricar", "seizou suru"],
+                ["販売する", "Vender", "hanbai suru"],
+                ["購入する", "Comprar", "kounyuu suru"],
+                ["運用する", "Operar", "unyou suru"],
+                ["維持する", "Mantener", "iji suru"],
+                ["拡大する", "Expandir", "kakudai suru"],
+                ["縮小する", "Reducir", "shukushou suru"],
+                ["統合する", "Integrar", "tougou suru"]
+            ],
+            
+            "LS6 - Verbos Avanzados 3": [
+                ["分析する", "Analizar", "bunseki suru"],
+                ["比較する", "Comparar", "hikaku suru"],
+                ["分類する", "Clasificar", "bunrui suru"],
+                ["整理する", "Organizar", "seiri suru"],
+                ["要約する", "Resumir", "youyaku suru"],
+                ["説明する", "Explicar", "setsumei suru"],
+                ["証明する", "Demostrar", "shoumei suru"],
+                ["定義する", "Definir", "teigi suru"],
+                ["仮定する", "Suponer", "katei suru"],
+                ["結論する", "Concluir", "ketsuron suru"]
+            ],
+            
+            "LS6 - Verbos Avanzados 4": [
+                ["創造する", "Crear", "souzou suru"],
+                ["表現する", "Expresar", "hyougen suru"],
+                ["描写する", "Describir", "byousha suru"],
+                ["演奏する", "Interpretar", "ensou suru"],
+                ["制作する", "Producir", "seisaku suru"],
+                ["編集する", "Editar", "henshuu suru"],
+                ["演出する", "Dirigir", "enshutsu suru"],
+                ["構成する", "Componer", "kousei suru"],
+                ["展開する", "Desarrollar", "tenkai suru"],
+                ["完成する", "Completar", "kansei suru"]
+            ],
+            
+            "LS6 - Verbos Avanzados 5": [
+                ["発展する", "Desarrollarse", "hatten suru"],
+                ["進化する", "Evolucionar", "shinka suru"],
+                ["変化する", "Cambiar", "henka suru"],
+                ["成長する", "Crecer", "seichou suru"],
+                ["成熟する", "Madurar", "seijuku suru"],
+                ["革新する", "Innovar", "kakushin suru"],
+                ["改革する", "Reformar", "kaikaku suru"],
+                ["転換する", "Transformar", "tenkan suru"],
+                ["適応する", "Adaptar", "tekiou suru"],
+                ["進歩する", "Progresar", "shinpo suru"]
+            ],
+            
+            // LAST SUMMER 7 - 5 MAZOS NUEVOS
+            "LS7 - Adjetivos Avanzados 1": [
+                ["革新的な", "Innovador", "kakushinteki na"],
+                ["効率的な", "Eficiente", "kouritsuteki na"],
+                ["効果的な", "Efectivo", "koukateki na"],
+                ["生産的な", "Productivo", "seisanteki na"],
+                ["創造的な", "Creativo", "souzouteki na"],
+                ["柔軟な", "Flexible", "juunan na"],
+                ["適応性のある", "Adaptable", "tekiousei no aru"],
+                ["信頼性の高い", "Confiables", "shinraisei no takai"],
+                ["持続可能な", "Sostenible", "jizoku kanou na"],
+                ["画期的な", "Revolucionario", "kakkiteki na"]
+            ],
+            
+            "LS7 - Adjetivos Avanzados 2": [
+                ["複雑な", "Complejo", "fukuzatsu na"],
+                ["精密な", "Preciso", "seimitsu na"],
+                ["詳細な", "Detallado", "shousai na"],
+                ["包括的な", "Integral", "houkatsuteki na"],
+                ["体系的な", "Sistemático", "taikeiteki na"],
+                ["論理的な", "Lógico", "ronriteki na"],
+                ["合理的な", "Racional", "gouriteki na"],
+                ["客観的な", "Objetivo", "kyakkanteki na"],
+                ["主観的な", "Subjetivo", "shukanteki na"],
+                ["相対的な", "Relativo", "soutaiteki na"]
+            ],
+            
+            "LS7 - Adjetivos Avanzados 3": [
+                ["美的な", "Estético", "biteki na"],
+                ["芸術的な", "Artístico", "geijutsuteki na"],
+                ["優雅な", "Elegante", "yuuga na"],
+                ["洗練された", "Sofisticado", "senren sareta"],
+                ["独創的な", "Original", "dokusouteki na"],
+                ["印象的な", "Impresionante", "inshouteki na"],
+                ["感動的な", "Conmovedor", "kandouteki na"],
+                ["ドラマチックな", "Dramático", "doramachikku na"],
+                ["ロマンチックな", "Romántico", "romanchikku na"],
+                ["叙情的な", "Lírico", "jojouteki na"]
+            ],
+            
+            "LS7 - Adjetivos Avanzados 4": [
+                ["潜在的な", "Potencial", "senzaiteki na"],
+                ["顕在的な", "Manifiesto", "kenzaiteki na"],
+                ["本質的な", "Esencial", "honshitsuteki na"],
+                ["根本的な", "Fundamental", "konponteki na"],
+                ["重要な", "Importante", "juuyou na"],
+                ["必須の", "Esencial", "hissu no"],
+                ["不可欠な", "Indispensable", "fukaketsu na"],
+                ["決定的な", "Decisivo", "ketteiteki na"],
+                ["重大な", "Grave", "juudai na"],
+                ["緊急の", "Urgente", "kinkyuu no"]
+            ],
+            
+            "LS7 - Adjetivos Avanzados 5": [
+                ["多様な", "Diverso", "tayou na"],
+                ["包括的な", "Inclusivo", "houkatsuteki na"],
+                ["普遍的な", "Universal", "fuhenteki na"],
+                ["世界的な", "Global", "sekaiteki na"],
+                ["国際的な", "Internacional", "kokusaiteki na"],
+                ["文化的な", "Cultural", "bunkateki na"],
+                ["社会的な", "Social", "shakaiteki na"],
+                ["歴史的な", "Histórico", "rekishiteki na"],
+                ["伝統的な", "Tradicional", "dentouteki na"],
+                ["現代的な", "Contemporáneo", "gendaiteki na"]
+            ],
+            
+            // LAST SUMMER 8 - 5 MAZOS NUEVOS
+            "LS8 - Sustantivos Avanzados 1": [
+                ["哲学", "Filosofía", "tetsugaku"],
+                ["倫理", "Ética", "rinri"],
+                ["価値観", "Valores", "kachikan"],
+                ["世界観", "Cosmovisión", "sekaikan"],
+                ["人生観", "Perspectiva de vida", "jinseikan"],
+                ["思想", "Pensamiento", "shisou"],
+                ["理念", "Principio", "rinen"],
+                ["信条", "Credo", "shinjou"],
+                ["主義", "Doctrina", "shugi"],
+                ["概念", "Concepto", "gainen"]
+            ],
+            
+            "LS8 - Sustantivos Avanzados 2": [
+                ["意識", "Conciencia", "ishiki"],
+                ["無意識", "Inconsciente", "muishiki"],
+                ["心理", "Psique", "shinri"],
+                ["感情", "Emoción", "kanjou"],
+                ["理性", "Razón", "risei"],
+                ["直感", "Intuición", "chokkan"],
+                ["知覚", "Percepción", "chikaku"],
+                ["認識", "Reconocimiento", "ninshiki"],
+                ["理解", "Comprensión", "rikai"],
+                ["解釈", "Interpretación", "kaishaku"]
+            ],
+            
+            "LS8 - Sustantivos Avanzados 3": [
+                ["現象", "Fenómeno", "genshou"],
+                ["本質", "Esencia", "honshitsu"],
+                ["実体", "Entidad", "jittai"],
+                ["属性", "Atributo", "zokusei"],
+                ["性質", "Naturaleza", "seishitsu"],
+                ["特徴", "Característica", "tokuchou"],
+                ["様相", "Aspecto", "yousou"],
+                ["形態", "Forma", "keitai"],
+                ["構造", "Estructura", "kouzou"],
+                ["体系", "Sistema", "taikei"]
+            ],
+            
+            "LS8 - Sustantivos Avanzados 4": [
+                ["進化", "Evolución", "shinka"],
+                ["発展", "Desarrollo", "hatten"],
+                ["変化", "Cambio", "henka"],
+                ["変容", "Transformación", "henyou"],
+                ["推移", "Transición", "suii"],
+                ["進展", "Progreso", "shinten"],
+                ["成長", "Crecimiento", "seichou"],
+                ["成熟", "Madurez", "seijuku"],
+                ["衰退", "Decadencia", "suitai"],
+                ["消滅", "Extinción", "shoumetsu"]
+            ],
+            
+            "LS8 - Sustantivos Avanzados 5": [
+                ["調和", "Armonía", "chouwa"],
+                ["均衡", "Equilibrio", "kinkou"],
+                ["安定", "Estabilidad", "antei"],
+                ["秩序", "Orden", "chitsujo"],
+                ["混沌", "Caos", "konton"],
+                ["矛盾", "Contradicción", "mujun"],
+                ["対立", "Conflicto", "tairitsu"],
+                ["協調", "Cooperación", "kyouchou"],
+                ["共存", "Coexistencia", "kyouson"],
+                ["融合", "Fusión", "yuugou"]
             ]
         };
 
@@ -2122,7 +2453,7 @@ class AplicacionVocabulario {
         }
     }
 
-    // SISTEMA DE TAREAS DIARIAS
+    // SISTEMA DE TAREAS DIARIAS - CORREGIDO
     cargarTareasDiarias() {
         const hoy = new Date().toDateString();
         const tareasGuardadas = localStorage.getItem('tareasDiarias');
@@ -2719,7 +3050,13 @@ class AplicacionVocabulario {
             noviaRpg: document.getElementById('pantalla-novia-rpg'),
             misiones: document.getElementById('pantalla-misiones'),
             vivienda: document.getElementById('pantalla-vivienda'),
-            tienda18: document.getElementById('pantalla-tienda-18')
+            tienda18: document.getElementById('pantalla-tienda-18'),
+            // NUEVOS CLONES DE LAST SUMMER
+            lastsummer4: document.getElementById('pantalla-lastsummer4-mazos'),
+            lastsummer5: document.getElementById('pantalla-lastsummer5-mazos'),
+            lastsummer6: document.getElementById('pantalla-lastsummer6-mazos'),
+            lastsummer7: document.getElementById('pantalla-lastsummer7-mazos'),
+            lastsummer8: document.getElementById('pantalla-lastsummer8-mazos')
         };
 
         // Cargar sistema de tareas diarias
@@ -2744,6 +3081,9 @@ class AplicacionVocabulario {
         this.inicializarPantallaVivienda();
         this.inicializarPantallaTienda18();
         
+        // NUEVO: Inicializar clones de Last Summer
+        this.inicializarClonesLastSummer();
+        
         // Verificar evento diario
         this.verificarEventoDiario();
         
@@ -2756,6 +3096,69 @@ class AplicacionVocabulario {
                 alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
             }, 1000);
         }
+    }
+
+    // NUEVO: Inicializar clones de Last Summer
+    inicializarClonesLastSummer() {
+        // LAST SUMMER 4
+        const lastsummer4Card = document.getElementById('lastsummer4-card');
+        if (lastsummer4Card) {
+            lastsummer4Card.addEventListener('click', () => {
+                this.mostrarMazosPorCategoria('LS4', 'lastsummer4', 'contenedor-lastsummer4-mazos');
+            });
+        }
+
+        document.getElementById('boton-volver-lastsummer4').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // LAST SUMMER 5
+        const lastsummer5Card = document.getElementById('lastsummer5-card');
+        if (lastsummer5Card) {
+            lastsummer5Card.addEventListener('click', () => {
+                this.mostrarMazosPorCategoria('LS5', 'lastsummer5', 'contenedor-lastsummer5-mazos');
+            });
+        }
+
+        document.getElementById('boton-volver-lastsummer5').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // LAST SUMMER 6
+        const lastsummer6Card = document.getElementById('lastsummer6-card');
+        if (lastsummer6Card) {
+            lastsummer6Card.addEventListener('click', () => {
+                this.mostrarMazosPorCategoria('LS6', 'lastsummer6', 'contenedor-lastsummer6-mazos');
+            });
+        }
+
+        document.getElementById('boton-volver-lastsummer6').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // LAST SUMMER 7
+        const lastsummer7Card = document.getElementById('lastsummer7-card');
+        if (lastsummer7Card) {
+            lastsummer7Card.addEventListener('click', () => {
+                this.mostrarMazosPorCategoria('LS7', 'lastsummer7', 'contenedor-lastsummer7-mazos');
+            });
+        }
+
+        document.getElementById('boton-volver-lastsummer7').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+
+        // LAST SUMMER 8
+        const lastsummer8Card = document.getElementById('lastsummer8-card');
+        if (lastsummer8Card) {
+            lastsummer8Card.addEventListener('click', () => {
+                this.mostrarMazosPorCategoria('LS8', 'lastsummer8', 'contenedor-lastsummer8-mazos');
+            });
+        }
+
+        document.getElementById('boton-volver-lastsummer8').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
     }
 
     // NUEVO: Inicializar pantalla Vivienda
@@ -3774,15 +4177,8 @@ class AplicacionVocabulario {
             // CONTAR PARA EVENTO DIARIO
             this.completarMazoParaEvento();
             
-            const probabilidad = Math.random();
-            if (probabilidad < 0.666) {
-                console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
-                setTimeout(() => {
-                    this.mostrarImagenEspecial();
-                }, 1000);
-            } else {
-                console.log('🎰 Esta vez no tocó la imagen especial');
-            }
+            // NUEVO: Sistema de eventos aleatorios al completar mazo
+            this.activarEventoAleatorio();
         } else {
             // NUEVO: Penalización por no completar mazo al 100%
             this.quitarCorazones(2);
@@ -3795,6 +4191,63 @@ class AplicacionVocabulario {
         
         const textoResultados = this.crearTextoResultados(porcentaje, statsMazo);
         this.resultadoFinal.textContent = textoResultados;
+    }
+
+    // NUEVO: Sistema de eventos aleatorios al completar mazo
+    activarEventoAleatorio() {
+        const eventos = [
+            {
+                probabilidad: 0.3, // 30%
+                tipo: 'vivienda',
+                activar: () => this.verificarEventoVivienda()
+            },
+            {
+                probabilidad: 0.2, // 20%
+                tipo: 'recompensa_especial',
+                activar: () => {
+                    this.agregarSoles(5);
+                    this.mostrarNotificacionSoles(5, '¡Recompensa especial por completar mazo!');
+                }
+            },
+            {
+                probabilidad: 0.15, // 15%
+                tipo: 'corazones_extra',
+                activar: () => {
+                    this.agregarCorazones(10);
+                    this.mostrarNotificacion('💖 +10 corazones extra por completar mazo!');
+                }
+            },
+            {
+                probabilidad: 0.1, // 10%
+                tipo: 'imagen_especial',
+                activar: () => {
+                    setTimeout(() => {
+                        this.mostrarImagenEspecial();
+                    }, 1000);
+                }
+            },
+            {
+                probabilidad: 0.05, // 5%
+                tipo: 'recompensa_mayor',
+                activar: () => {
+                    this.agregarSoles(10);
+                    this.agregarCorazones(20);
+                    this.mostrarNotificacion('🎉 ¡Recompensa mayor! +10 Soles y +20 corazones');
+                }
+            }
+        ];
+
+        const random = Math.random();
+        let probabilidadAcumulada = 0;
+
+        for (const evento of eventos) {
+            probabilidadAcumulada += evento.probabilidad;
+            if (random <= probabilidadAcumulada) {
+                console.log(`🎰 Activando evento: ${evento.tipo}`);
+                evento.activar();
+                break;
+            }
+        }
     }
 
     crearTextoResultados(porcentaje, statsMazo) {
