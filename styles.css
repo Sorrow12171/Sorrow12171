@@ -2102,6 +2102,397 @@ h1 {
     color: #32cd32;
 }
 
+/* ESTILOS PARA LAST SUMMER 4-8 */
+.lastsummer4-card,
+.lastsummer5-card,
+.lastsummer6-card,
+.lastsummer7-card,
+.lastsummer8-card {
+    background: linear-gradient(135deg, #4a90e2, #7b68ee);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    border: 3px solid #4169e1;
+    max-width: 300px;
+    margin-bottom: 30px;
+}
+
+.lastsummer4-card:hover,
+.lastsummer5-card:hover,
+.lastsummer6-card:hover,
+.lastsummer7-card:hover,
+.lastsummer8-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(74, 144, 226, 0.5);
+}
+
+.lastsummer4-imagen,
+.lastsummer5-imagen,
+.lastsummer6-imagen,
+.lastsummer7-imagen,
+.lastsummer8-imagen {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    margin-bottom: 15px;
+}
+
+.lastsummer4-texto,
+.lastsummer5-texto,
+.lastsummer6-texto,
+.lastsummer7-texto,
+.lastsummer8-texto {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ESTILOS PARA MAZOS DE LAST SUMMER 4-8 */
+#contenedor-lastsummer4-mazos,
+#contenedor-lastsummer5-mazos,
+#contenedor-lastsummer6-mazos,
+#contenedor-lastsummer7-mazos,
+#contenedor-lastsummer8-mazos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* ESTILOS PARA EVENTOS ALEATORIOS EN VIVIENDA */
+.evento-aleatorio-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    flex-direction: column;
+}
+
+.evento-aleatorio-overlay.activo {
+    display: flex;
+}
+
+/* ESTILOS PARA OVERLAY DE IMÁGENES GRANDES */
+.overlay-imagen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    flex-direction: column;
+}
+
+.overlay-imagen.activo {
+    display: flex;
+}
+
+/* ESTILOS PARA BOTONES DE ROPA ACTIVOS */
+.boton-ropa.activo {
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    border-color: #ff0000;
+    color: white;
+}
+
+/* ESTILOS PARA MEJORAS COMPRADAS */
+.mejora-vivienda.comprada {
+    border-color: #32cd32;
+    background: linear-gradient(135deg, #2d5a2d, #3d6b3d);
+}
+
+.mejora-vivienda.comprada .boton-mejora {
+    background: #666666;
+    border-color: #555555;
+    cursor: not-allowed;
+}
+
+/* ESTILOS PARA BEBÉS */
+.bebe-card {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    min-width: 120px;
+    border: 2px solid #ff1493;
+    animation: slideIn 0.5s ease;
+}
+
+.bebe-nombre {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.bebe-edad {
+    font-size: 0.9rem;
+    color: white;
+}
+
+/* ESTILOS PARA ITEMS COMPRADOS */
+.item-tienda-18.comprado .boton-comprar-18,
+.item-tienda.comprado .boton-comprar {
+    background: #666666;
+    border-color: #555555;
+    cursor: not-allowed;
+}
+
+.item-tienda-18.comprado,
+.item-tienda.comprado {
+    opacity: 0.7;
+    filter: grayscale(0.5);
+}
+
+/* ESTILOS PARA ACCIONES REALIZADAS */
+.accion-diaria.realizada .boton-accion {
+    background: #666666;
+    border-color: #555555;
+    cursor: not-allowed;
+}
+
+.accion-diaria.realizada {
+    opacity: 0.7;
+    border-color: #32cd32;
+}
+
+/* ESTILOS PARA RECOMPENSAS COMPRADAS */
+.recompensa-especial.comprada .boton-recompensa {
+    background: #666666;
+    border-color: #555555;
+    cursor: not-allowed;
+}
+
+.recompensa-especial.comprada {
+    opacity: 0.7;
+    border-color: #32cd32;
+}
+
+/* ESTILOS PARA MISIONES COMPLETADAS */
+.mision-semanal.completada {
+    border-color: #32cd32;
+    background: linear-gradient(135deg, #2d5a2d, #3d6b3d);
+}
+
+.mision-semanal.completada .recompensa-estado {
+    color: #32cd32;
+}
+
+/* ESTILOS PARA LOGROS Y ACCIONES */
+.recompensa.desbloqueado .boton-recompensa {
+    background: linear-gradient(135deg, #32cd32, #228b22);
+    border-color: #228b22;
+}
+
+.recompensa.desbloqueado .boton-recompensa:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(50, 205, 50, 0.4);
+}
+
+/* ESTILOS PARA BOTONES DE NAVEGACIÓN */
+.boton-volver {
+    background: linear-gradient(135deg, #4a90e2, #7b68ee);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #4169e1;
+    margin: 10px;
+}
+
+.boton-volver:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+/* ESTILOS PARA ESTADOS DE PROGRESO */
+.progreso-completado {
+    color: #32cd32;
+    font-weight: bold;
+}
+
+.progreso-pendiente {
+    color: #ffa500;
+    font-weight: bold;
+}
+
+/* ESTILOS PARA NOTIFICACIONES */
+.notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #32cd32, #228b22);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    animation: slideInRight 0.5s ease;
+    display: none;
+}
+
+.notificacion.activo {
+    display: block;
+}
+
+.notificacion.error {
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+}
+
+/* ESTILOS PARA LOADING */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ESTILOS PARA TOOLTIPS */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ESTILOS PARA SCROLLBAR PERSONALIZADA */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2d2d2d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6b6b;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4757;
+}
+
+/* ESTILOS PARA FOCUS VISIBLE */
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #ff6b6b;
+    outline-offset: 2px;
+}
+
+/* ESTILOS PARA ESTADOS DE CARGA */
+.estado-carga {
+    text-align: center;
+    padding: 20px;
+    color: #cccccc;
+}
+
+.estado-carga .loading {
+    margin-bottom: 10px;
+}
+
+/* ESTILOS PARA MENSAJES DE ERROR */
+.mensaje-error {
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px 0;
+    border: 2px solid #ff0000;
+}
+
+/* ESTILOS PARA CONFIRMACIONES */
+.contenedor-confirmacion {
+    background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 3px solid #ff6b6b;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.contenedor-confirmacion h3 {
+    color: #ff6b6b;
+    margin-bottom: 15px;
+}
+
+.botones-confirmacion {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.boton-confirmar {
+    background: linear-gradient(135deg, #32cd32, #228b22);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #228b22;
+}
+
+.boton-cancelar {
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 2px solid #ff0000;
+}
+
 /* ANIMACIONES */
 @keyframes slideInLeft {
     from {
@@ -2173,7 +2564,12 @@ h1 {
     .novia-rpg-imagen,
     .misiones-imagen,
     .vivienda-imagen,
-    .tienda-18-imagen {
+    .tienda-18-imagen,
+    .lastsummer4-imagen,
+    .lastsummer5-imagen,
+    .lastsummer6-imagen,
+    .lastsummer7-imagen,
+    .lastsummer8-imagen {
         width: 150px;
         height: 150px;
     }
@@ -2187,7 +2583,12 @@ h1 {
     .novia-rpg-texto,
     .misiones-texto,
     .vivienda-texto,
-    .tienda-18-texto {
+    .tienda-18-texto,
+    .lastsummer4-texto,
+    .lastsummer5-texto,
+    .lastsummer6-texto,
+    .lastsummer7-texto,
+    .lastsummer8-texto {
         font-size: 1.3rem;
     }
     
@@ -2358,4 +2759,179 @@ h1 {
     .boton-mejora {
         align-self: center;
     }
+}
+
+/* ESTILOS PARA VERSIÓN MÓVIL MEJORADA */
+@media (max-width: 480px) {
+    .contenedor {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .subtitulo {
+        font-size: 1rem;
+    }
+    
+    .boton-principal,
+    .boton-secundario,
+    .boton-reto,
+    .boton-cerrar {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+    }
+    
+    .menu-principal {
+        gap: 15px;
+    }
+    
+    .seccion-menu {
+        padding: 15px;
+    }
+    
+    .contenedor-tarjetas {
+        grid-template-columns: 1fr;
+    }
+    
+    .diarias-imagen,
+    .lastsummer-imagen,
+    .novia-imagen,
+    .fabrizio-imagen,
+    .tienda-imagen,
+    .toono-imagen,
+    .novia-rpg-imagen,
+    .misiones-imagen,
+    .vivienda-imagen,
+    .tienda-18-imagen,
+    .lastsummer4-imagen,
+    .lastsummer5-imagen,
+    .lastsummer6-imagen,
+    .lastsummer7-imagen,
+    .lastsummer8-imagen {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .diarias-texto,
+    .lastsummer-texto,
+    .novia-texto,
+    .fabrizio-texto,
+    .tienda-texto,
+    .toono-texto,
+    .novia-rpg-texto,
+    .misiones-texto,
+    .vivienda-texto,
+    .tienda-18-texto,
+    .lastsummer4-texto,
+    .lastsummer5-texto,
+    .lastsummer6-texto,
+    .lastsummer7-texto,
+    .lastsummer8-texto {
+        font-size: 1.1rem;
+    }
+    
+    .estadisticas-globales p {
+        font-size: 1rem;
+    }
+    
+    .palabra-japones {
+        font-size: 2.5rem;
+    }
+    
+    .opcion {
+        padding: 15px;
+        font-size: 1rem;
+        min-height: 60px;
+    }
+}
+
+/* ESTILOS PARA MODO OSCURO MEJORADO */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+    }
+    
+    .pantalla {
+        background-color: #1a1a1a;
+    }
+}
+
+/* ESTILOS PARA IMPRESIÓN */
+@media print {
+    .boton-principal,
+    .boton-secundario,
+    .boton-reto,
+    .boton-cerrar,
+    .boton-comprar,
+    .boton-comprar-18,
+    .boton-accion,
+    .boton-recompensa,
+    .boton-mejora,
+    .boton-intimidad,
+    .boton-ropa {
+        display: none;
+    }
+    
+    body {
+        background-color: white;
+        color: black;
+    }
+    
+    .pantalla {
+        display: block !important;
+        min-height: auto;
+    }
+    
+    .pantalla:not(.activa) {
+        display: none !important;
+    }
+}
+
+/* ESTILOS DE ACCESIBILIDAD */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ESTILOS PARA ALTO CONTRASTE */
+@media (prefers-contrast: high) {
+    .boton-reto {
+        border: 3px solid #000000;
+    }
+    
+    .boton-cerrar {
+        border: 3px solid #000000;
+    }
+    
+    .boton-comprar {
+        border: 2px solid #000000;
+    }
+    
+    .vivienda-card {
+        border: 3px solid #000000;
+    }
+    
+    .tienda-18-card {
+        border: 3px solid #000000;
+    }
+}
+
+/* ESTILOS PARA LECTORES DE PANTALLA */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
