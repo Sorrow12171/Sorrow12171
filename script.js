@@ -302,7 +302,7 @@ class AplicacionVocabulario {
             }
         ];
 
-        // SISTEMA DE EVENTOS DIARIOS CON FALLO TEMPORAL
+        // SISTEMA DE EVENTOS DIARIOS CON VIDEOS (MODIFICADO)
         this.eventosDiarios = {
             eventos: [
                 {
@@ -310,9 +310,10 @@ class AplicacionVocabulario {
                     nombre: "Rescate de Quitillizas",
                     imagenInicio: "https://pbs.twimg.com/media/G6EA3MPW0AAdAIi?format=png&name=small",
                     textoInicio: "¡Las quitillizas están con sus amantes! Recupéralas si no completas 5 mazos desde ahora las perderás",
-                    imagenExito: "https://pbs.twimg.com/media/G5hQ9lxX0AAZFPX?format=jpg&name=medium", 
+                    // MODIFICADO: Videos en lugar de imágenes
+                    videoExito: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4", 
                     textoExito: "¡Las recuperaste! Bien hecho",
-                    imagenFallo: "https://pbs.twimg.com/media/G6EA3MPW0AAdAIi?format=png&name=small",
+                    videoFallo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
                     textoFallo: "¡Fallaste! Las quitillizas se quedaron con sus amantes",
                     mazosRequeridos: 5,
                     completado: false
@@ -322,9 +323,10 @@ class AplicacionVocabulario {
                     nombre: "Defensa contra Ichika",
                     imagenInicio: "https://pbs.twimg.com/media/G6E4i2TWQAA5Eib?format=jpg&name=small",
                     textoInicio: "Ichika está intentando que Nino te olvide y te engañe con otro chico. Si no completas 10 mazos hoy, Nino cedera",
-                    imagenExito: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
+                    // MODIFICADO: Videos en lugar de imágenes
+                    videoExito: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
                     textoExito: "Demostraste tu dominancia con Nino y no permitiste a Ichika que se la llevara con otro chico",
-                    imagenFallo: "https://pbs.twimg.com/media/G6E4i2TWQAA5Eib?format=jpg&name=small",
+                    videoFallo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
                     textoFallo: "¡Fallaste! Ichika logró que Nino te olvidara y ahora está con otro chico",
                     mazosRequeridos: 10,
                     completado: false
@@ -334,9 +336,10 @@ class AplicacionVocabulario {
                     nombre: "Rescate del Profesor",
                     imagenInicio: "https://pbs.twimg.com/media/G5PbknPWkAAfgjK?format=jpg&name=medium",
                     textoInicio: "El profesor trata de llevarse a Nino de ti. Tendrás que completar 20 mazos hoy para recuperarla",
-                    imagenExito: "https://pbs.twimg.com/media/G4OWnyyXEAAkOeh?format=jpg&name=medium",
+                    // MODIFICADO: Videos en lugar de imágenes
+                    videoExito: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
                     textoExito: "No dejaste que el profesor te la robara. ¡Bien hecho! :D",
-                    imagenFallo: "https://pbs.twimg.com/media/G5PbknPWkAAfgjK?format=jpg&name=medium",
+                    videoFallo: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
                     textoFallo: "¡Fallaste! El profesor se llevó a Nino y ahora es suya",
                     mazosRequeridos: 20,
                     completado: false
@@ -376,13 +379,33 @@ class AplicacionVocabulario {
         // IMAGEN ESPECIAL PARA RECOMPENSAS
         this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
 
-        // SISTEMA DE TAREAS DIARIAS
+        // SISTEMA DE TAREAS DIARIAS - MODIFICADO
         this.tareasDiarias = {
-            'lectura': { nombre: 'Leer 10 minutos', completada: false },
-            'idiomas': { nombre: 'Practicar idiomas - 50 palabras', completada: false },
-            'correr': { nombre: 'Correr 100 metros', completada: false },
-            'trotar': { nombre: 'Trotar 1000 metros', completada: false },
-            'fuerza': { nombre: 'Ejercicios de fuerza - 10 pull ups', completada: false }
+            'lectura': { 
+                nombre: 'Leer 10 minutos', 
+                completada: false,
+                recompensa: 5
+            },
+            'idiomas': { 
+                nombre: 'Practicar idiomas - 50 palabras', 
+                completada: false,
+                recompensa: 5
+            },
+            'correr': { 
+                nombre: 'Correr 100 metros', 
+                completada: false,
+                recompensa: 5
+            },
+            'trotar': { 
+                nombre: 'Trotar 1000 metros', 
+                completada: false,
+                recompensa: 5
+            },
+            'fuerza': { 
+                nombre: 'Ejercicios de fuerza - 10 pull ups', 
+                completada: false,
+                recompensa: 5
+            }
         };
 
         // SISTEMA DE RECOMPENSAS
@@ -1792,15 +1815,21 @@ class AplicacionVocabulario {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         `;
 
-        const imagen = document.createElement('img');
-        imagen.src = eventoAnterior.imagenFallo;
-        imagen.style.cssText = `
-            max-width: 400px;
+        // MODIFICADO: Mostrar video en lugar de imagen
+        const video = document.createElement('video');
+        video.src = eventoAnterior.videoFallo;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
             max-height: 400px;
             border-radius: 15px;
             border: 3px solid white;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
+            background: #000;
         `;
 
         const mensaje = document.createElement('div');
@@ -1853,19 +1882,42 @@ class AplicacionVocabulario {
         };
 
         botonContinuar.onclick = () => {
+            video.pause();
             document.body.removeChild(overlay);
             // Reiniciar eventos y generar nuevo evento (el evento fallado vuelve al pool)
             this.reiniciarEventosDiarios();
             this.generarNuevoEvento();
         };
 
+        video.onended = () => {
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 2000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video de fallo');
+            mensaje.innerHTML += '<br><small>❌ Error cargando el video</small>';
+        };
+
         falloContainer.appendChild(titulo);
-        falloContainer.appendChild(imagen);
+        falloContainer.appendChild(video);
         falloContainer.appendChild(mensaje);
         falloContainer.appendChild(consecuencia);
         falloContainer.appendChild(botonContinuar);
         overlay.appendChild(falloContainer);
         document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video de fallo:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
     }
 
     reiniciarEventosDiarios() {
@@ -2002,7 +2054,7 @@ class AplicacionVocabulario {
         // Recompensa por completar evento: 30 Soles
         this.agregarSoles(30);
         
-        // Mostrar pantalla de éxito
+        // Mostrar pantalla de éxito con VIDEO
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -2040,15 +2092,21 @@ class AplicacionVocabulario {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         `;
 
-        const imagen = document.createElement('img');
-        imagen.src = evento.imagenExito;
-        imagen.style.cssText = `
-            max-width: 400px;
+        // MODIFICADO: Mostrar video en lugar de imagen
+        const video = document.createElement('video');
+        video.src = evento.videoExito;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
             max-height: 400px;
             border-radius: 15px;
             border: 3px solid white;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
             margin-bottom: 20px;
+            background: #000;
         `;
 
         const mensaje = document.createElement('div');
@@ -2101,17 +2159,41 @@ class AplicacionVocabulario {
         };
 
         botonCerrar.onclick = () => {
+            video.pause();
             document.body.removeChild(overlay);
             this.mostrarPantalla('seleccion');
         };
 
+        video.onended = () => {
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                    this.mostrarPantalla('seleccion');
+                }
+            }, 2000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video de éxito');
+            mensaje.innerHTML += '<br><small>❌ Error cargando el video</small>';
+        };
+
         exitoContainer.appendChild(titulo);
-        exitoContainer.appendChild(imagen);
+        exitoContainer.appendChild(video);
         exitoContainer.appendChild(mensaje);
         exitoContainer.appendChild(recompensa);
         exitoContainer.appendChild(botonCerrar);
         overlay.appendChild(exitoContainer);
         document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video de éxito:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
     }
 
     actualizarEstadisticaEvento() {
@@ -2122,7 +2204,7 @@ class AplicacionVocabulario {
         }
     }
 
-    // SISTEMA DE TAREAS DIARIAS
+    // SISTEMA DE TAREAS DIARIAS - MODIFICADO
     cargarTareasDiarias() {
         const hoy = new Date().toDateString();
         const tareasGuardadas = localStorage.getItem('tareasDiarias');
@@ -2180,18 +2262,17 @@ class AplicacionVocabulario {
     }
 
     toggleTarea(tareaId) {
-        if (this.tareasDiarias[tareaId]) {
-            const estabaCompletada = this.tareasDiarias[tareaId].completada;
-            this.tareasDiarias[tareaId].completada = !this.tareasDiarias[tareaId].completada;
+        if (this.tareasDiarias[tareaId] && !this.tareasDiarias[tareaId].completada) {
+            // Solo permitir marcar si no está completada
+            this.tareasDiarias[tareaId].completada = true;
             this.guardarTareasDiarias();
             this.actualizarPantallaTareas();
             this.actualizarEstadisticasDiarias();
             
-            // Si se completó la tarea, agregar 5 Soles
-            if (!estabaCompletada && this.tareasDiarias[tareaId].completada) {
-                this.agregarSoles(5);
-                this.mostrarNotificacionSoles(5, 'Tarea completada');
-            }
+            // Dar recompensa por completar tarea
+            const recompensa = this.tareasDiarias[tareaId].recompensa || 5;
+            this.agregarSoles(recompensa);
+            this.mostrarNotificacionSoles(recompensa, 'Tarea completada');
         }
     }
 
@@ -2203,6 +2284,7 @@ class AplicacionVocabulario {
             
             if (checkbox && estadoElement && tareaElement) {
                 checkbox.checked = this.tareasDiarias[tareaId].completada;
+                checkbox.disabled = this.tareasDiarias[tareaId].completada; // Deshabilitar si ya está completada
                 
                 if (this.tareasDiarias[tareaId].completada) {
                     estadoElement.textContent = '✅ Completada';
@@ -3296,7 +3378,7 @@ class AplicacionVocabulario {
             this.mostrarPantalla('seleccion');
         };
 
-        // Event listeners para checkboxes
+        // Event listeners para checkboxes - MODIFICADO
         document.getElementById('check-lectura').addEventListener('change', () => this.toggleTarea('lectura'));
         document.getElementById('check-idiomas').addEventListener('change', () => this.toggleTarea('idiomas'));
         document.getElementById('check-correr').addEventListener('change', () => this.toggleTarea('correr'));
@@ -3324,11 +3406,11 @@ class AplicacionVocabulario {
     inicializarPantallaSeleccion() {
         this.statsGlobal = document.getElementById('stats-global');
         
-        // Inicializar tarjeta de tareas diarias
-        const diariasCard = document.getElementById('diarias-card');
-        if (diariasCard) {
-            diariasCard.addEventListener('click', () => {
-                this.mostrarPantalla('diarias');
+        // MODIFICADO: Toono Esuke ahora está en Aprendizaje junto a Last Summer
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarPantalla('toono');
             });
         }
         
@@ -3337,14 +3419,6 @@ class AplicacionVocabulario {
         if (tiendaCard) {
             tiendaCard.addEventListener('click', () => {
                 this.mostrarPantalla('tienda');
-            });
-        }
-        
-        // Inicializar tarjeta de Toono Esuke
-        const toonoCard = document.getElementById('toono-card');
-        if (toonoCard) {
-            toonoCard.addEventListener('click', () => {
-                this.mostrarPantalla('toono');
             });
         }
         
