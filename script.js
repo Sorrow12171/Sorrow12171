@@ -1389,8 +1389,10 @@ class AplicacionVocabulario {
             // Contar para misiones semanales
             this.completarMazoParaMisiones();
             
-            // CONTAR PARA EVENTO DIARIO
-            this.completarMazoParaEvento();
+           // CONTAR PARA EVENTO DIARIO (solo si el mazo se completó al 100%)
+if (porcentaje === 100) {
+    this.completarMazoParaEvento();
+}
             
             // NUEVO: ACTIVAR EVENTO ESPECIAL MAZO 100% (50% probabilidad)
             this.activarEventoMazo100();
@@ -2456,38 +2458,49 @@ class AplicacionVocabulario {
         }, 1500);
     }
 
-    completarMazoParaEvento() {
-        if (!this.eventosDiarios.eventoActual) return;
-        
-        this.eventosDiarios.mazosCompletadosHoy++;
-        
-        // Actualizar datos guardados
-        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario'));
-        datosEvento.mazosCompletadosHoy = this.eventosDiarios.mazosCompletadosHoy;
-        localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
-        
-        // Actualizar estadística en pantalla principal
-        this.actualizarEstadisticaEvento();
-        
-        // Verificar si se completó el evento
-        if (this.eventosDiarios.mazosCompletadosHoy >= this.eventosDiarios.eventoActual.mazosRequeridos) {
-            this.mostrarExitoEvento();
-        }
+ completarMazoParaEvento() {
+    // Verificar si hay un evento activo y si ya no fue completado
+    const datosEvento = JSON.parse(localStorage.getItem('eventoDiario') || '{}');
+    
+    if (!this.eventosDiarios.eventoActual || 
+        !datosEvento.yaAceptado || 
+        datosEvento.eventoCompletado) {
+        return; // No hay evento activo o ya fue completado
     }
+    
+    this.eventosDiarios.mazosCompletadosHoy++;
+    
+    // Actualizar datos guardados
+    datosEvento.mazosCompletadosHoy = this.eventosDiarios.mazosCompletadosHoy;
+    localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
+    
+    // Actualizar estadística en pantalla principal
+    this.actualizarEstadisticaEvento();
+    
+    // Verificar si se completó el evento (solo si no estaba ya completado)
+    if (this.eventosDiarios.mazosCompletadosHoy >= this.eventosDiarios.eventoActual.mazosRequeridos && 
+        !datosEvento.eventoCompletado) {
+        this.mostrarExitoEvento();
+    }
+}
 
     mostrarExitoEvento() {
-        const evento = this.eventosDiarios.eventoActual;
-        
-        // Marcar evento como completado
-        evento.completado = true;
-        
-        // Actualizar datos guardados
-        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario'));
-        datosEvento.eventoCompletado = true;
-        localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
-        
-        // Recompensa por completar evento: 30 Soles
-        this.agregarSoles(30);
+    const evento = this.eventosDiarios.eventoActual;
+    
+    // Marcar evento como completado
+    evento.completado = true;
+    
+    // Actualizar datos guardados
+    const datosEvento = JSON.parse(localStorage.getItem('eventoDiario'));
+    datosEvento.eventoCompletado = true;
+    datosEvento.mazosCompletadosHoy = this.eventosDiarios.mazosCompletadosHoy;
+    localStorage.setItem('eventoDiario', JSON.stringify(datosEvento));
+    
+    // Recompensa por completar evento: 30 Soles (SOLO UNA VEZ)
+    this.agregarSoles(30);
+    
+    // ... resto del código para mostrar la pantalla de éxito
+}
         
         // Mostrar pantalla de éxito
         const overlay = document.createElement('div');
