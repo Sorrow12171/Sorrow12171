@@ -367,7 +367,13 @@ class AplicacionVocabulario {
             beso: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
             nalgada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
             chupada: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3',
-            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3'
+            handjob: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3',
+            // NUEVOS AUDIOS PARA EVENTOS ESPECIALES
+            risa_nino: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3',
+            sorpresa: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3',
+            felicidad: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3',
+            amor: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3',
+            celebracion: 'https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp3'
         };
 
         this.audioObjects = {};
@@ -375,6 +381,145 @@ class AplicacionVocabulario {
 
         // IMAGEN ESPECIAL PARA RECOMPENSAS
         this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
+
+        // NUEVO: SISTEMA DE 15 EVENTOS ESPECIALES AL 100%
+        this.eventosEspeciales100 = [
+            {
+                id: 1,
+                tipo: "video",
+                nombre: "🎉 Celebración Especial de Nino",
+                descripcion: "Nino está tan feliz que te preparó una sorpresa especial",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                audio: "celebracion",
+                duracion: 8000
+            },
+            {
+                id: 2,
+                tipo: "imagen",
+                nombre: "💖 Nino en la Playa",
+                descripcion: "Nino te espera en la playa con un look veraniego",
+                contenido: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                audio: "risa_nino",
+                duracion: 6000
+            },
+            {
+                id: 3,
+                tipo: "video",
+                nombre: "😊 Nino Bailando Feliz",
+                descripcion: "Nino baila de felicidad por tu logro",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                audio: "felicidad",
+                duracion: 7000
+            },
+            {
+                id: 4,
+                tipo: "imagen",
+                nombre: "🌸 Nino con Flores",
+                descripcion: "Nino te regala flores por tu esfuerzo",
+                contenido: "https://pbs.twimg.com/media/G4X8IO9XEAAabhy?format=png&name=small",
+                audio: "amor",
+                duracion: 5500
+            },
+            {
+                id: 5,
+                tipo: "video",
+                nombre: "🎁 Sorpresa Romántica",
+                descripcion: "Nino tiene una sorpresa muy especial para ti",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                audio: "sorpresa",
+                duracion: 9000
+            },
+            {
+                id: 6,
+                tipo: "imagen",
+                nombre: "🍳 Nino Cocinando",
+                descripcion: "Nino prepara tu comida favorita",
+                contenido: "https://pbs.twimg.com/media/G4X0KxYWIAA1VL_?format=png&name=small",
+                audio: "risa_nino",
+                duracion: 5000
+            },
+            {
+                id: 7,
+                tipo: "video",
+                nombre: "💃 Baile Nocturno",
+                descripcion: "Nino te invita a bailar bajo las estrellas",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                audio: "felicidad",
+                duracion: 7500
+            },
+            {
+                id: 8,
+                tipo: "imagen",
+                nombre: "📚 Nino Estudiando",
+                descripcion: "Nino estudia contigo para apoyarte",
+                contenido: "https://pbs.twimg.com/media/G5hQ9lxX0AAZFPX?format=jpg&name=medium",
+                audio: "amor",
+                duracion: 4500
+            },
+            {
+                id: 9,
+                tipo: "video",
+                nombre: "🎮 Nino Jugando",
+                descripcion: "Nino quiere jugar contigo para celebrar",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                audio: "celebracion",
+                duracion: 6500
+            },
+            {
+                id: 10,
+                tipo: "imagen",
+                nombre: "☕ Nino en el Café",
+                descripcion: "Nino te invita a un café romántico",
+                contenido: "https://pbs.twimg.com/media/G6PD1HqXEAARPnr?format=jpg&name=small",
+                audio: "risa_nino",
+                duracion: 5200
+            },
+            {
+                id: 11,
+                tipo: "video",
+                nombre: "🎵 Nino Cantando",
+                descripcion: "Nino canta una canción especial para ti",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                audio: "felicidad",
+                duracion: 8500
+            },
+            {
+                id: 12,
+                tipo: "imagen",
+                nombre: "🌅 Nino al Amanecer",
+                descripcion: "Nino te espera para ver el amanecer juntos",
+                contenido: "https://pbs.twimg.com/media/G5Pbm8HXEAAGNP9?format=jpg&name=medium",
+                audio: "amor",
+                duracion: 5800
+            },
+            {
+                id: 13,
+                tipo: "video",
+                nombre: "🎨 Nino Pintando",
+                descripcion: "Nino pinta un cuadro especial para ti",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                audio: "sorpresa",
+                duracion: 7200
+            },
+            {
+                id: 14,
+                tipo: "imagen",
+                nombre: "🏖️ Nino en la Piscina",
+                descripcion: "Nino te invita a refrescarte juntos",
+                contenido: "https://pbs.twimg.com/media/G4OWnyyXEAAkOeh?format=jpg&name=medium",
+                audio: "risa_nino",
+                duracion: 4900
+            },
+            {
+                id: 15,
+                tipo: "video",
+                nombre: "🌟 Nino Estrella",
+                descripcion: "Nino brilla como una estrella para ti",
+                contenido: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                audio: "celebracion",
+                duracion: 9500
+            }
+        ];
 
         // SISTEMA DE TAREAS DIARIAS
         this.tareasDiarias = {
@@ -948,6 +1093,263 @@ class AplicacionVocabulario {
         this.cargarMisionesSemanales();
 
         this.inicializarApp();
+    }
+
+    // NUEVO: Sistema de 15 eventos especiales al 100%
+    mostrarEventoEspecial100() {
+        const eventoAleatorio = this.eventosEspeciales100[Math.floor(Math.random() * this.eventosEspeciales100.length)];
+        console.log(`🎭 Mostrando evento especial: ${eventoAleatorio.nombre}`);
+        
+        if (eventoAleatorio.tipo === "video") {
+            this.mostrarVideoEspecial(eventoAleatorio);
+        } else {
+            this.mostrarImagenEspecialConAudio(eventoAleatorio);
+        }
+    }
+
+    mostrarVideoEspecial(evento) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = evento.nombre;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const descripcion = document.createElement('div');
+        descripcion.textContent = evento.descripcion;
+        descripcion.style.cssText = `
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const video = document.createElement('video');
+        video.src = evento.contenido;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #000;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '❌ Cerrar';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #ff0000;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(255, 107, 107, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        video.onended = () => {
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 2000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video especial');
+            descripcion.innerHTML += '<br><small>❌ Error cargando el video</small>';
+        };
+
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(descripcion);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+        document.body.appendChild(overlay);
+
+        // Reproducir audio asociado
+        if (evento.audio) {
+            this.reproducirAudio(evento.audio);
+        }
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video especial:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
+
+        // Cerrar automáticamente después de la duración
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                video.pause();
+                document.body.removeChild(overlay);
+            }
+        }, evento.duracion);
+    }
+
+    mostrarImagenEspecialConAudio(evento) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const imagenContainer = document.createElement('div');
+        imagenContainer.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #4169e1;
+            box-shadow: 0 0 50px rgba(74, 144, 226, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = evento.nombre;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const descripcion = document.createElement('div');
+        descripcion.textContent = evento.descripcion;
+        descripcion.style.cssText = `
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.contenido;
+        imagen.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '✨ Continuar ✨';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #228b22;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(50, 205, 50, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        imagenContainer.appendChild(titulo);
+        imagenContainer.appendChild(descripcion);
+        imagenContainer.appendChild(imagen);
+        imagenContainer.appendChild(botonCerrar);
+        overlay.appendChild(imagenContainer);
+        document.body.appendChild(overlay);
+
+        // Reproducir audio asociado
+        if (evento.audio) {
+            this.reproducirAudio(evento.audio);
+        }
+
+        // Cerrar automáticamente después de la duración
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, evento.duracion);
     }
 
     // NUEVO: Sistema de evento en vivienda - CON 10 EVENTOS NUEVOS
@@ -4233,6 +4635,13 @@ class AplicacionVocabulario {
                     this.agregarSoles(10);
                     this.agregarCorazones(20);
                     this.mostrarNotificacion('🎉 ¡Recompensa mayor! +10 Soles y +20 corazones');
+                }
+            },
+            {
+                probabilidad: 0.2, // 20% - NUEVO: Evento especial 100%
+                tipo: 'evento_especial_100',
+                activar: () => {
+                    this.mostrarEventoEspecial100();
                 }
             }
         ];
