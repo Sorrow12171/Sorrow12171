@@ -2783,62 +2783,111 @@ class AplicacionVocabulario {
     }
 
     inicializarApp() {
-        this.pantallas = {
-            seleccion: document.getElementById('pantalla-seleccion'),
-            quiz: document.getElementById('pantalla-quiz'),
-            resultados: document.getElementById('pantalla-resultados'),
-            novia: document.getElementById('pantalla-novia'),
-            lastsummer: document.getElementById('pantalla-lastsummer'),
-            lastsummer1: document.getElementById('pantalla-lastsummer1-mazos'),
-            lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
-            lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
-            diarias: document.getElementById('pantalla-diarias'),
-            tienda: document.getElementById('pantalla-tienda'),
-            toono: document.getElementById('pantalla-toono'),
-            eventoDiario: document.getElementById('pantalla-evento-diario'),
-            fabrizio: document.getElementById('pantalla-fabrizio'),
-            // NUEVAS PANTALLAS
-            noviaRpg: document.getElementById('pantalla-novia-rpg'),
-            misiones: document.getElementById('pantalla-misiones'),
-            vivienda: document.getElementById('pantalla-vivienda'),
-            tienda18: document.getElementById('pantalla-tienda-18')
-        };
+    this.pantallas = {
+        seleccion: document.getElementById('pantalla-seleccion'),
+        quiz: document.getElementById('pantalla-quiz'),
+        resultados: document.getElementById('pantalla-resultados'),
+        novia: document.getElementById('pantalla-novia'),
+        lastsummer: document.getElementById('pantalla-lastsummer'),
+        lastsummer1: document.getElementById('pantalla-lastsummer1-mazos'),
+        lastsummer2: document.getElementById('pantalla-lastsummer2-mazos'),
+        lastsummer3: document.getElementById('pantalla-lastsummer3-mazos'),
+        diarias: document.getElementById('pantalla-diarias'),
+        tienda: document.getElementById('pantalla-tienda'),
+        toono: document.getElementById('pantalla-toono'),
+        eventoDiario: document.getElementById('pantalla-evento-diario'),
+        fabrizio: document.getElementById('pantalla-fabrizio'),
+        // NUEVAS PANTALLAS
+        noviaRpg: document.getElementById('pantalla-novia-rpg'),
+        misiones: document.getElementById('pantalla-misiones'),
+        vivienda: document.getElementById('pantalla-vivienda'),
+        tienda18: document.getElementById('pantalla-tienda-18')
+    };
 
-        // Cargar sistema de tareas diarias
-        this.cargarTareasDiarias();
-        
-        this.inicializarPantallaSeleccion();
-        this.inicializarPantallaQuiz();
-        this.inicializarPantallaResultados();
-        this.inicializarPantallaNovia();
-        this.inicializarPantallaLastSummer();
-        this.inicializarSeccionLastSummer();
-        this.inicializarPantallasLastSummerMazos();
-        this.inicializarPantallaDiarias();
-        this.inicializarPantallaTienda();
-        this.inicializarPantallaToono();
-        this.inicializarPantallaEventos();
-        this.inicializarPantallaFabrizio();
-        
-        // NUEVO: Inicializar pantallas RPG
-        this.inicializarPantallaNoviaRPG();
-        this.inicializarPantallaMisiones();
-        this.inicializarPantallaVivienda();
-        this.inicializarPantallaTienda18();
-        
-        // Verificar evento diario
-        this.verificarEventoDiario();
-        
-        // Verificar inactividad
-        this.verificarInactividad();
-        
-        // Mostrar mensaje si es primera vez en GitHub Pages
-        if (this.esPrimeraVez) {
-            setTimeout(() => {
-                alert('🌐 ¡Bienvenido a GitHub Pages! Tu progreso ahora se sincronizará entre dispositivos.');
-            }, 1000);
-        }
+    // Cargar sistema de tareas diarias
+    this.cargarTareasDiarias();
+    
+    this.inicializarPantallaSeleccion();
+    this.inicializarPantallaQuiz();
+    this.inicializarPantallaResultados();
+    this.inicializarPantallaNovia();
+    this.inicializarPantallaLastSummer();
+    this.inicializarSeccionLastSummer();
+    this.inicializarPantallasLastSummerMazos();
+    this.inicializarPantallaDiarias();
+    this.inicializarPantallaTienda();
+    this.inicializarPantallaToono();
+    this.inicializarPantallaEventos();
+    this.inicializarPantallaFabrizio();
+    
+    // NUEVO: Inicializar pantallas RPG
+    this.inicializarPantallaNoviaRPG();
+    this.inicializarPantallaMisiones();
+    this.inicializarPantallaVivienda();
+    this.inicializarPantallaTienda18();
+    
+    // NUEVO: Inicializar tarjeta de tareas diarias
+    const diariasCard = document.getElementById('diarias-card');
+    if (diariasCard) {
+        diariasCard.addEventListener('click', () => {
+            this.mostrarPantalla('diarias');
+            this.actualizarPantallaTareas();
+        });
     }
+
+    // NUEVO: Inicializar tarjeta de misiones semanales
+    const misionesCard = document.getElementById('misiones-card');
+    if (misionesCard) {
+        misionesCard.addEventListener('click', () => {
+            this.mostrarPantalla('misiones');
+            this.actualizarPantallaMisiones();
+        });
+    }
+
+    // NUEVO: Inicializar tarjeta de novia RPG
+    const noviaRpgCard = document.getElementById('novia-rpg-card');
+    if (noviaRpgCard) {
+        noviaRpgCard.addEventListener('click', () => {
+            this.mostrarPantalla('noviaRpg');
+            this.actualizarPantallaNoviaRPG();
+        });
+    }
+
+    // NUEVO: Inicializar tarjeta de vivienda
+    const viviendaCard = document.getElementById('vivienda-card');
+    if (viviendaCard) {
+        viviendaCard.addEventListener('click', () => {
+            this.mostrarPantalla('vivienda');
+            // Verificar evento al entrar a la vivienda
+            const hayEvento = this.verificarEventoVivienda();
+            if (!hayEvento) {
+                this.actualizarPantallaVivienda();
+            }
+        });
+    }
+
+    // NUEVO: Inicializar tarjeta de tienda +18
+    const tienda18Card = document.getElementById('tienda-18-card');
+    if (tienda18Card) {
+        tienda18Card.addEventListener('click', () => {
+            this.mostrarPantalla('tienda18');
+            this.actualizarPantallaTienda18();
+        });
+    }
+    
+    // Verificar evento diario
+    this.verificarEventoDiario();
+    
+    // Verificar inactividad
+    this.verificarInactividad();
+    
+    // Mostrar mensaje si es primera vez en GitHub Pages
+    if (this.esPrimeraVez) {
+        setTimeout(() => {
+            alert('🌐Belinda y zahiry las mas culonas de pocollay');
+        }, 1000);
+    }
+}
 
     // NUEVO: Inicializar pantalla Vivienda
     inicializarPantallaVivienda() {
