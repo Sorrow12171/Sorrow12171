@@ -1062,35 +1062,34 @@ class AplicacionVocabulario {
         this.inicializarApp();
     }
 
-    // NUEVO: MÉTODO PARA ACTIVAR EVENTOS DE MAZO 100%
     activarEventoMazo100() {
-        console.log('🎰 Activando evento especial por mazo 100%');
-        
-        // 50% de probabilidad de que aparezca el evento
-        const probabilidad = Math.random() < 0.5;
-        
-        if (!probabilidad) {
-            console.log('❌ No salió evento esta vez (50% probabilidad)');
-            return;
-        }
-        
-        // Decidir aleatoriamente si es evento de imagen o video (50/50)
-        const esImagen = Math.random() < 0.5;
-        
-        if (esImagen) {
-            // Evento de IMAGEN + AUDIO
-            const eventoImagen = this.eventosMazo100.eventosImagen[
-                Math.floor(Math.random() * this.eventosMazo100.eventosImagen.length)
-            ];
-            this.mostrarEventoImagen100(eventoImagen);
-        } else {
-            // Evento de VIDEO
-            const eventoVideo = this.eventosMazo100.eventosVideo[
-                Math.floor(Math.random() * this.eventosMazo100.eventosVideo.length)
-            ];
-            this.mostrarEventoVideo100(eventoVideo);
-        }
+    console.log('🎰 Activando evento especial por mazo 100%');
+    
+    // 80% de probabilidad de que aparezca el evento (cambiado de 50% a 80%)
+    const probabilidad = Math.random() < 0.8;
+    
+    if (!probabilidad) {
+        console.log('❌ No salió evento esta vez (20% probabilidad de fallo)');
+        return;
     }
+    
+    // Decidir aleatoriamente si es evento de imagen o video (50/50)
+    const esImagen = Math.random() < 0.5;
+    
+    if (esImagen) {
+        // Evento de IMAGEN + AUDIO
+        const eventoImagen = this.eventosMazo100.eventosImagen[
+            Math.floor(Math.random() * this.eventosMazo100.eventosImagen.length)
+        ];
+        this.mostrarEventoImagen100(eventoImagen);
+    } else {
+        // Evento de VIDEO
+        const eventoVideo = this.eventosMazo100.eventosVideo[
+            Math.floor(Math.random() * this.eventosMazo100.eventosVideo.length)
+        ];
+        this.mostrarEventoVideo100(eventoVideo);
+    }
+}
 
     // NUEVO: MÉTODO PARA MOSTRAR EVENTO DE IMAGEN 100%
     mostrarEventoImagen100(evento) {
