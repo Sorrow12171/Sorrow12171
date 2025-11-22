@@ -376,8 +376,136 @@ class AplicacionVocabulario {
         this.audioObjects = {};
         this.cargarAudios();
 
-        // IMAGEN ESPECIAL PARA RECOMPENSAS
+        // IMAGEN ESPECIAL PARA RECOMPENSAS - CON 66% DE PROBABILIDAD
         this.imagenEspecial = "https://pbs.twimg.com/media/G5_38X-XUAATGFc?format=jpg&name=small";
+
+        // NUEVOS EVENTOS ESPECIALES CON IMÁGENES Y AUDIO (8 eventos)
+        this.eventosEspecialesImagen = [
+            {
+                id: 1,
+                nombre: "Nino Sorprendida",
+                imagen: "https://pbs.twimg.com/media/G5hROymXUAAGb2R?format=jpg&name=medium",
+                audio: "beso",
+                probabilidad: 0.15, // 15%
+                mensaje: "¡Nino está sorprendida por tu dedicación! 💖"
+            },
+            {
+                id: 2,
+                nombre: "Nino Feliz",
+                imagen: "https://pbs.twimg.com/media/G4X8IO9XEAAabhy?format=png&name=small",
+                audio: "nalgada",
+                probabilidad: 0.12, // 12%
+                mensaje: "¡Nino está muy feliz contigo! 😊"
+            },
+            {
+                id: 3,
+                nombre: "Nino Coqueta",
+                imagen: "https://pbs.twimg.com/media/G4X0KxYWIAA1VL_?format=png&name=small",
+                audio: "chupada",
+                probabilidad: 0.10, // 10%
+                mensaje: "¡Nino te mira coquetamente! 😘"
+            },
+            {
+                id: 4,
+                nombre: "Nino Enamorada",
+                imagen: "https://pbs.twimg.com/media/G6PD1HqXEAARPnr?format=jpg&name=small",
+                audio: "handjob",
+                probabilidad: 0.08, // 8%
+                mensaje: "¡Nino está completamente enamorada de ti! 💕"
+            },
+            {
+                id: 5,
+                nombre: "Nino Juguetona",
+                imagen: "https://pbs.twimg.com/media/G5_wCzcWsAAmHcA?format=png&name=small",
+                audio: "beso",
+                probabilidad: 0.07, // 7%
+                mensaje: "¡Nino está de humor juguetón! 😄"
+            },
+            {
+                id: 6,
+                nombre: "Nino Sensual",
+                imagen: "https://pbs.twimg.com/media/G6Jd5qjXcAAvQj0?format=png&name=small",
+                audio: "nalgada",
+                probabilidad: 0.06, // 6%
+                mensaje: "¡Nino se ve muy sensual hoy! 🔥"
+            },
+            {
+                id: 7,
+                nombre: "Nino Tierna",
+                imagen: "https://pbs.twimg.com/media/G6EARd6XIAEYjvU?format=jpg&name=360x360",
+                audio: "chupada",
+                probabilidad: 0.05, // 5%
+                mensaje: "¡Nino se ve especialmente tierna! 🥰"
+            },
+            {
+                id: 8,
+                nombre: "Nino Especial",
+                imagen: "https://pbs.twimg.com/media/G6FDKZyX0AAPZWI?format=jpg&name=small",
+                audio: "handjob",
+                probabilidad: 0.03, // 3%
+                mensaje: "¡Evento especial de Nino! ✨"
+            }
+        ];
+
+        // NUEVOS EVENTOS ESPECIALES CON VIDEOS (8 eventos)
+        this.eventosEspecialesVideo = [
+            {
+                id: 1,
+                nombre: "Nino Bailando",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                probabilidad: 0.20, // 20%
+                mensaje: "¡Nino baila feliz para ti! 💃"
+            },
+            {
+                id: 2,
+                nombre: "Momento Íntimo",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                probabilidad: 0.15, // 15%
+                mensaje: "Un momento íntimo especial con Nino 💖"
+            },
+            {
+                id: 3,
+                nombre: "Sorpresa de Nino",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/beso.mp4",
+                probabilidad: 0.12, // 12%
+                mensaje: "¡Nino tiene una sorpresa para ti! 🎁"
+            },
+            {
+                id: 4,
+                nombre: "Aventura Nocturna",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/nalgada.mp3",
+                probabilidad: 0.10, // 10%
+                mensaje: "Una aventura nocturna con Nino 🌙"
+            },
+            {
+                id: 5,
+                nombre: "Encuentro Romántico",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/chupada.mp3",
+                probabilidad: 0.08, // 8%
+                mensaje: "Un encuentro romántico inolvidable 💕"
+            },
+            {
+                id: 6,
+                nombre: "Juego Entretenido",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/handjob.mp3",
+                probabilidad: 0.07, // 7%
+                mensaje: "¡Nino quiere jugar contigo! 🎮"
+            },
+            {
+                id: 7,
+                nombre: "Confesión Especial",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/madre.mp4",
+                probabilidad: 0.05, // 5%
+                mensaje: "Nino tiene algo importante que decirte 💌"
+            },
+            {
+                id: 8,
+                nombre: "Evento Único",
+                video: "https://raw.githubusercontent.com/Sorrow12171/Sorrow12171/main/zahiry.mp4",
+                probabilidad: 0.03, // 3%
+                mensaje: "¡Evento único con Nino! 🌟"
+            }
+        ];
 
         // SISTEMA DE TAREAS DIARIAS - MODIFICADO
         this.tareasDiarias = {
@@ -640,6 +768,270 @@ class AplicacionVocabulario {
         this.cargarMisionesSemanales();
 
         this.inicializarApp();
+    }
+
+    // NUEVO: Sistema de eventos especiales con imágenes y audio
+    mostrarEventoEspecialImagen() {
+        const evento = this.seleccionarEventoPorProbabilidad(this.eventosEspecialesImagen);
+        if (evento) {
+            this.mostrarImagenEspecialConAudio(evento);
+        }
+    }
+
+    // NUEVO: Sistema de eventos especiales con videos
+    mostrarEventoEspecialVideo() {
+        const evento = this.seleccionarEventoPorProbabilidad(this.eventosEspecialesVideo);
+        if (evento) {
+            this.mostrarVideoEspecial(evento);
+        }
+    }
+
+    // NUEVO: Seleccionar evento basado en probabilidad
+    seleccionarEventoPorProbabilidad(eventos) {
+        const random = Math.random();
+        let acumulado = 0;
+        
+        for (const evento of eventos) {
+            acumulado += evento.probabilidad;
+            if (random <= acumulado) {
+                return evento;
+            }
+        }
+        
+        return null; // No se activó ningún evento
+    }
+
+    // NUEVO: Mostrar imagen especial con audio
+    mostrarImagenEspecialConAudio(evento) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const imagenContainer = document.createElement('div');
+        imagenContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = `🎉 ${evento.nombre} 🎉`;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const imagen = document.createElement('img');
+        imagen.src = evento.imagen;
+        imagen.style.cssText = `
+            max-width: 400px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        `;
+
+        const mensaje = document.createElement('div');
+        mensaje.textContent = evento.mensaje;
+        mensaje.style.cssText = `
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 20px;
+            font-weight: bold;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '✨ Continuar ✨';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #4a90e2, #7b68ee);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #4169e1;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(74, 144, 226, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            document.body.removeChild(overlay);
+        };
+
+        imagenContainer.appendChild(titulo);
+        imagenContainer.appendChild(imagen);
+        imagenContainer.appendChild(mensaje);
+        imagenContainer.appendChild(botonCerrar);
+        overlay.appendChild(imagenContainer);
+        document.body.appendChild(overlay);
+
+        // Reproducir audio asociado al evento
+        if (evento.audio) {
+            setTimeout(() => {
+                this.reproducirAudio(evento.audio);
+            }, 500);
+        }
+
+        setTimeout(() => {
+            if (document.body.contains(overlay)) {
+                document.body.removeChild(overlay);
+            }
+        }, 8000);
+    }
+
+    // NUEVO: Mostrar video especial
+    mostrarVideoEspecial(evento) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            flex-direction: column;
+        `;
+
+        const videoContainer = document.createElement('div');
+        videoContainer.style.cssText = `
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            max-width: 90%;
+            max-height: 90%;
+            border: 4px solid #ff4757;
+            box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+        `;
+
+        const titulo = document.createElement('div');
+        titulo.textContent = `🎬 ${evento.nombre} 🎬`;
+        titulo.style.cssText = `
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        `;
+
+        const mensaje = document.createElement('div');
+        mensaje.textContent = evento.mensaje;
+        mensaje.style.cssText = `
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: bold;
+        `;
+
+        const video = document.createElement('video');
+        video.src = evento.video;
+        video.controls = true;
+        video.autoplay = true;
+        video.muted = false;
+        video.playsInline = true;
+        video.style.cssText = `
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 15px;
+            border: 3px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: #000;
+        `;
+
+        const botonCerrar = document.createElement('button');
+        botonCerrar.textContent = '❌ Cerrar Video';
+        botonCerrar.style.cssText = `
+            background: linear-gradient(135deg, #666666, #888888);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 3px solid #555555;
+            transition: all 0.3s ease;
+        `;
+
+        botonCerrar.onmouseover = () => {
+            botonCerrar.style.transform = 'scale(1.05)';
+            botonCerrar.style.boxShadow = '0 5px 15px rgba(102, 102, 102, 0.4)';
+        };
+
+        botonCerrar.onmouseout = () => {
+            botonCerrar.style.transform = 'scale(1)';
+            botonCerrar.style.boxShadow = 'none';
+        };
+
+        botonCerrar.onclick = () => {
+            video.pause();
+            document.body.removeChild(overlay);
+        };
+
+        video.onended = () => {
+            setTimeout(() => {
+                if (document.body.contains(overlay)) {
+                    document.body.removeChild(overlay);
+                }
+            }, 2000);
+        };
+
+        video.onerror = () => {
+            console.log('❌ Error cargando el video especial');
+            mensaje.innerHTML += '<br><small>❌ Error cargando el video</small>';
+        };
+
+        videoContainer.appendChild(titulo);
+        videoContainer.appendChild(mensaje);
+        videoContainer.appendChild(video);
+        videoContainer.appendChild(botonCerrar);
+        overlay.appendChild(videoContainer);
+        document.body.appendChild(overlay);
+
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log('❌ Error reproduciendo video especial:', error);
+                video.muted = true;
+                video.play();
+            });
+        }
     }
 
     // NUEVO: Sistema de evento en vivienda - CON 10 EVENTOS NUEVOS
@@ -3897,8 +4289,9 @@ class AplicacionVocabulario {
             // CONTAR PARA EVENTO DIARIO
             this.completarMazoParaEvento();
             
-            const probabilidad = Math.random();
-            if (probabilidad < 0.666) {
+            // NUEVO: Sistema de eventos especiales con 66% de probabilidad para imagen especial
+            const probabilidadImagenEspecial = Math.random();
+            if (probabilidadImagenEspecial < 0.66) {
                 console.log('🎰 ¡Probabilidad ganadora! Mostrando imagen especial...');
                 setTimeout(() => {
                     this.mostrarImagenEspecial();
@@ -3906,6 +4299,13 @@ class AplicacionVocabulario {
             } else {
                 console.log('🎰 Esta vez no tocó la imagen especial');
             }
+            
+            // NUEVO: Sistema de eventos especiales con imágenes y audio
+            this.mostrarEventoEspecialImagen();
+            
+            // NUEVO: Sistema de eventos especiales con videos
+            this.mostrarEventoEspecialVideo();
+            
         } else {
             // NUEVO: Penalización por no completar mazo al 100%
             this.quitarCorazones(2);
