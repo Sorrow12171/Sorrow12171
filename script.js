@@ -3370,8 +3370,54 @@ class AplicacionVocabulario {
     guardarStats() {
         localStorage.setItem('vocabularioStats', JSON.stringify(this.stats));
     }
+// NUEVO: Método para mostrar mazos de Toono Esuke
+mostrarMazosToono(personaje) {
+    let prefijo = '';
+    let pantallaId = '';
+    let contenedorId = '';
+    
+    switch(personaje) {
+        case 'hermana-rubia':
+            prefijo = 'Toono - Hermana Rubia Rusa';
+            pantallaId = 'toono-hermana-rubia';
+            contenedorId = 'contenedor-toono-hermana-rubia';
+            break;
+        case 'hermana-madre':
+            prefijo = 'Toono - Hermana y Madre';
+            pantallaId = 'toono-hermana-madre';
+            contenedorId = 'contenedor-toono-hermana-madre';
+            break;
+        case 'chica-escuela':
+            prefijo = 'Toono - Chica Escuela';
+            pantallaId = 'toono-chica-escuela';
+            contenedorId = 'contenedor-toono-chica-escuela';
+            break;
+    }
+    
+    const contenedor = document.getElementById(contenedorId);
+    contenedor.innerHTML = '';
+    
+    for (const nombreMazo in this.mazos) {
+        if (nombreMazo.startsWith(prefijo)) {
+            const statsMazo = this.stats.mazos[nombreMazo];
+            const boton = document.createElement('button');
+            boton.className = 'boton-mazo';
+            boton.innerHTML = `
+                ${nombreMazo.replace(prefijo + ' - ', '')}<br>
+                Mejor: ${statsMazo.mejorPuntuacion}%<br>
+                Jugado: ${statsMazo.vecesJugado} veces<br>
+                Récord: ${statsMazo.mejorRacha} aciertos<br>
+                100%: ${statsMazo.completados100} veces
+            `;
+            boton.onclick = () => this.iniciarQuiz(nombreMazo);
+            contenedor.appendChild(boton);
+        }
+    }
+    
+    this.mostrarPantalla(pantallaId);
+}
 
-    inicializarApp() {
+   inicializarApp() {
     this.pantallas = {
         seleccion: document.getElementById('pantalla-seleccion'),
         quiz: document.getElementById('pantalla-quiz'),
@@ -3384,6 +3430,11 @@ class AplicacionVocabulario {
         diarias: document.getElementById('pantalla-diarias'),
         tienda: document.getElementById('pantalla-tienda'),
         toono: document.getElementById('pantalla-toono'),
+        // === NUEVAS PANTALLAS TOONO ESUKE ===
+        'toono-hermana-rubia': document.getElementById('pantalla-toono-hermana-rubia'),
+        'toono-hermana-madre': document.getElementById('pantalla-toono-hermana-madre'),
+        'toono-chica-escuela': document.getElementById('pantalla-toono-chica-escuela'),
+        // ====================================
         eventoDiario: document.getElementById('pantalla-evento-diario'),
         fabrizio: document.getElementById('pantalla-fabrizio'),
         // NUEVAS PANTALLAS
@@ -3881,26 +3932,48 @@ class AplicacionVocabulario {
     }
 
     inicializarPantallaToono() {
-        const toonoCard = document.getElementById('toono-card');
-        if (toonoCard) {
-            toonoCard.addEventListener('click', () => {
-                this.mostrarPantalla('toono');
-            });
-        }
-        
-        document.getElementById('boton-volver-menu-toono').onclick = () => {
-            this.mostrarPantalla('seleccion');
-        };
-        
-        // Event listeners para imágenes de personajes
-        document.querySelectorAll('.personaje-imagen').forEach(imagen => {
-            imagen.addEventListener('click', (e) => {
-                const url = e.target.src;
-                const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
-                this.mostrarImagenGrande(url, titulo);
-            });
+    const toonoCard = document.getElementById('toono-card');
+    if (toonoCard) {
+        toonoCard.addEventListener('click', () => {
+            this.mostrarPantalla('toono');
         });
     }
+    
+    document.getElementById('boton-volver-menu-toono').onclick = () => {
+        this.mostrarPantalla('seleccion');
+    };
+
+    // NUEVO: Event listeners para personajes de Toono Esuke
+    document.querySelectorAll('.personaje-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const personaje = card.getAttribute('data-personaje');
+            this.mostrarMazosToono(personaje);
+        });
+    });
+
+    // NUEVO: Botones volver para las nuevas pantallas
+    document.getElementById('boton-volver-toono-hermana-rubia').onclick = () => {
+        this.mostrarPantalla('toono');
+    };
+    
+    document.getElementById('boton-volver-toono-hermana-madre').onclick = () => {
+        this.mostrarPantalla('toono');
+    };
+    
+    document.getElementById('boton-volver-toono-chica-escuela').onclick = () => {
+        this.mostrarPantalla('toono');
+    };
+
+    // Mantener el evento para mostrar imágenes en grande
+    document.querySelectorAll('.personaje-imagen').forEach(imagen => {
+        imagen.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita que se active el click del card
+            const url = e.target.src;
+            const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
+            this.mostrarImagenGrande(url, titulo);
+        });
+    });
+}
 
     inicializarPantallaFabrizio() {
         const fabrizioCard = document.getElementById('fabrizio-card');
