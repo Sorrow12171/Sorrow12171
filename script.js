@@ -3837,6 +3837,78 @@ class AplicacionVocabulario {
         };
     }
 
+    // NUEVO: Inicializar pantalla Toono Esuke - MODIFICADA
+    inicializarPantallaToono() {
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarPantalla('toono');
+                // Asegurarse de que se muestren los personajes al entrar
+                this.volverAPersonajes();
+            });
+        }
+        
+        document.getElementById('boton-volver-menu-toono').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+        
+        // Event listeners para tarjetas de personajes - MODIFICADO
+        document.querySelectorAll('.personaje-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const personaje = e.currentTarget.getAttribute('data-personaje');
+                this.mostrarMazosPersonaje(personaje);
+            });
+        });
+
+        // Event listener para el botón "Volver a Personajes"
+        document.getElementById('boton-volver-personajes').addEventListener('click', () => {
+            this.volverAPersonajes();
+        });
+
+        // NUEVO: Event listeners para los mazos de Toono Esuke
+        document.querySelectorAll('.boton-mazo-toono').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const nombreMazo = e.target.getAttribute('data-mazo');
+                this.iniciarQuiz(nombreMazo);
+            });
+        });
+    }
+
+    // NUEVO: Método para mostrar los mazos de un personaje específico
+    mostrarMazosPersonaje(personaje) {
+        console.log(`🎭 Mostrando mazos para: ${personaje}`);
+        
+        const contenedorPersonajes = document.querySelector('.contenedor-personajes');
+        const contenedorMazos = document.getElementById('contenedor-mazos-toono');
+        
+        // Ocultar personajes y mostrar mazos
+        if (contenedorPersonajes) contenedorPersonajes.style.display = 'none';
+        if (contenedorMazos) contenedorMazos.style.display = 'block';
+        
+        // Ocultar todos los grupos de mazos
+        document.querySelectorAll('.personaje-mazos').forEach(grupo => {
+            grupo.style.display = 'none';
+        });
+        
+        // Mostrar solo los mazos del personaje seleccionado
+        const mazosPersonaje = document.querySelector(`.personaje-mazos[data-personaje="${personaje}"]`);
+        if (mazosPersonaje) {
+            mazosPersonaje.style.display = 'block';
+        }
+    }
+
+    // NUEVO: Método para volver a la vista de personajes
+    volverAPersonajes() {
+        console.log('🔄 Volviendo a vista de personajes');
+        
+        const contenedorPersonajes = document.querySelector('.contenedor-personajes');
+        const contenedorMazos = document.getElementById('contenedor-mazos-toono');
+        
+        // Mostrar personajes y ocultar mazos
+        if (contenedorPersonajes) contenedorPersonajes.style.display = 'flex';
+        if (contenedorMazos) contenedorMazos.style.display = 'none';
+    }
+
     inicializarPantallaEventos() {
         document.getElementById('boton-aceptar-reto').onclick = () => {
             this.aceptarReto();
@@ -3879,36 +3951,6 @@ class AplicacionVocabulario {
         });
         
         this.actualizarSaldoTienda();
-    }
-
-    inicializarPantallaToono() {
-        const toonoCard = document.getElementById('toono-card');
-        if (toonoCard) {
-            toonoCard.addEventListener('click', () => {
-                this.mostrarPantalla('toono');
-            });
-        }
-        
-        document.getElementById('boton-volver-menu-toono').onclick = () => {
-            this.mostrarPantalla('seleccion');
-        };
-        
-        // Event listeners para imágenes de personajes
-        document.querySelectorAll('.personaje-imagen').forEach(imagen => {
-            imagen.addEventListener('click', (e) => {
-                const url = e.target.src;
-                const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
-                this.mostrarImagenGrande(url, titulo);
-            });
-        });
-
-        // NUEVO: Event listeners para los mazos de Toono Esuke
-        document.querySelectorAll('.boton-mazo-toono').forEach(boton => {
-            boton.addEventListener('click', (e) => {
-                const nombreMazo = e.target.getAttribute('data-mazo');
-                this.iniciarQuiz(nombreMazo);
-            });
-        });
     }
 
     inicializarPantallaFabrizio() {
@@ -4558,7 +4600,7 @@ class AplicacionVocabulario {
    Veces jugado: ${statsMazo.vecesJugado}
    Mejor racha: ${statsMazo.mejorRacha} aciertos
    Aciertos totales: ${statsMazo.aciertosTotales}
-   Errores totales: ${statsMazo.erroresTotales}
+   ErroresTotales: ${statsMazo.erroresTotales}
    Completados al 100%: ${statsMazo.completados100} veces
 
 ⭐ LOGROS GLOBALES:
