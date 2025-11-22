@@ -744,6 +744,203 @@ class AplicacionVocabulario {
                 ["祖母", "Abuela", "sobo"],
                 ["子供", "Niño", "kodomo"]
             ]
+            // === NUEVOS MAZOS TOONO ESUKE - HERMANA RUBIA RUSA ===
+    "Toono - Hermana Rubia Rusa - Básico": [
+        ["ロシア", "Rusia", "roshia"],
+        ["金髪", "Cabello rubio", "kinpatsu"],
+        ["姉", "Hermana mayor", "ane"],
+        ["美しい", "Hermosa", "utsukushii"],
+        ["雪", "Nieve", "yuki"],
+        ["青い目", "Ojos azules", "aoi me"],
+        ["優しい", "Amable", "yasashii"],
+        ["冬", "Invierno", "fuyu"],
+        ["肌", "Piel", "hada"],
+        ["微笑み", "Sonrisa", "hohoemi"]
+    ],
+
+    "Toono - Hermana Rubia Rusa - Familia": [
+        ["家族", "Familia", "kazoku"],
+        ["兄弟", "Hermanos", "kyoudai"],
+        ["保護", "Protección", "hogo"],
+        ["愛情", "Amor", "aijou"],
+        ["絆", "Vínculo", "kizuna"],
+        ["家", "Hogar", "ie"],
+        ["温かい", "Cálido", "atatakai"],
+        ["思いやり", "Consideración", "omoiyari"],
+        ["支える", "Apoyar", "sasaeru"],
+        ["幸せ", "Felicidad", "shiawase"]
+    ],
+
+    "Toono - Hermana Rubia Rusa - Personalidad": [
+        ["強い", "Fuerte", "tsuyoi"],
+        ["賢い", "Inteligente", "kashikoi"],
+        ["自信", "Confianza", "jishin"],
+        ["独立", "Independencia", "dokuritsu"],
+        ["リーダー", "Líder", "riidaa"],
+        ["決断", "Decisión", "ketsudan"],
+        ["責任", "Responsabilidad", "sekinin"],
+        ["指導", "Guía", "shidou"],
+        ["模範", "Ejemplo", "mohan"],
+        ["尊敬", "Respeto", "sonkei"]
+    ],
+
+    "Toono - Hermana Rubia Rusa - Cultura": [
+        ["文化", "Cultura", "bunka"],
+        ["伝統", "Tradición", "dentou"],
+        ["言語", "Idioma", "gengo"],
+        ["習慣", "Costumbre", "shuukan"],
+        ["料理", "Cocina", "ryouri"],
+        ["音楽", "Música", "ongaku"],
+        ["舞踊", "Danza", "buyou"],
+        ["芸術", "Arte", "geijutsu"],
+        ["歴史", "Historia", "rekishi"],
+        ["民族", "Etnia", "minzoku"]
+    ],
+
+    "Toono - Hermana Rubia Rusa - Emociones": [
+        ["喜び", "Alegría", "yorokobi"],
+        ["安心", "Alivio", "anshin"],
+        ["信頼", "Confianza", "shinrai"],
+        ["希望", "Esperanza", "kibou"],
+        ["誇り", "Orgullo", "hokori"],
+        ["感謝", "Gratitud", "kansha"],
+        ["勇気", "Valentía", "yuuki"],
+        ["平和", "Paz", "heiwa"],
+        ["夢", "Sueño", "yume"],
+        ["未来", "Futuro", "mirai"]
+    ],
+
+    // === NUEVOS MAZOS TOONO ESUKE - HERMANA Y MADRE ===
+    "Toono - Hermana y Madre - Relación": [
+        ["母", "Madre", "haha"],
+        ["娘", "Hija", "musume"],
+        ["親子", "Padres e hijos", "oyako"],
+        ["育児", "Crianza", "ikuji"],
+        ["教育", "Educación", "kyouiku"],
+        ["指導", "Orientación", "shidou"],
+        ["世代", "Generación", "sedai"],
+        ["継承", "Herencia", "keishou"],
+        ["伝える", "Transmitir", "tsutaeru"],
+        ["教える", "Enseñar", "oshieru"]
+    ],
+
+    "Toono - Hermana y Madre - Cuidado": [
+        ["世話", "Cuidado", "sewa"],
+        ["保護", "Protección", "hogo"],
+        ["栄養", "Nutrición", "eiyou"],
+        ["健康", "Salud", "kenkou"],
+        ["安全", "Seguridad", "anzen"],
+        ["安心", "Tranquilidad", "anshin"],
+        ["支え", "Apoyo", "sasae"],
+        ["励まし", "Aliento", "hagemashi"],
+        ["見守る", "Velar por", "mimamoru"],
+        ["育てる", "Criar", "sodateru"]
+    ],
+
+    "Toono - Hermana y Madre - Hogar": [
+        ["家庭", "Hogar", "katei"],
+        ["団欒", "Reunión familiar", "danran"],
+        ["食事", "Comida", "shokuji"],
+        ["台所", "Cocina", "daidokoro"],
+        ["寝室", "Dormitorio", "shinshitsu"],
+        ["居間", "Sala de estar", "ima"],
+        ["温もり", "Calidez", "nukumori"],
+        ["憩い", "Descanso", "ikoi"],
+        ["くつろぎ", "Relajación", "kutsurogi"],
+        ["家庭円満", "Armonía familiar", "katei enman"]
+    ],
+
+    "Toono - Hermana y Madre - Valores": [
+        ["愛情", "Amor", "aijou"],
+        ["忍耐", "Paciencia", "nintai"],
+        ["優しさ", "Dulzura", "yasashisa"],
+        ["理解", "Comprensión", "rikai"],
+        ["寛容", "Tolerancia", "kanyou"],
+        ["慈愛", "Compasión", "jiai"],
+        ["献身", "Dedicación", "kenshin"],
+        ["犠牲", "Sacrificio", "gisei"],
+        ["無償", "Desinterés", "mushou"],
+        ["永遠", "Eterno", "eien"]
+    ],
+
+    "Toono - Hermana y Madre - Desarrollo": [
+        ["成長", "Crecimiento", "seichou"],
+        ["発達", "Desarrollo", "hattatsu"],
+        ["自立", "Autonomía", "jiritsu"],
+        ["成熟", "Madurez", "seijuku"],
+        ["経験", "Experiencia", "keiken"],
+        ["学び", "Aprendizaje", "manabi"],
+        ["挑戦", "Desafío", "chousen"],
+        ["成功", "Éxito", "seikou"],
+        ["達成", "Logro", "tassei"],
+        ["進歩", "Progreso", "shinpo"]
+    ],
+
+    // === NUEVOS MAZOS TOONO ESUKE - CHICA DE LA ESCUELA ===
+    "Toono - Chica Escuela - Vida Escolar": [
+        ["学校", "Escuela", "gakkou"],
+        ["教室", "Aula", "kyoushitsu"],
+        ["生徒", "Estudiante", "seito"],
+        ["先生", "Maestro", "sensei"],
+        ["勉強", "Estudio", "benkyou"],
+        ["授業", "Clase", "jugyou"],
+        ["試験", "Examen", "shiken"],
+        ["成績", "Calificaciones", "seiseki"],
+        ["宿題", "Tarea", "shukudai"],
+        ["教科書", "Libro de texto", "kyoukasho"]
+    ],
+
+    "Toono - Chica Escuela - Amistades": [
+        ["友達", "Amigos", "tomodachi"],
+        ["親友", "Mejor amigo", "shinyuu"],
+        ["仲間", "Compañeros", "nakama"],
+        ["交流", "Interacción", "kouryuu"],
+        ["信頼", "Confianza", "shinrai"],
+        ["協力", "Cooperación", "kyouryoku"],
+        ["思い出", "Recuerdos", "omoide"],
+        ["共有", "Compartir", "kyouyuu"],
+        ["支え合い", "Apoyo mutuo", "sasaeai"],
+        ["絆", "Lazos", "kizuna"]
+    ],
+
+    "Toono - Chica Escuela - Actividades": [
+        ["部活動", "Club escolar", "bukatsudou"],
+        ["運動", "Deporte", "undou"],
+        ["文化祭", "Festival cultural", "bunkasai"],
+        ["体育祭", "Festival deportivo", "taiikusai"],
+        ["委員会", "Comité", "iinkai"],
+        ["行事", "Evento", "gyouji"],
+        ["準備", "Preparación", "junbi"],
+        ["参加", "Participación", "sanka"],
+        ["活躍", "Actuación destacada", "katsuyaku"],
+        ["達成感", "Sensación de logro", "tasseikan"]
+    ],
+
+    "Toono - Chica Escuela - Juventud": [
+        ["青春", "Juventud", "seishun"],
+        ["情熱", "Pasión", "jounetsu"],
+        ["夢", "Sueños", "yume"],
+        ["希望", "Esperanza", "kibou"],
+        ["未来", "Futuro", "mirai"],
+        ["可能性", "Posibilidades", "kanousei"],
+        ["挑戦", "Reto", "chousen"],
+        ["成長", "Crecimiento", "seichou"],
+        ["思い切り", "Sin reservas", "omoikiri"],
+        ["輝き", "Brillo", "kagayaki"]
+    ],
+
+    "Toono - Chica Escuela - Emociones": [
+        ["嬉しい", "Feliz", "ureshii"],
+        ["楽しい", "Divertido", "tanoshii"],
+        ["緊張", "Nerviosismo", "kinchou"],
+        ["期待", "Expectativa", "kitai"],
+        ["不安", "Ansiedad", "fuan"],
+        ["感動", "Emoción", "kandou"],
+        ["悩み", "Preocupación", "nayami"],
+        ["勇気", "Coraje", "yuuki"],
+        ["感謝", "Agradecimiento", "kansha"],
+        ["幸せ", "Felicidad", "shiawase"]
+    ]
         };
 
         this.estado = {
