@@ -743,204 +743,205 @@ class AplicacionVocabulario {
                 ["祖父", "Abuelo", "sofu"],
                 ["祖母", "Abuela", "sobo"],
                 ["子供", "Niño", "kodomo"]
+            ],
+
+            // TOONO ESUKE - HERMANA RUBIA RUSA - 5 mazos
+            "Toono - Hermana Rubia Rusa - Mazo 1": [
+                ["金髪", "Cabello rubio", "kinpatsu"],
+                ["青い目", "Ojos azules", "aoi me"],
+                ["美しい", "Hermosa", "utsukushii"],
+                ["優しい", "Amable", "yasashii"],
+                ["笑顔", "Sonrisa", "egao"],
+                ["ロシア", "Rusia", "roshia"],
+                ["姉妹", "Hermanas", "shimai"],
+                ["家族", "Familia", "kazoku"],
+                ["外国", "País extranjero", "gaikoku"],
+                ["文化", "Cultura", "bunka"]
+            ],
+
+            "Toono - Hermana Rubia Rusa - Mazo 2": [
+                ["雪", "Nieve", "yuki"],
+                ["冬", "Invierno", "fuyu"],
+                ["寒い", "Frío", "samui"],
+                ["暖炉", "Chimenea", "danro"],
+                ["毛布", "Manta", "moufu"],
+                ["温かい", "Cálido", "atatakai"],
+                ["飲み物", "Bebida", "nomimono"],
+                ["紅茶", "Té negro", "koucha"],
+                ["甘い", "Dulce", "amai"],
+                ["幸せ", "Felicidad", "shiawase"]
+            ],
+
+            "Toono - Hermana Rubia Rusa - Mazo 3": [
+                ["音楽", "Música", "ongaku"],
+                ["踊る", "Bailar", "odoru"],
+                ["歌う", "Cantar", "utau"],
+                ["楽器", "Instrumento musical", "gakki"],
+                ["ピアノ", "Piano", "piano"],
+                ["美声", "Voz hermosa", "bisei"],
+                ["芸術", "Arte", "geijutsu"],
+                ["才能", "Talento", "sainou"],
+                ["練習", "Práctica", "renshuu"],
+                ["上達", "Mejora", "joutatsu"]
+            ],
+
+            "Toono - Hermana Rubia Rusa - Mazo 4": [
+                ["冒険", "Aventura", "bouken"],
+                ["旅行", "Viaje", "ryokou"],
+                ["発見", "Descubrimiento", "hakken"],
+                ["不思議", "Misterio", "fushigi"],
+                ["秘密", "Secreto", "himitsu"],
+                ["勇気", "Valentía", "yuuki"],
+                ["挑戦", "Desafío", "chousen"],
+                ["成功", "Éxito", "seikou"],
+                ["成長", "Crecimiento", "seichou"],
+                ["思い出", "Recuerdo", "omoide"]
+            ],
+
+            "Toono - Hermana Rubia Rusa - Mazo 5": [
+                ["料理", "Cocina", "ryouri"],
+                ["美味しい", "Delicioso", "oishii"],
+                ["食材", "Ingredientes", "shokuzai"],
+                ["伝統", "Tradición", "dentou"],
+                ["家庭", "Hogar", "katei"],
+                ["愛情", "Amor", "aijou"],
+                ["手作り", "Hecho a mano", "tezukuri"],
+                ["味", "Sabor", "aji"],
+                ["香り", "Aroma", "kaori"],
+                ["満足", "Satisfacción", "manzoku"]
+            ],
+
+            // TOONO ESUKE - HERMANA Y MADRE - 5 mazos
+            "Toono - Hermana y Madre - Mazo 1": [
+                ["母親", "Madre", "hahaoya"],
+                ["娘", "Hija", "musume"],
+                ["家族愛", "Amor familiar", "kazokuai"],
+                ["絆", "Vínculo", "kizuna"],
+                ["保護", "Protección", "hogo"],
+                ["育児", "Crianza", "ikuji"],
+                ["優しさ", "Dulzura", "yasashisa"],
+                ["支え", "Apoyo", "sasae"],
+                ["信頼", "Confianza", "shinrai"],
+                ["安心", "Tranquilidad", "anshin"]
+            ],
+
+            "Toono - Hermana y Madre - Mazo 2": [
+                ["家庭", "Hogar", "katei"],
+                ["団欒", "Reunión familiar", "danran"],
+                ["夕食", "Cena", "yuushoku"],
+                ["会話", "Conversación", "kaiwa"],
+                ["思いやり", "Consideración", "omoiyari"],
+                ["助け合い", "Ayuda mutua", "tasukeai"],
+                ["幸せ", "Felicidad", "shiawase"],
+                ["平和", "Paz", "heiwa"],
+                ["温もり", "Calidez", "nukumori"],
+                ["居場所", "Lugar de pertenencia", "ibasho"]
+            ],
+
+            "Toono - Hermana y Madre - Mazo 3": [
+                ["教育", "Educación", "kyouiku"],
+                ["知恵", "Sabiduría", "chie"],
+                ["経験", "Experiencia", "keiken"],
+                ["教訓", "Lección", "kyoukun"],
+                ["成長", "Crecimiento", "seichou"],
+                ["未来", "Futuro", "mirai"],
+                ["希望", "Esperanza", "kibou"],
+                ["夢", "Sueño", "yume"],
+                ["努力", "Esfuerzo", "doryoku"],
+                ["成功", "Éxito", "seikou"]
+            ],
+
+            "Toono - Hermana y Madre - Mazo 4": [
+                ["美しさ", "Belleza", "utsukushisa"],
+                ["優雅", "Elegancia", "yuuga"],
+                ["風格", "Presencia", "fukaku"],
+                ["知性", "Inteligencia", "chisei"],
+                ["落ち着き", "Calma", "ochitsuki"],
+                ["威厳", "Dignidad", "igen"],
+                ["愛情", "Amor", "aijou"],
+                ["慈愛", "Compasión", "jiai"],
+                ["寛容", "Tolerancia", "kanyou"],
+                ["理解", "Comprensión", "rikai"]
+            ],
+
+            "Toono - Hermana y Madre - Mazo 5": [
+                ["伝統", "Tradición", "dentou"],
+                ["文化", "Cultura", "bunka"],
+                ["価値観", "Valores", "kachikan"],
+                ["継承", "Herencia", "keishou"],
+                ["歴史", "Historia", "rekishi"],
+                ["教え", "Enseñanza", "oshie"],
+                ["習慣", "Costumbre", "shuukan"],
+                ["儀式", "Ceremonia", "gishiki"],
+                ["記念", "Conmemoración", "kinen"],
+                ["宝物", "Tesoro", "takaramono"]
+            ],
+
+            // TOONO ESUKE - CHICA DE LA ESCUELA - 5 mazos
+            "Toono - Chica de la Escuela - Mazo 1": [
+                ["学校", "Escuela", "gakkou"],
+                ["生徒", "Estudiante", "seito"],
+                ["教室", "Aula", "kyoushitsu"],
+                ["勉強", "Estudio", "benkyou"],
+                ["試験", "Examen", "shiken"],
+                ["成績", "Calificaciones", "seiseki"],
+                ["友達", "Amigo", "tomodachi"],
+                ["クラス", "Clase", "kurasu"],
+                ["先生", "Maestro", "sensei"],
+                ["学習", "Aprendizaje", "gakushuu"]
+            ],
+
+            "Toono - Chica de la Escuela - Mazo 2": [
+                ["青春", "Juventud", "seishun"],
+                ["思い出", "Recuerdo", "omoide"],
+                ["恋愛", "Amor", "renai"],
+                ["初恋", "Primer amor", "hatsukoi"],
+                ["胸騒ぎ", "Palpitación", "munasawagi"],
+                ["告白", "Confesión", "kokuhaku"],
+                ["ドキドキ", "Latido acelerado", "dokidoki"],
+                ["ロマンス", "Romance", "romansu"],
+                ["片思い", "Amor no correspondido", "kataomoi"],
+                ["幸せ", "Felicidad", "shiawase"]
+            ],
+
+            "Toono - Chica de la Escuela - Mazo 3": [
+                ["部活動", "Club escolar", "bukatsudou"],
+                ["運動", "Ejercicio", "undou"],
+                ["文化祭", "Festival cultural", "bunkasai"],
+                ["体育祭", "Festival deportivo", "taiikusai"],
+                ["準備", "Preparación", "junbi"],
+                ["チームワーク", "Trabajo en equipo", "chiimuwaaku"],
+                ["友情", "Amistad", "yuujou"],
+                ["協力", "Cooperación", "kyouryoku"],
+                ["達成感", "Sensación de logro", "tasseikan"],
+                ["思い出", "Recuerdo", "omoide"]
+            ],
+
+            "Toono - Chica de la Escuela - Mazo 4": [
+                ["未来", "Futuro", "mirai"],
+                ["夢", "Sueño", "yume"],
+                ["目標", "Objetivo", "mokuhyou"],
+                ["進路", "Trayectoria", "shinro"],
+                ["選択", "Elección", "sentaku"],
+                ["可能性", "Posibilidad", "kanousei"],
+                ["挑戦", "Desafío", "chousen"],
+                ["成長", "Crecimiento", "seichou"],
+                ["希望", "Esperanza", "kibou"],
+                ["成功", "Éxito", "seikou"]
+            ],
+
+            "Toono - Chica de la Escuela - Mazo 5": [
+                ["日常", "Vida cotidiana", "nichijou"],
+                ["平凡", "Ordinario", "heibon"],
+                ["特別", "Especial", "tokubetsu"],
+                ["瞬間", "Momento", "shunkan"],
+                ["輝き", "Brillo", "kagayaki"],
+                ["宝物", "Tesoro", "takaramono"],
+                ["思い出", "Recuerdo", "omoide"],
+                ["青春", "Juventud", "seishun"],
+                ["一期一会", "Encuentro único", "ichigoichie"],
+                ["感謝", "Agradecimiento", "kansha"]
             ]
-            // === NUEVOS MAZOS TOONO ESUKE - HERMANA RUBIA RUSA ===
-    "Toono - Hermana Rubia Rusa - Básico": [
-        ["ロシア", "Rusia", "roshia"],
-        ["金髪", "Cabello rubio", "kinpatsu"],
-        ["姉", "Hermana mayor", "ane"],
-        ["美しい", "Hermosa", "utsukushii"],
-        ["雪", "Nieve", "yuki"],
-        ["青い目", "Ojos azules", "aoi me"],
-        ["優しい", "Amable", "yasashii"],
-        ["冬", "Invierno", "fuyu"],
-        ["肌", "Piel", "hada"],
-        ["微笑み", "Sonrisa", "hohoemi"]
-    ],
-
-    "Toono - Hermana Rubia Rusa - Familia": [
-        ["家族", "Familia", "kazoku"],
-        ["兄弟", "Hermanos", "kyoudai"],
-        ["保護", "Protección", "hogo"],
-        ["愛情", "Amor", "aijou"],
-        ["絆", "Vínculo", "kizuna"],
-        ["家", "Hogar", "ie"],
-        ["温かい", "Cálido", "atatakai"],
-        ["思いやり", "Consideración", "omoiyari"],
-        ["支える", "Apoyar", "sasaeru"],
-        ["幸せ", "Felicidad", "shiawase"]
-    ],
-
-    "Toono - Hermana Rubia Rusa - Personalidad": [
-        ["強い", "Fuerte", "tsuyoi"],
-        ["賢い", "Inteligente", "kashikoi"],
-        ["自信", "Confianza", "jishin"],
-        ["独立", "Independencia", "dokuritsu"],
-        ["リーダー", "Líder", "riidaa"],
-        ["決断", "Decisión", "ketsudan"],
-        ["責任", "Responsabilidad", "sekinin"],
-        ["指導", "Guía", "shidou"],
-        ["模範", "Ejemplo", "mohan"],
-        ["尊敬", "Respeto", "sonkei"]
-    ],
-
-    "Toono - Hermana Rubia Rusa - Cultura": [
-        ["文化", "Cultura", "bunka"],
-        ["伝統", "Tradición", "dentou"],
-        ["言語", "Idioma", "gengo"],
-        ["習慣", "Costumbre", "shuukan"],
-        ["料理", "Cocina", "ryouri"],
-        ["音楽", "Música", "ongaku"],
-        ["舞踊", "Danza", "buyou"],
-        ["芸術", "Arte", "geijutsu"],
-        ["歴史", "Historia", "rekishi"],
-        ["民族", "Etnia", "minzoku"]
-    ],
-
-    "Toono - Hermana Rubia Rusa - Emociones": [
-        ["喜び", "Alegría", "yorokobi"],
-        ["安心", "Alivio", "anshin"],
-        ["信頼", "Confianza", "shinrai"],
-        ["希望", "Esperanza", "kibou"],
-        ["誇り", "Orgullo", "hokori"],
-        ["感謝", "Gratitud", "kansha"],
-        ["勇気", "Valentía", "yuuki"],
-        ["平和", "Paz", "heiwa"],
-        ["夢", "Sueño", "yume"],
-        ["未来", "Futuro", "mirai"]
-    ],
-
-    // === NUEVOS MAZOS TOONO ESUKE - HERMANA Y MADRE ===
-    "Toono - Hermana y Madre - Relación": [
-        ["母", "Madre", "haha"],
-        ["娘", "Hija", "musume"],
-        ["親子", "Padres e hijos", "oyako"],
-        ["育児", "Crianza", "ikuji"],
-        ["教育", "Educación", "kyouiku"],
-        ["指導", "Orientación", "shidou"],
-        ["世代", "Generación", "sedai"],
-        ["継承", "Herencia", "keishou"],
-        ["伝える", "Transmitir", "tsutaeru"],
-        ["教える", "Enseñar", "oshieru"]
-    ],
-
-    "Toono - Hermana y Madre - Cuidado": [
-        ["世話", "Cuidado", "sewa"],
-        ["保護", "Protección", "hogo"],
-        ["栄養", "Nutrición", "eiyou"],
-        ["健康", "Salud", "kenkou"],
-        ["安全", "Seguridad", "anzen"],
-        ["安心", "Tranquilidad", "anshin"],
-        ["支え", "Apoyo", "sasae"],
-        ["励まし", "Aliento", "hagemashi"],
-        ["見守る", "Velar por", "mimamoru"],
-        ["育てる", "Criar", "sodateru"]
-    ],
-
-    "Toono - Hermana y Madre - Hogar": [
-        ["家庭", "Hogar", "katei"],
-        ["団欒", "Reunión familiar", "danran"],
-        ["食事", "Comida", "shokuji"],
-        ["台所", "Cocina", "daidokoro"],
-        ["寝室", "Dormitorio", "shinshitsu"],
-        ["居間", "Sala de estar", "ima"],
-        ["温もり", "Calidez", "nukumori"],
-        ["憩い", "Descanso", "ikoi"],
-        ["くつろぎ", "Relajación", "kutsurogi"],
-        ["家庭円満", "Armonía familiar", "katei enman"]
-    ],
-
-    "Toono - Hermana y Madre - Valores": [
-        ["愛情", "Amor", "aijou"],
-        ["忍耐", "Paciencia", "nintai"],
-        ["優しさ", "Dulzura", "yasashisa"],
-        ["理解", "Comprensión", "rikai"],
-        ["寛容", "Tolerancia", "kanyou"],
-        ["慈愛", "Compasión", "jiai"],
-        ["献身", "Dedicación", "kenshin"],
-        ["犠牲", "Sacrificio", "gisei"],
-        ["無償", "Desinterés", "mushou"],
-        ["永遠", "Eterno", "eien"]
-    ],
-
-    "Toono - Hermana y Madre - Desarrollo": [
-        ["成長", "Crecimiento", "seichou"],
-        ["発達", "Desarrollo", "hattatsu"],
-        ["自立", "Autonomía", "jiritsu"],
-        ["成熟", "Madurez", "seijuku"],
-        ["経験", "Experiencia", "keiken"],
-        ["学び", "Aprendizaje", "manabi"],
-        ["挑戦", "Desafío", "chousen"],
-        ["成功", "Éxito", "seikou"],
-        ["達成", "Logro", "tassei"],
-        ["進歩", "Progreso", "shinpo"]
-    ],
-
-    // === NUEVOS MAZOS TOONO ESUKE - CHICA DE LA ESCUELA ===
-    "Toono - Chica Escuela - Vida Escolar": [
-        ["学校", "Escuela", "gakkou"],
-        ["教室", "Aula", "kyoushitsu"],
-        ["生徒", "Estudiante", "seito"],
-        ["先生", "Maestro", "sensei"],
-        ["勉強", "Estudio", "benkyou"],
-        ["授業", "Clase", "jugyou"],
-        ["試験", "Examen", "shiken"],
-        ["成績", "Calificaciones", "seiseki"],
-        ["宿題", "Tarea", "shukudai"],
-        ["教科書", "Libro de texto", "kyoukasho"]
-    ],
-
-    "Toono - Chica Escuela - Amistades": [
-        ["友達", "Amigos", "tomodachi"],
-        ["親友", "Mejor amigo", "shinyuu"],
-        ["仲間", "Compañeros", "nakama"],
-        ["交流", "Interacción", "kouryuu"],
-        ["信頼", "Confianza", "shinrai"],
-        ["協力", "Cooperación", "kyouryoku"],
-        ["思い出", "Recuerdos", "omoide"],
-        ["共有", "Compartir", "kyouyuu"],
-        ["支え合い", "Apoyo mutuo", "sasaeai"],
-        ["絆", "Lazos", "kizuna"]
-    ],
-
-    "Toono - Chica Escuela - Actividades": [
-        ["部活動", "Club escolar", "bukatsudou"],
-        ["運動", "Deporte", "undou"],
-        ["文化祭", "Festival cultural", "bunkasai"],
-        ["体育祭", "Festival deportivo", "taiikusai"],
-        ["委員会", "Comité", "iinkai"],
-        ["行事", "Evento", "gyouji"],
-        ["準備", "Preparación", "junbi"],
-        ["参加", "Participación", "sanka"],
-        ["活躍", "Actuación destacada", "katsuyaku"],
-        ["達成感", "Sensación de logro", "tasseikan"]
-    ],
-
-    "Toono - Chica Escuela - Juventud": [
-        ["青春", "Juventud", "seishun"],
-        ["情熱", "Pasión", "jounetsu"],
-        ["夢", "Sueños", "yume"],
-        ["希望", "Esperanza", "kibou"],
-        ["未来", "Futuro", "mirai"],
-        ["可能性", "Posibilidades", "kanousei"],
-        ["挑戦", "Reto", "chousen"],
-        ["成長", "Crecimiento", "seichou"],
-        ["思い切り", "Sin reservas", "omoikiri"],
-        ["輝き", "Brillo", "kagayaki"]
-    ],
-
-    "Toono - Chica Escuela - Emociones": [
-        ["嬉しい", "Feliz", "ureshii"],
-        ["楽しい", "Divertido", "tanoshii"],
-        ["緊張", "Nerviosismo", "kinchou"],
-        ["期待", "Expectativa", "kitai"],
-        ["不安", "Ansiedad", "fuan"],
-        ["感動", "Emoción", "kandou"],
-        ["悩み", "Preocupación", "nayami"],
-        ["勇気", "Coraje", "yuuki"],
-        ["感謝", "Agradecimiento", "kansha"],
-        ["幸せ", "Felicidad", "shiawase"]
-    ]
         };
 
         this.estado = {
@@ -3370,54 +3371,8 @@ class AplicacionVocabulario {
     guardarStats() {
         localStorage.setItem('vocabularioStats', JSON.stringify(this.stats));
     }
-// NUEVO: Método para mostrar mazos de Toono Esuke
-mostrarMazosToono(personaje) {
-    let prefijo = '';
-    let pantallaId = '';
-    let contenedorId = '';
-    
-    switch(personaje) {
-        case 'hermana-rubia':
-            prefijo = 'Toono - Hermana Rubia Rusa';
-            pantallaId = 'toono-hermana-rubia';
-            contenedorId = 'contenedor-toono-hermana-rubia';
-            break;
-        case 'hermana-madre':
-            prefijo = 'Toono - Hermana y Madre';
-            pantallaId = 'toono-hermana-madre';
-            contenedorId = 'contenedor-toono-hermana-madre';
-            break;
-        case 'chica-escuela':
-            prefijo = 'Toono - Chica Escuela';
-            pantallaId = 'toono-chica-escuela';
-            contenedorId = 'contenedor-toono-chica-escuela';
-            break;
-    }
-    
-    const contenedor = document.getElementById(contenedorId);
-    contenedor.innerHTML = '';
-    
-    for (const nombreMazo in this.mazos) {
-        if (nombreMazo.startsWith(prefijo)) {
-            const statsMazo = this.stats.mazos[nombreMazo];
-            const boton = document.createElement('button');
-            boton.className = 'boton-mazo';
-            boton.innerHTML = `
-                ${nombreMazo.replace(prefijo + ' - ', '')}<br>
-                Mejor: ${statsMazo.mejorPuntuacion}%<br>
-                Jugado: ${statsMazo.vecesJugado} veces<br>
-                Récord: ${statsMazo.mejorRacha} aciertos<br>
-                100%: ${statsMazo.completados100} veces
-            `;
-            boton.onclick = () => this.iniciarQuiz(nombreMazo);
-            contenedor.appendChild(boton);
-        }
-    }
-    
-    this.mostrarPantalla(pantallaId);
-}
 
-   inicializarApp() {
+    inicializarApp() {
     this.pantallas = {
         seleccion: document.getElementById('pantalla-seleccion'),
         quiz: document.getElementById('pantalla-quiz'),
@@ -3430,11 +3385,6 @@ mostrarMazosToono(personaje) {
         diarias: document.getElementById('pantalla-diarias'),
         tienda: document.getElementById('pantalla-tienda'),
         toono: document.getElementById('pantalla-toono'),
-        // === NUEVAS PANTALLAS TOONO ESUKE ===
-        'toono-hermana-rubia': document.getElementById('pantalla-toono-hermana-rubia'),
-        'toono-hermana-madre': document.getElementById('pantalla-toono-hermana-madre'),
-        'toono-chica-escuela': document.getElementById('pantalla-toono-chica-escuela'),
-        // ====================================
         eventoDiario: document.getElementById('pantalla-evento-diario'),
         fabrizio: document.getElementById('pantalla-fabrizio'),
         // NUEVAS PANTALLAS
@@ -3932,48 +3882,34 @@ mostrarMazosToono(personaje) {
     }
 
     inicializarPantallaToono() {
-    const toonoCard = document.getElementById('toono-card');
-    if (toonoCard) {
-        toonoCard.addEventListener('click', () => {
-            this.mostrarPantalla('toono');
+        const toonoCard = document.getElementById('toono-card');
+        if (toonoCard) {
+            toonoCard.addEventListener('click', () => {
+                this.mostrarPantalla('toono');
+            });
+        }
+        
+        document.getElementById('boton-volver-menu-toono').onclick = () => {
+            this.mostrarPantalla('seleccion');
+        };
+        
+        // Event listeners para imágenes de personajes
+        document.querySelectorAll('.personaje-imagen').forEach(imagen => {
+            imagen.addEventListener('click', (e) => {
+                const url = e.target.src;
+                const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
+                this.mostrarImagenGrande(url, titulo);
+            });
+        });
+
+        // NUEVO: Event listeners para los mazos de Toono Esuke
+        document.querySelectorAll('.boton-mazo-toono').forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const nombreMazo = e.target.getAttribute('data-mazo');
+                this.iniciarQuiz(nombreMazo);
+            });
         });
     }
-    
-    document.getElementById('boton-volver-menu-toono').onclick = () => {
-        this.mostrarPantalla('seleccion');
-    };
-
-    // NUEVO: Event listeners para personajes de Toono Esuke
-    document.querySelectorAll('.personaje-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            const personaje = card.getAttribute('data-personaje');
-            this.mostrarMazosToono(personaje);
-        });
-    });
-
-    // NUEVO: Botones volver para las nuevas pantallas
-    document.getElementById('boton-volver-toono-hermana-rubia').onclick = () => {
-        this.mostrarPantalla('toono');
-    };
-    
-    document.getElementById('boton-volver-toono-hermana-madre').onclick = () => {
-        this.mostrarPantalla('toono');
-    };
-    
-    document.getElementById('boton-volver-toono-chica-escuela').onclick = () => {
-        this.mostrarPantalla('toono');
-    };
-
-    // Mantener el evento para mostrar imágenes en grande
-    document.querySelectorAll('.personaje-imagen').forEach(imagen => {
-        imagen.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita que se active el click del card
-            const url = e.target.src;
-            const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
-            this.mostrarImagenGrande(url, titulo);
-        });
-    });
-}
 
     inicializarPantallaFabrizio() {
         const fabrizioCard = document.getElementById('fabrizio-card');
@@ -4643,5 +4579,5 @@ mostrarMazosToono(personaje) {
 
 // Inicializar la aplicación cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
-    new AplicacionVocabulario();
+    window.app = new AplicacionVocabulario();
 });
