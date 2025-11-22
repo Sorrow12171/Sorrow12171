@@ -3392,6 +3392,10 @@ class AplicacionVocabulario {
         misiones: document.getElementById('pantalla-misiones'),
         vivienda: document.getElementById('pantalla-vivienda'),
         tienda18: document.getElementById('pantalla-tienda-18')
+            toono: document.getElementById('pantalla-toono'),
+    'hermana-rubia': document.getElementById('pantalla-hermana-rubia'),
+    'hermana-madre': document.getElementById('pantalla-hermana-madre'),
+    'chica-escuela': document.getElementById('pantalla-chica-escuela')
     };
 
     // Cargar sistema de tareas diarias
@@ -3881,35 +3885,49 @@ class AplicacionVocabulario {
         this.actualizarSaldoTienda();
     }
 
-    inicializarPantallaToono() {
-        const toonoCard = document.getElementById('toono-card');
-        if (toonoCard) {
-            toonoCard.addEventListener('click', () => {
-                this.mostrarPantalla('toono');
-            });
-        }
-        
-        document.getElementById('boton-volver-menu-toono').onclick = () => {
-            this.mostrarPantalla('seleccion');
-        };
-        
-        // Event listeners para imágenes de personajes
-        document.querySelectorAll('.personaje-imagen').forEach(imagen => {
-            imagen.addEventListener('click', (e) => {
-                const url = e.target.src;
-                const titulo = e.target.closest('.personaje-card').querySelector('.personaje-texto').textContent;
-                this.mostrarImagenGrande(url, titulo);
-            });
-        });
-
-        // NUEVO: Event listeners para los mazos de Toono Esuke
-        document.querySelectorAll('.boton-mazo-toono').forEach(boton => {
-            boton.addEventListener('click', (e) => {
-                const nombreMazo = e.target.getAttribute('data-mazo');
-                this.iniciarQuiz(nombreMazo);
-            });
+inicializarPantallaToono() {
+    const toonoCard = document.getElementById('toono-card');
+    if (toonoCard) {
+        toonoCard.addEventListener('click', () => {
+            this.mostrarPantalla('toono');
         });
     }
+    
+    document.getElementById('boton-volver-menu-toono').onclick = () => {
+        this.mostrarPantalla('seleccion');
+    };
+    
+    // Event listeners para personajes
+    document.querySelectorAll('.personaje-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const personaje = e.currentTarget.getAttribute('data-personaje');
+            this.mostrarPantallaMazosPersonaje(personaje);
+        });
+    });
+    
+    // Event listeners para botones volver
+    document.getElementById('boton-volver-hermana-rubia').onclick = () => {
+        this.mostrarPantalla('toono');
+    };
+    document.getElementById('boton-volver-hermana-madre').onclick = () => {
+        this.mostrarPantalla('toono');
+    };
+    document.getElementById('boton-volver-chica-escuela').onclick = () => {
+        this.mostrarPantalla('toono');
+    };
+    
+    // Event listeners para botones de mazo
+    document.querySelectorAll('.boton-mazo').forEach(boton => {
+        boton.addEventListener('click', (e) => {
+            const nombreMazo = e.target.getAttribute('data-mazo');
+            this.iniciarQuiz(nombreMazo);
+        });
+    });
+}
+
+mostrarPantallaMazosPersonaje(personaje) {
+    this.mostrarPantalla(`hermana-${personaje}`);
+}
 
     inicializarPantallaFabrizio() {
         const fabrizioCard = document.getElementById('fabrizio-card');
