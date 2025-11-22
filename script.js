@@ -956,6 +956,9 @@ class AplicacionVocabulario {
             preguntasRespondidas: 0
         };
 
+        // SISTEMA DE BACKUP
+        this.sistemaBackup = new SistemaBackup(this);
+
         // MEJORA: Detectar si es primera vez en este dominio
         this.detectarPrimeraVez();
         
@@ -2457,6 +2460,7 @@ class AplicacionVocabulario {
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
+            margin-top: 20px;
             border: 3px solid #555555;
             transition: all 0.3s ease;
         `;
@@ -3464,6 +3468,9 @@ class AplicacionVocabulario {
             this.actualizarPantallaTienda18();
         });
     }
+
+    // NUEVO: Inicializar sistema de backup
+    this.inicializarSistemaBackup();
     
     // Verificar evento diario
     this.verificarEventoDiario();
@@ -3478,6 +3485,17 @@ class AplicacionVocabulario {
         }, 1000);
     }
 }
+
+    // NUEVO: Inicializar sistema de backup
+    inicializarSistemaBackup() {
+        document.getElementById('boton-exportar').onclick = () => {
+            this.sistemaBackup.exportarProgreso();
+        };
+        
+        document.getElementById('input-importar').addEventListener('change', (e) => {
+            this.sistemaBackup.cargarArchivo(e);
+        });
+    }
 
     // NUEVO: Inicializar pantalla Vivienda
     inicializarPantallaVivienda() {
@@ -4616,6 +4634,203 @@ class AplicacionVocabulario {
     volverMenu() {
         this.actualizarPantallaSeleccion();
         this.mostrarPantalla('seleccion');
+    }
+}
+
+// =============================================
+// SISTEMA DE IMPORTACIÓN/EXPORTACIÓN
+// =============================================
+
+class SistemaBackup {
+    constructor(app) {
+        this.app = app;
+    }
+
+    // Exportar progreso completo
+    exportarProgreso() {
+        const datosExportar = {
+            stats: this.app.stats,
+            sistemaNovia: this.app.sistemaNovia,
+            misionesSemanales: this.app.misionesSemanales,
+            tareasDiarias: this.app.tareasDiarias,
+            eventosDiarios: localStorage.getItem('eventoDiario'),
+            fechaExportacion: new Date().toISOString(),
+            version: '1.0'
+        };
+
+        const datosString = JSON.stringify(datosExportar, null, 2);
+        this.descargarArchivo(datosString, 'progreso_japones_backup.json', 'application/json');
+        
+        this.app.mostrarNotificacion('✅ Progreso exportado correctamente');
+    }
+
+    // Importar progreso
+    importarProgreso(datosJSON) {
+        try {
+            const datos = JSON.parse(datosJSON);
+            
+            // Validar que sea un archivo de backup válido
+            if (!datos.stats || !datos.sistemaNovia) {
+                throw new Error('Archivo de backup inválido');
+            }
+
+            // Mostrar confirmación
+            this.mostrarConfirmacionImportacion(datos);
+            
+        } catch (error) {
+            console.error('❌ Error importando progreso:', error);
+            this.app.mostrarNotificacionError('Error importando progreso: ' + error.message);
+        }
+    }
+
+    // Mostrar confirmación antes de importar
+    mostrarConfirmacionImportacion(datos) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        `;
+
+        const confirmacion = document.createElement('div');
+        confirmacion.style.cssText = `
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            border: 3px solid #ff6b6b;
+            color: white;
+        `;
+
+        confirmacion.innerHTML = `
+            <h3 style="color: #ff6b6b; margin-bottom: 20px;">⚠️ Confirmar Importación</h3>
+            <p>¿Estás seguro de que quieres importar este progreso?</p>
+            <div style="text-align: left; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 15px 0;">
+                <strong>Datos a importar:</strong><br>
+                • Mazos completados: ${datos.stats.mazosCompletados || 0}<br>
+                • Soles: ${datos.stats.soles || 0}<br>
+                • Corazones: ${datos.sistemaNovia.corazones || 0}<br>
+                • Fecha exportación: ${new Date(datos.fechaExportacion).toLocaleDateString()}
+            </div>
+            <p style="color: #ff9999; font-size: 0.9em;">
+                ⚠️ Esto sobrescribirá tu progreso actual
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+                <button id="confirmar-importar" style="
+                    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+                    color: white;
+                    border: none;
+                    padding: 12px 25px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: bold;
+                ">✅ Importar</button>
+                <button id="cancelar-importar" style="
+                    background: linear-gradient(135deg, #666, #888);
+                    color: white;
+                    border: none;
+                    padding: 12px 25px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: bold;
+                ">❌ Cancelar</button>
+            </div>
+        `;
+
+        overlay.appendChild(confirmacion);
+        document.body.appendChild(overlay);
+
+        document.getElementById('confirmar-importar').onclick = () => {
+            this.ejecutarImportacion(datos);
+            document.body.removeChild(overlay);
+        };
+
+        document.getElementById('cancelar-importar').onclick = () => {
+            document.body.removeChild(overlay);
+        };
+    }
+
+    // Ejecutar la importación
+    ejecutarImportacion(datos) {
+        try {
+            // Importar stats
+            this.app.stats = { ...this.app.stats, ...datos.stats };
+            
+            // Importar sistema novia
+            this.app.sistemaNovia = { ...this.app.sistemaNovia, ...datos.sistemaNovia };
+            
+            // Importar misiones semanales
+            if (datos.misionesSemanales) {
+                this.app.misionesSemanales = { ...this.app.misionesSemanales, ...datos.misionesSemanales };
+            }
+            
+            // Importar tareas diarias
+            if (datos.tareasDiarias) {
+                this.app.tareasDiarias = { ...this.app.tareasDiarias, ...datos.tareasDiarias };
+            }
+            
+            // Importar evento diario
+            if (datos.eventosDiarios) {
+                localStorage.setItem('eventoDiario', datos.eventosDiarios);
+            }
+
+            // Guardar todo
+            this.app.guardarStats();
+            this.app.guardarSistemaNovia();
+            this.app.guardarMisionesSemanales();
+            this.app.guardarTareasDiarias();
+
+            // Actualizar interfaz
+            this.app.actualizarPantallaSeleccion();
+            this.app.actualizarPantallaNoviaRPG();
+            this.app.actualizarPantallaMisiones();
+            this.app.actualizarPantallaTareas();
+
+            this.app.mostrarNotificacion('✅ Progreso importado correctamente');
+            
+        } catch (error) {
+            console.error('❌ Error en importación:', error);
+            this.app.mostrarNotificacionError('Error importando progreso');
+        }
+    }
+
+    // Descargar archivo
+    descargarArchivo(contenido, nombreArchivo, tipoContenido) {
+        const blob = new Blob([contenido], { type: tipoContenido });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = nombreArchivo;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    // Cargar archivo desde input
+    cargarArchivo(event) {
+        const archivo = event.target.files[0];
+        if (!archivo) return;
+
+        const lector = new FileReader();
+        lector.onload = (e) => {
+            this.importarProgreso(e.target.result);
+        };
+        lector.onerror = () => {
+            this.app.mostrarNotificacionError('Error leyendo el archivo');
+        };
+        lector.readAsText(archivo);
+
+        // Limpiar input
+        event.target.value = '';
     }
 }
 
