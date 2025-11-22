@@ -2314,62 +2314,64 @@ class AplicacionVocabulario {
         }, 60000);
     }
 
-    verificarEventoDiario() {
-        const hoy = new Date().toDateString();
-        const datosEvento = localStorage.getItem('eventoDiario');
+verificarEventoDiario() {
+    const hoy = new Date().toDateString();
+    const datosEvento = localStorage.getItem('eventoDiario');
+    
+    console.log('📅 Verificando evento diario...');
+    console.log('Fecha actual:', hoy);
+    
+    if (datosEvento) {
+        const eventoData = JSON.parse(datosEvento);
+        console.log('Datos del evento guardados:', eventoData);
         
-        console.log('📅 Verificando evento diario...');
-        console.log('Fecha actual:', hoy);
+        // Verificar si es un nuevo día (después de las 3 AM)
+        const ahora = new Date();
+        const horaActual = ahora.getHours();
+        const esNuevoDia = horaActual >= 3 && eventoData.fecha !== hoy;
         
-        if (datosEvento) {
-            const eventoData = JSON.parse(datosEvento);
-            console.log('Datos del evento guardados:', eventoData);
+        console.log('Hora actual:', horaActual);
+        console.log('¿Es nuevo día?', esNuevoDia);
+        
+        if (esNuevoDia) {
+            console.log('🆕 Nuevo día - verificando si falló el evento anterior');
             
-            // Verificar si es un nuevo día (después de las 3 AM)
-            const ahora = new Date();
-            const horaActual = ahora.getHours();
-            const esNuevoDia = horaActual >= 3 && eventoData.fecha !== hoy;
-            
-            console.log('Hora actual:', horaActual);
-            console.log('¿Es nuevo día?', esNuevoDia);
-            
-            if (esNuevoDia) {
-                console.log('🆕 Nuevo día - verificando si falló el evento anterior');
-                
-                // Verificar si el evento anterior se completó o falló
-                if (eventoData.eventoActual && !eventoData.eventoCompletado && eventoData.yaAceptado) {
-                    // El usuario falló el evento del día anterior
-                    console.log('❌ El usuario falló el evento del día anterior');
-                    this.mostrarFalloEventoAnterior(eventoData.eventoActual);
-                } else {
-                    console.log('✅ Evento anterior completado o no aceptado - continuando normalmente');
-                    this.reiniciarEventosDiarios();
-                    this.generarNuevoEvento();
-                }
-            } else if (eventoData.fecha === hoy) {
-                // Cargar evento del día actual
-                this.eventosDiarios.eventoActual = eventoData.eventoActual;
-                this.eventosDiarios.mazosCompletadosHoy = eventoData.mazosCompletadosHoy || 0;
-                
-                // Verificar si ya se completó el evento de hoy o si ya se aceptó
-                if (eventoData.eventoCompletado || eventoData.yaAceptado) {
-                    console.log('✅ Evento ya completado/aceptado hoy - mostrando menú principal');
-                    this.mostrarPantalla('seleccion');
-                } else {
-                    console.log('🎯 Mostrando evento diario pendiente');
-                    this.mostrarEventoDiario();
-                }
+            // Verificar si el evento anterior se completó o falló
+            if (eventoData.eventoActual && !eventoData.eventoCompletado && eventoData.yaAceptado) {
+                // El usuario falló el evento del día anterior
+                console.log('❌ El usuario falló el evento del día anterior');
+                this.mostrarFalloEventoAnterior(eventoData.eventoActual);
             } else {
-                console.log('📅 Fecha diferente - generando nuevo evento');
+                console.log('✅ Evento anterior completado o no aceptado - continuando normalmente');
+                this.reiniciarEventosDiarios();
                 this.generarNuevoEvento();
             }
+        } else if (eventoData.fecha === hoy) {
+            // Cargar evento del día actual
+            this.eventosDiarios.eventoActual = eventoData.eventoActual;
+            this.eventosDiarios.mazosCompletadosHoy = eventoData.mazosCompletadosHoy || 0;
+            
+            // Verificar si ya se completó el evento de hoy o si ya se aceptó
+            if (eventoData.eventoCompletado) {
+                console.log('✅ Evento ya completado hoy - mostrando menú principal');
+                // NO mostrar pantalla de evento, dejar en menú principal
+            } else if (eventoData.yaAceptado) {
+                console.log('✅ Evento ya aceptado - mostrando menú principal');
+                // NO mostrar pantalla de evento, dejar en menú principal
+            } else {
+                console.log('🎯 Mostrando evento diario pendiente');
+                this.mostrarEventoDiario();
+            }
         } else {
-            // Primera vez - generar evento
-            console.log('🆕 Primera vez - generando nuevo evento');
+            console.log('📅 Fecha diferente - generando nuevo evento');
             this.generarNuevoEvento();
         }
+    } else {
+        // Primera vez - generar evento
+        console.log('🆕 Primera vez - generando nuevo evento');
+        this.generarNuevoEvento();
     }
-
+}
     mostrarFalloEventoAnterior(eventoAnterior) {
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -2546,40 +2548,48 @@ class AplicacionVocabulario {
         }
     }
 
-    mostrarEventoDiario() {
-        const evento = this.eventosDiarios.eventoActual;
-        if (!evento) {
-            console.log('❌ No hay evento actual - mostrando menú principal');
-            this.mostrarPantalla('seleccion');
-            return;
-        }
-        
-        const contenidoEvento = document.getElementById('contenido-evento');
-        contenidoEvento.innerHTML = `
-            <img src="${evento.imagenInicio}" alt="${evento.nombre}" class="imagen-evento">
-            <div class="titulo-evento">${evento.nombre}</div>
-            <div class="descripcion-evento">${evento.textoInicio}</div>
-            <div class="progreso-evento">Mazos requeridos: ${evento.mazosRequeridos}</div>
-        `;
-        
-        // Configurar botones
-        const botonAceptar = document.getElementById('boton-aceptar-reto');
-        const botonCerrar = document.getElementById('boton-cerrar-evento');
-        
-        // Verificar si ya fue aceptado
-        const datosEvento = JSON.parse(localStorage.getItem('eventoDiario') || '{}');
-        if (datosEvento.yaAceptado) {
-            botonAceptar.textContent = '✅ Ya Aceptado';
-            botonAceptar.disabled = true;
-            botonAceptar.classList.add('aceptado');
-        } else {
-            botonAceptar.textContent = 'Aceptar el Reto';
-            botonAceptar.disabled = false;
-            botonAceptar.classList.remove('aceptado');
-        }
-        
-        this.mostrarPantalla('evento-diario');
+mostrarEventoDiario() {
+    const evento = this.eventosDiarios.eventoActual;
+    if (!evento) {
+        console.log('❌ No hay evento actual - mostrando menú principal');
+        this.mostrarPantalla('seleccion');
+        return;
     }
+    
+    // Verificar si ya fue aceptado o completado
+    const datosEvento = JSON.parse(localStorage.getItem('eventoDiario') || '{}');
+    if (datosEvento.eventoCompletado || datosEvento.yaAceptado) {
+        console.log('✅ Evento ya completado/aceptado - no mostrar');
+        this.mostrarPantalla('seleccion');
+        return;
+    }
+    
+    console.log('🎯 Mostrando evento diario');
+    const contenidoEvento = document.getElementById('contenido-evento');
+    contenidoEvento.innerHTML = `
+        <img src="${evento.imagenInicio}" alt="${evento.nombre}" class="imagen-evento">
+        <div class="titulo-evento">${evento.nombre}</div>
+        <div class="descripcion-evento">${evento.textoInicio}</div>
+        <div class="progreso-evento">Mazos requeridos: ${evento.mazosRequeridos}</div>
+    `;
+    
+    // Configurar botones
+    const botonAceptar = document.getElementById('boton-aceptar-reto');
+    const botonCerrar = document.getElementById('boton-cerrar-evento');
+    
+    // Verificar si ya fue aceptado
+    if (datosEvento.yaAceptado) {
+        botonAceptar.textContent = '✅ Ya Aceptado';
+        botonAceptar.disabled = true;
+        botonAceptar.classList.add('aceptado');
+    } else {
+        botonAceptar.textContent = 'Aceptar el Reto';
+        botonAceptar.disabled = false;
+        botonAceptar.classList.remove('aceptado');
+    }
+    
+    this.mostrarPantalla('evento-diario');
+}
 
     guardarEventoDiario() {
         const datos = {
@@ -3376,7 +3386,7 @@ class AplicacionVocabulario {
         localStorage.setItem('vocabularioStats', JSON.stringify(this.stats));
     }
 
-    inicializarApp() {
+inicializarApp() {
     this.pantallas = {
         seleccion: document.getElementById('pantalla-seleccion'),
         quiz: document.getElementById('pantalla-quiz'),
@@ -3472,7 +3482,7 @@ class AplicacionVocabulario {
     // NUEVO: Inicializar sistema de backup
     this.inicializarSistemaBackup();
     
-    // Verificar evento diario
+    // Verificar evento diario (pero NO mostrar automáticamente)
     this.verificarEventoDiario();
     
     // Verificar inactividad
@@ -3484,6 +3494,9 @@ class AplicacionVocabulario {
             alert('🌐Belinda y zahiry las mas culonas de pocollay');
         }, 1000);
     }
+    
+    // Asegurarse de que la pantalla de selección esté activa por defecto
+    this.mostrarPantalla('seleccion');
 }
 
     // NUEVO: Inicializar sistema de backup
