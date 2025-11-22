@@ -1,3 +1,5 @@
+[file name]: script.js
+[file content begin]
 class AplicacionVocabulario {
     constructor() {
         // SISTEMA RPG NOVIA
@@ -3391,7 +3393,11 @@ class AplicacionVocabulario {
         noviaRpg: document.getElementById('pantalla-novia-rpg'),
         misiones: document.getElementById('pantalla-misiones'),
         vivienda: document.getElementById('pantalla-vivienda'),
-        tienda18: document.getElementById('pantalla-tienda-18')
+        tienda18: document.getElementById('pantalla-tienda-18'),
+        // NUEVAS PANTALLAS TOONO ESUKE
+        hermanaRubiaMazos: document.getElementById('pantalla-hermana-rubia-mazos'),
+        hermanaMadreMazos: document.getElementById('pantalla-hermana-madre-mazos'),
+        chicaEscuelaMazos: document.getElementById('pantalla-chica-escuela-mazos')
     };
 
     // Cargar sistema de tareas diarias
@@ -3843,8 +3849,6 @@ class AplicacionVocabulario {
         if (toonoCard) {
             toonoCard.addEventListener('click', () => {
                 this.mostrarPantalla('toono');
-                // Asegurarse de que se muestren los personajes al entrar
-                this.volverAPersonajes();
             });
         }
         
@@ -3860,15 +3864,17 @@ class AplicacionVocabulario {
             });
         });
 
-        // Event listener para el botón "Volver a Personajes"
-        document.getElementById('boton-volver-personajes').addEventListener('click', () => {
-            this.volverAPersonajes();
+        // Event listeners para botones volver en pantallas de mazos
+        document.querySelectorAll('.volver-toono').forEach(boton => {
+            boton.addEventListener('click', () => {
+                this.mostrarPantalla('toono');
+            });
         });
 
-        // NUEVO: Event listeners para los mazos de Toono Esuke
-        document.querySelectorAll('.boton-mazo-toono').forEach(boton => {
+        // Event listeners para botones de mazos grandes
+        document.querySelectorAll('.boton-mazo-grande').forEach(boton => {
             boton.addEventListener('click', (e) => {
-                const nombreMazo = e.target.getAttribute('data-mazo');
+                const nombreMazo = e.currentTarget.getAttribute('data-mazo');
                 this.iniciarQuiz(nombreMazo);
             });
         });
@@ -3878,35 +3884,23 @@ class AplicacionVocabulario {
     mostrarMazosPersonaje(personaje) {
         console.log(`🎭 Mostrando mazos para: ${personaje}`);
         
-        const contenedorPersonajes = document.querySelector('.contenedor-personajes');
-        const contenedorMazos = document.getElementById('contenedor-mazos-toono');
-        
-        // Ocultar personajes y mostrar mazos
-        if (contenedorPersonajes) contenedorPersonajes.style.display = 'none';
-        if (contenedorMazos) contenedorMazos.style.display = 'block';
-        
-        // Ocultar todos los grupos de mazos
-        document.querySelectorAll('.personaje-mazos').forEach(grupo => {
-            grupo.style.display = 'none';
-        });
-        
-        // Mostrar solo los mazos del personaje seleccionado
-        const mazosPersonaje = document.querySelector(`.personaje-mazos[data-personaje="${personaje}"]`);
-        if (mazosPersonaje) {
-            mazosPersonaje.style.display = 'block';
+        switch(personaje) {
+            case 'hermana-rubia':
+                this.mostrarPantalla('hermanaRubiaMazos');
+                break;
+            case 'hermana-madre':
+                this.mostrarPantalla('hermanaMadreMazos');
+                break;
+            case 'chica-escuela':
+                this.mostrarPantalla('chicaEscuelaMazos');
+                break;
         }
     }
 
     // NUEVO: Método para volver a la vista de personajes
     volverAPersonajes() {
         console.log('🔄 Volviendo a vista de personajes');
-        
-        const contenedorPersonajes = document.querySelector('.contenedor-personajes');
-        const contenedorMazos = document.getElementById('contenedor-mazos-toono');
-        
-        // Mostrar personajes y ocultar mazos
-        if (contenedorPersonajes) contenedorPersonajes.style.display = 'flex';
-        if (contenedorMazos) contenedorMazos.style.display = 'none';
+        this.mostrarPantalla('toono');
     }
 
     inicializarPantallaEventos() {
@@ -4623,3 +4617,5 @@ class AplicacionVocabulario {
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new AplicacionVocabulario();
 });
+
+[file content end]
